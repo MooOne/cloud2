@@ -33,7 +33,8 @@
         "monarobase/country-list": "^2.0",
         "libern/timezone": "^1.0",
         "giggsey/libphonenumber-for-php": "~8.8",
-        "torann/geoip": "1.0.*"
+        "torann/geoip": "1.0.*",
+        "tymon/jwt-auth": "1.0.0-rc.1"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

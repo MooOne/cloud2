@@ -1,5 +1,4 @@
 <?php
-
 namespace Yeelight;
 
 use Illuminate\Notifications\Notifiable;
