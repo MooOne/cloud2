@@ -50,7 +50,8 @@
             "database/factories"
         ],
         "files": [
-            "app/Helpers/Helpers.php"
+            "app/Helpers/Helpers.php",
+            "app/Foundation/helpers.php"
         ],
         "psr-4": {
             "Yeelight\\": "app/"
@@ -64,6 +65,9 @@
     "extra": {
         "laravel": {
             "dont-discover": [
+            ],
+            "providers": [
+                "Yeelight\\Repository\\Providers\\RepositoryServiceProvider"
             ]
         }
     },
