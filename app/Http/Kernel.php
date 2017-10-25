@@ -1,5 +1,4 @@
 <?php
-
 namespace Yeelight\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -19,6 +18,7 @@ class Kernel extends HttpKernel
         \Yeelight\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \Yeelight\Http\Middleware\TrustProxies::class,
+        \Clockwork\Support\Laravel\ClockworkMiddleware::class,
     ];
 
     /**
@@ -35,11 +35,15 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \Yeelight\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
+            \Yeelight\Support\Middleware\LocaleMiddleware::class,
         ],
 
         'api' => [
-            'throttle:60,1',
+//            'throttle:60,1',
             'bindings',
+            \Yeelight\Api\Middleware\ApiAccessMiddleware::class,
+            \Yeelight\Support\Middleware\LocaleMiddleware::class,
         ],
     ];
 
@@ -57,5 +61,9 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \Yeelight\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+
+        // Passport
+        'scopes' => \Laravel\Passport\Http\Middleware\CheckScopes::class,
+        'scope' => \Laravel\Passport\Http\Middleware\CheckForAnyScope::class,
     ];
 }
