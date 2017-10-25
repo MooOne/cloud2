@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Yeelight\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;

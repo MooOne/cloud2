@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Yeelight\Http\Controllers\Auth;
 
-use App\User;
-use App\Http\Controllers\Controller;
+use Yeelight\User;
+use Yeelight\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
