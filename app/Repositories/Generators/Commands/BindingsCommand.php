@@ -17,7 +17,7 @@ class BindingsCommand extends CommandBase
      *
      * @var string
      */
-    protected $name = 'starter:bindings';
+    protected $name = 'yl:bindings';
 
     /**
      * The description of command.

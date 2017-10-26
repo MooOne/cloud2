@@ -14,7 +14,7 @@ class EntityCommand extends CommandBase
      *
      * @var string
      */
-    protected $name = 'starter:entity';
+    protected $name = 'yl:entity';
 
     /**
      * The description of command.
@@ -43,7 +43,7 @@ class EntityCommand extends CommandBase
         }
 
         if ($presenter == 'yes') {
-            $this->call('starter:presenter', [
+            $this->call('yl:presenter', [
                 'name' => $this->argument('name'),
                 '--force' => $this->option('force'),
             ]);
@@ -55,7 +55,7 @@ class EntityCommand extends CommandBase
         }
 
         if ($validator == 'yes') {
-            $this->call('starter:validator', [
+            $this->call('yl:validator', [
                 'name' => $this->argument('name'),
                 '--rules' => $this->option('rules'),
                 '--force' => $this->option('force'),
@@ -65,13 +65,13 @@ class EntityCommand extends CommandBase
         if ($this->confirm('Would you like to create a Controller? [y|N]')) {
 
             // Generate a controller resource
-            $this->call('starter:controller', [
+            $this->call('yl:controller', [
                 'name' => $this->argument('name'),
                 '--force' => $this->option('force')
             ]);
         }
 
-        $this->call('starter:repository', [
+        $this->call('yl:repository', [
             'name' => $this->argument('name'),
             '--fillable' => $this->option('fillable'),
             '--rules' => $this->option('rules'),
@@ -80,7 +80,7 @@ class EntityCommand extends CommandBase
             '--force' => $this->option('force')
         ]);
 
-        $this->call('starter:bindings', [
+        $this->call('yl:bindings', [
             'name' => $this->argument('name'),
             '--force' => $this->option('force')
         ]);

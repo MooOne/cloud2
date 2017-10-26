@@ -16,7 +16,7 @@ class ValidatorCommand extends CommandBase
      *
      * @var string
      */
-    protected $name = 'starter:validator';
+    protected $name = 'yl:validator';
 
     /**
      * The description of command.

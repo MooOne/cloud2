@@ -16,7 +16,7 @@ class PresenterCommand extends CommandBase
      *
      * @var string
      */
-    protected $name = 'starter:presenter';
+    protected $name = 'yl:presenter';
 
     /**
      * The description of command.

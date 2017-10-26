@@ -16,7 +16,7 @@ class ControllerCommand extends CommandBase
      *
      * @var string
      */
-    protected $name = 'starter:controller';
+    protected $name = 'yl:controller';
 
     /**
      * The description of command.

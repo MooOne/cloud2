@@ -19,7 +19,7 @@ class RepositoryCommand extends CommandBase
      *
      * @var string
      */
-    protected $name = 'starter:repository';
+    protected $name = 'yl:repository';
 
     /**
      * The description of command.

@@ -14,7 +14,7 @@ class CriteriaCommand extends CommandBase
      *
      * @var string
      */
-    protected $name = 'starter:criteria';
+    protected $name = 'yl:criteria';
 
     /**
      * The description of command.

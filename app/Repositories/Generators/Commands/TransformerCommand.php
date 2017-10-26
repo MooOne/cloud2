@@ -16,7 +16,7 @@ class TransformerCommand extends CommandBase
      *
      * @var string
      */
-    protected $name = 'starter:transformer';
+    protected $name = 'yl:transformer';
 
     /**
      * The description of command.
