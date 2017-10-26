@@ -40,11 +40,11 @@ if (!function_exists('rest_client')) {
     /**
      * @param null $service_name
      * @param null $debug_mode
-     * @return \Yeelight\Rest\RestClient
+     * @return \Yeelight\Services\Rest\RestClient
      */
     function rest_client($service_name = null, $debug_mode = null)
     {
-        return new \Yeelight\Rest\RestClient($service_name, $debug_mode);
+        return new \Yeelight\Services\Rest\RestClient($service_name, $debug_mode);
     }
 
 }
