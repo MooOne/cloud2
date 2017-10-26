@@ -13,7 +13,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(Yeelight\User::class, function (Faker $faker) {
+$factory->define(\Yeelight\Models\Foundation\User::class, function (Faker $faker) {
     static $password;
 
     return [
