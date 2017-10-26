@@ -2,7 +2,7 @@
 
 namespace Yeelight\Policies;
 
-use Someline\Base\Policies\Policy;
+use Yeelight\Base\Policies\Policy;
 
 class BasePolicy extends Policy
 {

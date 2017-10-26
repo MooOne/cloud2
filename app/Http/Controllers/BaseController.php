@@ -2,7 +2,7 @@
 
 namespace Yeelight\Http\Controllers;
 
-use Someline\Base\Http\Controllers\Controller;
+use Yeelight\Base\Http\Controllers\Controller;
 use Yeelight\Models\Foundation\User;
 
 abstract class BaseController extends Controller

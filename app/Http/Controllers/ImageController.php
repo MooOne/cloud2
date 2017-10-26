@@ -3,48 +3,48 @@
 use Exception;
 use Illuminate\Http\Request;
 use Yeelight\Http\Controllers\BaseController;
-use Someline\Image\Controllers\SomelineImageController;
-use Yeelight\Models\Image\SomelineImage;
-use Someline\Image\SomelineImageService;
+use Yeelight\Services\Image\Controllers\YeelightImageController;
+use Yeelight\Models\Image\YeelightImage;
+use Yeelight\Services\Image\YeelightImageService;
 
 class ImageController extends BaseController
 {
 
     public function postImage(Request $request)
     {
-        $somelineImageService = new SomelineImageService();
+        $yeelightImageService = new YeelightImageService();
         $file = $request->file('image');
 
-        $somelineImage = null;
+        $yeelightImage = null;
         try {
-            /** @var SomelineImage $somelineImage */
-            $somelineImage = $somelineImageService->handleUploadedFile($file);
+            /** @var YeelightImage $yeelightImage */
+            $yeelightImage = $yeelightImageService->handleUploadedFile($file);
         } catch (Exception $e) {
             return response('Failed to save: ' . $e->getMessage(), 422);
         }
 
-        if (!$somelineImage) {
+        if (!$yeelightImage) {
             return response('Failed to save uploaded image.', 422);
         }
 
-        $somelineImageId = $somelineImage->getSomelineImageId();
+        $yeelightImageId = $yeelightImage->getYeelightImageId();
         return response([
             'data' => [
-                'someline_image_id' => $somelineImage->getSomelineImageId(),
-                'someline_image_url' => $somelineImage->getImageUrl(),
-                'thumbnail_image_url' => $somelineImage->getTypeImageUrl('thumbnail'),
+                'yeelight_image_id' => $yeelightImage->getYeelightImageId(),
+                'yeelight_image_url' => $yeelightImage->getImageUrl(),
+                'thumbnail_image_url' => $yeelightImage->getTypeImageUrl('thumbnail'),
             ]
         ]);
     }
 
     public function showOriginalImage($image_name)
     {
-        return SomelineImageController::showImage('original', $image_name);
+        return YeelightImageController::showImage('original', $image_name);
     }
 
     public function showTypeImage($type, $image_name)
     {
-        return SomelineImageController::showImage($type, $image_name);
+        return YeelightImageController::showImage($type, $image_name);
     }
 
 }

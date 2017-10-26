@@ -1,11 +1,5 @@
 <?php
-/**
- * Created for someline-starter.
- * User: Libern
- */
-
 namespace Yeelight\Transformers;
-
 
 use Yeelight\Base\Models\BaseModel;
 use Yeelight\Base\Transformers\Transformer;

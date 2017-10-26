@@ -1,9 +1,9 @@
-<?php namespace Yeelight\Models\Image;
+<?php
+namespace Yeelight\Models\Image;
 
+use Yeelight\Services\Image\Models\YeelightImageBase;
 
-use Someline\Image\Models\SomelineImageBase;
-
-class SomelineImage extends SomelineImageBase
+class YeelightImage extends YeelightImageBase
 {
 
     /**
@@ -17,7 +17,7 @@ class SomelineImage extends SomelineImageBase
     }
 
     /**
-     * For usage: $somelineImage->cover_image_url;
+     * For usage: $yeelightImage->cover_image_url;
      *
      * @return null|string
      */

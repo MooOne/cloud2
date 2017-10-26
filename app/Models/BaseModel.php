@@ -1,7 +1,7 @@
 <?php
 namespace Yeelight\Models;
 
-use Someline\Base\Models\BaseModel as Model;
+use Yeelight\Base\Models\BaseModel as Model;
 use Yeelight\Models\Foundation\User;
 
 class BaseModel extends Model

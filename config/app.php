@@ -13,7 +13,20 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Yeelight Cloud'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Title, Keywords, Description
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    'title' => 'Yeelight',
+
+    'keywords' => 'Yeelight',
+
+    'description' => 'Yeelight',
 
     /*
     |--------------------------------------------------------------------------
@@ -167,15 +180,21 @@ return [
         /*
          * Package Service Providers...
          */
+        Dingo\Api\Provider\LaravelServiceProvider::class,
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        Monarobase\CountryList\CountryListServiceProvider::class,
 
         /*
          * Application Service Providers...
          */
         Yeelight\Providers\AppServiceProvider::class,
         Yeelight\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        // Yeelight\Providers\BroadcastServiceProvider::class,
         Yeelight\Providers\EventServiceProvider::class,
         Yeelight\Providers\RouteServiceProvider::class,
+        Yeelight\Providers\ApiServiceProvider::class,
+        Yeelight\Providers\RepositoryServiceProvider::class,
+        Yeelight\Providers\PolymorphicServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
     ],
@@ -228,6 +247,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        // 'Image' => Intervention\Image\Facades\Image::class,
+        // 'LaravelLocalization'   => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
+        'Countries' => Monarobase\CountryList\CountryListFacade::class,
+        // 'GeoIP' => Torann\GeoIP\GeoIPFacade::class,
 
     ],
 

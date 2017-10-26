@@ -1,7 +1,7 @@
 <?php
 namespace Yeelight\Api\Controllers;
 
-use Someline\Base\Api\Controllers\Controller;
+use Yeelight\Base\Api\Controllers\Controller;
 use Yeelight\Models\Foundation\User;
 
 abstract class BaseController extends Controller

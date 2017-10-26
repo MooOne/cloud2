@@ -169,7 +169,9 @@ return [
     */
 
     'auth' => [
-
+        'passport' => \Yeelight\Api\Auth\Provider\Passport::class,
+//        'oauth' => \Yeelight\Api\Auth\Provider\OAuth2::class,
+//        'jwt' => Dingo\Api\Auth\Provider\JWT::class,
     ],
 
     /*
@@ -208,7 +210,7 @@ return [
     |
     | Responses can be returned in multiple formats by registering different
     | response formatters. You can also customize an existing response
-    | formatter with a number of options to configure its output.
+    | formatter.
     |
     */
 

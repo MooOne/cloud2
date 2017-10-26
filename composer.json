@@ -34,7 +34,9 @@
         "libern/timezone": "^1.0",
         "giggsey/libphonenumber-for-php": "~8.8",
         "torann/geoip": "1.0.*",
-        "tymon/jwt-auth": "1.0.0-rc.1"
+        "tymon/jwt-auth": "1.0.0-rc.1",
+        "intervention/image": "^2.3",
+        "intervention/imagecache": "~2.1"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

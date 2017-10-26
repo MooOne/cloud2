@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => Yeelight\User::class,
+        'model' => \Yeelight\Models\Foundation\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
