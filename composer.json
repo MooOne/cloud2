@@ -66,9 +66,6 @@
     "extra": {
         "laravel": {
             "dont-discover": [
-            ],
-            "providers": [
-                "Yeelight\\Repositories\\Providers\\RepositoryServiceProvider"
             ]
         }
     },
