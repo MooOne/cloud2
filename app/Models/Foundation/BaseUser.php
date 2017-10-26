@@ -1,5 +1,5 @@
 <?php
-namespace Yeelight\Model\Foundation;
+namespace Yeelight\Models\Foundation;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -12,9 +12,9 @@ use Laravel\Passport\HasApiTokens;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 use Yeelight\Base\Models\BaseModel;
-use Yeelight\Model\Interfaces\BaseModelEventsInterface;
+use Yeelight\Models\Interfaces\BaseModelEventsInterface;
 
-class User extends BaseModel implements BaseModelEventsInterface,
+class BaseUser extends BaseModel implements BaseModelEventsInterface,
     AuthenticatableContract,
     AuthorizableContract,
     CanResetPasswordContract,

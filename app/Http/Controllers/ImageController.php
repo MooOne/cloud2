@@ -1,4 +1,5 @@
-<?php namespace Yeelight\Http\Controllers;
+<?php
+namespace Yeelight\Http\Controllers;
 
 use Exception;
 use Illuminate\Http\Request;

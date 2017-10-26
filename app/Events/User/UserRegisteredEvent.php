@@ -1,7 +1,6 @@
 <?php
 namespace Yeelight\Events\User;
 
-
 use Illuminate\Queue\SerializesModels;
 use Yeelight\Models\Foundation\User;
 

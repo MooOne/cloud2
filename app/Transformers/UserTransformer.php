@@ -1,5 +1,4 @@
 <?php
-
 namespace Yeelight\Transformers;
 
 use Yeelight\Models\Foundation\User;

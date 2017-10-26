@@ -1,5 +1,4 @@
 <?php
-
 namespace Yeelight\Console;
 
 use Illuminate\Console\Scheduling\Schedule;

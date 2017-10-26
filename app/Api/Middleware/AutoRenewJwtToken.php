@@ -1,5 +1,4 @@
 <?php
-
 namespace Yeelight\Api\Middleware;
 
 use Closure;

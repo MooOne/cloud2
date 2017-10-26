@@ -1,7 +1,6 @@
 <?php
 namespace Yeelight\Listeners\User;
 
-
 use Yeelight\Events\User\UserLoggedInEvent;
 use Yeelight\Events\User\UserRegisteredEvent;
 use Yeelight\Models\BaseModel;

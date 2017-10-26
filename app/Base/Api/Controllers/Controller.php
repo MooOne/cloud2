@@ -1,7 +1,6 @@
 <?php
 namespace Yeelight\Base\Api\Controllers;
 
-
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;

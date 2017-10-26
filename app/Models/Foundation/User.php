@@ -4,7 +4,7 @@ namespace Yeelight\Models\Foundation;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Yeelight\Services\Image\Models\Traits\YeelightHasImageablesTrait;
-use Yeelight\Model\Foundation\User as BaseUser;
+use Yeelight\Models\Foundation\BaseUser;
 
 class User extends BaseUser
 {

@@ -1,5 +1,5 @@
-<?php namespace
-Yeelight\Model\Basic;
+<?php
+namespace Yeelight\Models\Basic;
 
 use Illuminate\Contracts\Support\Arrayable;
 use libphonenumber\CountryCodeSource;

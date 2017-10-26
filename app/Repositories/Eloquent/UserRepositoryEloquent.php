@@ -1,5 +1,4 @@
 <?php
-
 namespace Yeelight\Repositories\Eloquent;
 
 use Yeelight\Models\Foundation\User;

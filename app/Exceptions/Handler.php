@@ -1,5 +1,4 @@
 <?php
-
 namespace Yeelight\Exceptions;
 
 use Exception;

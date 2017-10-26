@@ -5,10 +5,10 @@ namespace Yeelight\Base\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Presenter\ModelFractalPresenter;
-use Yeelight\Model\Foundation\User;
-use Yeelight\Model\Interfaces\BaseModelEventsInterface;
-use Yeelight\Model\Interfaces\FriendStatusInterface;
-use Yeelight\Model\Traits\BaseModelEvents;
+use Yeelight\Models\Foundation\BaseUser;
+use Yeelight\Models\Interfaces\BaseModelEventsInterface;
+use Yeelight\Models\Interfaces\FriendStatusInterface;
+use Yeelight\Models\Traits\BaseModelEvents;
 
 class BaseModel extends Model implements BaseModelEventsInterface
 {
@@ -72,7 +72,7 @@ class BaseModel extends Model implements BaseModelEventsInterface
     /**
      * Get current auth user
      *
-     * @return User|null
+     * @return BaseUser|null
      */
     public function getAuthUser()
     {
@@ -174,7 +174,7 @@ class BaseModel extends Model implements BaseModelEventsInterface
     }
 
     /**
-     * @return User|null
+     * @return BaseUser|null
      */
     public function getUser()
     {
@@ -182,7 +182,7 @@ class BaseModel extends Model implements BaseModelEventsInterface
     }
 
     /**
-     * @return User|null
+     * @return BaseUser|null
      */
     public function getRelatedUser()
     {

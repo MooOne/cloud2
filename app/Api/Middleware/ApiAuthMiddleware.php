@@ -1,7 +1,6 @@
 <?php
 namespace Yeelight\Api\Middleware;
 
-
 use Closure;
 use Dingo\Api\Auth\Auth as Authentication;
 use Dingo\Api\Routing\Router;

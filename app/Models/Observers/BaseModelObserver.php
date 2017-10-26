@@ -1,8 +1,8 @@
 <?php
-namespace Yeelight\Model\Observers;
+namespace Yeelight\Models\Observers;
 
-use Yeelight\Model\Interfaces\BaseModelEventsInterface;
-use Yeelight\Model\Traits\BaseModelEvents;
+use Yeelight\Models\Interfaces\BaseModelEventsInterface;
+use Yeelight\Models\Traits\BaseModelEvents;
 
 /**
  * Whenever a new model is saved for the first time,

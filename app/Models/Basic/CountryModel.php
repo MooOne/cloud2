@@ -1,5 +1,5 @@
 <?php
-namespace Yeelight\Model\Basic;
+namespace Yeelight\Models\Basic;
 use Countries;
 
 class CountryModel

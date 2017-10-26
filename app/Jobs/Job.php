@@ -1,5 +1,4 @@
 <?php
-
 namespace Yeelight\Jobs;
 
 use Illuminate\Bus\Queueable;

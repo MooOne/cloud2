@@ -1,8 +1,8 @@
 <?php
-namespace Yeelight\Model\Interfaces;
+namespace Yeelight\Models\Interfaces;
 
 use Illuminate\Database\Eloquent\Model;
-use Yeelight\Observers\BaseModelObserver;
+use Yeelight\Models\Observers\BaseModelObserver;
 
 interface BaseModelEventsInterface
 {

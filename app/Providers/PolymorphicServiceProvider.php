@@ -1,5 +1,4 @@
 <?php
-
 namespace Yeelight\Providers;
 
 use Illuminate\Database\Eloquent\Relations\Relation;

@@ -1,7 +1,6 @@
 <?php
 namespace Yeelight\Transformers;
 
-
 use Yeelight\Base\Transformers\Transformer;
 
 class BasicTransformer extends Transformer

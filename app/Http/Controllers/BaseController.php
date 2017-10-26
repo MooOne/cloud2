@@ -1,5 +1,4 @@
 <?php
-
 namespace Yeelight\Http\Controllers;
 
 use Yeelight\Base\Http\Controllers\Controller;

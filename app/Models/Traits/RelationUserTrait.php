@@ -1,4 +1,5 @@
-<?php namespace Yeelight\Models\Traits;
+<?php
+namespace Yeelight\Models\Traits;
 
 use Yeelight\Models\Foundation\User;
 

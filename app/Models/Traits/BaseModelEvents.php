@@ -1,8 +1,8 @@
 <?php
-namespace Yeelight\Model\Traits;
+namespace Yeelight\Models\Traits;
 
 use Illuminate\Database\Eloquent\Model;
-use Yeelight\Model\Observers\BaseModelObserver;
+use Yeelight\Models\Observers\BaseModelObserver;
 
 /**
  * Whenever a new model is saved for the first time,

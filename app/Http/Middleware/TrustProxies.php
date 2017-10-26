@@ -1,5 +1,4 @@
 <?php
-
 namespace Yeelight\Http\Middleware;
 
 use Illuminate\Http\Request;

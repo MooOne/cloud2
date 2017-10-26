@@ -1,5 +1,4 @@
 <?php
-
 namespace Yeelight\Presenters;
 
 use Yeelight\Transformers\UserTransformer;

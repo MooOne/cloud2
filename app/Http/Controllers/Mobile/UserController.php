@@ -1,5 +1,4 @@
 <?php
-
 namespace Yeelight\Http\Controllers\Mobile;
 
 use Yeelight\Http\Controllers\BaseController;

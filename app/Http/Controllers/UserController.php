@@ -1,7 +1,5 @@
 <?php
-
 namespace Yeelight\Http\Controllers;
-
 
 class UserController extends BaseController
 {
