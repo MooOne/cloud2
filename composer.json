@@ -68,7 +68,7 @@
             "dont-discover": [
             ],
             "providers": [
-                "Yeelight\\Repository\\Providers\\RepositoryServiceProvider"
+                "Yeelight\\Repositories\\Providers\\RepositoryServiceProvider"
             ]
         }
     },
