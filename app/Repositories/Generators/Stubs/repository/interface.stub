@@ -1,0 +1,13 @@
+<?php
+$NAMESPACE$
+
+use $ROOT_NAMESPACE$\BaseRepositoryInterface;
+
+/**
+ * Interface $CLASS$Repository
+ * @package $NAMESPACE$
+ */
+interface $CLASS$Repository extends BaseRepositoryInterface
+{
+    //
+}

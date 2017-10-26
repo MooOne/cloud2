@@ -1,6 +1,6 @@
 <?php
-
 use Illuminate\Http\Request;
+use Dingo\Api\Routing\Router;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +13,29 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// v1
+$api->version('v1', [
+    'namespace' => 'Yeelight\Api\Controllers',
+    'middleware' => ['api']
+], function (Router $api) {
+
+    $api->group(['middleware' => ['auth:api']], function (Router $api) {
+
+        // Rate: 100 requests per 5 minutes
+        $api->group(['middleware' => ['api.throttle'], 'limit' => 100, 'expires' => 5], function (Router $api) {
+
+            // /users
+            $api->group(['prefix' => 'users'], function (Router $api) {
+                $api->get('/', 'UsersController@index');
+                $api->post('/', 'UsersController@store');
+                $api->get('/me', 'UsersController@me');
+                $api->get('/{id}', 'UsersController@show');
+                $api->put('/{id}', 'UsersController@update');
+                $api->delete('/{id}', 'UsersController@destroy');
+            });
+
+        });
+
+    });
+
 });
