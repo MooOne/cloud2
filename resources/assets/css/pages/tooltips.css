@@ -1,0 +1,6 @@
+.fixed_header #top.fixed,.fixedMenu_header #top.fixed{
+    z-index: 10009;
+}
+.tooltip-inner,.tipso_bubble{
+    z-index:99 !important;
+}

@@ -11,6 +11,16 @@
 |
 */
 
+Route::get('/', function () {
+    return view('index');
+});
+
+Route::get('{name?}','AdmireController@showView');
+
+Route::get('users','AdmireController@index');
+
+Route::post('users','AdmireController@store');
+
 // Auth Routes
 Auth::routes();
 
