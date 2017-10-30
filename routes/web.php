@@ -15,11 +15,16 @@ Route::get('/', function () {
     return view('index');
 });
 
+/**
+ * Admire Template Routes
+ */
+
 Route::get('{name?}','AdmireController@showView');
 
 Route::get('users','AdmireController@index');
 
 Route::post('users','AdmireController@store');
+
 
 // Auth Routes
 Auth::routes();
@@ -88,11 +93,11 @@ Route::group(['prefix' => 'image'], function () {
 });
 
 // Locale Routes
-// @WARNING: The 'locales' prefix is reserved for SomelineLocaleController
+// @WARNING: The 'locales' prefix is reserved for YeelightLocaleController
 Route::group(['prefix' => 'locales'], function () {
 
-    Route::get('/{locale}.js', '\Yeelight\Services\Image\Controllers\LocaleController@getLocaleJs');
+    Route::get('/{locale}.js', '\Yeelight\Services\Locale\Controllers\LocaleController@getLocaleJs');
 
-    Route::get('/switch/{locale}', '\Yeelight\Services\Image\Controllers\LocaleController@getSwitchLocale');
+    Route::get('/switch/{locale}', '\Yeelight\Services\Locale\Controllers\LocaleController@getSwitchLocale');
 
 });

@@ -10,11 +10,11 @@ class AdmireController extends Controller
 
     public function showView($name)
     {
-        if(View::exists($name)){
-            return view($name);
+        if(View::exists('demo/' . $name)){
+            return view('demo/' . $name);
         }
         else{
-            return view('404');
+            return view('demo/404');
         }
     }
 
@@ -26,7 +26,7 @@ class AdmireController extends Controller
      */
     public function index()
     {
-        return view('users');
+        return view('demo/users');
     }
 
     /**

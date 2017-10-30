@@ -231,7 +231,7 @@ return [
             'transformers' => 'Transformers',
             'presenters'   => 'Presenters',
             'validators'   => 'Validators',
-            'controllers'  => 'Api/Controllers',
+            'controllers'  => 'Http/Controllers/Controllers',
             'provider'     => 'RepositoryServiceProvider',
         ]
     ]
