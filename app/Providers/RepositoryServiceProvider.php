@@ -37,6 +37,9 @@ class RepositoryServiceProvider extends ServiceProvider
 
         $this->app->bind(UserRepository::class, UserRepositoryEloquent::class);
         $this->app->bind(\Yeelight\Repositories\Interfaces\PostRepository::class, \Yeelight\Repositories\Eloquent\PostRepositoryEloquent::class);
+        $this->app->bind(\Yeelight\Repositories\Interfaces\TeamRepository::class, \Yeelight\Repositories\Eloquent\TeamRepositoryEloquent::class);
+        $this->app->bind(\Yeelight\Repositories\Interfaces\RoleRepository::class, \Yeelight\Repositories\Eloquent\RoleRepositoryEloquent::class);
+        $this->app->bind(\Yeelight\Repositories\Interfaces\PermissionRepository::class, \Yeelight\Repositories\Eloquent\PermissionRepositoryEloquent::class);
         //:end-bindings:
     }
 

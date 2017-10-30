@@ -10,6 +10,12 @@ use Yeelight\Models\Interfaces\BaseModelEventsInterface;
 use Yeelight\Models\Interfaces\FriendStatusInterface;
 use Yeelight\Models\Traits\BaseModelEvents;
 
+/**
+ * Yeelight\Base\Models\BaseModel
+ *
+ * @property-read mixed $id
+ * @mixin \Eloquent
+ */
 class BaseModel extends Model implements BaseModelEventsInterface
 {
     use BaseModelEvents;

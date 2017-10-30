@@ -7,6 +7,41 @@ use Prettus\Repository\Traits\PresentableTrait;
 use Yeelight\Base\Models\BaseModel;
 use Yeelight\Services\Image\Models\Traits\YeelightPivotTrait;
 
+/**
+ * Yeelight\Services\Image\Models\YeelightImageBase
+ *
+ * @property int $yeelight_image_id
+ * @property int|null $user_id
+ * @property string $image_name
+ * @property string|null $exif
+ * @property int $is_gif
+ * @property int $file_size
+ * @property int $width
+ * @property int $height
+ * @property int|null $created_by
+ * @property \Carbon\Carbon|null $created_at
+ * @property string|null $created_ip
+ * @property int|null $updated_by
+ * @property \Carbon\Carbon|null $updated_at
+ * @property string|null $updated_ip
+ * @property-read mixed $id
+ * @property-read null|string $image_url
+ * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Services\Image\Models\YeelightImageBase whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Services\Image\Models\YeelightImageBase whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Services\Image\Models\YeelightImageBase whereCreatedIp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Services\Image\Models\YeelightImageBase whereExif($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Services\Image\Models\YeelightImageBase whereFileSize($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Services\Image\Models\YeelightImageBase whereHeight($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Services\Image\Models\YeelightImageBase whereImageName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Services\Image\Models\YeelightImageBase whereIsGif($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Services\Image\Models\YeelightImageBase whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Services\Image\Models\YeelightImageBase whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Services\Image\Models\YeelightImageBase whereUpdatedIp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Services\Image\Models\YeelightImageBase whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Services\Image\Models\YeelightImageBase whereWidth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Services\Image\Models\YeelightImageBase whereYeelightImageId($value)
+ * @mixin \Eloquent
+ */
 class YeelightImageBase extends BaseModel implements Transformable, Presentable
 {
     use YeelightPivotTrait;

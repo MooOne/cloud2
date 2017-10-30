@@ -14,6 +14,15 @@ use Prettus\Repository\Traits\TransformableTrait;
 use Yeelight\Base\Models\BaseModel;
 use Yeelight\Models\Interfaces\BaseModelEventsInterface;
 
+/**
+ * Yeelight\Models\Foundation\BaseUser
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
+ * @property-read mixed $id
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
+ * @mixin \Eloquent
+ */
 class BaseUser extends BaseModel implements BaseModelEventsInterface,
     AuthenticatableContract,
     AuthorizableContract,
