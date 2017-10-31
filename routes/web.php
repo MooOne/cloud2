@@ -28,23 +28,33 @@ Route::group(['prefix' => 'demo'], function () {
 
 
 // Auth Routes
-Auth::routes();
+Route::group(['prefix' => 'console', 'namespace' => 'Auth'], function () {
+    // Authentication Routes...
+    Route::get('login', 'LoginController@showLoginForm')->name('login');
+    Route::post('login', 'LoginController@login');
+    Route::any('logout', 'LoginController@logout')->name('logout');
 
-// Basic Routes
-//Route::get('/home', 'HomeController@index');
+    // Registration Routes...
+    Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
+    Route::post('register', 'RegisterController@register');
 
-// Protected Routes
-Route::group(['middleware' => 'auth'], function () {
+    // Password Reset Routes...
+    Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('password/reset', 'ResetPasswordController@reset');
+});
 
-//    Route::get('/', function () {
-//        return redirect('users');
-//    });
+// Console Routes
+Route::group(['prefix' => 'console', 'middleware' => 'auth', 'namespace' => 'Console'], function () {
 
-    Route::get('/', 'ExampleController@getIndexExample');
-    Route::get('blank-example', 'ExampleController@getBlankExample');
-    Route::get('desktop-example', 'ExampleController@getDesktopExample');
+    Route::get('/', 'ConsoleController@getConsoleHome');
+    Route::get('oauth', 'ConsoleController@getOauth');
+    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
-    Route::get('users', 'UserController@getUserList');
+    Route::group(['prefix' => 'users'], function () {
+        Route::get('/', 'UserController@getUserList');
+    });
 
 });
 
@@ -67,16 +77,21 @@ Route::group(['prefix' => 'm', 'namespace' => 'Mobile'], function () {
 
 });
 
-// Console Routes
-Route::group(['prefix' => 'console', 'middleware' => 'auth', 'namespace' => 'Console'], function () {
+// Basic Routes
+//Route::get('/home', 'HomeController@index');
 
-    Route::get('/', 'ConsoleController@getConsoleHome');
-    Route::get('oauth', 'ConsoleController@getOauth');
-    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+// Protected Routes
+Route::group(['middleware' => 'auth'], function () {
 
-    Route::group(['prefix' => 'users'], function () {
-        Route::get('/', 'UserController@getUserList');
-    });
+//    Route::get('/', function () {
+//        return redirect('users');
+//    });
+
+    //Route::get('/', 'ExampleController@getIndexExample');
+    Route::get('blank-example', 'ExampleController@getBlankExample');
+    Route::get('desktop-example', 'ExampleController@getDesktopExample');
+
+    Route::get('users', 'UserController@getUserList');
 
 });
 

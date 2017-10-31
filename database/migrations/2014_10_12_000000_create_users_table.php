@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->char('gender', 1)->nullable();
             $table->date('birthday')->nullable();
             $table->char('country', 2)->default('CN')->nullable();
-            $table->string('timezone', 30)->default('UTC+8')->nullable();
+            $table->string('timezone', 30)->default('PRC')->nullable();
             $table->string('locale', 15)->default('zh')->nullable();
             $table->string('username', 50)->nullable();
             $table->string('phone_number')->nullable();

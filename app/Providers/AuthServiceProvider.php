@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'Yeelight\Model' => 'Yeelight\Policies\ModelPolicy',
+        'Yeelight\Models' => 'Yeelight\Policies\ModelPolicy',
     ];
 
     /**

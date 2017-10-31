@@ -35,4 +35,13 @@ class Role extends LaratrustRole implements Transformable
     // Fields to be converted to Carbon object automatically
     protected $dates = [];
 
+    public static function boot() {
+        parent::boot();
+
+        static::roleAttached(function($user, $role, $team) {
+        });
+        static::roleSynced(function($user, $changes, $team) {
+        });
+    }
+
 }

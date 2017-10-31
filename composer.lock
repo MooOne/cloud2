@@ -1041,16 +1041,16 @@
         },
         {
             "name": "giggsey/libphonenumber-for-php",
-            "version": "8.8.4",
+            "version": "8.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/giggsey/libphonenumber-for-php.git",
-                "reference": "73b86c897c30a590e1958c003e7225fffdfd48ca"
+                "reference": "a0405e2b3de6497174db4a3fcfa9bfd67f4ef282"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/giggsey/libphonenumber-for-php/73b86c897c30a590e1958c003e7225fffdfd48ca.zip",
-                "reference": "73b86c897c30a590e1958c003e7225fffdfd48ca",
+                "url": "https://files.phpcomposer.com/files/giggsey/libphonenumber-for-php/a0405e2b3de6497174db4a3fcfa9bfd67f4ef282.zip",
+                "reference": "a0405e2b3de6497174db4a3fcfa9bfd67f4ef282",
                 "shasum": ""
             },
             "require": {
@@ -1105,7 +1105,7 @@
                 "phonenumber",
                 "validation"
             ],
-            "time": "2017-10-16T14:06:44+00:00"
+            "time": "2017-10-30T15:09:43+00:00"
         },
         {
             "name": "giggsey/locale",
