@@ -18,12 +18,13 @@ Route::get('/', function () {
 /**
  * Admire Template Routes
  */
+Route::group(['prefix' => 'demo'], function () {
+    Route::get('{name?}','AdmireController@showView');
 
-Route::get('{name?}','AdmireController@showView');
+    Route::get('users','AdmireController@index');
 
-Route::get('users','AdmireController@index');
-
-Route::post('users','AdmireController@store');
+    Route::post('users','AdmireController@store');
+});
 
 
 // Auth Routes
