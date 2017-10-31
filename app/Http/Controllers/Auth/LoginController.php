@@ -50,7 +50,7 @@ class LoginController extends BaseController
      */
     public function showLoginForm()
     {
-        return view('angulr.auth.login');
+        return view('console.auth.login');
     }
 
     /**
@@ -147,7 +147,7 @@ class LoginController extends BaseController
      */
     protected function authenticated(Request $request, $user)
     {
-        //
+        return redirect($this->redirectTo());
     }
 
     /**
@@ -172,7 +172,7 @@ class LoginController extends BaseController
 
         $request->session()->invalidate();
 
-        return redirect('/');
+        return redirect($this->redirectTo());
     }
 
     /**

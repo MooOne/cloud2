@@ -19,6 +19,8 @@ Route::get('/', function () {
  * Admire Template Routes
  */
 Route::group(['prefix' => 'demo'], function () {
+    Route::get('/','AdmireController@index');
+
     Route::get('{name?}','AdmireController@showView');
 
     Route::get('users','AdmireController@index');
@@ -48,7 +50,9 @@ Route::group(['prefix' => 'console', 'namespace' => 'Auth'], function () {
 // Console Routes
 Route::group(['prefix' => 'console', 'middleware' => 'auth', 'namespace' => 'Console'], function () {
 
-    Route::get('/', 'ConsoleController@getConsoleHome');
+    Route::get('/', function () {
+        return redirect('demo');
+    });
     Route::get('oauth', 'ConsoleController@getOauth');
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
