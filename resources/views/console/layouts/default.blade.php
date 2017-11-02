@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>
         @section('title')
-        | Admire
+        | Yeelight
         @show
     </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,7 +45,7 @@ z-index: 999999">
         <nav class="navbar navbar-static-top">
             <div class="container-fluid m-0">
                 <a class="navbar-brand mr-0" href="demo/index">
-                    <h4 class="text-white"><img src="{{asset('assets/img/logow.png')}}" class="admin_img" alt="logo"> ADMIRE ADMIN</h4>
+                    <h4 class="text-white"><img src="{{asset('assets/img/logow.png')}}" class="admin_img" alt="logo"> Yeelight </h4>
                 </a>
                 <div class="menu mr-sm-auto">
                         <span class="toggle-left" id="menu-toggle">

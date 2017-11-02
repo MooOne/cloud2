@@ -48,17 +48,25 @@ Route::group(['prefix' => 'console', 'namespace' => 'Auth'], function () {
 });
 
 // Console Routes
-Route::group(['prefix' => 'console', 'middleware' => 'auth', 'namespace' => 'Console'], function () {
+Route::group(['prefix' => 'console', 'middleware' => 'auth', 'namespace' => 'Console'], function ($router) {
 
-    Route::get('/', function () {
-        return redirect('demo');
+    $router->get('/', function () {
+        return view('console.index');
     });
+
+    // 权限
+    require(__DIR__ . '/console/permission.php');
+    // 角色
+    require(__DIR__ . '/console/role.php');
+    // 用户
+    require(__DIR__ . '/console/user.php');
+    // 菜单
+    require(__DIR__ . '/console/menu.php');
+
+    Route::get('/menu', 'MenusController@index');
     Route::get('oauth', 'ConsoleController@getOauth');
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
-    Route::group(['prefix' => 'users'], function () {
-        Route::get('/', 'UserController@getUserList');
-    });
 
 });
 

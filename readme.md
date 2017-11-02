@@ -35,3 +35,7 @@ php artisan passport:install
 ## 后台模板
 
 https://lorvent.gitbooks.io/admire/content/
+
+## l5-repository
+
+https://github.com/daofirst/l5-repository

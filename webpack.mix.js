@@ -88,6 +88,7 @@ const paths = {
     'fancybox': vendors + 'fancybox/',
     'summernote': vendors + 'summernote/dist/',
     'sortable': vendors + 'Sortable/',
+    'nestable': vendors + 'Nestable/',
     'chartist': vendors + 'chartist/dist/',
     'inputmask': vendors + 'jquery.inputmask/dist/',
     'snabbt' : vendors + 'snabbt.js/',
@@ -416,6 +417,9 @@ mix.copy(paths.summernote + 'font',  destVendors + 'summernote/css/font');
 
 //Sortable
 mix.copy(paths.sortable + 'Sortable.min.js',  destVendors + 'sortable/js');
+
+//Nestable
+mix.copy(paths.nestable + 'jquery.nestable.js',  destVendors + 'nestable/js');
 
 //chartist
 mix.copy(paths.chartist + 'chartist.min.css',  destVendors + 'chartist/css');

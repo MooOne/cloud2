@@ -21,6 +21,7 @@
         "fideloper/proxy": "~3.3",
         "giggsey/libphonenumber-for-php": "~8.8",
         "guzzlehttp/guzzle": "~6.3",
+        "hieu-le/active": "^3.5",
         "intervention/image": "^2.3",
         "intervention/imagecache": "~2.1",
         "itsgoingd/clockwork": "~1.14",

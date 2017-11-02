@@ -6,5 +6,8 @@
  * Time: 下午3:42
  */
 return [
-    "title" => "Yeelight Cloud 管理系统"
+    "title" => "Yeelight Cloud 管理系统",
+    "dashboard" => [
+        "title" => "控制台"
+    ]
 ];
