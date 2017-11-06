@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-xl-6">
-                    <div class="card m-t-35">
+                    <div class="card">
                         <div class="card-header bg-white">
                             添加菜单
                         </div>

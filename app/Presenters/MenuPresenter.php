@@ -2,6 +2,7 @@
 namespace Yeelight\Presenters;
 
 use Yeelight\Transformers\MenuTransformer;
+use Yeelight\Models\Menu;
 
 /**
  * Class MenuPresenter
@@ -20,6 +21,15 @@ class MenuPresenter extends BasePresenter
         return new MenuTransformer();
     }
 
+    public function model()
+    {
+        return app()->make(Menu::class);
+    }
+
+    public function getPermissionTag($tag)
+    {
+        return $this->model()->getPermissionTag($tag);
+    }
     /**
      * 生成菜单排序列表
      * @param $menus
@@ -95,27 +105,16 @@ Eof;
      */
     protected function getActionButtons($id)
     {
-        /*$action = '<div class="pull-right">';
-        if (auth()->user()->can(config('admin.permissions.menu.show'))) {
-            $action .= '<a href="javascript:;" class="btn btn-xs tooltips showInfo" data-href="'.url('admin/menu',[$id]).'" data-toggle="tooltip" data-original-title="'.trans('admin/action.actionButton.show').'"  data-placement="top"><i class="fa fa-eye"></i></a>';
-        }
-        if (auth()->user()->can(config('admin.permissions.menu.edit'))) {
-            $action .= '<a href="javascript:;" data-href="'.url('admin/menu/'.$id.'/edit').'" class="btn btn-xs tooltips editMenu" data-toggle="tooltip"data-original-title="'.trans('admin/action.actionButton.edit').'"  data-placement="top"><i class="fa fa-edit"></i></a>';
-        }
-        if (auth()->user()->can(config('admin.permissions.menu.destroy'))) {
-            $action .= '<a href="javascript:;" class="btn btn-xs tooltips destroy_item" data-id="'.$id.'" data-original-title="'.trans('admin/action.actionButton.destroy').'"data-toggle="tooltip"  data-placement="top"><i class="fa fa-trash"></i><form action="'.url('admin/menu',[$id]).'" method="POST" style="display:none"><input type="hidden"name="_method" value="delete"><input type="hidden" name="_token" value="'.csrf_token().'"></form></a>';
-        }
-        $action .= '</div>';*/
-
         $action = '<div class="pull-right">';
-
-        $action .= '<a href="javascript:;" class="btn btn-xs tooltips showInfo" data-href="'.url('console/menu',[$id]).'" data-toggle="tooltip" data-original-title="'.trans('console/action.actionButton.show').'"  data-placement="top"><i class="fa fa-eye"></i></a>';
-
-        $action .= '<a href="javascript:;" data-href="'.url('console/menu/'.$id.'/edit').'" class="btn btn-xs tooltips editMenu" data-toggle="tooltip"data-original-title="'.trans('console/action.actionButton.edit').'"  data-placement="top"><i class="fa fa-edit"></i></a>';
-
-        $action .= '<a href="javascript:;" class="btn btn-xs tooltips destroy_item" data-id="'.$id.'" data-original-title="'.trans('console/action.actionButton.destroy').'"data-toggle="tooltip"  data-placement="top"><i class="fa fa-trash"></i><form action="'.url('console/menu',[$id]).'" method="POST" style="display:none"><input type="hidden"name="_method" value="delete"><input type="hidden" name="_token" value="'.csrf_token().'"></form></a>';
-
-        $action .= '</div>';
+        if (auth()->user()->can($this->getPermissionTag('show'))) {
+            $action .= '<a href="javascript:;" class="btn btn-xs tooltips showInfo" data-href="'.url('console/menu',[$id]).'" data-toggle="tooltip" data-original-title="'.trans('console/action.actionButton.show').'"  data-placement="top"><i class="fa fa-eye"></i></a>';
+        }
+        if (auth()->user()->can($this->getPermissionTag('edit'))) {
+            $action .= '<a href="javascript:;" data-href="'.url('console/menu/'.$id.'/edit').'" class="btn btn-xs tooltips editMenu" data-toggle="tooltip"data-original-title="'.trans('console/action.actionButton.edit').'"  data-placement="top"><i class="fa fa-edit"></i></a>';
+        }
+        if (auth()->user()->can($this->getPermissionTag('destroy'))) {
+            $action .= '<a href="javascript:;" class="btn btn-xs tooltips destroy_item" data-id="'.$id.'" data-original-title="'.trans('console/action.actionButton.destroy').'"data-toggle="tooltip"  data-placement="top"><i class="fa fa-trash"></i><form action="'.url('console/menu',[$id]).'" method="POST" style="display:none"><input type="hidden"name="_method" value="delete"><input type="hidden" name="_token" value="'.csrf_token().'"></form></a>';
+        }
         return $action;
     }
 
@@ -126,11 +125,11 @@ Eof;
      */
     public function canCreateMenu()
     {
-        $canCreateMenu = auth()->user()->can(config('admin.permissions.menu.create'));
+        $canCreateMenu = auth()->user()->can($this->getPermissionTag('create'));
 
-        $title = $canCreateMenu ?  trans('admin/menu.welcome'):trans('admin/menu.sorry');
-        $desc = $canCreateMenu ? trans('admin/menu.description'):trans('admin/menu.description_sorry');
-        $createButton = $canCreateMenu ? '<br><a href="javascript:;" class="btn btn-primary m-t create_menu">'.trans('admin/menu.action.create').'</a>':'';
+        $title = $canCreateMenu ?  trans('console/menu.welcome'):trans('console/menu.sorry');
+        $desc = $canCreateMenu ? trans('console/menu.description'):trans('console/menu.description_sorry');
+        $createButton = $canCreateMenu ? '<br><a href="javascript:;" class="btn btn-primary m-t create_menu">'.trans('console/menu.action.create').'</a>':'';
         return <<<Eof
 		<div class="middle-box text-center animated fadeInRightBig">
             <h3 class="font-bold">{$title}</h3>

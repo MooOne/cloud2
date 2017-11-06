@@ -147,10 +147,7 @@ class MenuRepositoryEloquent extends BaseRepository implements MenuRepository
 
             DB::commit();
 
-            return [
-                'status' => $bool,
-                'message' => $bool ? trans('console/alert.menu.order_success') : trans('console/alert.menu.order_error')
-            ];
+            return true;
         } catch (\Exception $e) {
             DB::rollBack();
             return false;

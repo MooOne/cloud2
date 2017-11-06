@@ -137,7 +137,11 @@ class MenusController extends BaseController
      */
     public function orderable()
     {
-        $responseData = $this->repository->orderable(request('nestable',''));
+        $result = $this->repository->orderable(request('nestable',''));
+        $responseData = [
+            'status' => $result,
+            'message' => $result ? trans('console/alert.menu.order_success') : trans('console/alert.menu.order_error')
+        ];
         return response()->json($responseData);
     }
 }

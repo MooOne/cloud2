@@ -3,27 +3,27 @@
 return [
     'role_structure' => [
         'admin' => [
-            'users' => 'c,r,u,d',
-            'acl' => 'c,r,u,d',
-            'profile' => 'r,u'
-        ],
-        'manager' => [
-            'users' => 'c,r,u,d',
-            'profile' => 'r,u'
-        ],
-        'user' => [
-            'profile' => 'r,u'
-        ],
+            'role'          => 'l,r,c,s,e,u,d',
+            'permission'    => 'l,r,c,s,e,u,d',
+            'user'          => 'l,r,c,s,e,u,d',
+            'menu'          => 'l,r,c,s,e,u,d'
+        ]
     ],
     'permission_structure' => [
-        'ltuser' => [
-            'profile' => 'c,r,u'
+        'admin' => [
+            'role'          => 'l,r,c,s,e,u,d',
+            'permission'    => 'l,r,c,s,e,u,d',
+            'user'          => 'l,r,c,s,e,u,d',
+            'menu'          => 'l,r,c,s,e,u,d'
         ],
     ],
     'permissions_map' => [
-        'c' => 'create',
-        'r' => 'read',
-        'u' => 'update',
-        'd' => 'delete'
+        'l'     => 'list',
+        'r'     => 'show',
+        'c'     => 'create',
+        's'     => 'store',
+        'e'     => 'edit',
+        'u'     => 'edit',
+        'd'     => 'destroy'
     ]
 ];
