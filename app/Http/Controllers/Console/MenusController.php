@@ -65,9 +65,13 @@ class MenusController extends BaseController
 
         $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-        $responseData = $this->repository->create($data);
+        $result = $this->repository->create($data);
 
-        return response()->json($responseData);
+        $responseData = [
+            'status' => $result,
+            'message' => $result ? trans('console/alert.menu.create_success') : trans('console/alert.menu.create_error')
+        ];
+        return $responseData;
     }
 
 
@@ -81,7 +85,7 @@ class MenusController extends BaseController
     {
         $menus = $this->repository->getMenuList();
         $menu = $this->repository->find($id);
-        return view('admin.menu.show')->with(compact('menu','menus'));
+        return view('console.menu.show')->with(compact('menu','menus'));
     }
 
     /**
@@ -92,7 +96,7 @@ class MenusController extends BaseController
      */
     public function edit($id)
     {
-        $menu = $this->repository->find($id);
+        $menu = $this->repository->skipPresenter()->find($id);
         $menus = $this->repository->getMenuList();
         return view('console.menu.edit')->with(compact('menu','menus'));
     }
@@ -111,10 +115,13 @@ class MenusController extends BaseController
 
         $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-        $responseData = $this->repository->update($data, $id);
+        $result = $this->repository->update($data, $id);
 
-        return response()->json($responseData);
-
+        $responseData = [
+            'status' => $result,
+            'message' => $result ? trans('console/alert.menu.edit_success') : trans('console/alert.menu.edit_error')
+        ];
+        return $responseData;
     }
 
 
@@ -142,6 +149,6 @@ class MenusController extends BaseController
             'status' => $result,
             'message' => $result ? trans('console/alert.menu.order_success') : trans('console/alert.menu.order_error')
         ];
-        return response()->json($responseData);
+        return $responseData;
     }
 }

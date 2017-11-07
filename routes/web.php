@@ -63,7 +63,6 @@ Route::group(['prefix' => 'console', 'middleware' => 'auth', 'namespace' => 'Con
     // 菜单
     require(__DIR__ . '/console/menu.php');
 
-    Route::get('/menu', 'MenusController@index');
     Route::get('oauth', 'ConsoleController@getOauth');
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 

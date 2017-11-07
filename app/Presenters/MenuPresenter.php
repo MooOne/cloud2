@@ -57,7 +57,7 @@ class MenuPresenter extends BasePresenter
         if ($menu['child']) {
             return $this->getHandleList($menu['menu_id'], $menu['name'], $menu['icon'], $menu['child']);
         }
-        $labelInfo = $menu['pid'] == 0 ?  'label-info':'label-warning';
+        $labelInfo = $menu['pid'] == 0 ?  'text-success':'text-warning';
         return <<<Eof
 				<li class="dd-item dd3-item" data-id="{$menu['menu_id']}">
                     <div class="dd-handle dd3-handle">Drag</div>
@@ -88,7 +88,7 @@ Eof;
 		<li class="dd-item dd3-item" data-id="{$id}">
             <div class="dd-handle dd3-handle">Drag</div>
             <div class="dd3-content">
-            	<span class="label label-info"><i class="{$icon}"></i></span> {$name} {$this->getActionButtons($id)}
+            	<span class="label text-success"><i class="{$icon}"></i></span> {$name} {$this->getActionButtons($id)}
             </div>
             <ol class="dd-list">
                 {$handle}
@@ -107,14 +107,15 @@ Eof;
     {
         $action = '<div class="pull-right">';
         if (auth()->user()->can($this->getPermissionTag('show'))) {
-            $action .= '<a href="javascript:;" class="btn btn-xs tooltips showInfo" data-href="'.url('console/menu',[$id]).'" data-toggle="tooltip" data-original-title="'.trans('console/action.actionButton.show').'"  data-placement="top"><i class="fa fa-eye"></i></a>';
+            $action .= '<a href="javascript:;" class="btn btn-xs tooltips showInfo" data-href="'.url('console/menu',[$id]).'" data-toggle="tooltip" data-original-title="'.trans('console/action.actionButton.show').'"  data-placement="top"><i class="fa fa-eye text-success"></i></a>';
         }
         if (auth()->user()->can($this->getPermissionTag('edit'))) {
-            $action .= '<a href="javascript:;" data-href="'.url('console/menu/'.$id.'/edit').'" class="btn btn-xs tooltips editMenu" data-toggle="tooltip"data-original-title="'.trans('console/action.actionButton.edit').'"  data-placement="top"><i class="fa fa-edit"></i></a>';
+            $action .= '<a href="javascript:;" data-href="'.url('console/menu/'.$id.'/edit').'" class="btn btn-xs tooltips editMenu" data-toggle="tooltip"data-original-title="'.trans('console/action.actionButton.edit').'"  data-placement="top"><i class="fa fa-pencil text-warning"></i></a>';
         }
         if (auth()->user()->can($this->getPermissionTag('destroy'))) {
-            $action .= '<a href="javascript:;" class="btn btn-xs tooltips destroy_item" data-id="'.$id.'" data-original-title="'.trans('console/action.actionButton.destroy').'"data-toggle="tooltip"  data-placement="top"><i class="fa fa-trash"></i><form action="'.url('console/menu',[$id]).'" method="POST" style="display:none"><input type="hidden"name="_method" value="delete"><input type="hidden" name="_token" value="'.csrf_token().'"></form></a>';
+            $action .= '<a href="javascript:;" class="btn btn-xs tooltips destroy_item" data-id="'.$id.'" data-original-title="'.trans('console/action.actionButton.destroy').'"data-toggle="tooltip"  data-placement="top"><i class="fa fa-trash text-danger"></i></i><form action="'.url('console/menu',[$id]).'" method="POST" style="display:none"><input type="hidden"name="_method" value="delete"><input type="hidden" name="_token" value="'.csrf_token().'"></form></a>';
         }
+        $action .= '</div>';
         return $action;
     }
 

@@ -32,6 +32,7 @@ class CreateMenusTable extends Migration
             $table->unsignedInteger('updated_by')->nullable();
             $table->timestamp('updated_at')->nullable();
             $table->ipAddress('updated_ip')->nullable();
+            $table->ipAddress('description')->nullable();
 		});
 	}
 

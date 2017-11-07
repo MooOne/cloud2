@@ -35,6 +35,7 @@ return [
 		'edit_error' 		=> '修改菜单失败',
 		'destroy_success' 	=> '删除菜单成功',
 		'destroy_error' 	=> '删除菜单失败',
+        'destroy_cancel' 	=> '取消菜单删除',
 		'order_success' 	=> '排序菜单成功',
 		'order_error' 		=> '排序菜单失败',
 	],

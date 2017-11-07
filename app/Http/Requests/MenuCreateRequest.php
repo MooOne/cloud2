@@ -3,6 +3,7 @@
 namespace Yeelight\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Yeelight\Models\Menu;
 
 class MenuCreateRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class MenuCreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->user()->can($this->getPermissionTag('store'));;
     }
 
     /**
@@ -56,5 +57,15 @@ class MenuCreateRequest extends FormRequest
             'slug'      => trans('console/menu.model.slug'),
             'menu_id'        => trans('console/menu.model.id'),
         ];
+    }
+
+    public function model()
+    {
+        return app()->make(Menu::class);
+    }
+
+    public function getPermissionTag($tag)
+    {
+        return $this->model()->getPermissionTag($tag);
     }
 }

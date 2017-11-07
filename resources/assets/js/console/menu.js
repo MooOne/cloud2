@@ -5,7 +5,6 @@ var MenuList = function() {
       "maxDepth":2
     }).on('change',function () {
       var list = window.JSON.stringify($('#nestable').nestable('serialize'));
-      console.log(list);
       $.ajax({
         url:'/console/menu/orderable',
         data:{
@@ -53,7 +52,6 @@ var MenuList = function() {
      * 添加菜单
      */
     $(menu.box).on('click','.createButton',function () {
-      var l = $(this).ladda();
       var _item = $(this);
       var _form = $('#createForm');
       $.ajax({
@@ -65,11 +63,10 @@ var MenuList = function() {
           'X-CSRF-TOKEN': $("input[name='_token']").val()
         },
         beforeSend : function(){
-          l.ladda( 'start' );
           _item.attr('disabled','true');
         },
         success:function (response) {
-          layer.msg(response.message);
+          toastr.success(response.message);
           setTimeout(function(){
             window.location.href = '/console/menu';
           }, 1000);
@@ -78,13 +75,12 @@ var MenuList = function() {
         if(response.status == 422){
           var data = $.parseJSON(response.responseText);
           var layerStr = "";
-          for(var i in data){
-            layerStr += "<div>"+data[i]+"</div>";
+          for(var i in data.errors){
+            layerStr += "<div>"+data.errors[i]+"</div>";
           }
-          layer.msg(layerStr);
+            toastr.error(layerStr);
         }
       }).always(function () {
-        l.ladda('stop');
         _item.removeAttr('disabled');
       });;
     });
@@ -117,7 +113,6 @@ var MenuList = function() {
      * 修改菜单数据
      */
     $(menu.box).on('click','.editButton',function () {
-      var l = $(this).ladda();
       var _item = $(this);
       var _form = $('#editForm');
 
@@ -130,26 +125,25 @@ var MenuList = function() {
           'X-CSRF-TOKEN': $("input[name='_token']").val()
         },
         beforeSend : function(){
-          l.ladda( 'start' );
           _item.attr('disabled','true');
         },
         success:function (response) {
-          layer.msg(response.message);
+          console.log(response);
+          toastr.success(response.message);
           setTimeout(function(){
             window.location.href = '/console/menu';
           }, 1000);
         }
       }).fail(function(response) {
-        if(response.status == 422){
-          var data = $.parseJSON(response.responseText);
-          var layerStr = "";
-          for(var i in data){
-            layerStr += "<div>"+data[i]+"</div>";
+          if(response.status == 422){
+              var data = $.parseJSON(response.responseText);
+              var layerStr = "";
+              for(var i in data.errors){
+                  layerStr += "<div>"+data.errors[i]+"</div>";
+              }
+              toastr.error(layerStr);
           }
-          layer.msg(layerStr);
-        }
       }).always(function () {
-        l.ladda('stop');
         _item.removeAttr('disabled');
       });;
     });
