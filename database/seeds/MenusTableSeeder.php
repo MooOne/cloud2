@@ -15,7 +15,7 @@ class MenusTableSeeder extends Seeder
         $index->name = "控制台";
         $index->pid = 0;
         $index->icon = "fa fa-dashboard";
-        $index->slug = "index-console";
+        $index->slug = "console-index";
         $index->url = "console/index";
         $index->active = "console/index";
         $index->description = "后台首页";
@@ -30,7 +30,7 @@ class MenusTableSeeder extends Seeder
         $system->name = "系统管理";
         $system->pid = 0;
         $system->icon = "fa fa-cog";
-        $system->slug = "manage-system";
+        $system->slug = "system-manage";
         $system->url = "";
         $system->active = "console/role*,console/permission*,console/user*,console/menu*,console/log*";
         $system->description = "系统功能管理";

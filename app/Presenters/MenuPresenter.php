@@ -209,14 +209,14 @@ Eof;
                     $url = url($menu['url']);
                     $html .= <<<Eof
 					<li class="{$active}">
-			          	<a href="{$url}"><i class="{$menu['icon']}"></i> <span class="nav-label">{$menu['name']}</span> <span class="fa arrow"></span></a>
-			          	<ul class="nav nav-second-level collapse">
+			          	<a href="{$url}"><i class="{$menu['icon']}"></i> <span class="link-title menu_hide">{$menu['name']}</span> <span class="fa arrow menu_hide"></span></a>
+			          	<ul>
 			              	{$this->childMenu($menu['child'])}
 			          	</ul>
 			      	</li>
 Eof;
                 }else{
-                    $html .= '<li class="'.active_class(if_uri_pattern(explode(',',$menu['active'])),'active').'"><a href="'.url($menu['url']).'"><i class="'.$menu['icon'].'"></i> <span class="nav-label">'.$menu['name'].'</span></a></li>';
+                    $html .= '<li class="'.active_class(if_uri_pattern(explode(',',$menu['active'])),'active').'"><a href="'.url($menu['url']).'"><i class="'.$menu['icon'].'"></i> <span class="link-title">'.$menu['name'].'</span></a></li>';
                 }
             }
         }

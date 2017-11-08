@@ -16,7 +16,7 @@
 @stop
 {{-- Page content --}}
 @section('content')
-@inject('menuPreseter','Yeelight\Presenters\MenuPresenter')
+@inject('menuPresenter','Yeelight\Presenters\MenuPresenter')
     <!-- Content Header (Page header) -->
     <header class="head">
         <div class="main-bar">
@@ -55,14 +55,14 @@
                         <div class="ibox-content">
                             <div class="dd" id="nestable">
                                 <ol class="dd-list">
-                                    {!!$menuPreseter->menuNestable($menus)!!}
+                                    {!!$menuPresenter->menuNestable($menus)!!}
                                 </ol>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 menuBox">
-                    {!!$menuPreseter->canCreateMenu()!!}
+                    {!!$menuPresenter->canCreateMenu()!!}
                 </div>
             </div>
         </div>

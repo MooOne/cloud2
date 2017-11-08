@@ -3,6 +3,9 @@
 return [
     'role_structure' => [
         'admin' => [
+            'console'       => 'i',
+            'system'        => 'm',
+            'log'           => 'a',
             'role'          => 'l,r,c,s,e,u,d',
             'permission'    => 'l,r,c,s,e,u,d',
             'user'          => 'l,r,c,s,e,u,d',
@@ -11,6 +14,9 @@ return [
     ],
     'permission_structure' => [
         'admin' => [
+            'console'       => 'i',
+            'system'        => 'm',
+            'log'           => 'a',
             'role'          => 'l,r,c,s,e,u,d',
             'permission'    => 'l,r,c,s,e,u,d',
             'user'          => 'l,r,c,s,e,u,d',
@@ -18,6 +24,9 @@ return [
         ],
     ],
     'permissions_map' => [
+        'i'     => 'index',
+        'm'     => 'manage',
+        'a'     => 'all',
         'l'     => 'list',
         'r'     => 'show',
         'c'     => 'create',
