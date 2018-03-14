@@ -30,7 +30,7 @@ class Permission extends LaratrustPermission implements Transformable
 
     protected $primaryKey = 'id';
 
-    protected $fillable = [];
+    protected $fillable = ['name', 'display_name', 'description'];
 
     // Fields to be converted to Carbon object automatically
     protected $dates = [];

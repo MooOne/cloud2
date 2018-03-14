@@ -5,5 +5,10 @@
 return [
     'console' => [
         'path' => '/console',
+        // 分页
+        'pagination' => [
+            'start'=> 0,
+            'length' => 10,
+        ],
     ]
 ];

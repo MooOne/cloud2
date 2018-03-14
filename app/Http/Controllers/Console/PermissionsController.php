@@ -2,8 +2,6 @@
 namespace Yeelight\Http\Controllers\Console;
 
 use Dingo\Api\Exception\DeleteResourceFailedException;
-use Dingo\Api\Exception\StoreResourceFailedException;
-use Dingo\Api\Exception\UpdateResourceFailedException;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Yeelight\Http\Requests\PermissionCreateRequest;
 use Yeelight\Http\Requests\PermissionUpdateRequest;
@@ -38,7 +36,20 @@ class PermissionsController extends BaseController
      */
     public function index()
     {
-        return $this->repository->all();
+        $permissions = $this->repository->all();
+        return view('console.permission.index')->with(compact('permissions'));
+    }
+
+    /**
+     * datatables获取数据
+     * @author Sheldon
+     * @date   2017-04-29
+     * @return [type]     [description]
+     */
+    public function ajaxIndex()
+    {
+        $responseData = $this->repository->ajaxIndex();
+        return response()->json($responseData);
     }
 
     /**

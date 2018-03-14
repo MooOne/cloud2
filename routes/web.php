@@ -54,6 +54,8 @@ Route::group(['prefix' => 'console', 'middleware' => 'auth', 'namespace' => 'Con
         return view('console.index');
     });
 
+    $router->get('/i18n', 'ConsoleController@dataTableI18n');
+
     // 权限
     require(__DIR__ . '/console/permission.php');
     // 角色
