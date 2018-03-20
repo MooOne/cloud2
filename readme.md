@@ -16,11 +16,18 @@ composer update
 ~~~
 ## 前端打包环境
 ~~~
-npm install -g npm bower yarn
+npm install -g npm bower yarn gulp
 
 yarn install
 
-bower install
+bower init
+
+sudo bower install admin-lte
+
+sudo bower install fontawesome
+
+sudo bower install ionicons
+
 ~~~
 ## Database & Seeding
 ~~~
@@ -34,7 +41,7 @@ php artisan passport:install
 ~~~
 ## 后台模板
 
-https://lorvent.gitbooks.io/admire/content/
+https://github.com/almasaeed2010/AdminLTE/
 
 ## l5-repository
 

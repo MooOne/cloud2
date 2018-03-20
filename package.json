@@ -7,9 +7,13 @@
         "watch-poll": "npm run watch -- --watch-poll",
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "gprod": "gulp --production",
+        "gdev": "gulp watch"
     },
     "devDependencies": {
+        "gulp": "^3.9.1",
+        "laravel-elixir": "^5.0.0",
         "axios": "^0.16.2",
         "bootstrap-sass": "^3.3.7",
         "browser-sync": "^2.18.13",
