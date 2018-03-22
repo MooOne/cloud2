@@ -114,20 +114,24 @@ mix.browserSync({
     }
 });
 
+//后台自定义样式文件
 mix.sass(resourcesAssets + 'sass/backend.scss', destCss +'backend.css').options({
     processCssUrls: false
 });
 
+//bootstrap自定义修改
 mix.sass(resourcesAssets + 'sass/bootstrap/app.scss', destCss +'bootstrap.min.css').options({
     processCssUrls: false
 });
+
+//admin-lte 自定义修改
 mix.sass(resourcesAssets + 'sass/admin-lte/app.scss', destCss +'AdminLTE.min.css').options({
     processCssUrls: false
 });
 
 
 
-//backend js
+//后台自定义js文件 backend js
 mix.copy(srcJs + 'backend.js', destJs).sourceMaps();
 
 // 合并css脚本
@@ -160,8 +164,10 @@ mix.scripts(
     destJs + 'app.js'
 ).sourceMaps();
 
+//生产环节附加资源版本号
 if (mix.inProduction()) {
     mix.version();
 }
 
+//忽略构建提示信息
 mix.disableNotifications();

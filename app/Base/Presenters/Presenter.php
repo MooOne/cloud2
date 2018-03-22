@@ -16,7 +16,7 @@ abstract class Presenter extends FractalPresenter
      * @param $data
      *
      * @return mixed
-     * @throws Exception
+     * @throws \Exception
      */
     public function present($data)
     {

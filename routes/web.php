@@ -15,22 +15,9 @@ Route::get('/', function () {
     return view('index');
 });
 
-/**
- * Admire Template Routes
- */
-Route::group(['prefix' => 'demo'], function () {
-    Route::get('/','AdmireController@index');
-
-    Route::get('{name?}','AdmireController@showView');
-
-    Route::get('users','AdmireController@index');
-
-    Route::post('users','AdmireController@store');
-});
-
 
 // Auth Routes
-Route::group(['prefix' => 'console', 'namespace' => 'Auth'], function () {
+Route::group(['prefix' => config('yeelight.console.path'), 'namespace' => 'Auth'], function () {
     // Authentication Routes...
     Route::get('login', 'LoginController@showLoginForm')->name('login');
     Route::post('login', 'LoginController@login');
@@ -48,7 +35,7 @@ Route::group(['prefix' => 'console', 'namespace' => 'Auth'], function () {
 });
 
 // Console Routes
-Route::group(['prefix' => 'console', 'middleware' => 'auth', 'namespace' => 'Console'], function ($router) {
+Route::group(['prefix' => config('yeelight.console.path'), 'middleware' => 'auth', 'namespace' => 'Console'], function ($router) {
 
     $router->get('/', function () {
         return view('console.index');
@@ -57,15 +44,9 @@ Route::group(['prefix' => 'console', 'middleware' => 'auth', 'namespace' => 'Con
     $router->get('/i18n', 'ConsoleController@dataTableI18n');
 
     // 权限
-    require(__DIR__ . '/console/permission.php');
-    // 角色
-    require(__DIR__ . '/console/role.php');
-    // 用户
-    require(__DIR__ . '/console/user.php');
-    // 菜单
-    require(__DIR__ . '/console/menu.php');
+    //require(__DIR__ . '/console/permission.php');
 
-    Route::get('oauth', 'ConsoleController@getOauth');
+
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 

@@ -61,7 +61,6 @@ use Laratrust\Traits\LaratrustUserTrait;
  */
 class User extends BaseUser
 {
-    use LaratrustUserTrait;
     use YeelightHasImageablesTrait;
 
     /**

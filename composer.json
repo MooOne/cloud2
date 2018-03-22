@@ -36,7 +36,6 @@
         "prettus/l5-repository": "^2.6",
         "prettus/laravel-validation": "1.1.*",
         "rap2hpoutre/laravel-log-viewer": "^0.10.0",
-        "santigarcor/laratrust": "5.0.*",
         "torann/geoip": "1.0.*",
         "tymon/jwt-auth": "1.0.0-rc.1"
     },

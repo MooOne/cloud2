@@ -4,7 +4,7 @@
  */
 return [
     'console' => [
-        'path' => '/console',
+        'path' => '/backend',
         // 分页
         'pagination' => [
             'start'=> 0,
