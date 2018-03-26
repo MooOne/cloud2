@@ -52,6 +52,32 @@ const paths = {
     // pace
     'pace': vendors + 'admin-lte/plugins/pace/',
 
+    //nprogress
+    'nprogress': vendors + 'nprogress/',
+
+    //sweetalert
+    'sweetalert': vendors + 'sweetalert/dist/',
+
+    //nestable
+    'nestable': vendors + 'nestable/',
+
+    //toastr
+    'toastr': vendors + 'toastr/',
+
+    //lightbox
+    'lightbox': vendors + 'lightbox2/dist/',
+
+    //jquery-pjax
+    'jquerypjax': vendors + 'jquery-pjax/',
+
+    //clipboard
+    'clipboard': vendors + 'clipboard/dist/',
+
+    //wangEditor
+    'wangEditor': vendors + 'wangEditor/release/',
+
+    //google-fonts
+    'googlefonts': vendors + 'google-fonts/',
 };
 
 // Copy fonts straight to public
@@ -102,6 +128,40 @@ mix.copy(paths.select2 + 'css/select2.min.css', destCss);
 mix.copy(paths.pace + 'pace.min.js', destJs);
 mix.copy(paths.pace + 'pace.min.css', destCss);
 
+// nprogress
+mix.copy(paths.nprogress + 'nprogress.js', destJs);
+mix.copy(paths.nprogress + 'nprogress.css', destCss);
+
+// sweetalert
+mix.copy(paths.sweetalert + 'sweetalert.min.js', destJs);
+mix.copy(paths.sweetalert + 'sweetalert.css', destCss);
+
+// nestable
+mix.copy(paths.nestable + 'jquery.nestable.js', destJs);
+
+// toastr
+mix.copy(paths.toastr + 'toastr.min.js', destJs);
+mix.copy(paths.toastr + 'toastr.min.css', destCss);
+
+// lightbox
+mix.copy(paths.lightbox + 'js/lightbox.min.js', destJs);
+mix.copy(paths.lightbox + 'js/lightbox-plus-jquery.min.js', destJs);
+mix.copy(paths.lightbox + 'css/lightbox.min.css', destCss);
+mix.copyDirectory(paths.lightbox + 'images', dest + 'images/');
+
+// jquery-pjax
+mix.copy(paths.jquerypjax + 'jquery.pjax.js', destJs);
+
+// clipboard
+mix.copy(paths.clipboard + 'clipboard.min.js', destJs);
+
+// wangEditor
+mix.copy(paths.wangEditor + 'wangEditor.min.js', destJs);
+mix.copy(paths.wangEditor + 'wangEditor.min.css', destCss);
+
+
+// google-fonts
+mix.copyDirectory(paths.googlefonts, destCss);
 
 /*
  browserSync for auto-reloading browser on changes
@@ -144,6 +204,12 @@ mix.styles(
         destCss + 'skin-blue.min.css',
         destCss + 'font-awesome.min.css',
         destCss + 'ionicons.min.css',
+        destCss + 'nprogress.css',
+        destCss + 'sweetalert.css',
+        destCss + 'toastr.min.css',
+        destCss + 'lightbox.min.css',
+        destCss + 'wangEditor.min.css',
+        destCss + 'fonts.css',
         destCss + 'blue.css'
     ],
     destCss + 'app.css'
@@ -159,7 +225,16 @@ mix.scripts(
         destJs + 'jquery.slimscroll.min.js',
         destJs + 'icheck.min.js',
         destJs + 'select2.full.min.js',
-        destJs + 'select2.min.js'
+        destJs + 'select2.min.js',
+        destJs + 'nprogress.js',
+        destJs + 'sweetalert.min.js',
+        destJs + 'jquery.nestable.js',
+        destJs + 'toastr.min.js',
+        destJs + 'lightbox.min.js',
+        destJs + 'lightbox-plus-jquery.min.js',
+        destJs + 'jquery.pjax.js',
+        destJs + 'clipboard.min.js',
+        destJs + 'wangEditor.min.js'
     ],
     destJs + 'app.js'
 ).sourceMaps();

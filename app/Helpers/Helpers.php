@@ -284,7 +284,7 @@ if (!function_exists('auth_user')) {
 
     /**
      * @param bool $throwException
-     * @return null|\Yeelight\Model\Foundation\BaseUser|\Yeelight\Model\Foundation\BaseUser
+     * @return null|\Yeelight\Models\Foundation\BaseUser|\Yeelight\Models\Foundation\BaseUser
      */
     function auth_user($throwException = true)
     {

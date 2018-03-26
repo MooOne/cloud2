@@ -28,6 +28,22 @@ sudo bower install fontawesome
 
 sudo bower install ionicons
 
+sudo bower install nprogress
+
+sudo bower install sweetalert
+
+sudo bower install nestable
+
+sudo bower install toastr
+
+sudo bower install lightbox
+
+sudo bower install jquery-pjax
+
+sudo bower install clipboard
+
+sudo bower install wangEditor
+
 ~~~
 ## Database & Seeding
 ~~~
@@ -42,6 +58,8 @@ php artisan passport:install
 ## 后台模板
 
 https://github.com/almasaeed2010/AdminLTE/
+
+其他组件手册请自行搜索
 
 ## l5-repository
 

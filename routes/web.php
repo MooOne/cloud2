@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 
 // Auth Routes
-Route::group(['prefix' => config('yeelight.console.path'), 'namespace' => 'Auth'], function () {
+Route::group(['prefix' => config('yeelight.backend.route.prefix'), 'namespace' => 'Auth'], function () {
     // Authentication Routes...
     Route::get('login', 'LoginController@showLoginForm')->name('login');
     Route::post('login', 'LoginController@login');
@@ -35,8 +35,9 @@ Route::group(['prefix' => config('yeelight.console.path'), 'namespace' => 'Auth'
 });
 
 // Console Routes
-Route::group(['prefix' => config('yeelight.console.path'), 'middleware' => 'auth', 'namespace' => 'Console'], function ($router) {
+Route::group(['prefix' => config('yeelight.backend.route.prefix'), 'namespace' => config('yeelight.backend.route.namespace')], function ($router) {
 
+    $router->get('index','HomeController@index');
     $router->get('/', function () {
         return view('console.index');
     });
@@ -53,7 +54,7 @@ Route::group(['prefix' => config('yeelight.console.path'), 'middleware' => 'auth
 });
 
 // Mobile Routes
-Route::group(['prefix' => 'm', 'namespace' => 'Mobile'], function () {
+Route::group(['prefix' => config('yeelight.mobile.route.prefix'), 'namespace' => config('yeelight.mobile.route.namespace')], function () {
 
     // Mobile App
     Route::get('/', 'MobileController@getIndex');

@@ -53,7 +53,8 @@
             "database/factories"
         ],
         "files": [
-            "app/Helpers/Helpers.php"
+            "app/Helpers/Helpers.php",
+            "app/Helpers/Backend.php"
         ],
         "psr-4": {
             "Yeelight\\": "app/"

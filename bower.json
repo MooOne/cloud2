@@ -14,5 +14,15 @@
     "resources/assets/vendors",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "nprogress": "^0.2.0",
+    "sweetalert": "^2.1.0",
+    "nestable": "*",
+    "toastr": "^2.1.3",
+    "jquery-pjax": "^2.0.1",
+    "lightbox2": "lightbox#^2.10.0",
+    "clipboard": "^2.0.0",
+    "wangEditor": "^3.1.0"
+  }
 }
