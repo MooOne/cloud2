@@ -1,0 +1,81 @@
+<?php
+
+namespace Yeelight\Http\Middleware;
+
+use Yeelight\Models\AdminOperationLog as OperationLogModel;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Yeelight\Models\AdminUser;
+
+class LogOperation
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     *
+     * @return mixed
+     */
+    public function handle(Request $request, \Closure $next)
+    {
+        if ($this->shouldLogOperation($request)) {
+            $log = [
+                'user_id' => Auth::guard('backend')->user()->id,
+                'path'    => $request->path(),
+                'method'  => $request->method(),
+                'ip'      => $request->getClientIp(),
+                'input'   => json_encode($request->input()),
+            ];
+
+            OperationLogModel::create($log);
+        }
+
+        return $next($request);
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return bool
+     */
+    protected function shouldLogOperation(Request $request)
+    {
+        return config('yeelight.backend.operation_log.enable')
+            && !$this->inExceptArray($request)
+            && Auth::guard('backend')->user();
+    }
+
+    /**
+     * Determine if the request has a URI that should pass through CSRF verification.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return bool
+     */
+    protected function inExceptArray($request)
+    {
+        foreach (config('yeelight.backend.operation_log.except') as $except) {
+            if ($except !== '/') {
+                $except = trim($except, '/');
+            }
+
+            $methods = [];
+
+            if (Str::contains($except, ':')) {
+                list($methods, $except) = explode(':', $except);
+                $methods = explode(',', $methods);
+            }
+
+            $methods = array_map('strtoupper', $methods);
+
+            if ($request->is($except) &&
+                (empty($methods) || in_array($request->method(), $methods))) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}

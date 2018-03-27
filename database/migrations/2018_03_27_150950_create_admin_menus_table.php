@@ -13,9 +13,7 @@ class CreateAdminMenusTable extends Migration
      */
     public function up()
     {
-        $connection = config('yeelight.backend.database.connection') ?: config('database.default');
-
-        Schema::connection($connection)->create(config('yeelight.backend.database.admin_menu_table'), function (Blueprint $table) {
+        Schema::create(config('yeelight.backend.database.admin_menus_table'), function (Blueprint $table) {
             $table->increments('id');
             $table->integer('parent_id')->default(0);
             $table->integer('order')->default(0);
@@ -33,8 +31,6 @@ class CreateAdminMenusTable extends Migration
      */
     public function down()
     {
-        $connection = config('yeelight.backend.database.connection') ?: config('database.default');
-
-        Schema::connection($connection)->dropIfExists(config('yeelight.backend.database.admin_menu_table'));
+        Schema::dropIfExists(config('yeelight.backend.database.admin_menus_table'));
     }
 }

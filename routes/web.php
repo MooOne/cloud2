@@ -15,9 +15,12 @@ Route::get('/', function () {
     return view('index');
 });
 
-
+$router->resource('auth/users', 'UserController');
+$router->resource('auth/roles', 'RoleController');
+$router->resource('auth/permissions', 'PermissionController');
+$router->resource('auth/menu', 'MenuController', ['except' => ['create']]);
 // Auth Routes
-Route::group(['prefix' => config('yeelight.backend.route.prefix'), 'namespace' => 'Auth'], function () {
+Route::group(['prefix' => config('yeelight.backend.route.prefix'), 'namespace' => 'Auth'], function ($router) {
     // Authentication Routes...
     Route::get('login', 'LoginController@showLoginForm')->name('login');
     Route::post('login', 'LoginController@login');
@@ -32,6 +35,13 @@ Route::group(['prefix' => config('yeelight.backend.route.prefix'), 'namespace' =
     Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
     Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
     Route::post('password/reset', 'ResetPasswordController@reset');
+
+
+    $router->get('auth/login', 'AuthController@getLogin');
+    $router->post('auth/login', 'AuthController@postLogin');
+    $router->get('auth/logout', 'AuthController@getLogout');
+    $router->get('auth/setting', 'AuthController@getSetting');
+    $router->put('auth/setting', 'AuthController@putSetting');
 });
 
 
@@ -43,9 +53,12 @@ Route::group([
 ], function ($router) {
 
     $router->get('index','HomeController@index');
-    $router->get('/', function () {
-        return view('console.index');
-    });
+
+    $router->resource('auth/users', 'UserController');
+    $router->resource('auth/roles', 'RoleController');
+    $router->resource('auth/permissions', 'PermissionController');
+    $router->resource('auth/menu', 'MenuController', ['except' => ['create']]);
+    $router->resource('auth/logs', 'LogController', ['only' => ['index', 'destroy']]);
 
     $router->get('/i18n', 'ConsoleController@dataTableI18n');
 

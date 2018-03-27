@@ -13,9 +13,7 @@ class CreateAdminRoleMenusTable extends Migration
      */
     public function up()
     {
-        $connection = config('yeelight.backend.database.connection') ?: config('database.default');
-
-        Schema::connection($connection)->create(config('yeelight.backend.database.admin_role_menu_table'), function (Blueprint $table) {
+        Schema::create(config('yeelight.backend.database.admin_role_menus_table'), function (Blueprint $table) {
             $table->integer('role_id');
             $table->integer('menu_id');
             $table->index(['role_id', 'menu_id']);
@@ -30,8 +28,6 @@ class CreateAdminRoleMenusTable extends Migration
      */
     public function down()
     {
-        $connection = config('yeelight.backend.database.connection') ?: config('database.default');
-
-        Schema::connection($connection)->dropIfExists(config('yeelight.backend.database.admin_role_menu_table'));
+        Schema::dropIfExists(config('yeelight.backend.database.admin_role_menus_table'));
     }
 }

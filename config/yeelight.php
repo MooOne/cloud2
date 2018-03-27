@@ -30,6 +30,26 @@ return [
         'secure' => env('APP_SECURE', false),
 
         /*
+        * backend auth setting.
+        */
+        'auth' => [
+            'guards' => [
+                'backend' => [
+                    'driver'   => 'session',
+                    'provider' => 'admin',
+                ],
+            ],
+
+            'providers' => [
+                'backend' => [
+                    'driver' => 'eloquent',
+                    'model'  => Yeelight\Models\AdminUser::class,
+                ],
+            ],
+        ],
+
+
+        /*
         * Route configration.
         */
         'route' => [
@@ -51,26 +71,26 @@ return [
 
             // User tables and model.
             'admin_users_table' => 'admin_users',
-            'users_model' => Encore\Admin\Auth\Database\Administrator::class,
+            'admin_users_model' => Yeelight\Models\AdminUser::class,
 
             // Role table and model.
             'admin_roles_table' => 'admin_roles',
-            'roles_model' => Encore\Admin\Auth\Database\Role::class,
+            'admin_roles_model' => Yeelight\Models\AdminRole::class,
 
             // Permission table and model.
             'admin_permissions_table' => 'admin_permissions',
-            'permissions_model' => Encore\Admin\Auth\Database\Permission::class,
+            'admin_permissions_model' => Yeelight\Models\AdminPermission::class,
 
             // Menu table and model.
-            'admin_menu_table'  => 'admin_menus',
-            'menu_model'  => Encore\Admin\Auth\Database\Menu::class,
+            'admin_menus_table'  => 'admin_menus',
+            'admin_menus_model'  => Yeelight\Models\AdminMenu::class,
 
             // Pivot table for table above.
-            'admin_operation_log_table'    => 'admin_operation_logs',
+            'admin_operation_logs_table'    => 'admin_operation_logs',
             'admin_user_permissions_table' => 'admin_user_permissions',
             'admin_role_users_table'       => 'admin_role_users',
             'admin_role_permissions_table' => 'admin_role_permissions',
-            'admin_role_menu_table'        => 'admin_role_menus',
+            'admin_role_menus_table'        => 'admin_role_menus',
         ],
 
         /*
@@ -111,6 +131,22 @@ return [
          * Version displayed in footer.
          */
         'version'   => '1.0.0',
+
+        /*
+        * upload setting.
+        */
+        'upload'  => [
+
+            'disk' => 'upyun',
+
+            'directory'  => [
+                'image'  => 'image',
+                'file'   => 'file',
+            ],
+
+            'host' => 'https://yeelight-cloud.b0.upaiyun.com/',
+        ],
+
 
         /*
          * Settings for extensions.

@@ -13,9 +13,7 @@ class CreateAdminOperationLogsTable extends Migration
      */
     public function up()
     {
-        $connection = config('yeelight.backend.database.connection') ?: config('database.default');
-
-        Schema::connection($connection)->create(config('yeelight.backend.database.admin_operation_log_table'), function (Blueprint $table) {
+        Schema::create(config('yeelight.backend.database.admin_operation_logs_table'), function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
             $table->string('path');
@@ -34,8 +32,6 @@ class CreateAdminOperationLogsTable extends Migration
      */
     public function down()
     {
-        $connection = config('yeelight.backend.database.connection') ?: config('database.default');
-
-        Schema::connection($connection)->dropIfExists(config('yeelight.backend.database.admin_operation_log_table'));
+        Schema::dropIfExists(config('yeelight.backend.database.admin_operation_logs_table'));
     }
 }

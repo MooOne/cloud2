@@ -13,9 +13,7 @@ class CreateAdminUsersTable extends Migration
      */
     public function up()
     {
-        $connection = config('yeelight.backend.database.connection') ?: config('database.default');
-
-        Schema::connection($connection)->create(config('yeelight.backend.database.admin_users_table'), function (Blueprint $table) {
+        Schema::create(config('yeelight.backend.database.admin_users_table'), function (Blueprint $table) {
             $table->increments('id');
             $table->string('username', 190)->unique();
             $table->string('password', 60);
@@ -33,8 +31,6 @@ class CreateAdminUsersTable extends Migration
      */
     public function down()
     {
-        $connection = config('yeelight.backend.database.connection') ?: config('database.default');
-
-        Schema::connection($connection)->dropIfExists(config('yeelight.backend.database.admin_users_table'));
+        Schema::dropIfExists(config('yeelight.backend.database.admin_users_table'));
     }
 }

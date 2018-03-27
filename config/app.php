@@ -196,6 +196,7 @@ return [
         Yeelight\Providers\RepositoryServiceProvider::class,
         Yeelight\Providers\PolymorphicServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        \Yeelight\Providers\BackendServiceProvider::class,
 
     ],
 

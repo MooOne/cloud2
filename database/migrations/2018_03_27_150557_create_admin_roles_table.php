@@ -13,9 +13,7 @@ class CreateAdminRolesTable extends Migration
      */
     public function up()
     {
-        $connection = config('yeelight.backend.database.connection') ?: config('database.default');
-
-        Schema::connection($connection)->create(config('yeelight.backend.database.admin_roles_table'), function (Blueprint $table) {
+        Schema::create(config('yeelight.backend.database.admin_roles_table'), function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50)->unique();
             $table->string('slug', 50);
@@ -30,8 +28,6 @@ class CreateAdminRolesTable extends Migration
      */
     public function down()
     {
-        $connection = config('yeelight.backend.database.connection') ?: config('database.default');
-
-        Schema::connection($connection)->dropIfExists(config('yeelight.backend.database.admin_roles_table'));
+        Schema::dropIfExists(config('yeelight.backend.database.admin_roles_table'));
     }
 }
