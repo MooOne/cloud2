@@ -78,6 +78,9 @@ const paths = {
 
     //google-fonts
     'googlefonts': vendors + 'google-fonts/',
+
+    //bootstrap-editable
+    'editable': vendors + 'bootstrap-editable/src/',
 };
 
 // Copy fonts straight to public
@@ -159,6 +162,13 @@ mix.copy(paths.clipboard + 'clipboard.min.js', destJs);
 mix.copy(paths.wangEditor + 'wangEditor.min.js', destJs);
 mix.copy(paths.wangEditor + 'wangEditor.min.css', destCss);
 
+//bootstrap-editable
+mix.copy(paths.editable + 'js/bootstrap-editable.js', destJs);
+mix.copy(paths.editable + 'js/bootstrap-datepicker.js', destJs);
+mix.copy(paths.editable + 'js/locales/bootstrap-datepicker.zh-CN.js', destJs);
+mix.copy(paths.editable + 'css/bootstrap-editable.css', destCss);
+mix.copy(paths.editable + 'css/datepicker.css', destCss);
+mix.copyDirectory(paths.editable + 'img', destImg);
 
 // google-fonts
 mix.copyDirectory(paths.googlefonts, destCss);
@@ -210,6 +220,8 @@ mix.styles(
         destCss + 'lightbox.min.css',
         destCss + 'wangEditor.min.css',
         destCss + 'fonts.css',
+        destCss + 'bootstrap-editable.css',
+        destCss + 'datepicker.css',
         destCss + 'blue.css'
     ],
     destCss + 'app.css'
@@ -234,6 +246,9 @@ mix.scripts(
         destJs + 'lightbox-plus-jquery.min.js',
         destJs + 'jquery.pjax.js',
         destJs + 'clipboard.min.js',
+        destJs + 'bootstrap-editable.js',
+        destJs + 'bootstrap-datepicker.js',
+        destJs + 'bootstrap-datepicker.zh-CN.js',
         destJs + 'wangEditor.min.js'
     ],
     destJs + 'app.js'

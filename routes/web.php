@@ -34,8 +34,13 @@ Route::group(['prefix' => config('yeelight.backend.route.prefix'), 'namespace' =
     Route::post('password/reset', 'ResetPasswordController@reset');
 });
 
+
 // Console Routes
-Route::group(['prefix' => config('yeelight.backend.route.prefix'), 'namespace' => config('yeelight.backend.route.namespace')], function ($router) {
+Route::group([
+    'prefix'        => config('yeelight.backend.route.prefix'),
+    'namespace'     => config('yeelight.backend.route.namespace'),
+    'middleware'    => config('yeelight.backend.route.middleware'),
+], function ($router) {
 
     $router->get('index','HomeController@index');
     $router->get('/', function () {
@@ -53,8 +58,14 @@ Route::group(['prefix' => config('yeelight.backend.route.prefix'), 'namespace' =
 
 });
 
+
+
+
 // Mobile Routes
-Route::group(['prefix' => config('yeelight.mobile.route.prefix'), 'namespace' => config('yeelight.mobile.route.namespace')], function () {
+Route::group([
+    'prefix' => config('yeelight.mobile.route.prefix'),
+    'namespace' => config('yeelight.mobile.route.namespace')
+], function () {
 
     // Mobile App
     Route::get('/', 'MobileController@getIndex');
@@ -72,8 +83,9 @@ Route::group(['prefix' => config('yeelight.mobile.route.prefix'), 'namespace' =>
 
 });
 
-// Basic Routes
-//Route::get('/home', 'HomeController@index');
+
+
+
 
 // Protected Routes
 Route::group(['middleware' => 'auth'], function () {

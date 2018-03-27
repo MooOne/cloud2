@@ -50,27 +50,27 @@ return [
             'connection'  => '',
 
             // User tables and model.
-            'users_table' => 'admin_users',
+            'admin_users_table' => 'admin_users',
             'users_model' => Encore\Admin\Auth\Database\Administrator::class,
 
             // Role table and model.
-            'roles_table' => 'admin_roles',
+            'admin_roles_table' => 'admin_roles',
             'roles_model' => Encore\Admin\Auth\Database\Role::class,
 
             // Permission table and model.
-            'permissions_table' => 'admin_permissions',
+            'admin_permissions_table' => 'admin_permissions',
             'permissions_model' => Encore\Admin\Auth\Database\Permission::class,
 
             // Menu table and model.
-            'menu_table'  => 'admin_menu',
+            'admin_menu_table'  => 'admin_menus',
             'menu_model'  => Encore\Admin\Auth\Database\Menu::class,
 
             // Pivot table for table above.
-            'operation_log_table'    => 'admin_operation_log',
-            'user_permissions_table' => 'admin_user_permissions',
-            'role_users_table'       => 'admin_role_users',
-            'role_permissions_table' => 'admin_role_permissions',
-            'role_menu_table'        => 'admin_role_menu',
+            'admin_operation_log_table'    => 'admin_operation_logs',
+            'admin_user_permissions_table' => 'admin_user_permissions',
+            'admin_role_users_table'       => 'admin_role_users',
+            'admin_role_permissions_table' => 'admin_role_permissions',
+            'admin_role_menu_table'        => 'admin_role_menus',
         ],
 
         /*
