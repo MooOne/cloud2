@@ -5,8 +5,10 @@ use Yeelight\Models\BaseModel;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Yeelight\Models\Traits\HasPermissions;
 
-class AdminUser extends BaseModel implements Transformable
+class AdminUser extends BaseModel implements AuthenticatableContract
 {
     use TransformableTrait, Authenticatable, HasPermissions;
 
@@ -49,5 +51,4 @@ class AdminUser extends BaseModel implements Transformable
 
         parent::__construct($attributes);
     }
-
 }

@@ -1,10 +1,12 @@
 <?php
-namespace Yeelight\Http\Controllers\Auth;
+namespace Yeelight\Http\Controllers\BackendAuth;
 
+use Illuminate\Support\Facades\Lang;
 use Yeelight\Http\Controllers\BaseController;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends BaseController
 {
@@ -39,7 +41,7 @@ class LoginController extends BaseController
 
     public function redirectTo()
     {
-        $this->redirectTo = config('yeelight.console.path');
+        $this->redirectTo = config('yeelight.backend.route.prefix');
         return $this->redirectTo;
     }
 
@@ -50,7 +52,7 @@ class LoginController extends BaseController
      */
     public function showLoginForm()
     {
-        return view('console.auth.login');
+        return view('backend.auth.login');
     }
 
     /**
@@ -134,9 +136,25 @@ class LoginController extends BaseController
 
         $this->clearLoginAttempts($request);
 
+        backend_toastr(trans('backend.login_successful'));
+
         return $this->authenticated($request, $this->guard()->user())
             ?: redirect()->intended($this->redirectPath());
     }
+
+    /**
+     * Get the failed login response instance.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws ValidationException
+     */
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        return Redirect::back()->withInput()->withErrors([$this->username() => $this->getFailedLoginMessage()]);
+    }
+
 
     /**
      * The user has been authenticated.
@@ -157,7 +175,7 @@ class LoginController extends BaseController
      */
     public function username()
     {
-        return 'email';
+        return 'username';
     }
 
     /**
@@ -182,7 +200,17 @@ class LoginController extends BaseController
      */
     protected function guard()
     {
-        return Auth::guard();
+        return Auth::guard(config('yeelight.backend.route.prefix'));
+    }
+
+    /**
+     * @return string|\Symfony\Component\Translation\TranslatorInterface
+     */
+    protected function getFailedLoginMessage()
+    {
+        return Lang::has('auth.failed')
+            ? trans('auth.failed')
+            : 'These credentials do not match our records.';
     }
 
 }

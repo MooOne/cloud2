@@ -36,7 +36,7 @@ return [
             'guards' => [
                 'backend' => [
                     'driver'   => 'session',
-                    'provider' => 'admin',
+                    'provider' => 'backend',
                 ],
             ],
 
@@ -46,6 +46,7 @@ return [
                     'model'  => Yeelight\Models\AdminUser::class,
                 ],
             ],
+            'super_role' => 'administrator',
         ],
 
 
@@ -58,7 +59,19 @@ return [
 
             'namespace'     => 'Backend',
 
-            'middleware'    => ['web', 'admin'],
+            'middleware'    => ['web', 'backend'],
+        ],
+
+        /*
+        * Auth Route configration.
+        */
+        'auth_route' => [
+
+            'prefix' => 'backend/auth',
+
+            'namespace'     => 'BackendAuth',
+
+            'middleware'    => ['web', 'backend'],
         ],
 
         /*

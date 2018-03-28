@@ -1,5 +1,5 @@
 <?php
-namespace Yeelight\Http\Controllers\Auth;
+namespace Yeelight\Http\Controllers\BackendAuth;
 
 use Illuminate\Http\Request;
 use Yeelight\Http\Controllers\BaseController;

@@ -1,5 +1,5 @@
 <?php
-namespace Yeelight\Http\Controllers\Auth;
+namespace Yeelight\Http\Controllers\BackendAuth;
 
 use Yeelight\Models\Foundation\User;
 use Validator;

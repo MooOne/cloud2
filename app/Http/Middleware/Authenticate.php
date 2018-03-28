@@ -17,7 +17,7 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::guard('backend')->guest() && !$this->shouldPassThrough($request)) {
+        if (Auth::guard(config('yeelight.backend.route.prefix'))->guest() && !$this->shouldPassThrough($request)) {
             return redirect()->guest(backend_base_path('auth/login'));
         }
 

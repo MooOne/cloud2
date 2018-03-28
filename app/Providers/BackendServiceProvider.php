@@ -28,7 +28,6 @@ class BackendServiceProvider extends ServiceProvider
             'backend.auth',
             'backend.pjax',
             'backend.log',
-            'backend.bootstrap',
         ],
     ];
 

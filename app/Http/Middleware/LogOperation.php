@@ -22,7 +22,7 @@ class LogOperation
     {
         if ($this->shouldLogOperation($request)) {
             $log = [
-                'user_id' => Auth::guard('backend')->user()->id,
+                'user_id' => Auth::guard(config('yeelight.backend.route.prefix'))->user()->id,
                 'path'    => $request->path(),
                 'method'  => $request->method(),
                 'ip'      => $request->getClientIp(),
@@ -44,7 +44,7 @@ class LogOperation
     {
         return config('yeelight.backend.operation_log.enable')
             && !$this->inExceptArray($request)
-            && Auth::guard('backend')->user();
+            && Auth::guard(config('yeelight.backend.route.prefix'))->user();
     }
 
     /**

@@ -57,6 +57,24 @@ if (!function_exists('backend_base_path')) {
     }
 }
 
+if (!function_exists('backend_auth_path')) {
+    /**
+     * Get backend url.
+     *
+     * @param string $path
+     *
+     * @return string
+     */
+    function backend_auth_path($path = '')
+    {
+        $prefix = '/'.trim(config('yeelight.backend.auth_route.prefix'), '/');
+
+        $prefix = ($prefix == '/') ? '' : $prefix;
+
+        return $prefix.'/'.trim($path, '/');
+    }
+}
+
 if (!function_exists('backend_toastr')) {
 
     /**

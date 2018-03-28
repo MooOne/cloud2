@@ -15,33 +15,26 @@ Route::get('/', function () {
     return view('index');
 });
 
-$router->resource('auth/users', 'UserController');
-$router->resource('auth/roles', 'RoleController');
-$router->resource('auth/permissions', 'PermissionController');
-$router->resource('auth/menu', 'MenuController', ['except' => ['create']]);
+
 // Auth Routes
-Route::group(['prefix' => config('yeelight.backend.route.prefix'), 'namespace' => 'Auth'], function ($router) {
+Route::group(['prefix' => config('yeelight.backend.auth_route.prefix'), 'namespace' => config('yeelight.backend.auth_route.namespace')], function ($router) {
     // Authentication Routes...
-    Route::get('login', 'LoginController@showLoginForm')->name('login');
-    Route::post('login', 'LoginController@login');
-    Route::any('logout', 'LoginController@logout')->name('logout');
+    $router->get('login', 'LoginController@showLoginForm')->name('backend.auth.login');
+    $router->post('login', 'LoginController@login')->name('backend.auth.login.post');
+    $router->any('logout', 'LoginController@logout')->name('backend.auth.logout');
 
     // Registration Routes...
-    Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
-    Route::post('register', 'RegisterController@register');
+    $router->get('register', 'RegisterController@showRegistrationForm')->name('backend.auth.register');
+    $router->post('register', 'RegisterController@register')->name('backend.auth.register.post');
 
     // Password Reset Routes...
-    Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
-    Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-    Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
-    Route::post('password/reset', 'ResetPasswordController@reset');
+    $router->get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('backend.auth.password.request');
+    $router->post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('backend.auth.password.email.post');
+    $router->get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('backend.auth.password.reset');
+    $router->post('password/reset', 'ResetPasswordController@reset')->name('backend.auth.reset.post');
 
 
-    $router->get('auth/login', 'AuthController@getLogin');
-    $router->post('auth/login', 'AuthController@postLogin');
-    $router->get('auth/logout', 'AuthController@getLogout');
-    $router->get('auth/setting', 'AuthController@getSetting');
-    $router->put('auth/setting', 'AuthController@putSetting');
+
 });
 
 
@@ -52,7 +45,10 @@ Route::group([
     'middleware'    => config('yeelight.backend.route.middleware'),
 ], function ($router) {
 
-    $router->get('index','HomeController@index');
+    $router->get('/','HomeController@index');
+
+    $router->get('auth/setting', 'AuthController@getSetting');
+    $router->put('auth/setting', 'AuthController@putSetting');
 
     $router->resource('auth/users', 'UserController');
     $router->resource('auth/roles', 'RoleController');

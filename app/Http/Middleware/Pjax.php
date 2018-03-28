@@ -23,7 +23,7 @@ class Pjax
     {
         $response = $next($request);
 
-        if (!$request->pjax() || $response->isRedirection() || Auth::guard('backend')->guest()) {
+        if (!$request->pjax() || $response->isRedirection() || Auth::guard(config('yeelight.backend.route.prefix'))->guest()) {
             return $response;
         }
 

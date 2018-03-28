@@ -35,7 +35,7 @@ class Permission
             return;
         }
 
-        if (Auth::guard('backend')->user()->cannot($permission)) {
+        if (Auth::guard(config('yeelight.backend.route.prefix'))->user()->cannot($permission)) {
             static::error();
         }
     }
@@ -53,7 +53,7 @@ class Permission
             return true;
         }
 
-        if (!Auth::guard('backend')->user()->inRoles($roles)) {
+        if (!Auth::guard(config('yeelight.backend.route.prefix'))->user()->inRoles($roles)) {
             static::error();
         }
     }
@@ -81,7 +81,7 @@ class Permission
             return true;
         }
 
-        if (Auth::guard('backend')->user()->inRoles($roles)) {
+        if (Auth::guard(config('yeelight.backend.route.prefix'))->user()->inRoles($roles)) {
             static::error();
         }
     }
@@ -107,6 +107,6 @@ class Permission
      */
     public static function isAdministrator()
     {
-        return Auth::guard('backend')->user()->isRole('administrator');
+        return Auth::guard(config('yeelight.backend.route.prefix'))->user()->isRole('administrator');
     }
 }

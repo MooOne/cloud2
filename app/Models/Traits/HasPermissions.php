@@ -106,7 +106,7 @@ trait HasPermissions
      */
     public function isAdministrator() : bool
     {
-        return $this->isRole('administrator');
+        return $this->isRole(config('yeelight.backend.auth.super_role'));
     }
 
     /**

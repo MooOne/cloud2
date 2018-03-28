@@ -44,7 +44,7 @@ const paths = {
     'slimScroll': vendors + 'jquery-slimscroll/',
 
     // iCheck
-    'iCheck': vendors + 'admin-lte/plugins/iCheck/',
+    'iCheck': vendors + 'iCheck/',
 
     // select2
     'select2': vendors + 'select2/dist/',
@@ -86,6 +86,7 @@ const paths = {
 // Copy fonts straight to public
 mix.copyDirectory(paths.fontawesome + 'fonts', destFonts);
 mix.copyDirectory(paths.Ionicons + 'fonts', destFonts);
+mix.copyDirectory(paths.bootstrap + 'fonts', destFonts);
 
 //COPY CSS,JS AND IMAGES TO PUBLIC
 mix.copyDirectory(srcCss ,destCss, false);
@@ -118,9 +119,9 @@ mix.copy(paths.slimScroll + 'jquery.slimscroll.min.js', destJs);
 
 // iCheck
 mix.copy(paths.iCheck + 'icheck.min.js', destJs);
-mix.copy(paths.iCheck + 'square/blue.css', destCss);
-mix.copy(paths.iCheck + 'square/blue.png', destCss);
-mix.copy(paths.iCheck + 'square/blue@2x.png', destCss);
+mix.copy(paths.iCheck + 'skins/square/blue.css', destCss);
+mix.copy(paths.iCheck + 'skins/square/blue.png', destCss);
+mix.copy(paths.iCheck + 'skins/square/blue@2x.png', destCss);
 
 // select2
 mix.copy(paths.select2 + 'js/select2.full.min.js', destJs);
@@ -243,7 +244,6 @@ mix.scripts(
         destJs + 'jquery.nestable.js',
         destJs + 'toastr.min.js',
         destJs + 'lightbox.min.js',
-        destJs + 'lightbox-plus-jquery.min.js',
         destJs + 'jquery.pjax.js',
         destJs + 'clipboard.min.js',
         destJs + 'bootstrap-editable.js',
