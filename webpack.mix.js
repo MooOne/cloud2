@@ -1,5 +1,13 @@
 const { mix } = require('laravel-mix');
 
+mix.webpackConfig({
+    resolve: {
+        modules: [
+            path.resolve(__dirname, 'vendor/laravel/spark/resources/assets/js')
+        ]
+    }
+});
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -94,43 +102,43 @@ mix.copyDirectory(resourcesAssets + 'img',destImg, false);
 mix.copyDirectory(srcJs ,destJs, false);
 
 //jquery
-mix.copy(paths.jquery + 'jquery.min.js', destJs);
+mix.copy(paths.jquery + 'jquery.js', destJs);
 
 // bootstrap
-mix.copy(paths.bootstrap + 'js/bootstrap.min.js', destJs);
-mix.copy(paths.bootstrap + 'css/bootstrap.min.css', destCss);
+mix.copy(paths.bootstrap + 'js/bootstrap.js', destJs);
+mix.copy(paths.bootstrap + 'css/bootstrap.css', destCss);
 
 // AdminLTE
-mix.copy(paths.adminlte + 'js/adminlte.min.js', destJs);
-mix.copy(paths.adminlte + 'css/AdminLTE.min.css', destCss);
-mix.copy(paths.adminlte + 'css/skins/skin-blue.min.css', destCss);
+mix.copy(paths.adminlte + 'js/adminlte.js', destJs);
+mix.copy(paths.adminlte + 'css/AdminLTE.css', destCss);
+mix.copy(paths.adminlte + 'css/skins/skin-blue.css', destCss);
 mix.copyDirectory(paths.adminlte + 'img', destImg);
 
 //Fontawesome
-mix.copy(paths.fontawesome + 'css/font-awesome.min.css', destCss);
+mix.copy(paths.fontawesome + 'css/font-awesome.css', destCss);
 mix.copyDirectory(paths.fontawesome + 'fonts', destFonts);
 
 // Ionicons
 mix.copyDirectory(paths.Ionicons + 'fonts', destFonts);
-mix.copy(paths.Ionicons + 'css/ionicons.min.css', destCss);
+mix.copy(paths.Ionicons + 'css/ionicons.css', destCss);
 
 // slimScroll
-mix.copy(paths.slimScroll + 'jquery.slimscroll.min.js', destJs);
+mix.copy(paths.slimScroll + 'jquery.slimscroll.js', destJs);
 
 // iCheck
-mix.copy(paths.iCheck + 'icheck.min.js', destJs);
+mix.copy(paths.iCheck + 'icheck.js', destJs);
 mix.copy(paths.iCheck + 'skins/square/blue.css', destCss);
 mix.copy(paths.iCheck + 'skins/square/blue.png', destCss);
 mix.copy(paths.iCheck + 'skins/square/blue@2x.png', destCss);
 
 // select2
-mix.copy(paths.select2 + 'js/select2.full.min.js', destJs);
-mix.copy(paths.select2 + 'js/select2.min.js', destJs);
-mix.copy(paths.select2 + 'css/select2.min.css', destCss);
+mix.copy(paths.select2 + 'js/select2.full.js', destJs);
+mix.copy(paths.select2 + 'js/select2.js', destJs);
+mix.copy(paths.select2 + 'css/select2.css', destCss);
 
 // pace
-mix.copy(paths.pace + 'pace.min.js', destJs);
-mix.copy(paths.pace + 'pace.min.css', destCss);
+mix.copy(paths.pace + 'pace.js', destJs);
+mix.copy(paths.pace + 'pace.css', destCss);
 
 // nprogress
 mix.copy(paths.nprogress + 'nprogress.js', destJs);
@@ -144,24 +152,23 @@ mix.copy(paths.sweetalert + 'sweetalert.css', destCss);
 mix.copy(paths.nestable + 'jquery.nestable.js', destJs);
 
 // toastr
-mix.copy(paths.toastr + 'toastr.min.js', destJs);
-mix.copy(paths.toastr + 'toastr.min.css', destCss);
+mix.copy(paths.toastr + 'toastr.js', destJs);
+mix.copy(paths.toastr + 'toastr.css', destCss);
 
 // lightbox
-mix.copy(paths.lightbox + 'js/lightbox.min.js', destJs);
-mix.copy(paths.lightbox + 'js/lightbox-plus-jquery.min.js', destJs);
-mix.copy(paths.lightbox + 'css/lightbox.min.css', destCss);
+mix.copy(paths.lightbox + 'js/lightbox.js', destJs);
+mix.copy(paths.lightbox + 'css/lightbox.css', destCss);
 mix.copyDirectory(paths.lightbox + 'images', dest + 'images/');
 
 // jquery-pjax
 mix.copy(paths.jquerypjax + 'jquery.pjax.js', destJs);
 
 // clipboard
-mix.copy(paths.clipboard + 'clipboard.min.js', destJs);
+mix.copy(paths.clipboard + 'clipboard.js', destJs);
 
 // wangEditor
-mix.copy(paths.wangEditor + 'wangEditor.min.js', destJs);
-mix.copy(paths.wangEditor + 'wangEditor.min.css', destCss);
+mix.copy(paths.wangEditor + 'wangEditor.js', destJs);
+mix.copy(paths.wangEditor + 'wangEditor.css', destCss);
 
 //bootstrap-editable
 mix.copy(paths.editable + 'js/bootstrap-editable.js', destJs);
@@ -191,35 +198,35 @@ mix.sass(resourcesAssets + 'sass/backend.scss', destCss +'backend.css').options(
 });
 
 //bootstrap自定义修改
-mix.sass(resourcesAssets + 'sass/bootstrap/app.scss', destCss +'bootstrap.min.css').options({
+mix.sass(resourcesAssets + 'sass/bootstrap/app.scss', destCss +'bootstrap-diy.css').options({
     processCssUrls: false
 });
 
 //admin-lte 自定义修改
-mix.sass(resourcesAssets + 'sass/admin-lte/app.scss', destCss +'AdminLTE.min.css').options({
+mix.sass(resourcesAssets + 'sass/admin-lte/app.scss', destCss +'AdminLTE-diy.css').options({
     processCssUrls: false
 });
 
 
 
 //后台自定义js文件 backend js
-mix.copy(srcJs + 'backend.js', destJs).sourceMaps();
+mix.copy(srcJs + 'backend.js', destJs);
 
 // 合并css脚本
 mix.styles(
     [
-        destCss + 'bootstrap.min.css',
-        destCss + 'pace.min.css',
-        destCss + 'select2.min.css',
-        destCss + 'AdminLTE.min.css',
-        destCss + 'skin-blue.min.css',
-        destCss + 'font-awesome.min.css',
-        destCss + 'ionicons.min.css',
+        destCss + 'bootstrap-diy.css',
+        destCss + 'pace.css',
+        destCss + 'select2.css',
+        destCss + 'AdminLTE-diy.css',
+        destCss + 'skin-blue.css',
+        destCss + 'font-awesome.css',
+        destCss + 'ionicons.css',
         destCss + 'nprogress.css',
         destCss + 'sweetalert.css',
-        destCss + 'toastr.min.css',
-        destCss + 'lightbox.min.css',
-        destCss + 'wangEditor.min.css',
+        destCss + 'toastr.css',
+        destCss + 'lightbox.css',
+        destCss + 'wangEditor.css',
         destCss + 'fonts.css',
         destCss + 'bootstrap-editable.css',
         destCss + 'datepicker.css',
@@ -231,28 +238,28 @@ mix.styles(
 // 合并javascript脚本
 mix.scripts(
     [
-        destJs + 'jquery.min.js',
-        destJs + 'bootstrap.min.js',
-        destJs + 'adminlte.min.js',
-        destJs + 'pace.min.js',
-        destJs + 'jquery.slimscroll.min.js',
-        destJs + 'icheck.min.js',
-        destJs + 'select2.full.min.js',
-        destJs + 'select2.min.js',
+        destJs + 'jquery.js',
+        destJs + 'bootstrap.js',
+        destJs + 'adminlte.js',
+        destJs + 'pace.js',
+        destJs + 'jquery.slimscroll.js',
+        destJs + 'icheck.js',
+        destJs + 'select2.full.js',
+        destJs + 'select2.js',
         destJs + 'nprogress.js',
         destJs + 'sweetalert.min.js',
         destJs + 'jquery.nestable.js',
-        destJs + 'toastr.min.js',
-        destJs + 'lightbox.min.js',
+        destJs + 'toastr.js',
+        destJs + 'lightbox.js',
         destJs + 'jquery.pjax.js',
         destJs + 'clipboard.min.js',
         destJs + 'bootstrap-editable.js',
         destJs + 'bootstrap-datepicker.js',
         destJs + 'bootstrap-datepicker.zh-CN.js',
-        destJs + 'wangEditor.min.js'
+        destJs + 'wangEditor.js'
     ],
     destJs + 'app.js'
-).sourceMaps();
+);
 
 //生产环节附加资源版本号
 if (mix.inProduction()) {

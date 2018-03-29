@@ -1,2 +1,13 @@
 @import "variables";
 @import "../../vendors/admin-lte/dist/css/AdminLTE.min.css";
+
+.login-page,
+.register-page {
+  background: $blue;
+}
+.login-logo,
+.register-logo {
+  a {
+    color: $white;
+  }
+}
