@@ -1,5 +1,5 @@
 <?php
-namespace Yeelight\Api\Middleware;
+namespace Yeelight\Http\Controllers\Api\Middleware;
 
 use Closure;
 use Dingo\Api\Exception\ResourceException;

@@ -15,7 +15,7 @@ use Dingo\Api\Routing\Router;
 
 // v1
 $api->version('v1', [
-    'namespace' => 'Yeelight\Api\Controllers',
+    'namespace' => 'Yeelight\Http\Controllers\Api\Controllers',
     'middleware' => ['api']
 ], function (Router $api) {
 

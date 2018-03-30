@@ -1,6 +1,6 @@
 <?php
 
-namespace Yeelight\Api\Controllers;
+namespace Yeelight\Http\Controllers\Api\Controllers;
 
 use Dingo\Api\Exception\DeleteResourceFailedException;
 use Dingo\Api\Exception\StoreResourceFailedException;

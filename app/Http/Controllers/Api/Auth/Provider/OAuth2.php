@@ -1,5 +1,5 @@
 <?php
-namespace Yeelight\Api\Auth\Provider;
+namespace Yeelight\Http\Controllers\Api\Auth\Provider;
 
 class OAuth2 extends \Dingo\Api\Auth\Provider\JWT
 {

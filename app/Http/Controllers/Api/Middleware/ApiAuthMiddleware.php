@@ -1,11 +1,11 @@
 <?php
-namespace Yeelight\Api\Middleware;
+namespace Yeelight\Http\Controllers\Api\Middleware;
 
 use Closure;
 use Dingo\Api\Auth\Auth as Authentication;
 use Dingo\Api\Routing\Router;
 use League\OAuth2\Server\Exception\AccessDeniedException;
-use Yeelight\Api\Auth\Provider\OAuth2;
+use Yeelight\Http\Controllers\Api\Auth\Provider\OAuth2;
 use Yeelight\Events\User\UserLoggedInEvent;
 use Yeelight\Models\Foundation\User;
 

@@ -1,5 +1,5 @@
 <?php
-namespace Yeelight\Api\Auth\Provider;
+namespace Yeelight\Http\Controllers\Api\Auth\Provider;
 
 use Dingo\Api\Routing\Route;
 use Illuminate\Http\Request;

@@ -1,5 +1,5 @@
 <?php
-namespace Yeelight\Api\Foundation\Validation;
+namespace Yeelight\Http\Controllers\Api\Foundation\Validation;
 
 use Dingo\Api\Exception\ResourceException;
 use Illuminate\Contracts\Validation\Factory;

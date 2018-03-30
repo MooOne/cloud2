@@ -1,5 +1,5 @@
 <?php
-namespace Yeelight\Api\Controllers;
+namespace Yeelight\Http\Controllers\Api\Controllers;
 
 use Yeelight\Base\Api\Controllers\Controller;
 use Yeelight\Models\Foundation\User;
