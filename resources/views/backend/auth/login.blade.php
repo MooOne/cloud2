@@ -8,8 +8,6 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
   <link rel="stylesheet" href="{{ mix("/assets/css/app.css") }}">
-  <!-- REQUIRED JS SCRIPTS -->
-  <script src="{{ mix ("/assets/js/app.js") }}"></script>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -66,6 +64,8 @@
 </div>
 <!-- /.login-box -->
 
+<!-- REQUIRED JS SCRIPTS -->
+<script src="{{ mix ("/assets/js/app.js") }}"></script>
 
 <script>
   $(function () {
