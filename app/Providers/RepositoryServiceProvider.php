@@ -26,14 +26,14 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->commands('Yeelight\Repositories\Generators\Commands\RepositoryCommand');
-        $this->commands('Yeelight\Repositories\Generators\Commands\TransformerCommand');
-        $this->commands('Yeelight\Repositories\Generators\Commands\PresenterCommand');
-        $this->commands('Yeelight\Repositories\Generators\Commands\EntityCommand');
-        $this->commands('Yeelight\Repositories\Generators\Commands\ValidatorCommand');
-        $this->commands('Yeelight\Repositories\Generators\Commands\ControllerCommand');
-        $this->commands('Yeelight\Repositories\Generators\Commands\BindingsCommand');
-        $this->commands('Yeelight\Repositories\Generators\Commands\CriteriaCommand');
+        $this->commands('Yeelight\Generators\Commands\RepositoryCommand');
+        $this->commands('Yeelight\Generators\Commands\TransformerCommand');
+        $this->commands('Yeelight\Generators\Commands\PresenterCommand');
+        $this->commands('Yeelight\Generators\Commands\EntityCommand');
+        $this->commands('Yeelight\Generators\Commands\ValidatorCommand');
+        $this->commands('Yeelight\Generators\Commands\ControllerCommand');
+        $this->commands('Yeelight\Generators\Commands\BindingsCommand');
+        $this->commands('Yeelight\Generators\Commands\CriteriaCommand');
 
 
         $this->app->bind(\Yeelight\Repositories\Interfaces\AdminUserRepository::class, \Yeelight\Repositories\Eloquent\AdminUserRepositoryEloquent::class);

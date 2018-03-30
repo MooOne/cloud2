@@ -2,7 +2,7 @@
 namespace Yeelight\Models\Observers;
 
 use Yeelight\Models\Interfaces\BaseModelEventsInterface;
-use Yeelight\Models\Traits\BaseModelEvents;
+use Yeelight\Traits\BaseModelEvents;
 
 /**
  * Whenever a new model is saved for the first time,

@@ -5,7 +5,6 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Yeelight\Services\Image\Models\Traits\YeelightHasImageablesTrait;
 use Yeelight\Models\Foundation\BaseUser;
-use Laratrust\Traits\LaratrustUserTrait;
 
 /**
  * Yeelight\Models\Foundation\User

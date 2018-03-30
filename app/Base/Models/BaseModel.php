@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Presenter\ModelFractalPresenter;
 use Yeelight\Models\Foundation\BaseUser;
 use Yeelight\Models\Interfaces\BaseModelEventsInterface;
-use Yeelight\Models\Interfaces\FriendStatusInterface;
-use Yeelight\Models\Traits\BaseModelEvents;
+use Yeelight\Traits\BaseModelEvents;
 
 /**
  * Yeelight\Base\Models\BaseModel

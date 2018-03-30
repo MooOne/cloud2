@@ -6,7 +6,7 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Yeelight\Models\Traits\HasPermissions;
+use Yeelight\Traits\HasPermissions;
 
 class AdminUser extends BaseModel implements AuthenticatableContract
 {
