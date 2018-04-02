@@ -169,8 +169,8 @@ return [
     */
 
     'auth' => [
-        'passport' => \Yeelight\Api\Auth\Provider\Passport::class,
-//        'oauth' => \Yeelight\Api\Auth\Provider\OAuth2::class,
+        'passport' => \Yeelight\Http\Controllers\Api\Auth\Provider\Passport::class,
+//        'oauth' => \Yeelight\Http\Controllers\Api\Auth\Provider\OAuth2::class,
 //        'jwt' => Dingo\Api\Auth\Provider\JWT::class,
     ],
 

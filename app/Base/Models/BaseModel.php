@@ -122,7 +122,7 @@ class BaseModel extends Model implements BaseModelEventsInterface
      */
     protected function updateIps()
     {
-        $ip = smart_get_client_ip();
+        $ip = get_client_ip();
 
         if (!$this->isDirty('updated_ip')) {
             $this->updated_ip = $ip;

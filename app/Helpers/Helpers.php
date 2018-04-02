@@ -61,12 +61,12 @@ if (!function_exists('current_full_url')) {
 
 }
 
-if (!function_exists('smart_get_client_ip')) {
+if (!function_exists('get_client_ip')) {
 
     /**
      * @return array|string
      */
-    function smart_get_client_ip()
+    function get_client_ip()
     {
         $request = request();
         $clientIp = $request->header('X-Client-Ip');
@@ -217,7 +217,7 @@ if (!function_exists('ip_to_country_iso_code')) {
     function ip_to_country_iso_code($ip = null, $default_iso_code = 'US')
     {
         if (empty($ip)) {
-            $ip = smart_get_client_ip();
+            $ip = get_client_ip();
         }
 
         $location = \GeoIP::getLocation($ip);
@@ -293,9 +293,9 @@ if (!function_exists('auth_user')) {
 
 }
 
-if (!function_exists('smart_mix')) {
+if (!function_exists('yee_mix')) {
 
-    function smart_mix($path, $manifestDirectory = '', $supportHot = true)
+    function yee_mix($path, $manifestDirectory = '', $supportHot = true)
     {
         $path = mix($path, $manifestDirectory);
         if (!$supportHot) {

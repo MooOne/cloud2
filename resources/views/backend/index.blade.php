@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
+@inject('assets', 'Yeelight\Services\Assets\Assets')
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{--{{ Admin::title() }}--}}</title>
+    <title>{{ backend_title() }}</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-    <link rel="stylesheet" href="{{ mix("/assets/css/app.css") }}">
+    <link rel="stylesheet" href="{{ yee_mix("/assets/css/app.css") }}">
+
+    {!! $assets::css() !!}
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -25,7 +28,6 @@
 
     <div class="content-wrapper" id="pjax-container">
         @yield('content')
-        {{--{!! Admin::script() !!}--}}
     </div>
 
     @include('backend.partials.footer')
@@ -40,7 +42,8 @@
 </script>
 
 <!-- REQUIRED JS SCRIPTS -->
-<script src="{{ mix ("/assets/js/app.js") }}"></script>
-
+<script src="{{ yee_mix ("/assets/js/app.js") }}"></script>
+{!! $assets::js() !!}
+{!! $assets::script() !!}
 </body>
 </html>

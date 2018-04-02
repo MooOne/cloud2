@@ -103,6 +103,32 @@ if (!function_exists('backend_asset')) {
      */
     function backend_asset($path)
     {
-        return asset($path, config('yeelight.backend.secure'));
+        return asset('assets/' . $path, config('yeelight.backend.secure'));
+    }
+}
+
+if (!function_exists('backend_user')) {
+
+    /**
+     * Get current backend login user.
+     *
+     * @return mixed
+     */
+    function backend_user()
+    {
+        return Auth::guard(config('yeelight.backend.route.prefix'))->user();
+    }
+}
+
+if (!function_exists('backend_title')) {
+
+    /**
+     * Get backend title.
+     *
+     * @return Config
+     */
+    function backend_title()
+    {
+        return config('yeelight.backend.title');
     }
 }
