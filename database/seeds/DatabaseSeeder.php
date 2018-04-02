@@ -21,13 +21,13 @@ class DatabaseSeeder extends Seeder
         AdminUser::create([
             'username' => 'admin',
             'password' => bcrypt('admin'),
-            'name'     => 'Administrator',
+            'name'     => '超级管理员',
         ]);
 
         // create a role.
         AdminRole::truncate();
         AdminRole::create([
-            'name' => 'Administrator',
+            'name' => '超级管理员',
             'slug' => 'administrator',
         ]);
 
@@ -38,31 +38,31 @@ class DatabaseSeeder extends Seeder
         AdminPermission::truncate();
         AdminPermission::insert([
             [
-                'name'        => 'All permission',
+                'name'        => '所有权限',
                 'slug'        => '*',
                 'http_method' => '',
                 'http_path'   => '*',
             ],
             [
-                'name'        => 'Dashboard',
+                'name'        => '控制面板',
                 'slug'        => 'dashboard',
                 'http_method' => 'GET',
                 'http_path'   => '/',
             ],
             [
-                'name'        => 'Login',
+                'name'        => '登录',
                 'slug'        => 'auth.login',
                 'http_method' => '',
                 'http_path'   => "/auth/login\r\n/auth/logout",
             ],
             [
-                'name'        => 'User setting',
+                'name'        => '个人资料',
                 'slug'        => 'auth.setting',
                 'http_method' => 'GET,PUT',
                 'http_path'   => '/auth/setting',
             ],
             [
-                'name'        => 'Auth management',
+                'name'        => '角色权限管理',
                 'slug'        => 'auth.management',
                 'http_method' => '',
                 'http_path'   => "/auth/roles\r\n/auth/permissions\r\n/auth/menu\r\n/auth/logs",
@@ -77,49 +77,49 @@ class DatabaseSeeder extends Seeder
             [
                 'parent_id' => 0,
                 'order'     => 1,
-                'title'     => 'Index',
+                'title'     => '控制面板',
                 'icon'      => 'fa-bar-chart',
                 'uri'       => '/',
             ],
             [
                 'parent_id' => 0,
                 'order'     => 2,
-                'title'     => 'Admin',
+                'title'     => '管理',
                 'icon'      => 'fa-tasks',
                 'uri'       => '',
             ],
             [
                 'parent_id' => 2,
                 'order'     => 3,
-                'title'     => 'Users',
+                'title'     => '用户',
                 'icon'      => 'fa-users',
                 'uri'       => 'auth/users',
             ],
             [
                 'parent_id' => 2,
                 'order'     => 4,
-                'title'     => 'Roles',
+                'title'     => '角色',
                 'icon'      => 'fa-user',
                 'uri'       => 'auth/roles',
             ],
             [
                 'parent_id' => 2,
                 'order'     => 5,
-                'title'     => 'Permission',
+                'title'     => '权限',
                 'icon'      => 'fa-ban',
                 'uri'       => 'auth/permissions',
             ],
             [
                 'parent_id' => 2,
                 'order'     => 6,
-                'title'     => 'Menu',
+                'title'     => '后台菜单',
                 'icon'      => 'fa-bars',
                 'uri'       => 'auth/menu',
             ],
             [
                 'parent_id' => 2,
                 'order'     => 7,
-                'title'     => 'Operation log',
+                'title'     => '操作记录',
                 'icon'      => 'fa-history',
                 'uri'       => 'auth/logs',
             ],
