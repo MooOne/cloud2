@@ -24,14 +24,14 @@
                 </button>
               </span>
             </div>
-        </form>-->
+        </form>
         <!-- /.search form -->
 
         <!-- Sidebar Menu -->
-        <ul class="sidebar-menu">
+        <ul class="sidebar-menu tree" data-widget="tree">
             <li class="header">{{ trans('backend.menu') }}</li>
 
-            @each('backend::partials.menu', /*Admin::menu()*/[], 'item')
+            @each('backend.partials.menu', $backendMenus, 'item')
 
         </ul>
         <!-- /.sidebar-menu -->

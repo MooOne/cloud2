@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer(
-            'console.layouts.default', 'Yeelight\Composers\MenuComposer'
+            'backend.partials.sidebar', 'Yeelight\Composers\BackendMenuComposer'
         );
     }
 

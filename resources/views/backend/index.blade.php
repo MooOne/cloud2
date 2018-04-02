@@ -43,6 +43,7 @@
 
 <!-- REQUIRED JS SCRIPTS -->
 <script src="{{ yee_mix ("/assets/js/app.js") }}"></script>
+<script src="{{ yee_mix ("/assets/js/backend.js") }}"></script>
 {!! $assets::js() !!}
 {!! $assets::script() !!}
 </body>

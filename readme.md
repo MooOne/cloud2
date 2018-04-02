@@ -18,9 +18,12 @@ composer update
 ~~~
 npm install -g npm bower yarn gulp
 
+bower init
+
 yarn install
 
-bower init
+
+sudo bower install bootstrap#=3.3.7
 
 sudo bower install admin-lte
 
@@ -28,9 +31,9 @@ sudo bower install fontawesome
 
 sudo bower install ionicons
 
-sudo bower install nprogress
-
 sudo bower install sweetalert
+
+sudo bower install nprogress
 
 sudo bower install nestable
 

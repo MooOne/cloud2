@@ -1,5 +1,4 @@
-{{--
-@if(Admin::user()->visible($item['roles']))
+@if(backend_user()->visible($item['roles']))
     @if(!isset($item['children']))
         <li>
             @if(url()->isValidUrl($item['uri']))
@@ -20,9 +19,9 @@
             </a>
             <ul class="treeview-menu">
                 @foreach($item['children'] as $item)
-                    @include('backend::partials.menu', $item)
+                    @include('backend.partials.menu', $item)
                 @endforeach
             </ul>
         </li>
     @endif
-@endif--}}
+@endif
