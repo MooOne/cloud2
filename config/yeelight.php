@@ -160,6 +160,9 @@ return [
             'host' => 'https://yeelight-cloud.b0.upaiyun.com/',
         ],
 
+        'pagination' => [
+            'per_page' => 20
+        ],
 
         /*
          * Settings for extensions.

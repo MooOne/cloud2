@@ -50,11 +50,11 @@ Route::group([
     $router->get('auth/setting', 'AuthController@getSetting');
     $router->put('auth/setting', 'AuthController@putSetting');
 
-    $router->resource('auth/users', 'UserController');
-    $router->resource('auth/roles', 'RoleController');
-    $router->resource('auth/permissions', 'PermissionController');
-    $router->resource('auth/menu', 'MenuController', ['except' => ['create']]);
-    $router->resource('auth/logs', 'LogController', ['only' => ['index', 'destroy']]);
+    $router->resource('auth/users', 'AdminUsersController');
+    $router->resource('auth/roles', 'AdminRolesController');
+    $router->resource('auth/permissions', 'AdminPermissionsController');
+    $router->resource('auth/menu', 'AdminMenusController', ['except' => ['create']]);
+    $router->resource('auth/logs', 'AdminOperationLogsController', ['only' => ['index', 'destroy']]);
 
     $router->get('/i18n', 'ConsoleController@dataTableI18n');
 

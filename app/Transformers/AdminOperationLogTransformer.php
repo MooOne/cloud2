@@ -20,9 +20,13 @@ class AdminOperationLogTransformer extends BaseTransformer
     {
         return [
             'id' => (int) $model->id,
-
-            /* place your other model properties here */
-
+            'user_id' => (int) $model->user_id,
+            'user_name' => (string) $model->user->name,
+            'path' => (string) $model->path,
+            'method' => (string) $model->method,
+            'method_color' => (string) isset(AdminOperationLog::$methodColors[$model->method]) ? AdminOperationLog::$methodColors[$model->method] : '',
+            'ip' => (string) $model->ip,
+            'input' => (string) $model->input,
             'created_at' => (string) $model->created_at,
             'updated_at' => (string) $model->updated_at
         ];

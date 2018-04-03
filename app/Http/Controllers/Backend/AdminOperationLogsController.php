@@ -37,74 +37,14 @@ class AdminOperationLogsController extends BaseController
      */
     public function index()
     {
-        return $this->repository->all();
+        $columns = trans('admin_operation_logs.columns');
+        $operationLogs = $this->repository->paginate(null, ['*']);
+
+        return view('backend.admin_operation_logs.index', [
+            'lists' => $operationLogs,
+            'columns' => $columns
+        ]);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  AdminOperationLogCreateRequest $request
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function store(AdminOperationLogCreateRequest $request)
-    {
-
-        $data = $request->all();
-
-        $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
-
-        $adminOperationLog = $this->repository->create($data);
-
-        // throw exception if store failed
-//        throw new StoreResourceFailedException('Failed to store.');
-
-        // A. return 201 created
-//        return $this->response->created(null);
-
-        // B. return data
-        return $adminOperationLog;
-
-    }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return $this->repository->find($id);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  AdminOperationLogUpdateRequest $request
-     * @param  string            $id
-     *
-     * @return Response
-     */
-    public function update(AdminOperationLogUpdateRequest $request, $id)
-    {
-
-        $data = $request->all();
-
-        $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
-
-        $adminOperationLog = $this->repository->update($data, $id);
-
-        // throw exception if update failed
-//        throw new UpdateResourceFailedException('Failed to update.');
-
-        // Updated, return 204 No Content
-        return $this->response->noContent();
-
-    }
-
 
     /**
      * Remove the specified resource from storage.
