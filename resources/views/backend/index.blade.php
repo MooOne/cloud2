@@ -33,9 +33,6 @@
     @include('backend.partials.footer')
 
 </div>
-
-<!-- ./wrapper -->
-
 <script>
     function LA() {}
     LA.token = "{{ csrf_token() }}";
@@ -46,5 +43,10 @@
 <script src="{{ yee_mix ("/assets/js/backend.js") }}"></script>
 {!! $assets::js() !!}
 {!! $assets::script() !!}
+
+<!-- PAGE JS SCRIPTS -->
+@yield('page_script')
+
+<!-- ./wrapper -->
 </body>
 </html>
