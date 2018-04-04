@@ -161,7 +161,8 @@ return [
         ],
 
         'pagination' => [
-            'per_page' => 20
+            'per_page' => 20,
+            'pageName' => 'page'
         ],
 
         /*

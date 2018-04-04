@@ -5,9 +5,12 @@ use Yeelight\Base\Http\Controllers\Controller;
 use Yeelight\Models\Foundation\User;
 use Yeelight\Services\Assets\Assets;
 use Yeelight\Http\Controllers\BaseController as BackendController;
+use Yeelight\Traits\BackendPagination;
 
 abstract class BaseController extends BackendController
 {
+    use BackendPagination;
+
     /**
      * Add css or get all css.
      *

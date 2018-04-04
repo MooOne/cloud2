@@ -253,7 +253,7 @@
                 </table>
             </div>
             <div class="box-footer clearfix">
-                {{--{!! $operationLogs->paginator() !!}--}}
+                {!! $paginator !!}
             </div>
             <!-- /.box-body -->
         </div>

@@ -12,7 +12,6 @@ use Yeelight\Validators\AdminOperationLogValidator;
 
 class AdminOperationLogsController extends BaseController
 {
-
     /**
      * @var AdminOperationLogRepository
      */
@@ -38,11 +37,13 @@ class AdminOperationLogsController extends BaseController
     public function index()
     {
         $columns = trans('admin_operation_logs.columns');
-        $operationLogs = $this->repository->paginate(null, ['*']);
+        $lists = $this->repository->paginate(null, ['*']);
+        $paginator = $this->backendPagination($lists);
 
         return view('backend.admin_operation_logs.index', [
-            'lists' => $operationLogs,
-            'columns' => $columns
+            'lists' => $lists,
+            'columns' => $columns,
+            'paginator' => $paginator
         ]);
     }
 
