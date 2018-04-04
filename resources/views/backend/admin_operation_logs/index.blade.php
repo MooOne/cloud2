@@ -211,6 +211,7 @@
             <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
                     <tr>
+                        <th></th>
                         <th>{{ $columns['id'] }}{!! column_sorter('id') !!}</th>
                         <th>{{ $columns['user_name'] }}</th>
                         <th>{{ $columns['method'] }}</th>
@@ -223,13 +224,29 @@
 
                     @foreach($lists['data'] as $row)
                         <tr>
+                            <td>
+                                <input type="checkbox" class="grid-row-checkbox" data-id="{{ $row['id'] }}" />
+                            </td>
                             <td>{{ $row['id'] }}</td>
                             <td>{{ $row['user_name'] }}</td>
-                            <td>{{ $row['method'] }}</td>
-                            <td>{{ $row['path'] }}</td>
-                            <td>{{ $row['ip'] }}</td>
-                            <td>{{ $row['input'] }}</td>
+                            <td>
+                                <span class="badge bg-{{ $row['method_color'] }}">{{ $row['method'] }}</span>
+                            </td>
+                            <td>
+                                <span class="label label-info">{{ $row['path'] }}</span>
+                            </td>
+                            <td>
+                                <span class="label label-primary">{{ $row['ip'] }}</span>
+                            </td>
+                            <td>
+                                <pre>{{ $row['input'] }}</pre>
+                            </td>
                             <td>{{ $row['created_at'] }}</td>
+                            <td>
+                                <a href="javascript:void(0);" data-id="{{ $row['id'] }}" class="grid-row-delete">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
                         </tr>
                     @endforeach
 
@@ -243,6 +260,8 @@
 
 
     </section>
+@endsection
+@section('page_script')
     <script>
         // filter model
         $("#filter-modal .submit").click(function () {
@@ -265,6 +284,14 @@
         });
 
         //selector
+        $('.grid-row-checkbox').iCheck({checkboxClass:'icheckbox_minimal-blue'}).on('ifChanged', function () {
+            if (this.checked) {
+                $(this).closest('tr').css('background-color', '#ffffd5');
+            } else {
+                $(this).closest('tr').css('background-color', '');
+            }
+        });
+
         $('.grid-select-all').iCheck({checkboxClass:'icheckbox_minimal-blue'});
 
         $('.grid-select-all').on('ifChanged', function(event) {
