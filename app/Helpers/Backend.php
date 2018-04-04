@@ -179,19 +179,20 @@ if (!function_exists('column_sorter')) {
         $type = 'desc';
         $isSorted = false;
 
-        $sort = app('request')->get('_sort');
+        $orderBy = app('request')->get('orderBy');
+        $sortedBy = app('request')->get('sortedBy');
 
-        if (!empty($sort)) {
-            $isSorted = isset($sort['column']) && $sort['column'] == $column_name;
+        if (!empty($orderBy)) {
+            $isSorted = isset($orderBy) && $orderBy == $column_name;
         }
 
         if ($isSorted) {
-            $type = $sort['type'] == 'desc' ? 'asc' : 'desc';
-            $icon .= "-amount-{$sort['type']}";
+            $type = $sortedBy == 'desc' ? 'asc' : 'desc';
+            $icon .= "-amount-{$sortedBy}";
         }
 
         $query = app('request')->all();
-        $query = array_merge($query, ['_sort' => ['column' => $column_name, 'type' => $type]]);
+        $query = array_merge($query, ['orderBy' => $column_name, 'sortedBy' => $type]);
 
         $url = URL::current().'?'.http_build_query($query);
 
