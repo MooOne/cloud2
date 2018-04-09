@@ -1,6 +1,8 @@
 <?php
 namespace Yeelight\Repositories\Criteria;
 
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Schema;
 use Prettus\Repository\Contracts\CriteriaInterface;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
@@ -19,8 +21,9 @@ class RequestCriteria extends \Prettus\Repository\Criteria\RequestCriteria
     public function apply($model, RepositoryInterface $repository)
     {
         $fieldsSearchable = $repository->getFieldsSearchable();
-        $search = $this->request->get(config('repository.criteria.params.search', 'search'), null);
-        $searchFields = $this->request->get(config('repository.criteria.params.searchFields', 'searchFields'), null);
+        list($querySearch, $querySearchFields) = $this->parserQueryToSearch($fieldsSearchable);
+        $search = $this->request->get(config('repository.criteria.params.search', 'search'), $querySearch);
+        $searchFields = $this->request->get(config('repository.criteria.params.searchFields', 'searchFields'), $querySearchFields);
         $filter = $this->request->get(config('repository.criteria.params.filter', 'filter'), null);
         $orderBy = $this->request->get(config('repository.criteria.params.orderBy', 'orderBy'), null);
         $sortedBy = $this->request->get(config('repository.criteria.params.sortedBy', 'sortedBy'), 'asc');
@@ -167,6 +170,9 @@ class RequestCriteria extends \Prettus\Repository\Criteria\RequestCriteria
             $model = $model->with($with);
         }
 
+        $this->request->offsetUnset(config('repository.criteria.params.search', 'search'));
+        $this->request->offsetUnset(config('repository.criteria.params.searchFields', 'searchFields'));
+
         return $model;
     }
 
@@ -213,5 +219,35 @@ class RequestCriteria extends \Prettus\Repository\Criteria\RequestCriteria
         }
 
         return $fields;
+    }
+
+
+    /**
+     * Parser query to Search String.
+     *
+     * @param $columns
+     * @return string
+     */
+    protected function parserQueryToSearch($columns)
+    {
+        /** @var \Illuminate\Http\Request $request * */
+        $request = Request::instance();
+
+        $query = $request->query();
+        $search = '';
+        $searchFields = '';
+
+        foreach ($columns as $index => $column) {
+            if (is_int($index)) {
+                $index = $column;
+                $column = '=';
+            }
+            if (isset($query[$index]) && !empty($query[$index])) {
+                $search .= $index . ':' . $query[$index] . ';';
+                $searchFields .= $index . ':' . $column . ';';
+            }
+        }
+
+        return [rtrim($search, ';'), rtrim($searchFields, ';')];
     }
 }

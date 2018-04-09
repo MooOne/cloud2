@@ -52,7 +52,7 @@
                     {{--Filter start--}}
                     <div class="btn-group pull-right" style="margin-right: 10px">
                         <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#filter-modal"><i class="fa fa-filter"></i>&nbsp;&nbsp;{{ trans('backend.filter') }}</a>
-                        <a href="" class="btn btn-sm btn-facebook"><i class="fa fa-undo"></i>&nbsp;&nbsp;{{ trans('backend.reset') }}</a>
+                        <a href="{{ url_without_filters($columns)}}" class="btn btn-sm btn-facebook"><i class="fa fa-undo"></i>&nbsp;&nbsp;{{ trans('backend.reset') }}</a>
                     </div>
 
                     <div class="modal fade" id="filter-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -65,7 +65,7 @@
                                     </button>
                                     <h4 class="modal-title" id="myModalLabel">{{ trans('backend.filter') }}</h4>
                                 </div>
-                                <form action="" method="get" pjax-container>
+                                <form action="{{ url_without_filters($columns)}}" method="get" pjax-container>
                                     <div class="modal-body">
                                         <div class="form">
                                             <div class="form-group">

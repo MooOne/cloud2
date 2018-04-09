@@ -227,3 +227,26 @@ if (!function_exists('get_resource')) {
         return implode('/', $segments);
     }
 }
+
+if (!function_exists('url_without_filters')) {
+    /**
+     * Get url without filter queryString.
+     *
+     * @param $columns
+     * @return string
+     */
+    function url_without_filters($columns)
+    {
+        /** @var \Illuminate\Http\Request $request * */
+        $request = Request::instance();
+
+        $query = $request->query();
+        array_forget($query, $columns);
+
+        $question = $request->getBaseUrl().$request->getPathInfo() == '/' ? '/?' : '?';
+
+        return count($request->query()) > 0
+            ? $request->url().$question.http_build_query($query)
+            : $request->fullUrl();
+    }
+}
