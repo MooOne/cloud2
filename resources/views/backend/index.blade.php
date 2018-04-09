@@ -28,24 +28,24 @@
 
     <div class="content-wrapper" id="pjax-container">
         @yield('content')
+        <script>
+            function Yee() {}
+            Yee.token = "{{ csrf_token() }}";
+        </script>
+
+        <!-- REQUIRED JS SCRIPTS -->
+        <script src="{{ yee_mix ("/assets/js/app.js") }}"></script>
+        <script src="{{ yee_mix ("/assets/js/backend.js") }}"></script>
+        {!! $assets::js() !!}
+        {!! $assets::script() !!}
+
+        <!-- PAGE JS SCRIPTS -->
+        @yield('page_script')
     </div>
 
     @include('backend.partials.footer')
 
 </div>
-<script>
-    function LA() {}
-    LA.token = "{{ csrf_token() }}";
-</script>
-
-<!-- REQUIRED JS SCRIPTS -->
-<script src="{{ yee_mix ("/assets/js/app.js") }}"></script>
-<script src="{{ yee_mix ("/assets/js/backend.js") }}"></script>
-{!! $assets::js() !!}
-{!! $assets::script() !!}
-
-<!-- PAGE JS SCRIPTS -->
-@yield('page_script')
 
 <!-- ./wrapper -->
 </body>

@@ -1,5 +1,5 @@
 @extends('backend.index')
-
+@inject('adminOperationLogPresenter','Yeelight\Presenters\AdminOperationLogPresenter')
 @section('content')
     <section class="content-header">
         <h1>
@@ -10,7 +10,7 @@
         <!-- breadcrumb start -->
         @if (!empty($breadcrumb))
             <ol class="breadcrumb" style="margin-right: 30px;">
-                <li><a href="{{ admin_url('/') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="{{ backend_url('/') }}"><i class="fa fa-dashboard"></i> Home</a></li>
                 @foreach($breadcrumb as $item)
                     @if($loop->last)
                         <li class="active">
@@ -21,7 +21,7 @@
                         </li>
                     @else
                         <li>
-                            <a href="{{ admin_url(array_get($item, 'url')) }}">
+                            <a href="{{ backend_url(array_get($item, 'url')) }}">
                                 @if (array_has($item, 'icon'))
                                     <i class="fa fa-{{ $item['icon'] }}"></i>
                                 @endif
@@ -70,83 +70,56 @@
                                         <div class="form">
                                             <div class="form-group">
                                                 <div class="form-group">
-                                                    <label>ID</label>
+                                                    <label>{{ $columns['id'] }}</label>
                                                     <div class="input-group">
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-pencil"></i>
                                                         </div>
-                                                        <input type="text" class="form-control id" placeholder="ID" name="id" value="">
+                                                        <input type="text" class="form-control id" placeholder="{{ $columns['id'] }}" name="id" value="">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="form-group">
-                                                    <label>User</label>
-                                                    <select class="form-control user_id select2-hidden-accessible" name="user_id" style="width: 100%;" tabindex="-1" aria-hidden="true"><option></option>
-                                                        <option value="1">超级管理员</option>
-                                                        <option value="3">姜启龙</option>
-                                                        <option value="4">马程程</option>
-                                                        <option value="5">王炳强</option>
-                                                        <option value="6">周诺</option>
-                                                        <option value="7">王苏唯</option>
-                                                        <option value="10">张慧娟</option>
-                                                        <option value="11">高静</option>
-                                                        <option value="12">刘达平</option>
-                                                        <option value="14">刘梅</option>
-                                                        <option value="15">张诚</option>
-                                                        <option value="16">饶倩</option>
-                                                        <option value="17">李孟洁</option>
-                                                        <option value="18">曲琛</option>
-                                                        <option value="19">张倩茹</option>
-                                                        <option value="20">王倩</option>
-                                                        <option value="21">李俊雪</option>
-                                                        <option value="22">王慧芳</option>
-                                                        <option value="23">朱崇林</option>
-                                                        <option value="24">张丹丹</option>
-                                                        <option value="25">陈正豪</option>
-                                                        <option value="26">曲鑫磊</option>
-                                                        <option value="27">王鑫</option>
-                                                        <option value="28">王晓东</option>
-                                                        <option value="29">王政华</option>
-                                                        <option value="30">卢晓明</option></select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-user_id-jf-container"><span class="select2-selection__rendered" id="select2-user_id-jf-container"><span class="select2-selection__placeholder">选择</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                                    <label>{{ $columns['user_name'] }}</label>
+                                                    <select class="form-control user_id" name="user_id" style="width: 100%;">
+                                                        <option></option>
+                                                        @foreach($adminUsers as $akey => $adminUser)
+                                                            <option value="{{ $akey }}">{{ $adminUser }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="form-group">
-                                                    <label>Method</label>
-                                                    <select class="form-control method select2-hidden-accessible" name="method" style="width: 100%;" tabindex="-1" aria-hidden="true"><option></option>
-                                                        <option value="GET">GET</option>
-                                                        <option value="POST">POST</option>
-                                                        <option value="PUT">PUT</option>
-                                                        <option value="DELETE">DELETE</option>
-                                                        <option value="OPTIONS">OPTIONS</option>
-                                                        <option value="PATCH">PATCH</option>
-                                                        <option value="LINK">LINK</option>
-                                                        <option value="UNLINK">UNLINK</option>
-                                                        <option value="COPY">COPY</option>
-                                                        <option value="HEAD">HEAD</option>
-                                                        <option value="PURGE">PURGE</option></select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-method-4f-container"><span class="select2-selection__rendered" id="select2-method-4f-container"><span class="select2-selection__placeholder">选择</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                                    <label>{{ $columns['method'] }}</label>
+                                                    <select class="form-control method" name="method" style="width: 100%;">
+                                                        <option></option>
+                                                        @foreach($methods as $method)
+                                                            <option value="{{ $method }}">{{ $method }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="form-group">
-                                                    <label>Path</label>
+                                                    <label>{{ $columns['path'] }}</label>
                                                     <div class="input-group">
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-pencil"></i>
                                                         </div>
-                                                        <input type="text" class="form-control path" placeholder="Path" name="path" value="">
+                                                        <input type="text" class="form-control path" placeholder="{{ $columns['path'] }}" name="path" value="">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="form-group">
-                                                    <label>Ip</label>
+                                                    <label>{{ $columns['ip'] }}</label>
                                                     <div class="input-group">
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-pencil"></i>
                                                         </div>
-                                                        <input type="text" class="form-control ip" placeholder="Ip" name="ip" value="">
+                                                        <input type="text" class="form-control ip" placeholder="{{ $columns['ip'] }}" name="ip" value="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -263,95 +236,142 @@
 @endsection
 @section('page_script')
     <script>
-        // filter model
-        $("#filter-modal .submit").click(function () {
-            $("#filter-modal").modal('toggle');
-            $('body').removeClass('modal-open');
-            $('.modal-backdrop').remove();
-        });
-
-        //export
-        $('.export-selected').click(function (e) {
-            e.preventDefault();
-
-            var rows = selectedRows().join(',');
-            if (!rows) {
-                return false;
-            }
-
-            var href = $(this).attr('href').replace('__rows__', rows);
-            location.href = href;
-        });
-
-        //selector
-        $('.grid-row-checkbox').iCheck({checkboxClass:'icheckbox_minimal-blue'}).on('ifChanged', function () {
-            if (this.checked) {
-                $(this).closest('tr').css('background-color', '#ffffd5');
-            } else {
-                $(this).closest('tr').css('background-color', '');
-            }
-        });
-
-        $('.grid-select-all').iCheck({checkboxClass:'icheckbox_minimal-blue'});
-
-        $('.grid-select-all').on('ifChanged', function(event) {
-            if (this.checked) {
-                $('.grid-row-checkbox').iCheck('check');
-            } else {
-                $('.grid-row-checkbox').iCheck('uncheck');
-            }
-        });
-
-        var selectedRows = function () {
-            var selected = [];
-            $('.grid-row-checkbox:checked').each(function(){
-                selected.push($(this).data('id'));
+        $(function () {
+            // filter model
+            $("#filter-modal .submit").click(function () {
+                $("#filter-modal").modal('toggle');
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
             });
 
-            return selected;
-        }
+            //export
+            $('.export-selected').click(function (e) {
+                e.preventDefault();
 
-        //refresh
-        $('.grid-refresh').on('click', function() {
-            $.pjax.reload('#pjax-container');
-            toastr.success('{{ trans('backend.refresh_succeeded') }}');
-        });
+                var rows = selectedRows().join(',');
+                if (!rows) {
+                    return false;
+                }
 
-        //delete
-        $('.grid-batch-delete').on('click', function() {
+                var href = $(this).attr('href').replace('__rows__', rows);
+                location.href = href;
+            });
 
-            var id = selectedRows().join();
 
-            swal({
-                    title: "{{ trans('backend.delete_confirm') }}",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "{{ trans('backend.confirm') }}",
-                    closeOnConfirm: false,
-                    cancelButtonText: "{{ trans('backend.cancel') }}"
-                },
-                function(){
-                    $.ajax({
-                        method: 'post',
-                        url: '{$this->resource}/' + id,
-                        data: {
-                            _method:'delete',
-                            _token: LA.token
-                        },
-                        success: function (data) {
-                            $.pjax.reload('#pjax-container');
+            //selector
+            $('.grid-row-checkbox').iCheck({checkboxClass:'icheckbox_minimal-blue'}).on('ifChanged', function () {
+                if (this.checked) {
+                    $(this).closest('tr').css('background-color', '#ffffd5');
+                } else {
+                    $(this).closest('tr').css('background-color', '');
+                }
+            });
 
-                            if (typeof data === 'object') {
-                                if (data.status) {
-                                    swal(data.message, '', 'success');
-                                } else {
-                                    swal(data.message, '', 'error');
+            $('.grid-select-all').iCheck({checkboxClass:'icheckbox_minimal-blue'});
+
+            $('.grid-select-all').on('ifChanged', function(event) {
+                if (this.checked) {
+                    $('.grid-row-checkbox').iCheck('check');
+                } else {
+                    $('.grid-row-checkbox').iCheck('uncheck');
+                }
+            });
+
+            var selectedRows = function () {
+                var selected = [];
+                $('.grid-row-checkbox:checked').each(function(){
+                    selected.push($(this).data('id'));
+                });
+
+                return selected;
+            }
+
+            //refresh
+            $('.grid-refresh').on('click', function() {
+                $.pjax.reload('#pjax-container');
+                toastr.success('{{ trans('backend.refresh_succeeded') }}');
+            });
+
+            //batch delete
+            $('.grid-batch-delete').on('click', function() {
+
+                var id = selectedRows().join();
+
+                swal({
+                        title: "{{ trans('backend.delete_confirm') }}",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "{{ trans('backend.confirm') }}",
+                        closeOnConfirm: false,
+                        cancelButtonText: "{{ trans('backend.cancel') }}"
+                    },
+                    function(){
+                        $.ajax({
+                            method: 'post',
+                            url: '{{ get_resource()}}/' + id,
+                            data: {
+                                _method:'delete',
+                                _token: Yee.token
+                            },
+                            success: function (data) {
+                                $.pjax.reload('#pjax-container');
+
+                                if (typeof data === 'object') {
+                                    if (data.status) {
+                                        swal(data.message, '', 'success');
+                                    } else {
+                                        swal(data.message, '', 'error');
+                                    }
                                 }
                             }
-                        }
+                        });
                     });
-                });
+            });
+
+            //single delete
+            $('.grid-row-delete').unbind('click').click(function() {
+
+                var id = $(this).data('id');
+
+                swal({
+                        title: "{{ trans('backend.delete_confirm') }}",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "{{ trans('backend.confirm') }}",
+                        closeOnConfirm: false,
+                        cancelButtonText: "{{ trans('backend.cancel') }}"
+                    },
+                    function(){
+                        $.ajax({
+                            method: 'post',
+                            url: '{{ get_resource()}}/' + id,
+                            data: {
+                                _method:'delete',
+                                _token:Yee.token,
+                            },
+                            success: function (data) {
+                                $.pjax.reload('#pjax-container');
+
+                                if (typeof data === 'object') {
+                                    if (data.status) {
+                                        swal(data.message, '', 'success');
+                                    } else {
+                                        swal(data.message, '', 'error');
+                                    }
+                                }
+                            }
+                        });
+                    });
+            });
+
+            $(".user_id").select2({
+                placeholder: "{{ trans('backend.choose') }}"
+            });
+            $(".method").select2({
+                placeholder: "{{ trans('backend.choose') }}"
+            });
         });
     </script>
 @endsection

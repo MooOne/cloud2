@@ -179,8 +179,8 @@ if (!function_exists('column_sorter')) {
         $type = 'desc';
         $isSorted = false;
 
-        $orderBy = app('request')->get('orderBy');
-        $sortedBy = app('request')->get('sortedBy');
+        $orderBy = app('request')->get(config('repository.criteria.params.orderBy', 'orderBy'), null);
+        $sortedBy = app('request')->get(config('repository.criteria.params.sortedBy', 'sortedBy'), null);
 
         if (!empty($orderBy)) {
             $isSorted = isset($orderBy) && $orderBy == $column_name;
@@ -192,10 +192,38 @@ if (!function_exists('column_sorter')) {
         }
 
         $query = app('request')->all();
-        $query = array_merge($query, ['orderBy' => $column_name, 'sortedBy' => $type]);
+        $query = array_merge($query, [
+            config('repository.criteria.params.orderBy') => $column_name,
+            config('repository.criteria.params.sortedBy') => $type
+        ]);
 
         $url = URL::current().'?'.http_build_query($query);
 
         return "<a class=\"fa fa-fw $icon\" href=\"$url\"></a>";
+    }
+}
+
+if (!function_exists('get_resource')) {
+    /**
+     * get resource uri
+     * @param null $slice
+     * @param string $mode
+     * @return string
+     */
+    function get_resource($slice = null, $mode = '')
+    {
+        $segments = explode('/', trim(app('request')->getUri(), '/'));
+        if ($mode == 'create') {
+            $segments = array_slice($segments, 0, -1);
+        }
+        if ($slice !== null) {
+            if ($slice != 0) {
+                $segments = array_slice($segments, 0, $slice);
+            }
+        }
+
+        $segments[count($segments) - 1] = substr(end($segments), 0, strpos(end($segments), '?'));
+
+        return implode('/', $segments);
     }
 }

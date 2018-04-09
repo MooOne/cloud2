@@ -1,12 +1,5 @@
 const { mix } = require('laravel-mix');
 
-mix.webpackConfig({
-    resolve: {
-        modules: [
-            path.resolve(__dirname, 'vendor/laravel/spark/resources/assets/js')
-        ]
-    }
-});
 
 /*
  |--------------------------------------------------------------------------
@@ -127,9 +120,7 @@ mix.copy(paths.slimScroll + 'jquery.slimscroll.js', destJs);
 
 // iCheck
 mix.copy(paths.iCheck + 'icheck.js', destJs);
-mix.copy(paths.iCheck + 'skins/square/blue.css', destCss);
-mix.copy(paths.iCheck + 'skins/square/blue.png', destCss);
-mix.copy(paths.iCheck + 'skins/square/blue@2x.png', destCss);
+mix.copyDirectory(paths.iCheck, destCss + 'icheck');
 
 // select2
 mix.copy(paths.select2 + 'js/select2.full.js', destJs);
@@ -230,10 +221,12 @@ mix.styles(
         destCss + 'fonts.css',
         destCss + 'bootstrap-editable.css',
         destCss + 'datepicker.css',
-        destCss + 'blue.css'
+        destCss + 'icheck/minimal/_all.css'
     ],
     destCss + 'app.css'
-);
+).options({
+    processCssUrls: true
+});
 
 // 合并javascript脚本
 mix.scripts(
@@ -259,7 +252,9 @@ mix.scripts(
         destJs + 'wangEditor.js'
     ],
     destJs + 'app.js'
-);
+).options({
+    processCssUrls: true
+});
 
 //生产环节附加资源版本号
 if (mix.inProduction()) {

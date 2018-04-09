@@ -20,9 +20,11 @@ class AdminUserTransformer extends BaseTransformer
     {
         return [
             'id' => (int) $model->id,
-
-            /* place your other model properties here */
-
+            'username' => (string) $model->username,
+            'name' => (string) $model->name,
+            'avatar' => (string) $model->avatar,
+            'password' => (string) $model->password,
+            'remember_token' => (string) $model->remember_token,
             'created_at' => (string) $model->created_at,
             'updated_at' => (string) $model->updated_at
         ];

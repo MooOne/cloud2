@@ -14,6 +14,18 @@ use Yeelight\Presenters\AdminOperationLogPresenter;
 class AdminOperationLogRepositoryEloquent extends BaseRepository implements AdminOperationLogRepository
 {
     /**
+     * @var array
+     */
+    protected $fieldSearchable = [
+        'id',
+        'user_id',
+        'method',
+        'path' => 'like',
+        'ip' => 'like',
+        'input' => 'like',
+    ];
+
+    /**
      * Specify Model class name
      *
      * @return string

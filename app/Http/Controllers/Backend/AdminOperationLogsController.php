@@ -7,8 +7,10 @@ use Dingo\Api\Exception\UpdateResourceFailedException;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Yeelight\Http\Requests\AdminOperationLogCreateRequest;
 use Yeelight\Http\Requests\AdminOperationLogUpdateRequest;
+use Yeelight\Models\AdminOperationLog;
 use Yeelight\Repositories\Interfaces\AdminOperationLogRepository;
 use Yeelight\Validators\AdminOperationLogValidator;
+use Yeelight\Repositories\Interfaces\AdminUserRepository;
 
 class AdminOperationLogsController extends BaseController
 {
@@ -22,10 +24,20 @@ class AdminOperationLogsController extends BaseController
      */
     protected $validator;
 
-    public function __construct(AdminOperationLogRepository $repository, AdminOperationLogValidator $validator)
+    /**
+     * @var AdminUserRepository
+     */
+    private $userRepository;
+
+    public function __construct(
+        AdminOperationLogRepository $repository,
+        AdminOperationLogValidator $validator,
+        AdminUserRepository $userRepository
+    )
     {
         $this->repository = $repository;
         $this->validator = $validator;
+        $this->userRepository = $userRepository;
     }
 
 
@@ -37,12 +49,15 @@ class AdminOperationLogsController extends BaseController
     public function index()
     {
         $columns = trans('admin_operation_logs.columns');
+        $adminUsers = $this->userRepository->pluck('name', 'id');
         $lists = $this->repository->paginate(null, ['*']);
         $paginator = $this->backendPagination($lists);
 
         return view('backend.admin_operation_logs.index', [
             'lists' => $lists,
             'columns' => $columns,
+            'adminUsers' => $adminUsers,
+            'methods' => AdminOperationLog::$methods,
             'paginator' => $paginator
         ]);
     }
@@ -56,14 +71,19 @@ class AdminOperationLogsController extends BaseController
      */
     public function destroy($id)
     {
-        $deleted = $this->repository->delete($id);
+        $ids = explode(',', $id);
+        $deleted = $this->repository->deleteIn($ids);
 
         if ($deleted) {
-            // Deleted, return 204 No Content
-            return $this->response->noContent();
+            return response()->json([
+                'status'  => true,
+                'message' => trans('backend.delete_succeeded'),
+            ]);
         } else {
-            // Failed, throw exception
-            throw new DeleteResourceFailedException('Failed to delete.');
+            return response()->json([
+                'status'  => false,
+                'message' => trans('backend.delete_failed'),
+            ]);
         }
     }
 }

@@ -1,5 +1,5 @@
 $.fn.editable.defaults.params = function (params) {
-    params._token = LA.token;
+    params._token = Yee.token;
     params._editable = 1;
     params._method = 'PUT';
     return params;
@@ -66,7 +66,7 @@ $(function(){
 });
 
 (function($){
-    $.fn.admin = LA;
-    $.admin = LA;
+    $.fn.admin = Yee;
+    $.admin = Yee;
 
 })(jQuery);

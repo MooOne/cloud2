@@ -44,4 +44,29 @@ abstract class BaseController extends BackendController
     {
         return Assets::js($script);
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $ids = explode(',', $id);
+        $deleted = $this->repository->deleteIn($ids);
+
+        if ($deleted) {
+            return response()->json([
+                'status'  => true,
+                'message' => trans('backend.delete_succeeded'),
+            ]);
+        } else {
+            return response()->json([
+                'status'  => false,
+                'message' => trans('backend.delete_failed'),
+            ]);
+        }
+    }
 }
