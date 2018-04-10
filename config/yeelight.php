@@ -22,7 +22,7 @@ return [
         /*
         * backend html title.
         */
-        'title'  => '售后管理系统',
+        'title'  => 'Yeelight Cloud',
 
         /*
          * Use `https`.
