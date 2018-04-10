@@ -12,7 +12,7 @@ class HomeController extends BaseController
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        
     }
 
     /**
@@ -22,6 +22,6 @@ class HomeController extends BaseController
      */
     public function index()
     {
-        return view('home');
+        return redirect( config( 'yeelight.backend.route.prefix' ) );
     }
 }
