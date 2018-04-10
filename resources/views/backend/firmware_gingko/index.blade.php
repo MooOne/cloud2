@@ -3,8 +3,8 @@
 @section('content')
     <section class="content-header">
         <h1>
-            {{ $header or trans('backend.operation_log') }}
-            <small>{{ $description or trans('backend.operation_log') }}</small>
+            {{ $header or trans('backend.gingko_title') }}
+            <small>{{ $description or trans('backend.list') }}</small>
         </h1>
 
         <!-- breadcrumb start -->
@@ -70,7 +70,7 @@
 
                     {{--CreateButton start--}}
                     <div class="btn-group pull-right" style="margin-right: 10px">
-                        <a href="" class="btn btn-sm btn-success">
+                        <a href="{{ route( 'gingko.create' ) }}" class="btn btn-sm btn-success">
                             <i class="fa fa-save"></i>&nbsp;&nbsp;{{ trans('backend.new') }}
                         </a>
                     </div>
