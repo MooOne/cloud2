@@ -53,6 +53,9 @@ class AdminOperationLogsController extends BaseController
         $lists = $this->repository->paginate(null, ['*']);
         $paginator = $this->backendPagination($lists);
 
+        //导出
+        $this->setupExporter();
+
         return view('backend.admin_operation_logs.index', [
             'lists' => $lists,
             'columns' => $columns,

@@ -1,15 +1,14 @@
 <?php
 namespace Yeelight\Http\Controllers\Backend;
 
-use Yeelight\Base\Http\Controllers\Controller;
-use Yeelight\Models\Foundation\User;
 use Yeelight\Services\Assets\Assets;
 use Yeelight\Http\Controllers\BaseController as BackendController;
+use Yeelight\Traits\BackendExporter;
 use Yeelight\Traits\BackendPagination;
 
 abstract class BaseController extends BackendController
 {
-    use BackendPagination;
+    use BackendPagination, BackendExporter;
 
     /**
      * Add css or get all css.

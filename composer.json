@@ -37,7 +37,8 @@
         "rap2hpoutre/laravel-log-viewer": "^0.10.0",
         "torann/geoip": "1.0.*",
         "tymon/jwt-auth": "1.0.0-rc.1",
-        "symfony/dom-crawler": "~3.1"
+        "symfony/dom-crawler": "~3.1",
+        "maatwebsite/excel": "~2.1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.1",

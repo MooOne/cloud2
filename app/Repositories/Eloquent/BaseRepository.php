@@ -33,4 +33,23 @@ abstract class BaseRepository extends Repository implements BaseRepositoryInterf
 
         return $deleted;
     }
+
+    /**
+     * Chunk the results of the query.
+     *
+     * @param callable $callback
+     * @param int $count
+     * @return bool
+     */
+    public function chunk(callable $callback, $count = 100)
+    {
+        $this->applyCriteria();
+        $this->applyScope();
+
+        $lists = $this->model->chunk($count, $callback);
+
+        $this->resetModel();
+
+        return $lists;
+    }
 }

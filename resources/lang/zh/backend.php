@@ -23,6 +23,7 @@ return [
     'browse'       => '浏览',
     'reset'        => '撤销',
     'export'       => '导出',
+    'export_forbidden'       => '禁止导出',
     'import'       => '导入',
     'batch_delete' => '批量删除',
     'save'         => '保存',
