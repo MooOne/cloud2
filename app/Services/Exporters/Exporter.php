@@ -7,6 +7,7 @@
  */
 namespace Yeelight\Services\Exporters;
 
+use Illuminate\Support\Facades\Input;
 use Yeelight\Repositories\Eloquent\BaseRepository as Repository;
 
 class Exporter
@@ -135,5 +136,20 @@ class Exporter
         }
 
         return [static::$queryName => $query];
+    }
+
+    /**
+     * Get the export url.
+     *
+     * @param int  $scope
+     * @param null $args
+     *
+     * @return string
+     */
+    public static function exportUrl($scope = 1, $args = null)
+    {
+        $input = array_merge(Input::all(), self::formatExportQuery($scope, $args));
+
+        return get_resource().'?'.http_build_query($input);
     }
 }

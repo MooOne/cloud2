@@ -145,24 +145,7 @@ if (!function_exists('backend_export_url')) {
      */
     function backend_export_url($scope = 1, $args = null)
     {
-        $query = '';
-
-        if ($scope == 'all') {
-            $query = 'all';
-        }
-
-        if ($scope == 'page') {
-            $query = "page:$args";
-        }
-
-        if ($scope == 'selected') {
-            $query = "selected:$args";
-        }
-
-
-        $input = array_merge(\Illuminate\Support\Facades\Input::all(), ['_export_' => $query]);
-
-        return /*$this->resource().*/'?'.http_build_query($input);
+        return \Yeelight\Services\Exporters\Exporter::exportUrl($scope, $args);
     }
 }
 

@@ -19,6 +19,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \Yeelight\Http\Middleware\TrustProxies::class,
         \Clockwork\Support\Laravel\ClockworkMiddleware::class,
+        \Yeelight\Http\Middleware\EnableCrossRequest::class,
     ];
 
     /**
