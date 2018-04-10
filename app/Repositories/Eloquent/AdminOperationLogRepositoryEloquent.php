@@ -26,6 +26,11 @@ class AdminOperationLogRepositoryEloquent extends BaseRepository implements Admi
     ];
 
     /**
+     * @var bool
+     */
+    protected $isSearchableForceAndWhere = true;
+
+    /**
      * Specify Model class name
      *
      * @return string

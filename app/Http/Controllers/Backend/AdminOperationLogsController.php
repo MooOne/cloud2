@@ -58,7 +58,8 @@ class AdminOperationLogsController extends BaseController
             'columns' => $columns,
             'adminUsers' => $adminUsers,
             'methods' => AdminOperationLog::$methods,
-            'paginator' => $paginator
+            'paginator' => $paginator,
+            'query' => request()->query()
         ]);
     }
 

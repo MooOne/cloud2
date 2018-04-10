@@ -241,7 +241,7 @@ if (!function_exists('url_without_filters')) {
         $request = Request::instance();
 
         $query = $request->query();
-        array_forget($query, $columns);
+        array_forget($query, array_keys($columns));
 
         $question = $request->getBaseUrl().$request->getPathInfo() == '/' ? '/?' : '?';
 

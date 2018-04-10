@@ -75,7 +75,7 @@
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-pencil"></i>
                                                         </div>
-                                                        <input type="text" class="form-control id" placeholder="{{ $columns['id'] }}" name="id" value="">
+                                                        <input type="text" class="form-control id" placeholder="{{ $columns['id'] }}" name="id" value="{{ isset($query['id']) ? $query['id'] : ''}}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -85,7 +85,7 @@
                                                     <select class="form-control user_id" name="user_id" style="width: 100%;">
                                                         <option></option>
                                                         @foreach($adminUsers as $akey => $adminUser)
-                                                            <option value="{{ $akey }}">{{ $adminUser }}</option>
+                                                            <option value="{{ $akey }}" @if (isset($query['user_id']) && $query['user_id'] == $akey) selected @endif>{{ $adminUser }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -96,7 +96,7 @@
                                                     <select class="form-control method" name="method" style="width: 100%;">
                                                         <option></option>
                                                         @foreach($methods as $method)
-                                                            <option value="{{ $method }}">{{ $method }}</option>
+                                                            <option value="{{ $method }}"  @if (isset($query['method']) && $query['method'] == $method) selected @endif>{{ $method }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -108,7 +108,7 @@
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-pencil"></i>
                                                         </div>
-                                                        <input type="text" class="form-control path" placeholder="{{ $columns['path'] }}" name="path" value="">
+                                                        <input type="text" class="form-control path" placeholder="{{ $columns['path'] }}" name="path" value="{{ isset($query['path']) ? $query['path'] : ''}}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -119,7 +119,7 @@
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-pencil"></i>
                                                         </div>
-                                                        <input type="text" class="form-control ip" placeholder="{{ $columns['ip'] }}" name="ip" value="">
+                                                        <input type="text" class="form-control ip" placeholder="{{ $columns['ip'] }}" name="ip" value="{{ isset($query['ip']) ? $query['ip'] : ''}}">
                                                     </div>
                                                 </div>
                                             </div>
