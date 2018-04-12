@@ -5,6 +5,7 @@
  * Date: 18-3-27
  * Time: 下午5:30
  */
+namespace Yeelight\Exceptions;
 
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\ViewErrorBag;

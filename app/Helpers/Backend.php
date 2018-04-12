@@ -143,7 +143,7 @@ if (!function_exists('backend_export_url')) {
      *
      * @return string
      */
-    function backend_export_url($scope = 1, $args = null)
+    function backend_export_url($scope = -1, $args = null)
     {
         return \Yeelight\Services\Exporters\Exporter::exportUrl($scope, $args);
     }
@@ -205,7 +205,9 @@ if (!function_exists('get_resource')) {
             }
         }
 
-        $segments[count($segments) - 1] = substr(end($segments), 0, strpos(end($segments), '?'));
+        if (strpos(end($segments), '?')) {
+            $segments[count($segments) - 1] = substr(end($segments), 0, strpos(end($segments), '?'));
+        }
 
         return implode('/', $segments);
     }

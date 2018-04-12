@@ -13,7 +13,10 @@ class AdminPermissionUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        //设置错误返回的表单地址
+        $this->redirect = $this->session()->previousUrl();
+        dd($this->url());
+        return true;
     }
 
     /**
@@ -24,7 +27,10 @@ class AdminPermissionUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'slug' => 'required|max:50',
+            'name' => 'required|unique:admin_permissions|max:50',
+            'http_method' => 'array',
+            'http_path' => 'required'
         ];
     }
 }

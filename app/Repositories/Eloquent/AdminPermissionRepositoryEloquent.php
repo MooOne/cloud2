@@ -14,6 +14,23 @@ use Yeelight\Presenters\AdminPermissionPresenter;
 class AdminPermissionRepositoryEloquent extends BaseRepository implements AdminPermissionRepository
 {
     /**
+     * @var array
+     */
+    protected $fieldSearchable = [
+        'id',
+        'name' => 'like',
+        'slug' => 'like',
+        'http_method',
+        'http_path' => 'like',
+    ];
+
+    /**
+     * @var bool
+     */
+    protected $isSearchableForceAndWhere = true;
+
+
+    /**
      * Specify Model class name
      *
      * @return string

@@ -3,8 +3,8 @@
 @section('content')
     <section class="content-header">
         <h1>
-            {{ $header or trans('backend.operation_log') }}
-            <small>{{ $description or trans('backend.operation_log') }}</small>
+            {{ $header or trans('backend.permissions') }}
+            <small>{{ $description or trans('backend.permissions') }}</small>
         </h1>
 
         <!-- breadcrumb start -->
@@ -81,45 +81,45 @@
                                             </div>
                                             <div class="form-group">
                                                 <div class="form-group">
-                                                    <label>{{ $columns['user_name'] }}</label>
-                                                    <select class="form-control user_id" name="user_id" style="width: 100%;">
-                                                        <option></option>
-                                                        @foreach($adminUsers as $akey => $adminUser)
-                                                            <option value="{{ $akey }}" @if (isset($query['user_id']) && $query['user_id'] == $akey) selected @endif>{{ $adminUser }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="form-group">
-                                                    <label>{{ $columns['method'] }}</label>
-                                                    <select class="form-control method" name="method" style="width: 100%;">
-                                                        <option></option>
-                                                        @foreach($methods as $method)
-                                                            <option value="{{ $method }}"  @if (isset($query['method']) && $query['method'] == $method) selected @endif>{{ $method }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="form-group">
-                                                    <label>{{ $columns['path'] }}</label>
+                                                    <label>{{ $columns['name'] }}</label>
                                                     <div class="input-group">
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-pencil"></i>
                                                         </div>
-                                                        <input type="text" class="form-control path" placeholder="{{ $columns['path'] }}" name="path" value="{{ isset($query['path']) ? $query['path'] : ''}}">
+                                                        <input type="text" class="form-control id" placeholder="{{ $columns['name'] }}" name="name" value="{{ isset($query['name']) ? $query['name'] : ''}}">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="form-group">
-                                                    <label>{{ $columns['ip'] }}</label>
+                                                    <label>{{ $columns['slug'] }}</label>
                                                     <div class="input-group">
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-pencil"></i>
                                                         </div>
-                                                        <input type="text" class="form-control ip" placeholder="{{ $columns['ip'] }}" name="ip" value="{{ isset($query['ip']) ? $query['ip'] : ''}}">
+                                                        <input type="text" class="form-control id" placeholder="{{ $columns['slug'] }}" name="slug" value="{{ isset($query['name']) ? $query['slug'] : ''}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <label>{{ $columns['http_method'] }}</label>
+                                                    <select class="form-control method" name="method" style="width: 100%;">
+                                                        <option></option>
+                                                        @foreach($httpMethods as $method)
+                                                            <option value="{{ $method }}"  @if (isset($query['http_method']) && $query['http_method'] == $method) selected @endif>{{ $method }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <label>{{ $columns['http_path'] }}</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control path" placeholder="{{ $columns['http_path'] }}" name="path" value="{{ isset($query['http_path']) ? $query['http_path'] : ''}}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -144,7 +144,7 @@
                         </button>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ backend_export_url('all') }}" target="_blank">{{ trans('backend.all') }}</a></li>
-                            <li><a href="{{ backend_export_url('page', (isset($query['page']) ? $query['page'] :0)) }}" target="_blank">{{ trans('backend.current_page') }}</a></li>
+                            <li><a href="{{ backend_export_url('page', (isset($query['page']) ?$query['page']:0)) }}" target="_blank">{{ trans('backend.current_page') }}</a></li>
                             <li><a href="{{ backend_export_url('selected', '__rows__') }}" target="_blank" class='export-selected'>{{ trans('backend.selected_rows') }}</a></li>
                         </ul>
                     </div>
@@ -152,7 +152,7 @@
 
                     {{--CreateButton start--}}
                     <div class="btn-group pull-right" style="margin-right: 10px">
-                        <a href="" class="btn btn-sm btn-success">
+                        <a href="{{ get_resource() }}/create" class="btn btn-sm btn-success">
                             <i class="fa fa-save"></i>&nbsp;&nbsp;{{ trans('backend.new') }}
                         </a>
                     </div>
@@ -162,7 +162,7 @@
                 {{--HeaderTools start--}}
                 <span>
 
-                    <input type="checkbox" class="grid-select-all" />&nbsp;
+                    {{--<input type="checkbox" class="grid-select-all" />&nbsp;
 
                     <div class="btn-group">
                         <a class="btn btn-sm btn-default">{{ trans('backend.action') }}</a>
@@ -173,7 +173,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#" class="grid-batch-delete">{{ trans('backend.delete') }}</a></li>
                         </ul>
-                    </div>
+                    </div>--}}
                     <a class="btn btn-sm btn-primary grid-refresh"><i class="fa fa-refresh"></i> {{ trans('backend.refresh') }}</a>
                 </span>
                 {{--HeaderTools end--}}
@@ -186,12 +186,11 @@
                     <tr>
                         <th></th>
                         <th>{{ $columns['id'] }}{!! column_sorter('id') !!}</th>
-                        <th>{{ $columns['user_name'] }}</th>
-                        <th>{{ $columns['method'] }}</th>
-                        <th>{{ $columns['path'] }}</th>
-                        <th>{{ $columns['ip'] }}</th>
-                        <th>{{ $columns['input'] }}</th>
-                        <th>{{ $columns['created_at'] }}</th>
+                        <th>{{ $columns['slug'] }}</th>
+                        <th>{{ $columns['name'] }}</th>
+                        <th>{{ $columns['http_route'] }}</th>
+                        <th>{{ $columns['created_at'] }}{!! column_sorter('created_at') !!}</th>
+                        <th>{{ $columns['updated_at'] }}{!! column_sorter('updated_at') !!}</th>
                         <th>{{ trans('backend.action') }}</th>
                     </tr>
 
@@ -201,21 +200,19 @@
                                 <input type="checkbox" class="grid-row-checkbox" data-id="{{ $row['id'] }}" />
                             </td>
                             <td>{{ $row['id'] }}</td>
-                            <td>{{ $row['user_name'] }}</td>
+                            <td>{{ $row['slug'] }}</td>
                             <td>
-                                <span class="badge bg-{{ $row['method_color'] }}">{{ $row['method'] }}</span>
+                                <span class="label label-info">{{ $row['name'] }}</span>
                             </td>
                             <td>
-                                <span class="label label-info">{{ $row['path'] }}</span>
-                            </td>
-                            <td>
-                                <span class="label label-primary">{{ $row['ip'] }}</span>
-                            </td>
-                            <td>
-                                <pre>{{ $row['input'] }}</pre>
+                                {!! $row['http_path'] !!}
                             </td>
                             <td>{{ $row['created_at'] }}</td>
+                            <td>{{ $row['updated_at'] }}</td>
                             <td>
+                                <a href="{{ get_resource() }}/{{ $row['id'] }}/edit">
+                                    <i class="fa fa-edit"></i>
+                                </a>
                                 <a href="javascript:void(0);" data-id="{{ $row['id'] }}" class="grid-row-delete">
                                     <i class="fa fa-trash"></i>
                                 </a>

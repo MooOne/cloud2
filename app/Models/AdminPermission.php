@@ -50,6 +50,13 @@ class AdminPermission extends BaseModel implements Transformable
         'GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS', 'HEAD',
     ];
 
+    public static $methodColors = [
+        'GET'    => 'green',
+        'POST'   => 'yellow',
+        'PUT'    => 'blue',
+        'DELETE' => 'red',
+    ];
+
     /**
      * Create a new Eloquent model instance.
      *

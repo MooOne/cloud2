@@ -67,27 +67,16 @@ class AdminOperationLogsController extends BaseController
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Create interface.
      *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @return Content
      */
-    public function destroy($id)
+    public function create()
     {
-        $ids = explode(',', $id);
-        $deleted = $this->repository->deleteIn($ids);
-
-        if ($deleted) {
-            return response()->json([
-                'status'  => true,
-                'message' => trans('backend.delete_succeeded'),
-            ]);
-        } else {
-            return response()->json([
-                'status'  => false,
-                'message' => trans('backend.delete_failed'),
-            ]);
-        }
+        return Admin::content(function (Content $content) {
+            $content->header(trans('admin.permissions'));
+            $content->description(trans('admin.create'));
+            $content->body($this->form());
+        });
     }
 }

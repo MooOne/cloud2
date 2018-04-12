@@ -3,12 +3,13 @@ namespace Yeelight\Http\Controllers\Backend;
 
 use Yeelight\Services\Assets\Assets;
 use Yeelight\Http\Controllers\BaseController as BackendController;
+use Yeelight\Traits\BackendCurd;
 use Yeelight\Traits\BackendExporter;
 use Yeelight\Traits\BackendPagination;
 
 abstract class BaseController extends BackendController
 {
-    use BackendPagination, BackendExporter;
+    use BackendPagination, BackendExporter, BackendCurd;
 
     /**
      * Add css or get all css.
@@ -42,30 +43,5 @@ abstract class BaseController extends BackendController
     public function script($script = '')
     {
         return Assets::js($script);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $ids = explode(',', $id);
-        $deleted = $this->repository->deleteIn($ids);
-
-        if ($deleted) {
-            return response()->json([
-                'status'  => true,
-                'message' => trans('backend.delete_succeeded'),
-            ]);
-        } else {
-            return response()->json([
-                'status'  => false,
-                'message' => trans('backend.delete_failed'),
-            ]);
-        }
     }
 }

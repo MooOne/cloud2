@@ -45,8 +45,8 @@ Route::group([
 
     $router->get('/','HomeController@index');
 
-    $router->get('auth/setting', 'AuthController@getSetting');
-    $router->put('auth/setting', 'AuthController@putSetting');
+    //$router->get('auth/setting', 'AuthController@getSetting');
+    //$router->put('auth/setting', 'AuthController@putSetting');
 
     $router->resource('auth/users', 'AdminUsersController');
     $router->resource('auth/roles', 'AdminRolesController');
@@ -54,7 +54,7 @@ Route::group([
     $router->resource('auth/menu', 'AdminMenusController', ['except' => ['create']]);
     $router->resource('auth/logs', 'AdminOperationLogsController', ['only' => ['index', 'destroy']]);
 
-    $router->get('/i18n', 'ConsoleController@dataTableI18n');
+    //$router->get('/i18n', 'ConsoleController@dataTableI18n');
 
     // 权限
     //require(__DIR__ . '/console/permission.php');

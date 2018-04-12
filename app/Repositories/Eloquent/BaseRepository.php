@@ -46,7 +46,13 @@ abstract class BaseRepository extends Repository implements BaseRepositoryInterf
         $this->applyCriteria();
         $this->applyScope();
 
+        $temporarySkipPresenter = $this->skipPresenter;
+
+        $this->skipPresenter(true);
+
         $lists = $this->model->chunk($count, $callback);
+
+        $this->skipPresenter($temporarySkipPresenter);
 
         $this->resetModel();
 

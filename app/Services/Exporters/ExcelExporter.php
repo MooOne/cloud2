@@ -8,6 +8,7 @@
 namespace Yeelight\Services\Exporters;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
@@ -31,8 +32,18 @@ class ExcelExporter extends AbstractExporter
                         $titles = $this->getHeaderRowFromRecords($records);
                         $sheet->prependRow($titles);
                     }
-
-                    $sheet->rows($records->toArray());
+                    $rows = collect($records->toArray())->map(function ($item) {
+                        $return = [];
+                        foreach ($item as $in => $it) {
+                            if (is_array($it)) {
+                                $return[$in] = Arr::isAssoc($it) ? implode(',', $it) : json_encode($it);
+                            } else {
+                                $return[$in] = $it;
+                            }
+                        }
+                        return $return;
+                    });
+                    $sheet->rows($rows);
                 });
             });
 
