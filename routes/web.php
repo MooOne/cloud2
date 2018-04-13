@@ -58,6 +58,9 @@ Route::group([
 
     // 权限
     //require(__DIR__ . '/console/permission.php');
+    
+    $router->resource( 'firmware/gingko', GingkoController::class );
+
 
 
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');

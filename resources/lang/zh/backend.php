@@ -80,6 +80,8 @@ return [
 
     'operation_log'       => '操作日志',
     'parent_select_error' => '父级选择错误',
+    'gingko_title'        => 'Gingko 固件管理',
+
 
     'pagination' => [
         'range' => '从 :first 到 :last ，总共 :total 条',

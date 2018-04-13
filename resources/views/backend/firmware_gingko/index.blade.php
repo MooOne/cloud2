@@ -1,10 +1,10 @@
 @extends('backend.index')
-
+<!-- @inject('adminOperationLogPresenter','Yeelight\Presenters\AdminOperationLogPresenter') -->
 @section('content')
     <section class="content-header">
         <h1>
-            {{ $header or trans('backend.operation_log') }}
-            <small>{{ $description or trans('backend.operation_log') }}</small>
+            {{ $header or trans('backend.gingko_title') }}
+            <small>{{ $description or trans('backend.list') }}</small>
         </h1>
 
         <!-- breadcrumb start -->
@@ -50,89 +50,7 @@
 
                 <div class="pull-right">
                     {{--Filter start--}}
-                    <div class="btn-group pull-right" style="margin-right: 10px">
-                        <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#filter-modal"><i class="fa fa-filter"></i>&nbsp;&nbsp;{{ trans('backend.filter') }}</a>
-                        <a href="{{ url_without_filters($columns)}}" class="btn btn-sm btn-facebook"><i class="fa fa-undo"></i>&nbsp;&nbsp;{{ trans('backend.reset') }}</a>
-                    </div>
-
-                    <div class="modal fade" id="filter-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                        <span class="sr-only">Close</span>
-                                    </button>
-                                    <h4 class="modal-title" id="myModalLabel">{{ trans('backend.filter') }}</h4>
-                                </div>
-                                <form action="{{ url_without_filters($columns)}}" method="get" pjax-container>
-                                    <div class="modal-body">
-                                        <div class="form">
-                                            <div class="form-group">
-                                                <div class="form-group">
-                                                    <label>{{ $columns['id'] }}</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </div>
-                                                        <input type="text" class="form-control id" placeholder="{{ $columns['id'] }}" name="id" value="{{ isset($query['id']) ? $query['id'] : ''}}">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="form-group">
-                                                    <label>{{ $columns['user_name'] }}</label>
-                                                    <select class="form-control user_id" name="user_id" style="width: 100%;">
-                                                        <option></option>
-                                                        @foreach($adminUsers as $akey => $adminUser)
-                                                            <option value="{{ $akey }}" @if (isset($query['user_id']) && $query['user_id'] == $akey) selected @endif>{{ $adminUser }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="form-group">
-                                                    <label>{{ $columns['method'] }}</label>
-                                                    <select class="form-control method" name="method" style="width: 100%;">
-                                                        <option></option>
-                                                        @foreach($methods as $method)
-                                                            <option value="{{ $method }}"  @if (isset($query['method']) && $query['method'] == $method) selected @endif>{{ $method }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="form-group">
-                                                    <label>{{ $columns['path'] }}</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </div>
-                                                        <input type="text" class="form-control path" placeholder="{{ $columns['path'] }}" name="path" value="{{ isset($query['path']) ? $query['path'] : ''}}">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="form-group">
-                                                    <label>{{ $columns['ip'] }}</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </div>
-                                                        <input type="text" class="form-control ip" placeholder="{{ $columns['ip'] }}" name="ip" value="{{ isset($query['ip']) ? $query['ip'] : ''}}">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary submit">{{ trans('backend.submit') }}</button>
-                                        <button type="reset" class="btn btn-warning pull-left">{{ trans('backend.reset') }}</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+     
                     {{--Filter end--}}
 
                     {{--ExportButton start--}}
@@ -144,7 +62,7 @@
                         </button>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ backend_export_url('all') }}" target="_blank">{{ trans('backend.all') }}</a></li>
-                            <li><a href="{{ backend_export_url('page', (isset($query['page']) ? $query['page'] :0)) }}" target="_blank">{{ trans('backend.current_page') }}</a></li>
+                            <li><a href="{{ backend_export_url('page', /*$page*/0) }}" target="_blank">{{ trans('backend.current_page') }}</a></li>
                             <li><a href="{{ backend_export_url('selected', '__rows__') }}" target="_blank" class='export-selected'>{{ trans('backend.selected_rows') }}</a></li>
                         </ul>
                     </div>
@@ -186,47 +104,47 @@
                     <tr>
                         <th></th>
                         <th>{{ $columns['id'] }}{!! column_sorter('id') !!}</th>
-                        <th>{{ $columns['user_name'] }}</th>
-                        <th>{{ $columns['method'] }}</th>
-                        <th>{{ $columns['path'] }}</th>
-                        <th>{{ $columns['ip'] }}</th>
-                        <th>{{ $columns['input'] }}</th>
-                        <th>{{ $columns['created_at'] }}</th>
+                        <th>{{ $columns['release_version'] }}</th>
+                        <th>{{ $columns['source_reversion'] }}</th>
+                        <th>{{ $columns['md5_checksum'] }}</th>
+                        <th>{{ $columns['rate'] }}</th>
+                        <th>{{ trans('backend.created_at') }}</th>
                         <th>{{ trans('backend.action') }}</th>
                     </tr>
 
-                    @foreach($lists['data'] as $row)
+                    @forelse ( $lists as $row )
                         <tr>
                             <td>
                                 <input type="checkbox" class="grid-row-checkbox" data-id="{{ $row['id'] }}" />
                             </td>
-                            <td>{{ $row['id'] }}</td>
-                            <td>{{ $row['user_name'] }}</td>
-                            <td>
-                                <span class="badge bg-{{ $row['method_color'] }}">{{ $row['method'] }}</span>
+                            <td> {{ $row->id }} </td>
+                            <td> 
+                                <span class="label label-success"> {{ $row->release_version }} </span>
                             </td>
                             <td>
-                                <span class="label label-info">{{ $row['path'] }}</span>
+                                <span class="badge"> {{ $row->source_reversion }} </span>
                             </td>
                             <td>
-                                <span class="label label-primary">{{ $row['ip'] }}</span>
+                                <span class="label label-info">{{ $row->md5_checksum }}</span>
                             </td>
                             <td>
-                                <pre>{{ $row['input'] }}</pre>
+                                <span class="label label-primary"> {{ $row->rate }} </span>
                             </td>
-                            <td>{{ $row['created_at'] }}</td>
+                            <td> {{ $row->created_at }} </td>
                             <td>
                                 <a href="javascript:void(0);" data-id="{{ $row['id'] }}" class="grid-row-delete">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <p> 暂无数据！ </p>
+                    @endforelse
 
                 </table>
             </div>
             <div class="box-footer clearfix">
-                {!! $paginator !!}
+               
             </div>
             <!-- /.box-body -->
         </div>
