@@ -11,7 +11,7 @@ class AdminRoleCreateRequest extends FormRequest
      *
      * @var string
      */
-    protected $redirectRoute = 'permissions.create';
+    protected $redirectRoute = 'roles.create';
 
 
     /**
