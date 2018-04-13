@@ -7,14 +7,20 @@ use Illuminate\Foundation\Http\FormRequest;
 class AdminPermissionCreateRequest extends FormRequest
 {
     /**
+     * The route to redirect to if validation fails.
+     *
+     * @var string
+     */
+    protected $redirectRoute = 'permissions.create';
+
+
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
     public function authorize()
     {
-        //设置错误返回的表单地址
-        $this->redirect = $this->session()->previousUrl();
         return true;
     }
 

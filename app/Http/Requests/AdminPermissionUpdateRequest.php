@@ -3,9 +3,20 @@
 namespace Yeelight\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AdminPermissionUpdateRequest extends FormRequest
 {
+    /**
+     * Get the URL to redirect to on a validation error.
+     *
+     * @return string
+     */
+    protected function getRedirectUrl()
+    {
+        return $this->getSession()->previousUrl();
+    }
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -13,9 +24,6 @@ class AdminPermissionUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        //设置错误返回的表单地址
-        $this->redirect = $this->session()->previousUrl();
-        dd($this->url());
         return true;
     }
 
@@ -28,7 +36,11 @@ class AdminPermissionUpdateRequest extends FormRequest
     {
         return [
             'slug' => 'required|max:50',
-            'name' => 'required|unique:admin_permissions|max:50',
+            'name'  => [
+                'required',
+                Rule::unique('admin_permissions')->ignore($this->name, 'name'),
+                'max:50'
+            ],
             'http_method' => 'array',
             'http_path' => 'required'
         ];

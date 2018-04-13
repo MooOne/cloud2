@@ -30,7 +30,7 @@ trait BackendCurd
      */
     public function show($id)
     {
-        //return $this->repository->find($id);
+        return $this->repository->find($id);
     }
 
 
@@ -67,7 +67,7 @@ trait BackendCurd
     {
         backend_toastr(trans('backend.save_succeeded'));
 
-        $url = Input::get('') ?: get_resource(0);
+        $url = Input::get('_previous_') ?: get_resource(0);
 
         return redirect($url);
     }
@@ -81,7 +81,7 @@ trait BackendCurd
     {
         backend_toastr(trans('backend.update_succeeded'));
 
-        $url = Input::get('') ?: get_resource(-1);
+        $url = Input::get('_previous_') ?: get_resource(-1);
 
         return redirect($url);
     }

@@ -100,14 +100,14 @@ class AdminPermissionsController extends BaseController
         $result = $this->repository->create($data);
 
         if ($result) {
-            $this->redirectAfterStore();
+            return $this->redirectAfterStore();
         } else {
             $error = new MessageBag([
                 'title'   => trans('backend.failed'),
                 'message' => trans('backend.save_failed'),
             ]);
 
-            return back()->with(compact('error'));
+            return redirect(route('permissions.create'))->with(compact('error'));
         }
 
     }
@@ -126,14 +126,13 @@ class AdminPermissionsController extends BaseController
         $result = $this->repository->update($data, $id);
 
         if ($result) {
-            $this->redirectAfterUpdate();
+            return $this->redirectAfterUpdate();
         } else {
             $error = new MessageBag([
                 'title'   => trans('backend.failed'),
                 'message' => trans('backend.update_failed'),
             ]);
-
-            return back()->with(compact('error'));
+            return redirect($request->session()->previousUrl())->with(compact('error'));
         }
     }
 
