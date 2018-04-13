@@ -4,12 +4,13 @@ namespace Yeelight\Http\Controllers\Backend;
 use Dingo\Api\Exception\DeleteResourceFailedException;
 use Dingo\Api\Exception\StoreResourceFailedException;
 use Dingo\Api\Exception\UpdateResourceFailedException;
+use Illuminate\Support\MessageBag;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Yeelight\Http\Requests\AdminRoleCreateRequest;
 use Yeelight\Http\Requests\AdminRoleUpdateRequest;
+use Yeelight\Models\AdminPermission;
 use Yeelight\Repositories\Interfaces\AdminRoleRepository;
 use Yeelight\Validators\AdminRoleValidator;
-use Yeelight\Http\Controllers\BaseController;
 
 class AdminRolesController extends BaseController
 {
@@ -24,7 +25,10 @@ class AdminRolesController extends BaseController
      */
     protected $validator;
 
-    public function __construct(AdminRoleRepository $repository, AdminRoleValidator $validator)
+    public function __construct(
+        AdminRoleRepository $repository,
+        AdminRoleValidator $validator
+    )
     {
         $this->repository = $repository;
         $this->validator = $validator;
@@ -38,8 +42,51 @@ class AdminRolesController extends BaseController
      */
     public function index()
     {
-        return $this->repository->all();
+        $columns = trans('admin_roles.columns');
+        $lists = $this->repository->paginate(null, ['*']);
+        $paginator = $this->backendPagination($lists);
+
+        //导出
+        $this->setupExporter();
+
+        return view('backend.admin_roles.index', [
+            'lists' => $lists,
+            'columns' => $columns,
+            'paginator' => $paginator,
+            'query' => request()->query()
+        ]);
     }
+
+    /**
+     * Create
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function create()
+    {
+        $columns = trans('admin_roles.columns');
+        $permissions = AdminPermission::all()->pluck('name', 'id');
+        return view('backend.admin_roles.create', [
+            'columns' => $columns,
+            'permissions' => $permissions
+        ]);
+    }
+
+    /**
+     * Edit
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit($id)
+    {
+        $data = $this->repository->skipPresenter(true)->find($id);
+        $columns = trans('admin_roles.columns');
+        return view('backend.admin_roles.edit', [
+            'data' => $data,
+            'columns' => $columns
+        ]);
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -50,80 +97,76 @@ class AdminRolesController extends BaseController
      */
     public function store(AdminRoleCreateRequest $request)
     {
-
         $data = $request->all();
+        $result = $this->repository->create($data);
 
-        $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
+        if ($result) {
+            return $this->redirectAfterStore();
+        } else {
+            $error = new MessageBag([
+                'title'   => trans('backend.failed'),
+                'message' => trans('backend.save_failed'),
+            ]);
 
-        $adminRole = $this->repository->create($data);
+            return redirect(route('roles.create'))->with(compact('error'));
+        }
 
-        // throw exception if store failed
-//        throw new StoreResourceFailedException('Failed to store.');
-
-        // A. return 201 created
-//        return $this->response->created(null);
-
-        // B. return data
-        return $adminRole;
-
-    }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return $this->repository->find($id);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  AdminRoleUpdateRequest $request
-     * @param  string            $id
-     *
-     * @return Response
+     * @param AdminRoleUpdateRequest $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
      */
     public function update(AdminRoleUpdateRequest $request, $id)
     {
-
         $data = $request->all();
 
-        $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+        $result = $this->repository->update($data, $id);
 
-        $adminRole = $this->repository->update($data, $id);
-
-        // throw exception if update failed
-//        throw new UpdateResourceFailedException('Failed to update.');
-
-        // Updated, return 204 No Content
-        return $this->response->noContent();
-
+        if ($result) {
+            return $this->redirectAfterUpdate();
+        } else {
+            $error = new MessageBag([
+                'title'   => trans('backend.failed'),
+                'message' => trans('backend.update_failed'),
+            ]);
+            return redirect($request->session()->previousUrl())->with(compact('error'));
+        }
     }
-
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        $deleted = $this->repository->delete($id);
+        $ids = explode(',', $id);
+
+        // 不能删除超级管理员
+        if (in_array(1, $ids)) {
+            return response()->json([
+                'status'  => false,
+                'message' => trans('admin_roles.not_allow_delete_administrator'),
+            ]);
+        }
+
+        $deleted = $this->repository->deleteIn($ids);
 
         if ($deleted) {
-            // Deleted, return 204 No Content
-            return $this->response->noContent();
+            return response()->json([
+                'status'  => true,
+                'message' => trans('backend.delete_succeeded'),
+            ]);
         } else {
-            // Failed, throw exception
-            throw new DeleteResourceFailedException('Failed to delete.');
+            return response()->json([
+                'status'  => false,
+                'message' => trans('backend.delete_failed'),
+            ]);
         }
     }
 }

@@ -20,11 +20,23 @@ class AdminRoleTransformer extends BaseTransformer
     {
         return [
             'id' => (int) $model->id,
-
-            /* place your other model properties here */
-
-            'created_at' => (string) $model->created_at,
-            'updated_at' => (string) $model->updated_at
+            'name'              => (string) $model->name,
+            'slug'              => (string) $model->slug,
+            'permissions'       => (array) $model->permissions,
+            'permissions_str'   => (string) $this->getPermissionsAttr($model),
+            'created_at'        => (string) $model->created_at,
+            'updated_at'        => (string) $model->updated_at
         ];
+    }
+
+    public function getPermissionsAttr(AdminRole $model)
+    {
+        $permissions = "<div style='margin-bottom: 5px;'>";
+        $permissions .= collect($model->permissions)->map(function ($permission, $index) {
+            $br = $index && $index % 3 == 0 ? '</div><div style=\'margin-bottom: 5px;\'>' : '';
+            return "<span class='label label-success'>{$permission->name}</span>{$br}";
+        })->implode('&nbsp;');
+        $permissions .= "</div>";
+        return $permissions;
     }
 }

@@ -135,5 +135,4 @@ class AdminPermissionsController extends BaseController
             return redirect($request->session()->previousUrl())->with(compact('error'));
         }
     }
-
 }

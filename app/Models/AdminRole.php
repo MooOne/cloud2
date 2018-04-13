@@ -75,7 +75,7 @@ class AdminRole extends BaseModel implements Transformable
 
         $relatedModel = config('yeelight.backend.database.admin_permissions_model');
 
-        return $this->belongsToMany($relatedModel, $pivotTable, 'role_id', 'permission_id');
+        return $this->belongsToMany($relatedModel, $pivotTable, 'role_id', 'permission_id')->withTimestamps();
     }
 
     /**
@@ -102,20 +102,27 @@ class AdminRole extends BaseModel implements Transformable
         return !$this->can($permission);
     }
 
-    /**
-     * Detach models from the relationship.
-     *
-     * @return void
-     */
-    protected static function boot()
+    function onCreated()
     {
-        parent::boot();
-
-        static::deleting(function ($model) {
-            $model->administrators()->detach();
-
-            $model->permissions()->detach();
-        });
+        $permissions = array_filter(request()->get('permissions'));
+        if (!empty($permissions)) {
+            $this->permissions()->sync($permissions);
+        }
     }
 
+    function onUpdated()
+    {
+        $permissions = array_filter(request()->get('permissions'));
+        if (!empty($permissions)) {
+            $this->permissions()->sync($permissions);
+        }
+    }
+
+    function onDeleted()
+    {
+        $this->administrators()->detach();
+
+        $this->permissions()->detach();
+        $this->permissions()->delete();
+    }
 }

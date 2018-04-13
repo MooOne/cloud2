@@ -7,13 +7,21 @@ use Illuminate\Foundation\Http\FormRequest;
 class AdminRoleCreateRequest extends FormRequest
 {
     /**
+     * The route to redirect to if validation fails.
+     *
+     * @var string
+     */
+    protected $redirectRoute = 'permissions.create';
+
+
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +32,9 @@ class AdminRoleCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'slug' => 'required|max:50',
+            'name' => 'required|unique:admin_roles|max:50',
+            'permissions' => 'array|required'
         ];
     }
 }

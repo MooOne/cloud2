@@ -23,14 +23,14 @@ class AdminPermissionTransformer extends BaseTransformer
             'id' => (int) $model->id,
             'name'          => (string) $model->name,
             'slug'          => (string) $model->slug,
-            'http_method'   => (string) $this->getHttpMethod($model),
-            'http_path'     => (string) $this->getHttpPath($model),
+            'http_method'   => (string) $this->getHttpMethodAttr($model),
+            'http_path'     => (string) $this->getHttpPathAttr($model),
             'created_at'    => (string) $model->created_at,
             'updated_at'    => (string) $model->updated_at
         ];
     }
 
-    public function getHttpPath(AdminPermission $model)
+    public function getHttpPathAttr(AdminPermission $model)
     {
         return collect(explode("\r\n", $model->http_path))->map(function ($path) use ($model) {
             $method = $model->http_method ?: ['ANY'];
@@ -52,7 +52,7 @@ class AdminPermissionTransformer extends BaseTransformer
         })->implode('');
     }
 
-    public function getHttpMethod(AdminPermission $model)
+    public function getHttpMethodAttr(AdminPermission $model)
     {
         return collect($model->http_method)->map(function ($name) {
             return strtoupper($name);

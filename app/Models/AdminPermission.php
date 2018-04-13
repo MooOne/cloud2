@@ -163,6 +163,56 @@ class AdminPermission extends BaseModel implements Transformable
         return $method;
     }
 
+    function onCreating()
+    {
+        // TODO: Implement onCreating() method.
+    }
+
+    function onCreated()
+    {
+        // TODO: Implement onCreated() method.
+    }
+
+    function onUpdating()
+    {
+        // TODO: Implement onUpdating() method.
+    }
+
+    function onUpdated()
+    {
+        // TODO: Implement onUpdated() method.
+    }
+
+    function onSaving()
+    {
+        // TODO: Implement onSaving() method.
+    }
+
+    function onSaved()
+    {
+        // TODO: Implement onSaved() method.
+    }
+
+    function onDeleting()
+    {
+        // TODO: Implement onDeleting() method.
+    }
+
+    function onDeleted()
+    {
+        // TODO: Implement onDeleted() method.
+    }
+
+    function onRestoring()
+    {
+        // TODO: Implement onRestoring() method.
+    }
+
+    function onRestored()
+    {
+        // TODO: Implement onRestored() method.
+    }
+
     /**
      * Detach models from the relationship.
      *

@@ -14,6 +14,23 @@ use Yeelight\Presenters\AdminRolePresenter;
 class AdminRoleRepositoryEloquent extends BaseRepository implements AdminRoleRepository
 {
     /**
+     * @var array
+     */
+    protected $fieldSearchable = [
+        'id',
+        'name' => 'like',
+        'slug' => 'like',
+    ];
+
+
+    /**
+     * @var bool
+     */
+    protected $isSearchableForceAndWhere = true;
+
+
+
+    /**
      * Specify Model class name
      *
      * @return string

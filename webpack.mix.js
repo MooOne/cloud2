@@ -47,6 +47,9 @@ const paths = {
     // iCheck
     'iCheck': vendors + 'iCheck/',
 
+    // duallistbox
+    'duallistbox': vendors + 'bootstrap-duallistbox/dist/',
+
     // select2
     'select2': vendors + 'select2/dist/',
 
@@ -121,6 +124,11 @@ mix.copy(paths.slimScroll + 'jquery.slimscroll.js', destJs);
 // iCheck
 mix.copy(paths.iCheck + 'icheck.js', destJs);
 mix.copyDirectory(paths.iCheck, destCss + 'icheck');
+
+//duallistbox
+// iCheck
+mix.copy(paths.duallistbox + 'jquery.bootstrap-duallistbox.js', destJs);
+mix.copy(paths.duallistbox + 'bootstrap-duallistbox.css', destCss);
 
 // select2
 mix.copy(paths.select2 + 'js/select2.full.js', destJs);
@@ -208,6 +216,7 @@ mix.styles(
     [
         destCss + 'bootstrap-diy.css',
         destCss + 'pace.css',
+        destCss + 'bootstrap-duallistbox.css',
         destCss + 'select2.css',
         destCss + 'AdminLTE-diy.css',
         destCss + 'skin-blue.css',
@@ -239,6 +248,7 @@ mix.scripts(
         destJs + 'pace.js',
         destJs + 'jquery.slimscroll.js',
         destJs + 'icheck.js',
+        destJs + 'jquery.bootstrap-duallistbox.js',
         destJs + 'select2.full.js',
         destJs + 'select2.js',
         destJs + 'sweetalert.min.js',

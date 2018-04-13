@@ -3,8 +3,8 @@
 @section('content')
     <section class="content-header">
         <h1>
-            {{ $header or trans('backend.permissions') }}
-            <small>{{ $description or trans('backend.permissions') }}</small>
+            {{ $header or trans('backend.roles') }}
+            <small>{{ $description or trans('backend.list') }}</small>
         </h1>
 
         <!-- breadcrumb start -->
@@ -101,28 +101,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <div class="form-group">
-                                                    <label>{{ $columns['http_method'] }}</label>
-                                                    <select class="form-control method" name="method" style="width: 100%;">
-                                                        <option></option>
-                                                        @foreach($httpMethods as $method)
-                                                            <option value="{{ $method }}"  @if (isset($query['http_method']) && $query['http_method'] == $method) selected @endif>{{ $method }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="form-group">
-                                                    <label>{{ $columns['http_path'] }}</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </div>
-                                                        <input type="text" class="form-control path" placeholder="{{ $columns['http_path'] }}" name="path" value="{{ isset($query['http_path']) ? $query['http_path'] : ''}}">
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -188,7 +166,7 @@
                         <th>{{ $columns['id'] }}{!! column_sorter('id') !!}</th>
                         <th>{{ $columns['slug'] }}</th>
                         <th>{{ $columns['name'] }}</th>
-                        <th>{{ $columns['http_route'] }}</th>
+                        <th>{{ $columns['permissions_str'] }}</th>
                         <th>{{ $columns['created_at'] }}{!! column_sorter('created_at') !!}</th>
                         <th>{{ $columns['updated_at'] }}{!! column_sorter('updated_at') !!}</th>
                         <th>{{ trans('backend.action') }}</th>
@@ -205,7 +183,7 @@
                                 <span class="label label-info">{{ $row['name'] }}</span>
                             </td>
                             <td>
-                                {!! $row['http_path'] !!}
+                                {!! $row['permissions_str'] !!}
                             </td>
                             <td>{{ $row['created_at'] }}</td>
                             <td>{{ $row['updated_at'] }}</td>
@@ -363,12 +341,6 @@
                     });
             });
 
-            $(".user_id").select2({
-                placeholder: "{{ trans('backend.choose') }}"
-            });
-            $(".method").select2({
-                placeholder: "{{ trans('backend.choose') }}"
-            });
         });
     </script>
 @endsection
