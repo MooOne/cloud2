@@ -17,20 +17,12 @@ abstract class BaseRepository extends Repository implements BaseRepositoryInterf
      */
     public function deleteIn(array $ids)
     {
-        $this->applyScope();
-
-        $temporarySkipPresenter = $this->skipPresenter;
-        $this->skipPresenter(true);
-
-        $this->model = $this->model->whereIn($this->model->getKeyName(), $ids);
-
-        $deleted = $this->model->delete();
-
-        event(new RepositoryEntityDeleted($this, $this->model->getModel()));
-
-        $this->skipPresenter($temporarySkipPresenter);
-        $this->resetModel();
-
+        $deleted = false;
+        if (!empty($ids)) {
+            foreach ($ids as $id) {
+                $deleted = $this->delete($id);
+            }
+        }
         return $deleted;
     }
 

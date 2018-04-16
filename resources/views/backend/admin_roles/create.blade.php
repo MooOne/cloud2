@@ -143,7 +143,7 @@
 
             </div>
             {{--Hidden Fields Start--}}
-                <input type="hidden" name="_previous_" value="{{ url()->previous() }}" class="_previous_">
+                <input type="hidden" name="_previous_" value="{{ get_resource(-1) }}" class="_previous_">
             {{--Hidden Fields End--}}
         <!-- /.box-footer -->
             </form>

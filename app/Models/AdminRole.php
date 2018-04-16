@@ -118,11 +118,9 @@ class AdminRole extends BaseModel implements Transformable
         }
     }
 
-    function onDeleted()
+    function onDeleting()
     {
         $this->administrators()->detach();
-
-        $this->permissions()->detach();
-        $this->permissions()->delete();
+        $this->permissions()->sync([]);
     }
 }

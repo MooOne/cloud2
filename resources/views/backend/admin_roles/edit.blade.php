@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            {{ $header or trans('backend.permissions') }}
+            {{ $header or trans('backend.roles') }}
             <small>{{ $description or trans('backend.edit') }}</small>
         </h1>
 
@@ -77,7 +77,7 @@
                                 <span class="input-group-addon">
                                     <i class="fa fa-pencil"></i>
                                 </span>
-                                <input type="text" id="slug" name="slug" value="{{ $data->slug }}" class="form-control slug" placeholder="{{ trans('backend.input') }} {{ $columns['slug'] }}">
+                                <input type="text" id="slug" name="slug" value="{{ $data['slug'] }}" class="form-control slug" placeholder="{{ trans('backend.input') }} {{ $columns['slug'] }}">
                             </div>
                         </div>
                     </div>
@@ -94,43 +94,26 @@
                                 <span class="input-group-addon">
                                     <i class="fa fa-pencil"></i>
                                 </span>
-                                <input type="text" id="name" name="name" value="{{ $data->name }}" class="form-control name" placeholder="{{ trans('backend.input') }} {{ $columns['name'] }}">
+                                <input type="text" id="name" name="name" value="{{ $data['name'] }}" class="form-control name" placeholder="{{ trans('backend.input') }} {{ $columns['name'] }}">
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group {!! !$errors->has('http_method') ? '' : 'has-error' !!}">
-                        <label for="http_method" class="col-sm-2 control-label">{{ $columns['http_method'] }}</label>
+                    <div class="form-group {!! !$errors->has('permissions') ? '' : 'has-error' !!}">
+                        <label for="permissions" class="col-sm-2 control-label">{{ $columns['permissions'] }}</label>
                         <div class="col-sm-8">
-                            @if($errors->has('http_method'))
-                                @foreach($errors->get('http_method') as $message)
+                            @if($errors->has('permissions'))
+                                @foreach($errors->get('permissions') as $message)
                                     <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{$message}}</label><br/>
                                 @endforeach
                             @endif
 
-                            <select class="form-control http_method" name="http_method[]" style="width: 100%;" multiple >
-                                <option></option>
-                                @foreach($httpMethods as $method)
-                                    <option value="{{ $method }}"  @if (in_array($method, $data->http_method)) selected @endif>{{ $method }}</option>
+                            <select class="form-control permissions" name="permissions[]" style="width: 100%;" multiple >
+                                @foreach($permissions as $pk => $permission)
+                                    <option value="{{ $pk }}"    @if (in_array($pk, $data['permission_ids'])) selected @endif>{{ $permission }}</option>
                                 @endforeach
                             </select>
-                            <input type="hidden" name="http_method[]">
-                            <span class="help-block">
-                                <i class="fa fa-info-circle"></i>&nbsp;{{ trans('backend.all_methods_if_empty') }}
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="form-group {!! !$errors->has('http_path') ? '' : 'has-error' !!}">
-                        <label for="http_path" class="col-sm-2 control-label">{{ $columns['http_path'] }}</label>
-                        <div class="col-sm-8">
-                            @if($errors->has('http_path'))
-                                @foreach($errors->get('http_path') as $message)
-                                    <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{$message}}</label><br/>
-                                @endforeach
-                            @endif
-
-                            <textarea name="http_path" class="form-control" rows="5" placeholder="{{ trans('backend.input') }} {{ $columns['http_path'] }}">{{ $data->http_path }}</textarea>
+                            <input type="hidden" name="permissions[]">
                         </div>
                     </div>
 
@@ -179,9 +162,13 @@
                 history.back(1);
             });
         });
-        $(".http_method").select2({
-            allowClear:true,
-            placeholder: "{{ trans('backend.choose') }} {{ $columns['http_method'] }}"
-        });
+        $(".permissions").bootstrapDualListbox(
+            {
+                "infoText":"{{ trans('backend.listbox.text_total') }}",
+                "infoTextEmpty":"{{ trans('backend.listbox.text_empty') }}",
+                "infoTextFiltered":"{{ trans('backend.listbox.filtered') }}",
+                "filterTextClear":"{{ trans('backend.listbox.filter_clear') }}",
+                "filterPlaceHolder":"{{ trans('backend.listbox.filter_placeholder') }}"
+            });
     </script>
 @endsection

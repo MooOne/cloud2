@@ -23,6 +23,7 @@ class AdminRoleTransformer extends BaseTransformer
             'name'              => (string) $model->name,
             'slug'              => (string) $model->slug,
             'permissions'       => (array) $model->permissions,
+            'permission_ids'    => (array) $model->permissions->pluck($model->getKeyName())->toArray(),
             'permissions_str'   => (string) $this->getPermissionsAttr($model),
             'created_at'        => (string) $model->created_at,
             'updated_at'        => (string) $model->updated_at
