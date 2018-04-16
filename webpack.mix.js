@@ -85,6 +85,9 @@ const paths = {
 
     //bootstrap-editable
     'editable': vendors + 'bootstrap-editable/src/',
+
+    //bootstrap-fileinput
+    'fileinput': vendors + 'bootstrap-fileinput/',
 };
 
 // Copy fonts straight to public
@@ -177,6 +180,12 @@ mix.copy(paths.editable + 'css/bootstrap-editable.css', destCss);
 mix.copy(paths.editable + 'css/datepicker.css', destCss);
 mix.copyDirectory(paths.editable + 'img', destImg);
 
+
+//bootstrap-fileinput
+mix.copyDirectory(paths.fileinput + 'js', destJs);
+mix.copyDirectory(paths.fileinput + 'css', destCss);
+mix.copyDirectory(paths.fileinput + 'img', destImg);
+
 // google-fonts
 mix.copyDirectory(paths.googlefonts, destCss);
 
@@ -229,6 +238,7 @@ mix.styles(
         destCss + 'wangEditor.css',
         destCss + 'fonts.css',
         destCss + 'bootstrap-editable.css',
+        destCss + 'fileinput.css',
         destCss + 'datepicker.css',
         destCss + 'icheck/minimal/_all.css'
     ],
@@ -259,6 +269,11 @@ mix.scripts(
         destJs + 'bootstrap-editable.js',
         destJs + 'bootstrap-datepicker.js',
         destJs + 'bootstrap-datepicker.zh-CN.js',
+        destJs + 'fileinput.js',
+        destJs + 'plugins/sortable.js',
+        destJs + 'plugins/purify.js',
+        destJs + 'plugins/canvas-to-blob.js',
+        destJs + 'locales/zh.js',
         destJs + 'wangEditor.js'
     ],
     destJs + 'app.js'

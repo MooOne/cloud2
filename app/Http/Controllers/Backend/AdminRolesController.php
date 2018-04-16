@@ -82,7 +82,7 @@ class AdminRolesController extends BaseController
         $data = $this->repository->find($id);
         $permissions = AdminPermission::all()->pluck('name', 'id');
         $columns = trans('admin_roles.columns');
-        //dd($data);
+
         return view('backend.admin_roles.edit', [
             'data' => $data['data'],
             'columns' => $columns,

@@ -195,7 +195,8 @@ class AdminPermission extends BaseModel implements Transformable
 
     function onDeleting()
     {
-        // TODO: Implement onDeleting() method.
+        // Detach models from the relationship.
+        $this->roles()->detach();
     }
 
     function onDeleted()
@@ -212,19 +213,4 @@ class AdminPermission extends BaseModel implements Transformable
     {
         // TODO: Implement onRestored() method.
     }
-
-    /**
-     * Detach models from the relationship.
-     *
-     * @return void
-     */
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::deleting(function ($model) {
-            $model->roles()->detach();
-        });
-    }
-
 }

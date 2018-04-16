@@ -4,6 +4,7 @@ namespace Yeelight\Services\Image;
 use Carbon\Carbon;
 use File;
 use Image;
+use Intervention\Image\ImageManager;
 use Yeelight\Services\Image\Exception\YeelightImageException;
 use Yeelight\Services\Image\Exception\StoreImageException;
 use Yeelight\Services\Image\Models\YeelightImageHash;
