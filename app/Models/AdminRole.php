@@ -104,6 +104,7 @@ class AdminRole extends BaseModel implements Transformable
 
     function onCreated()
     {
+        parent::onCreated();
         $permissions = array_filter(request()->get('permissions'));
         if (!empty($permissions)) {
             $this->permissions()->sync($permissions);
@@ -112,6 +113,7 @@ class AdminRole extends BaseModel implements Transformable
 
     function onUpdated()
     {
+        parent::onUpdated();
         $permissions = array_filter(request()->get('permissions'));
         if (!empty($permissions)) {
             $this->permissions()->sync($permissions);
@@ -120,6 +122,7 @@ class AdminRole extends BaseModel implements Transformable
 
     function onDeleting()
     {
+        parent::onDeleting();
         $this->administrators()->detach();
         $this->permissions()->sync([]);
     }

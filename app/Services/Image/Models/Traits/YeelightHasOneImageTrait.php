@@ -97,7 +97,7 @@ trait YeelightHasOneImageTrait
      */
     protected function getYeelightImageDefaultUrl()
     {
-        return null;
+        return backend_asset('img/user2-160x160.jpg');;
     }
 
 }

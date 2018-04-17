@@ -8,8 +8,6 @@
 namespace Yeelight\Traits;
 
 use Illuminate\Support\Facades\Input;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Yeelight\Http\Requests\NormalRequest;
 
 trait BackendCurd
 {

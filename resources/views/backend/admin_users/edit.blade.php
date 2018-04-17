@@ -111,7 +111,7 @@
                                 <span class="input-group-addon">
                                     <i class="fa fa-file-picture-o"></i>
                                 </span>
-                                    <input type="file" id="avatar" name="avatar" value="{{ $data['avatar'] }}" class="form-control avatar" placeholder="{{ trans('backend.input') }} {{ $columns['avatar'] }}">
+                                    <input type="file" id="avatar" name="avatar" value="{{ $data['avatar'] }}" data-initial-preview="{{ $data['avatar'] }}" data-initial-caption="{{ $data['avatar'] }}" class="form-control avatar" placeholder="{{ trans('backend.input') }} {{ $columns['avatar'] }}">
                                 </div>
                             </div>
                         </div>
@@ -213,7 +213,7 @@
                 </div>
                 {{--Hidden Fields Start--}}
                 <input type="hidden" name="_method" value="PUT" class="_method">
-                <input type="hidden" name="_previous_" value="{{ get_resource(-1) }}" class="_previous_">
+                <input type="hidden" name="_previous_" value="{{ get_resource(-2) }}" class="_previous_">
             {{--Hidden Fields End--}}
             <!-- /.box-footer -->
             </form>

@@ -106,6 +106,7 @@ class AdminUsersController extends BaseController
     public function store(AdminUserCreateRequest $request)
     {
         $data = $request->all();
+
         $result = $this->repository->create($data);
 
         if ($result) {

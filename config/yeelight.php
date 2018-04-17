@@ -150,7 +150,7 @@ return [
         */
         'upload'  => [
 
-            'disk' => 'upyun',
+            'disk' => 'local',
 
             'directory'  => [
                 'image'  => 'image',

@@ -7,13 +7,21 @@ use Illuminate\Foundation\Http\FormRequest;
 class AdminUserCreateRequest extends FormRequest
 {
     /**
+     * The route to redirect to if validation fails.
+     *
+     * @var string
+     */
+    protected $redirectRoute = 'users.create';
+
+
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +32,12 @@ class AdminUserCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'username' => 'required|unique:admin_users|max:190',
+            'name' => 'required|max:255',
+            'password' => 'required|confirmed',
+            'password_confirmation' => 'required',
+            'permissions' => 'array',
+            'roles' => 'array'
         ];
     }
 }

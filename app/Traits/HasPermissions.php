@@ -40,7 +40,7 @@ trait HasPermissions
 
         $relatedModel = config('yeelight.backend.database.admin_roles_model');
 
-        return $this->belongsToMany($relatedModel, $pivotTable, 'user_id', 'role_id');
+        return $this->belongsToMany($relatedModel, $pivotTable, 'user_id', 'role_id')->withTimestamps();
     }
 
     /**
@@ -54,7 +54,7 @@ trait HasPermissions
 
         $relatedModel = config('yeelight.backend.database.admin_permissions_model');
 
-        return $this->belongsToMany($relatedModel, $pivotTable, 'user_id', 'permission_id');
+        return $this->belongsToMany($relatedModel, $pivotTable, 'user_id', 'permission_id')->withTimestamps();
     }
 
     /**

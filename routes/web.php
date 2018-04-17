@@ -36,7 +36,7 @@ Route::group(['prefix' => config('yeelight.backend.auth_route.prefix'), 'namespa
 });
 
 
-// Console Routes
+// Backend Routes
 Route::group([
     'prefix'        => config('yeelight.backend.route.prefix'),
     'namespace'     => config('yeelight.backend.route.namespace'),
@@ -54,7 +54,7 @@ Route::group([
     $router->resource('auth/menu', 'AdminMenusController', ['except' => ['create']]);
     $router->resource('auth/logs', 'AdminOperationLogsController', ['only' => ['index', 'destroy']]);
 
-    //$router->get('/i18n', 'ConsoleController@dataTableI18n');
+
 
     // 权限
     //require(__DIR__ . '/console/permission.php');
@@ -62,6 +62,10 @@ Route::group([
     $router->resource( 'firmware/gingko', GingkoController::class );
 
 
+
+    Route::post('image', 'ImageController@postImage');
+    Route::get('image/{type}/{name}', 'ImageController@showTypeImage');
+    Route::get('image/{name}', 'ImageController@showOriginalImage');
 
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
@@ -94,26 +98,8 @@ Route::group([
 });
 
 
-
-
-
-// Protected Routes
-Route::group(['middleware' => 'auth'], function () {
-
-//    Route::get('/', function () {
-//        return redirect('users');
-//    });
-
-    //Route::get('/', 'ExampleController@getIndexExample');
-    Route::get('blank-example', 'ExampleController@getBlankExample');
-    Route::get('desktop-example', 'ExampleController@getDesktopExample');
-
-    Route::get('users', 'UserController@getUserList');
-
-});
-
 // Image Routes
-// @WARNING: The 'image' prefix is reserved for SomelineImageService
+// @WARNING: The 'image' prefix is reserved for YeelightImageService
 Route::group(['prefix' => 'image'], function () {
 
     Route::group(['middleware' => 'auth'], function () {
