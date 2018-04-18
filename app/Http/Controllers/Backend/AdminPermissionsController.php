@@ -78,10 +78,10 @@ class AdminPermissionsController extends BaseController
      */
     public function edit($id)
     {
-        $data = $this->repository->skipPresenter(true)->find($id);
+        $data = $this->repository->find($id);
         $columns = trans('admin_permissions.columns');
         return view('backend.admin_permissions.edit', [
-            'data' => $data,
+            'data' => $data['data'],
             'columns' => $columns,
             'httpMethods' => AdminPermission::$httpMethods
         ]);

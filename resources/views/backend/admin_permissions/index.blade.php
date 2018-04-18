@@ -205,7 +205,7 @@
                                 <span class="label label-info">{{ $row['name'] }}</span>
                             </td>
                             <td>
-                                {!! $row['http_path'] !!}
+                                {!! $row['http_path_str'] !!}
                             </td>
                             <td>{{ $row['created_at'] }}</td>
                             <td>{{ $row['updated_at'] }}</td>

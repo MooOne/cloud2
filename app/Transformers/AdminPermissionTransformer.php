@@ -23,8 +23,10 @@ class AdminPermissionTransformer extends BaseTransformer
             'id' => (int) $model->id,
             'name'          => (string) $model->name,
             'slug'          => (string) $model->slug,
-            'http_method'   => (string) $this->getHttpMethodAttr($model),
-            'http_path'     => (string) $this->getHttpPathAttr($model),
+            'http_method'   => (array) $model->http_method,
+            'http_method_str'   => (string) $this->getHttpMethodAttr($model),
+            'http_path'     => (string) $model->http_path,
+            'http_path_str'     => (string) $this->getHttpPathAttr($model),
             'created_at'    => (string) $model->created_at,
             'updated_at'    => (string) $model->updated_at
         ];

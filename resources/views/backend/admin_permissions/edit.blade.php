@@ -77,7 +77,7 @@
                                 <span class="input-group-addon">
                                     <i class="fa fa-pencil"></i>
                                 </span>
-                                <input type="text" id="slug" name="slug" value="{{ $data->slug }}" class="form-control slug" placeholder="{{ trans('backend.input') }} {{ $columns['slug'] }}">
+                                <input type="text" id="slug" name="slug" value="{{ $data['slug'] }}" class="form-control slug" placeholder="{{ trans('backend.input') }} {{ $columns['slug'] }}">
                             </div>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                                 <span class="input-group-addon">
                                     <i class="fa fa-pencil"></i>
                                 </span>
-                                <input type="text" id="name" name="name" value="{{ $data->name }}" class="form-control name" placeholder="{{ trans('backend.input') }} {{ $columns['name'] }}">
+                                <input type="text" id="name" name="name" value="{{ $data['name'] }}" class="form-control name" placeholder="{{ trans('backend.input') }} {{ $columns['name'] }}">
                             </div>
                         </div>
                     </div>
@@ -111,7 +111,7 @@
                             <select class="form-control http_method" name="http_method[]" style="width: 100%;" multiple >
                                 <option></option>
                                 @foreach($httpMethods as $method)
-                                    <option value="{{ $method }}"  @if (in_array($method, $data->http_method)) selected @endif>{{ $method }}</option>
+                                    <option value="{{ $method }}"  @if (in_array($method, $data['http_method'])) selected @endif>{{ $method }}</option>
                                 @endforeach
                             </select>
                             <span class="help-block">
@@ -129,7 +129,7 @@
                                 @endforeach
                             @endif
 
-                            <textarea name="http_path" class="form-control" rows="5" placeholder="{{ trans('backend.input') }} {{ $columns['http_path'] }}">{{ $data->http_path }}</textarea>
+                            <textarea name="http_path" class="form-control" rows="5" placeholder="{{ trans('backend.input') }} {{ $columns['http_path'] }}">{{ $data['http_path'] }}</textarea>
                         </div>
                     </div>
 
