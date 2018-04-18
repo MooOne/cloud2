@@ -85,13 +85,13 @@ class AdminUser extends BaseModel implements AuthenticatableContract
         $this->yeelight_image->save();
 
         //权限
-        $permissions = array_filter(request()->get('permissions'));
+        $permissions = array_filter(request()->get('permissions', []));
         if (!empty($permissions)) {
             $this->permissions()->sync($permissions);
         }
 
         //角色
-        $roles = array_filter(request()->get('roles'));
+        $roles = array_filter(request()->get('roles', []));
         if (!empty($roles)) {
             $this->roles()->sync($roles);
         }
@@ -114,13 +114,13 @@ class AdminUser extends BaseModel implements AuthenticatableContract
         $this->yeelight_image->save();
 
         //权限
-        $permissions = array_filter(request()->get('permissions'));
+        $permissions = array_filter(request()->get('permissions', []));
         if (!empty($permissions)) {
             $this->permissions()->sync($permissions);
         }
 
         //角色
-        $roles = array_filter(request()->get('roles'));
+        $roles = array_filter(request()->get('roles', []));
         if (!empty($roles)) {
             $this->roles()->sync($roles);
         }

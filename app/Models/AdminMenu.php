@@ -88,7 +88,7 @@ class AdminMenu extends BaseModel implements Transformable
     public function onCreated()
     {
         parent::onCreated();
-        $roles = array_filter(request()->get('roles'));
+        $roles = array_filter(request()->get('roles', []));
         if (!empty($roles)) {
             $this->roles()->sync($roles);
         }
@@ -97,7 +97,7 @@ class AdminMenu extends BaseModel implements Transformable
     public function onUpdated()
     {
         parent::onUpdated();
-        $roles = array_filter(request()->get('roles'));
+        $roles = array_filter(request()->get('roles', []));
         if (!empty($roles)) {
             $this->roles()->sync($roles);
         }

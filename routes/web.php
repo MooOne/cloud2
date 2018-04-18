@@ -63,9 +63,12 @@ Route::group([
     $router->resource( 'firmware/gingko', GingkoController::class );
 
 
-    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
-
-
+    //Tools
+    $router->group(['prefix' => 'tools'], function ($router) {
+        $router->get('logs', 'Tools\LogViewer\LogController@index')->name('tools.log-viewer-index');
+        $router->get('logs/{file}', 'Tools\LogViewer\LogController@index')->name('tools.log-viewer-file');
+        $router->get('logs/{file}/tail', 'Tools\LogViewer\LogController@tail')->name('tools.log-viewer-tail');
+    });
 });
 
 
