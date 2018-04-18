@@ -6,7 +6,7 @@
  * Time: 下午4:59
  */
 
-namespace Yeelight\Models\Tools;
+namespace Yeelight\Models\Tools\LogViewer;
 
 
 /**

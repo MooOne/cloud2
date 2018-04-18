@@ -9,7 +9,7 @@ namespace Yeelight\Http\Controllers\Backend\Tools\LogViewer;
 
 use Illuminate\Http\Request;
 use Yeelight\Http\Controllers\BaseController;
-use Yeelight\Models\Tools\LogViewer;
+use Yeelight\Models\Tools\LogViewer\LogViewer;
 
 class LogController extends BaseController
 {
@@ -19,7 +19,7 @@ class LogController extends BaseController
 
         $viewer = new LogViewer($file);
 
-        return view('backend.tools.logs', [
+        return view('backend.tools.log_viewer.logs', [
             'logs'      => $viewer->fetch($offset),
             'logFiles'  => $viewer->getLogFiles(),
             'fileName'  => $viewer->file,
