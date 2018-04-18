@@ -1,0 +1,66 @@
+// COLORS
+// --------------------------------------------------------
+// Primary
+$light-blue: #3c8dbc;
+// Danger
+$red: #dd4b39;
+// Success
+$green: #00a65a;
+// Info
+$aqua: #00c0ef;
+// Warning
+$yellow: #f39c12;
+$blue: #0073b7;
+$navy: #001F3F;
+$teal: #39CCCC;
+$olive: #3D9970;
+$lime: #01FF70;
+$orange: #FF851B;
+$fuchsia: #F012BE;
+$purple: #605ca8;
+$maroon: #D81B60;
+$black: #111;
+$gray-lte: #d2d6de;
+$white: #FFFFFF;
+
+/*
+DIY Nestable styles
+ */
+.dd { position: relative; display: block; margin: 10px; padding: 0; list-style: none; font-size: 13px; line-height: 20px; }
+
+.dd-list { display: block; position: relative; margin: 0; padding: 0; list-style: none; }
+.dd-list .dd-list { padding-left: 30px; }
+.dd-collapsed .dd-list { display: none; }
+
+.dd-item,
+.dd-empty,
+.dd-placeholder { display: block; position: relative; margin: 0; padding: 0;}
+
+.dd-handle {
+  display: block;
+
+  margin: 1px 0;
+  padding: 8px 10px;
+  color: #333;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+.dd-handle:hover { color: #2ea8e5; background: #fff; }
+
+.dd-item > button { display: block; position: relative; cursor: pointer; float: left; width: 25px; height: 20px; margin: 5px 0; padding: 0; text-indent: 100%; white-space: nowrap; overflow: hidden; border: 0; background: transparent; font-size: 12px; line-height: 1; text-align: center; font-weight: bold; }
+.dd-item > button:before { content: '+'; display: block; position: absolute; width: 100%; text-align: center; text-indent: 0; }
+.dd-item > button[data-action="collapse"]:before { content: '-'; }
+
+.dd-placeholder { margin: 5px 0; padding: 0; min-height: 30px; background: #f2fbff; border: 1px dashed #b6bcbf; box-sizing: border-box; -moz-box-sizing: border-box; }
+
+.dd-dragel { position: absolute; pointer-events: none; z-index: 9999; }
+.dd-dragel > .dd-item .dd-handle { margin-top: 0; }
+.dd-dragel .dd-handle {
+  -webkit-box-shadow: 2px 4px 6px 0 rgba(0,0,0,.1);
+  box-shadow: 2px 4px 6px 0 rgba(0,0,0,.1);
+}
+/* iconpicker selected color */
+.iconpicker .iconpicker-item.iconpicker-selected {
+  background: $light-blue;
+}

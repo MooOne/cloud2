@@ -85,6 +85,31 @@ class AdminMenu extends BaseModel implements Transformable
         return static::with('roles')->orderByRaw($byOrder)->get()->toArray();
     }
 
+    public function onCreated()
+    {
+        parent::onCreated();
+        $roles = array_filter(request()->get('roles'));
+        if (!empty($roles)) {
+            $this->roles()->sync($roles);
+        }
+    }
+
+    public function onUpdated()
+    {
+        parent::onUpdated();
+        $roles = array_filter(request()->get('roles'));
+        if (!empty($roles)) {
+            $this->roles()->sync($roles);
+        }
+    }
+
+    public function onDeleting()
+    {
+        parent::onDeleting();
+        $this->children()->delete();
+        $this->roles()->detach();
+    }
+
     /**
      * Detach models from the relationship.
      *
@@ -93,10 +118,6 @@ class AdminMenu extends BaseModel implements Transformable
     protected static function boot()
     {
         static::treeBoot();
-
-        static::deleting(function ($model) {
-            $model->roles()->detach();
-        });
     }
 
 }

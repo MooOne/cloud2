@@ -349,6 +349,31 @@ if (!function_exists('json_encode_safe')) {
     }
 }
 
+if (!function_exists('json_decode_safe')) {
+
+    function json_decode_safe($json, $assoc = false, $depth = 512)
+    {
+        $decoded = json_decode($json, $assoc, $depth);
+        switch (json_last_error()) {
+            case JSON_ERROR_NONE:
+                return $decoded;
+            case JSON_ERROR_DEPTH:
+                throw new Exception('Maximum stack depth exceeded');
+            case JSON_ERROR_STATE_MISMATCH:
+                throw new Exception('Underflow or the modes mismatch');
+            case JSON_ERROR_CTRL_CHAR:
+                throw new Exception('Unexpected control character found');
+            case JSON_ERROR_SYNTAX:
+                throw new Exception('Syntax error, malformed JSON');
+            case JSON_ERROR_UTF8:
+                $clean = utf8ize($decoded);
+                return json_decode_safe($clean, $assoc, $depth);
+            default:
+                throw new Exception('Unknown error');
+        }
+    }
+}
+
 if (!function_exists('utf8ize')) {
 
     function utf8ize($mixed)

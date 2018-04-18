@@ -38,6 +38,9 @@ const paths = {
     // Fontawesome
     'fontawesome': vendors + 'font-awesome/',
 
+    // Fontawesome-iconpicker
+    'iconpicker': vendors + 'fontawesome-iconpicker/dist/',
+
     // Ionicons
     'Ionicons': vendors + 'Ionicons/',
 
@@ -116,6 +119,10 @@ mix.copyDirectory(paths.adminlte + 'img', destImg);
 //Fontawesome
 mix.copy(paths.fontawesome + 'css/font-awesome.css', destCss);
 mix.copyDirectory(paths.fontawesome + 'fonts', destFonts);
+
+//iconpicker
+mix.copyDirectory(paths.iconpicker + 'css', destCss);
+mix.copyDirectory(paths.iconpicker + 'js', destJs);
 
 // Ionicons
 mix.copyDirectory(paths.Ionicons + 'fonts', destFonts);
@@ -230,6 +237,7 @@ mix.styles(
         destCss + 'AdminLTE-diy.css',
         destCss + 'skin-blue.css',
         destCss + 'font-awesome.css',
+        destCss + 'fontawesome-iconpicker.css',
         destCss + 'ionicons.css',
         destCss + 'nprogress.css',
         destCss + 'sweetalert.css',
@@ -265,6 +273,7 @@ mix.scripts(
         destJs + 'jquery.nestable.js',
         destJs + 'toastr.js',
         destJs + 'lightbox.js',
+        destJs + 'fontawesome-iconpicker.js',
         destJs + 'clipboard.min.js',
         destJs + 'bootstrap-editable.js',
         destJs + 'bootstrap-datepicker.js',

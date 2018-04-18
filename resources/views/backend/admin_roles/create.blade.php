@@ -113,7 +113,6 @@
                                     <option value="{{ $pk }}"  >{{ $permission }}</option>
                                 @endforeach
                             </select>
-                            <input type="hidden" name="permissions[]">
                         </div>
                     </div>
 

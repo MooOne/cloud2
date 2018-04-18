@@ -31,6 +31,7 @@
     "bootstrap-duallistbox": "#^3.0.6",
     "Ionicons": "ionicons#^2.0.1",
     "font-awesome": "=4.7.0",
+    "fontawesome-iconpicker": "=1.4.1",
     "bootstrap": "=3.3.7",
     "admin-lte": "^2.4.3"
   },

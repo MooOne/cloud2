@@ -51,7 +51,8 @@ Route::group([
     $router->resource('auth/users', 'AdminUsersController');
     $router->resource('auth/roles', 'AdminRolesController');
     $router->resource('auth/permissions', 'AdminPermissionsController');
-    $router->resource('auth/menu', 'AdminMenusController', ['except' => ['create']]);
+    $router->resource('auth/menus', 'AdminMenusController', ['except' => ['create']]);
+    $router->post('auth/menus/order', 'AdminMenusController@order')->name('menus.order');
     $router->resource('auth/logs', 'AdminOperationLogsController', ['only' => ['index', 'destroy']]);
 
 
@@ -61,11 +62,6 @@ Route::group([
     
     $router->resource( 'firmware/gingko', GingkoController::class );
 
-
-
-    Route::post('image', 'ImageController@postImage');
-    Route::get('image/{type}/{name}', 'ImageController@showTypeImage');
-    Route::get('image/{name}', 'ImageController@showOriginalImage');
 
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 

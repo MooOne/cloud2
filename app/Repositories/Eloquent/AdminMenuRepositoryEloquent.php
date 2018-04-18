@@ -54,4 +54,15 @@ class AdminMenuRepositoryEloquent extends BaseRepository implements AdminMenuRep
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
+
+    /**
+     * Save tree order from a tree like array.
+     *
+     * @param array $tree
+     * @param int   $parentId
+     */
+    public function saveOrder($tree = [], $parentId = 0)
+    {
+        $this->model->saveOrder($tree, $parentId);
+    }
 }

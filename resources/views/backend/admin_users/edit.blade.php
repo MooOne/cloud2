@@ -164,7 +164,6 @@
                                         <option value="{{ $pk }}"  @if (in_array($pk, $data['role_ids'])) selected @endif>{{ $role }}</option>
                                     @endforeach
                                 </select>
-                                <input type="hidden" name="roles[]">
                             </div>
                         </div>
 
@@ -182,7 +181,6 @@
                                         <option value="{{ $pk }}"  @if (in_array($pk, $data['permission_ids'])) selected @endif>{{ $permission }}</option>
                                     @endforeach
                                 </select>
-                                <input type="hidden" name="permissions[]">
                             </div>
                         </div>
 

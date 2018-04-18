@@ -7,13 +7,23 @@ use Illuminate\Foundation\Http\FormRequest;
 class AdminMenuUpdateRequest extends FormRequest
 {
     /**
+     * Get the URL to redirect to on a validation error.
+     *
+     * @return string
+     */
+    protected function getRedirectUrl()
+    {
+        return $this->getSession()->previousUrl();
+    }
+
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +34,8 @@ class AdminMenuUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required|max:50',
+            'icon' => 'required|max:50'
         ];
     }
 }

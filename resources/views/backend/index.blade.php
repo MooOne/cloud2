@@ -9,6 +9,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <link rel="stylesheet" href="{{ yee_mix("/assets/css/app.css") }}">
+    <link rel="stylesheet" href="{{ yee_mix("/assets/css/backend.css") }}">
 
     {!! $assets::css() !!}
 

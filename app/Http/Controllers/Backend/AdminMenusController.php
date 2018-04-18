@@ -4,10 +4,14 @@ namespace Yeelight\Http\Controllers\Backend;
 use Dingo\Api\Exception\DeleteResourceFailedException;
 use Dingo\Api\Exception\StoreResourceFailedException;
 use Dingo\Api\Exception\UpdateResourceFailedException;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\MessageBag;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Yeelight\Http\Requests\AdminMenuCreateRequest;
 use Yeelight\Http\Requests\AdminMenuUpdateRequest;
+use Yeelight\Models\AdminRole;
 use Yeelight\Repositories\Interfaces\AdminMenuRepository;
+use Yeelight\Services\Tree\Tree;
 use Yeelight\Validators\AdminMenuValidator;
 
 class AdminMenusController extends BaseController
@@ -23,7 +27,10 @@ class AdminMenusController extends BaseController
      */
     protected $validator;
 
-    public function __construct(AdminMenuRepository $repository, AdminMenuValidator $validator)
+    public function __construct(
+        AdminMenuRepository $repository,
+        AdminMenuValidator $validator
+    )
     {
         $this->repository = $repository;
         $this->validator = $validator;
@@ -37,8 +44,68 @@ class AdminMenusController extends BaseController
      */
     public function index()
     {
-        return $this->repository->all();
+        $columns = trans('admin_menus.columns');
+        $treeView = $this->treeView()->render();
+        $menus = $this->repository->makeModel()->selectOptions();
+        $roles = AdminRole::all()->pluck('name', 'id');
+
+        return view('backend.admin_menus.index', [
+            'treeView' => $treeView,
+            'columns' => $columns,
+            'menus' => $menus,
+            'roles' => $roles
+        ]);
     }
+
+    /**
+     * 返回菜单列表
+     *
+     * @return Tree
+     */
+    protected function treeView()
+    {
+        return new Tree($this->repository->makeModel(), function (Tree $tree) {
+            $tree->disableCreate();
+
+            $tree->branch(function ($branch) {
+                $payload = "<i class='fa {$branch['icon']}'></i>&nbsp;<strong>{$branch['title']}</strong>";
+
+                if (!isset($branch['children'])) {
+                    if (url()->isValidUrl($branch['uri'])) {
+                        $uri = $branch['uri'];
+                    } else {
+                        $uri = backend_base_path($branch['uri']);
+                    }
+
+                    $payload .= "&nbsp;&nbsp;&nbsp;<a href=\"$uri\" class=\"dd-nodrag\">$uri</a>";
+                }
+
+                return $payload;
+            });
+        });
+    }
+
+
+    /**
+     * Edit
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit($id)
+    {
+        $data = $this->repository->find($id);
+        $columns = trans('admin_menus.columns');
+        $menus = $this->repository->makeModel()->selectOptions();
+        $roles = AdminRole::all()->pluck('name', 'id');
+
+        return view('backend.admin_menus.edit', [
+            'data' => $data['data'],
+            'columns' => $columns,
+            'roles' => $roles,
+            'menus' => $menus
+        ]);
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -49,80 +116,101 @@ class AdminMenusController extends BaseController
      */
     public function store(AdminMenuCreateRequest $request)
     {
-
         $data = $request->all();
+        $result = $this->repository->create($data);
 
-        $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
+        if ($result) {
+            return $this->redirectAfterStore();
+        } else {
+            $error = new MessageBag([
+                'title'   => trans('backend.failed'),
+                'message' => trans('backend.save_failed'),
+            ]);
 
-        $adminMenu = $this->repository->create($data);
+            return redirect(route('menus.index'))->with(compact('error'));
+        }
 
-        // throw exception if store failed
-//        throw new StoreResourceFailedException('Failed to store.');
-
-        // A. return 201 created
-//        return $this->response->created(null);
-
-        // B. return data
-        return $adminMenu;
-
-    }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return $this->repository->find($id);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  AdminMenuUpdateRequest $request
-     * @param  string            $id
-     *
-     * @return Response
+     * @param AdminMenuUpdateRequest $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
      */
     public function update(AdminMenuUpdateRequest $request, $id)
     {
-
         $data = $request->all();
 
-        $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+        if ($data['parent_id'] && $data['parent_id'] == $id) {
+            $error = new MessageBag([
+                'title'   => trans('backend.failed'),
+                'message' => trans('backend.parent_select_error'),
+            ]);
+            return redirect($request->session()->previousUrl())->with(compact('error'));
+        }
 
-        $adminMenu = $this->repository->update($data, $id);
+        $result = $this->repository->update($data, $id);
 
-        // throw exception if update failed
-//        throw new UpdateResourceFailedException('Failed to update.');
-
-        // Updated, return 204 No Content
-        return $this->response->noContent();
-
+        if ($result) {
+            return $this->redirectAfterUpdate();
+        } else {
+            $error = new MessageBag([
+                'title'   => trans('backend.failed'),
+                'message' => trans('backend.update_failed'),
+            ]);
+            return redirect($request->session()->previousUrl())->with(compact('error'));
+        }
     }
 
+    /**
+     * 菜单排序
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function order()
+    {
+        if (Request::has('_order')) {
+            $order = Request::input('_order');
+
+            Request::offsetUnset('_order');
+
+            $this->repository->saveOrder(json_decode_safe($order, true));
+
+            return response()->json([
+                'status'  => true,
+                'message' => trans('backend.save_succeeded'),
+            ]);
+        } else {
+            return response()->json([
+                'status'  => false,
+                'message' => trans('backend.save_failed'),
+            ]);
+        }
+    }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        $deleted = $this->repository->delete($id);
+        $ids = explode(',', $id);
+
+        $deleted = $this->repository->deleteIn($ids);
 
         if ($deleted) {
-            // Deleted, return 204 No Content
-            return $this->response->noContent();
+            return response()->json([
+                'status'  => true,
+                'message' => trans('backend.delete_succeeded'),
+            ]);
         } else {
-            // Failed, throw exception
-            throw new DeleteResourceFailedException('Failed to delete.');
+            return response()->json([
+                'status'  => false,
+                'message' => trans('backend.delete_failed'),
+            ]);
         }
     }
 }

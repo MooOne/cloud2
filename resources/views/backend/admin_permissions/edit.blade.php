@@ -114,7 +114,6 @@
                                     <option value="{{ $method }}"  @if (in_array($method, $data->http_method)) selected @endif>{{ $method }}</option>
                                 @endforeach
                             </select>
-                            <input type="hidden" name="http_method[]">
                             <span class="help-block">
                                 <i class="fa fa-info-circle"></i>&nbsp;{{ trans('backend.all_methods_if_empty') }}
                             </span>

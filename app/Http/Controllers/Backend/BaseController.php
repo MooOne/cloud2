@@ -42,6 +42,6 @@ abstract class BaseController extends BackendController
      */
     public function script($script = '')
     {
-        return Assets::js($script);
+        return Assets::script($script);
     }
 }

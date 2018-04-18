@@ -3,8 +3,8 @@
 @section('content')
     <section class="content-header">
         <h1>
-            {{ $header or trans('backend.administrator') }}
-            <small>{{ $description or trans('backend.create') }}</small>
+            {{ $header or trans('backend.menu') }}
+            <small>{{ $description or trans('backend.edit') }}</small>
         </h1>
 
         <!-- breadcrumb start -->
@@ -45,7 +45,7 @@
 
         <div class="box box-info">
             <div class="box-header with-border">
-                <h3 class="box-title">{{ trans('backend.create') }}</h3>
+                <h3 class="box-title">{{ trans('backend.edit') }}</h3>
 
                 <div class="box-tools">
                     {{--Header Tools Start--}}
@@ -53,23 +53,40 @@
                         <a class="btn btn-sm btn-default form-history-back"><i class="fa fa-arrow-left"></i>&nbsp;{{ trans('backend.back') }}</a>
                     </div>
                     <div class="btn-group pull-right" style="margin-right: 10px">
-                        <a href="{{ get_resource(-1) }}" class="btn btn-sm btn-default"><i class="fa fa-list"></i>&nbsp;{{ trans('backend.list') }}</a>
+                        <a href="{{ get_resource(-2) }}" class="btn btn-sm btn-default"><i class="fa fa-list"></i>&nbsp;{{ trans('backend.list') }}</a>
                     </div>
                     {{--Header Tools End--}}
                 </div>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form action="{{ get_resource(-1) }}" method="post" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data" pjax-container>
+            <form action="{{ get_resource(-1) }}" method="post" accept-charset="UTF-8" class="form-horizontal" pjax-container>
 
             <div class="box-body">
                 <div class="fields-group">
                     {{--Fields Start--}}
-                    <div class="form-group {!! !$errors->has('username') ? '' : 'has-error' !!}">
-                        <label for="slug" class="col-sm-2 control-label">{{ $columns['username'] }}</label>
+                    <div class="form-group {!! !$errors->has('parent_id') ? '' : 'has-error' !!}">
+                        <label for="parent_id" class="col-sm-2 control-label">{{ $columns['parent_id'] }}</label>
                         <div class="col-sm-8">
-                            @if($errors->has('username'))
-                                @foreach($errors->get('username') as $message)
+                            @if($errors->has('parent_id'))
+                                @foreach($errors->get('parent_id') as $message)
+                                    <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{$message}}</label><br/>
+                                @endforeach
+                            @endif
+
+                            <select class="form-control parent_id" name="parent_id" style="width: 100%;" >
+                                @foreach($menus as $mk => $menu)
+                                    <option value="{{ $mk }}"    @if ($mk == $data['parent_id'])) selected @endif>{{ $menu }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group {!! !$errors->has('title') ? '' : 'has-error' !!}">
+                        <label for="title" class="col-sm-2 control-label">{{ $columns['title'] }}</label>
+                        <div class="col-sm-8">
+                            @if($errors->has('title'))
+                                @foreach($errors->get('title') as $message)
                                     <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{$message}}</label><br/>
                                 @endforeach
                             @endif
@@ -77,75 +94,44 @@
                                 <span class="input-group-addon">
                                     <i class="fa fa-pencil"></i>
                                 </span>
-                                <input type="text" id="username" name="username" value="" class="form-control username" placeholder="{{ trans('backend.input') }} {{ $columns['username'] }}">
+                                <input type="text" id="title" name="title" value="{{ $data['title'] }}" class="form-control title" placeholder="{{ trans('backend.input') }} {{ $columns['title'] }}">
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group {!! !$errors->has('name') ? '' : 'has-error' !!}">
-                        <label for="name" class="col-sm-2 control-label">{{ $columns['name'] }}</label>
+                    <div class="form-group {!! !$errors->has('icon') ? '' : 'has-error' !!}">
+                        <label for="icon" class="col-sm-2 control-label">{{ $columns['icon'] }}</label>
                         <div class="col-sm-8">
-                            @if($errors->has('name'))
-                                @foreach($errors->get('name') as $message)
+                            @if($errors->has('icon'))
+                                @foreach($errors->get('icon') as $message)
                                     <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{$message}}</label><br/>
                                 @endforeach
                             @endif
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="fa fa-pencil"></i>
+                                    <i class="fa fa-bars"></i>
                                 </span>
-                                <input type="text" id="name" name="name" value="" class="form-control name" placeholder="{{ trans('backend.input') }} {{ $columns['name'] }}">
+                                <input style="width: 140px;" type="text" id="icon" name="icon" value="{{ $data['icon'] }}" class="form-control icon" placeholder="{{ trans('backend.input') }} {{ $columns['icon'] }}">
                             </div>
+                                <span class="help-block">
+                                    <i class="fa fa-info-circle"></i>For more icons please see <a href="http://fontawesome.io/icons/" target="_blank">http://fontawesome.io/icons/</a>
+                                </span>
                         </div>
                     </div>
 
-                    <div class="form-group {!! !$errors->has('avatar') ? '' : 'has-error' !!}">
-                        <label for="avatar" class="col-sm-2 control-label">{{ $columns['avatar'] }}</label>
+                    <div class="form-group {!! !$errors->has('uri') ? '' : 'has-error' !!}">
+                        <label for="uri" class="col-sm-2 control-label">{{ $columns['uri'] }}</label>
                         <div class="col-sm-8">
-                            @if($errors->has('avatar'))
-                                @foreach($errors->get('avatar') as $message)
+                            @if($errors->has('uri'))
+                                @foreach($errors->get('uri') as $message)
                                     <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{$message}}</label><br/>
                                 @endforeach
                             @endif
                             <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="fa fa-file-picture-o"></i>
-                                </span>
-                                <input type="file" id="avatar" name="avatar" value="" class="form-control avatar" placeholder="{{ trans('backend.input') }} {{ $columns['avatar'] }}">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group {!! !$errors->has('password') ? '' : 'has-error' !!}">
-                        <label for="password" class="col-sm-2 control-label">{{ $columns['password'] }}</label>
-                        <div class="col-sm-8">
-                            @if($errors->has('password'))
-                                @foreach($errors->get('password') as $message)
-                                    <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{$message}}</label><br/>
-                                @endforeach
-                            @endif
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="fa fa-eye-slash"></i>
-                                </span>
-                                <input type="password" id="password" name="password" value="" class="form-control password" placeholder="{{ trans('backend.input') }} {{ $columns['password'] }}">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group {!! !$errors->has('password_confirmation') ? '' : 'has-error' !!}">
-                        <label for="password_confirmation" class="col-sm-2 control-label">{{ $columns['password_confirmation'] }}</label>
-                        <div class="col-sm-8">
-                            @if($errors->has('password_confirmation'))
-                                @foreach($errors->get('password_confirmation') as $message)
-                                    <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{$message}}</label><br/>
-                                @endforeach
-                            @endif
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="fa fa-eye-slash"></i>
-                                </span>
-                                <input type="password" id="password_confirmation" name="password_confirmation" value="" class="form-control password_confirmation" placeholder="{{ trans('backend.input') }} {{ $columns['password_confirmation'] }}">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-pencil"></i>
+                                            </span>
+                                <input type="text" id="uri" name="uri" value="{{ $data['uri'] }}" class="form-control uri" placeholder="{{ trans('backend.input') }} {{ $columns['uri'] }}">
                             </div>
                         </div>
                     </div>
@@ -161,24 +147,7 @@
 
                             <select class="form-control roles" name="roles[]" style="width: 100%;" multiple >
                                 @foreach($roles as $pk => $role)
-                                    <option value="{{ $pk }}"  >{{ $role }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group {!! !$errors->has('permissions') ? '' : 'has-error' !!}">
-                        <label for="permissions" class="col-sm-2 control-label">{{ $columns['permissions'] }}</label>
-                        <div class="col-sm-8">
-                            @if($errors->has('permissions'))
-                                @foreach($errors->get('permissions') as $message)
-                                    <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{$message}}</label><br/>
-                                @endforeach
-                            @endif
-
-                            <select class="form-control permissions" name="permissions[]" style="width: 100%;" multiple >
-                                @foreach($permissions as $pk => $permission)
-                                    <option value="{{ $pk }}"  >{{ $permission }}</option>
+                                    <option value="{{ $pk }}"  @if (in_array($pk, $data['role_ids'])) selected @endif>{{ $role }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -210,7 +179,8 @@
 
             </div>
             {{--Hidden Fields Start--}}
-                <input type="hidden" name="_previous_" value="{{ get_resource(-1) }}" class="_previous_">
+                <input type="hidden" name="_method" value="PUT" class="_method">
+                <input type="hidden" name="_previous_" value="{{ get_resource(-2) }}" class="_previous_">
             {{--Hidden Fields End--}}
         <!-- /.box-footer -->
             </form>
@@ -222,29 +192,16 @@
 @section('page_script')
     <script>
         $(function () {
+            //backButton
             $('.form-history-back').on('click', function (event) {
                 event.preventDefault();
                 history.back(1);
             });
-
-            $("input.avatar").fileinput({
-                "overwriteInitial":false,
-                "initialPreviewAsData":true,
-                "browseLabel":"{{ trans('backend.browse') }}",
-                "showRemove":false,
-                "showUpload":false,
-                "deleteExtraData":{
-                    "{{ $columns['avatar'] }}":"_file_del_",
-                    "_file_del_":"",
-                    "_token": Yee.token,
-                    "_method":"PUT"
-                },
-                "deleteUrl":"{{ get_resource(-2) }}",
-                "allowedFileTypes":["image"]
-            });
-
-            $(".roles").select2({"allowClear":true,"placeholder":"{{ trans('backend.roles') }}"});
-            $(".permissions").select2({"allowClear":true,"placeholder":"{{ trans('backend.permissions') }}"});
         });
+        $(".parent_id").select2({"allowClear":true,"placeholder":"{{ trans('backend.input') }} {{ trans('backend.menu') }}"});
+
+        $('.icon').iconpicker({placement:'bottomLeft'});
+
+        $(".roles").select2({"allowClear":true,"placeholder":"{{ trans('backend.input') }} {{ trans('backend.role') }}"});
     </script>
 @endsection
