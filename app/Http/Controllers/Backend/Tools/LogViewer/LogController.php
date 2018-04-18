@@ -13,6 +13,12 @@ use Yeelight\Models\Tools\LogViewer\LogViewer;
 
 class LogController extends BaseController
 {
+    /**
+     * 主页
+     * @param null $file
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index($file = null, Request $request)
     {
         $offset = $request->get('offset');

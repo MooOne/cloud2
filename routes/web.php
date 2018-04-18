@@ -65,9 +65,14 @@ Route::group([
 
     //Tools
     $router->group(['prefix' => 'tools'], function ($router) {
+        //LogViewer
         $router->get('logs', 'Tools\LogViewer\LogController@index')->name('tools.log-viewer-index');
         $router->get('logs/{file}', 'Tools\LogViewer\LogController@index')->name('tools.log-viewer-file');
         $router->get('logs/{file}/tail', 'Tools\LogViewer\LogController@tail')->name('tools.log-viewer-tail');
+
+        //Scheduling
+        $router->get('scheduling', 'Tools\Scheduling\SchedulingController@index')->name('tools.scheduling-index');
+        $router->post('scheduling/run', 'Tools\Scheduling\SchedulingController@runEvent')->name('tools.scheduling-run');
     });
 });
 
