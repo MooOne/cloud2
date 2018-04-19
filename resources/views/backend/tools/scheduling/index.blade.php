@@ -29,11 +29,11 @@
                             <tbody>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>Task</th>
-                                <th>Run at</th>
-                                <th>Next run time</th>
-                                <th>Description</th>
-                                <th>Run</th>
+                                <th>任务</th>
+                                <th>运行于</th>
+                                <th>下次运行时间</th>
+                                <th>描述</th>
+                                <th>运行</th>
                             </tr>
                             @foreach($events as $index => $event)
                                 <tr>
@@ -42,7 +42,7 @@
                                     <td><span class="label label-success">{{ $event['expression'] }}</span>&nbsp;{{ $event['readable'] }}</td>
                                     <td>{{ $event['nextRunDate'] }}</td>
                                     <td>{{ $event['description'] }}</td>
-                                    <td><a class="btn btn-xs btn-primary run-task" data-id="{{ $index+1 }}">Run</a></td>
+                                    <td><a class="btn btn-xs btn-primary run-task" data-id="{{ $index+1 }}">运行</a></td>
                                 </tr>
                             @endforeach
                             </tbody>

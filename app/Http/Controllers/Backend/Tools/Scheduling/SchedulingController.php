@@ -23,7 +23,7 @@ class SchedulingController extends BaseController
         $scheduling = new Scheduling();
 
         return view('backend.tools.scheduling.index', [
-            'header_description' => 'Task scheduling',
+            'header_description' => '计划任务',
             'events' => $scheduling->getTasks(),
         ]);
     }

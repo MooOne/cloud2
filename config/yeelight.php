@@ -166,10 +166,22 @@ return [
         ],
 
         /*
-         * Settings for extensions.
+         * Settings for tools.
          */
-        'extensions' => [
+        'tools' => [
+            'api-tester' => [
 
+                // route prefix for APIs
+                'prefix' => 'api',
+
+                // auth guard for api
+                'guard'  => 'api',
+
+                // If you are not using the default user model as the authentication model, set it up
+                'user_retriever' => function ($id) {
+                    return Yeelight\User::find($id);
+                },
+            ]
         ],
 
     ],
