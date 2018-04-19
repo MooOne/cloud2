@@ -75,16 +75,16 @@ Route::group([
         $router->post('scheduling/run', 'Tools\Scheduling\SchedulingController@runEvent')->name('tools.scheduling-run');
 
         //数据库终端
-        $router->get('terminal/database', 'Tools\Terminal\TerminalController@database')->name('tools.terminal-database');
-        $router->post('terminal/database', 'Tools\Terminal\TerminalController@runDatabase')->name('tools.terminal-run-database');
+        //$router->get('terminal/database', 'Tools\Terminal\TerminalController@database')->name('tools.terminal-database');
+        //$router->post('terminal/database', 'Tools\Terminal\TerminalController@runDatabase')->name('tools.terminal-run-database');
 
         //Aritsan终端
-        $router->get('terminal/artisan', 'Tools\Terminal\TerminalController@artisan')->name('tools.terminal-artisan');
-        $router->post('terminal/artisan', 'Tools\Terminal\TerminalController@runArtisan')->name('tools.terminal-run-artisan');
+        //$router->get('terminal/artisan', 'Tools\Terminal\TerminalController@artisan')->name('tools.terminal-artisan');
+        //$router->post('terminal/artisan', 'Tools\Terminal\TerminalController@runArtisan')->name('tools.terminal-run-artisan');
 
         //脚手架
-        $router->get('scaffold', 'Tools\Scaffold\ScaffoldController@index')->name('tools.scaffold-index');
-        $router->post('scaffold', 'Tools\Scaffold\ScaffoldController@store')->name('tools.scaffold-store');
+        //$router->get('scaffold', 'Tools\Scaffold\ScaffoldController@index')->name('tools.scaffold-index');
+        //$router->post('scaffold', 'Tools\Scaffold\ScaffoldController@store')->name('tools.scaffold-store');
 
         //路由查看器
         $router->get('routes', 'Tools\Routes\RouteController@index')->name('tools.routes-index');
