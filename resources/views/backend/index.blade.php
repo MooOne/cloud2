@@ -17,7 +17,14 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>
+        function Yee() {}
+        Yee.token = "{{ csrf_token() }}";
+    </script>
 
+    <!-- COMMON JS SCRIPTS -->
+    <script src="{{ yee_mix ("/assets/js/app.js") }}"></script>
+    <script src="{{ yee_mix ("/assets/js/backend.js") }}"></script>
 </head>
 
 <body class="hold-transition {{config('yeelight.backend.skin')}} {{join(' ', config('yeelight.backend.layout'))}}">
@@ -29,14 +36,7 @@
 
     <div class="content-wrapper" id="pjax-container">
         @yield('content')
-        <script>
-            function Yee() {}
-            Yee.token = "{{ csrf_token() }}";
-        </script>
 
-        <!-- REQUIRED JS SCRIPTS -->
-        <script src="{{ yee_mix ("/assets/js/app.js") }}"></script>
-        <script src="{{ yee_mix ("/assets/js/backend.js") }}"></script>
         {!! $assets::js() !!}
         {!! $assets::script() !!}
 

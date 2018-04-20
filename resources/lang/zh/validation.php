@@ -144,6 +144,12 @@ return [
         'time'                  => '时间',
         'available'             => '可用的',
         'size'                  => '大小',
+        'slug'                  => '标识',
+        'permissions'           => '权限',
+        'roles'                 => '角色',
+        'avatar'                => '头像',
+        'icon'                  => '图标',
+        'uri'                   => '路径',
     ],
 
 ];
