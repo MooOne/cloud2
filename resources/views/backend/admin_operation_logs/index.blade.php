@@ -151,11 +151,7 @@
                     {{--ExportButton end--}}
 
                     {{--CreateButton start--}}
-                    <div class="btn-group pull-right" style="margin-right: 10px">
-                        <a href="{{ route( 'gingko.create' ) }}" class="btn btn-sm btn-success">
-                            <i class="fa fa-save"></i>&nbsp;&nbsp;{{ trans('backend.new') }}
-                        </a>
-                    </div>
+
                     {{--CreateButton end--}}
                 </div>
 
