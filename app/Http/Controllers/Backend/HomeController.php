@@ -1,21 +1,8 @@
 <?php
 namespace Yeelight\Http\Controllers\Backend;
 
-use Illuminate\Http\Request;
-use Yeelight\Http\Controllers\BaseController;
-
 class HomeController extends BaseController
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //$this->middleware('auth');
-    }
-
     /**
      * Show the application dashboard.
      *
