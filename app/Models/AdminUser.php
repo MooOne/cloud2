@@ -73,7 +73,7 @@ class AdminUser extends BaseModel implements AuthenticatableContract
 
         //头像
         $yeelightImage = $this->uploadOne('avatar');
-        $this->yeelight_image_id = $yeelightImage->getYeelightImageId();
+        $this->yeelight_image_id = $yeelightImage ? $yeelightImage->getYeelightImageId() : null;
     }
 
     public function onCreated()
@@ -81,8 +81,10 @@ class AdminUser extends BaseModel implements AuthenticatableContract
         parent::onCreated();
 
         //头像
-        $this->yeelight_image->user_id = $this->attributes[$this->getKeyName()];
-        $this->yeelight_image->save();
+        if ($this->yeelight_image_id) {
+            $this->yeelight_image->user_id = $this->attributes[$this->getKeyName()];
+            $this->yeelight_image->save();
+        }
 
         //权限
         $permissions = array_filter(request()->get('permissions', []));
@@ -109,9 +111,11 @@ class AdminUser extends BaseModel implements AuthenticatableContract
 
         //头像
         $yeelightImage = $this->uploadOne('avatar');
-        $this->yeelight_image_id = $yeelightImage->getYeelightImageId();
-        $this->yeelight_image->user_id = $this->attributes[$this->getKeyName()];
-        $this->yeelight_image->save();
+        if ($yeelightImage) {
+            $this->yeelight_image_id = $yeelightImage->getYeelightImageId();
+            $this->yeelight_image->user_id = $this->attributes[$this->getKeyName()];
+            $this->yeelight_image->save();
+        }
 
         //权限
         $permissions = array_filter(request()->get('permissions', []));

@@ -43,7 +43,7 @@ class Kernel extends HttpKernel
         'api' => [
 //            'throttle:60,1',
             'bindings',
-            \Yeelight\Api\Middleware\ApiAccessMiddleware::class,
+            \Yeelight\Http\Controllers\Api\Middleware\ApiAccessMiddleware::class,
             \Yeelight\Services\Locale\Middleware\LocaleMiddleware::class,
         ],
     ];

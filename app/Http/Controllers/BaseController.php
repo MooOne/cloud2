@@ -12,7 +12,14 @@ abstract class BaseController extends Controller
      */
     public function getAuthUser()
     {
-        return auth_user();
+        return backend_user();
     }
 
+    /**
+     * @return mixed|null
+     */
+    public function getAuthUserId()
+    {
+        return $this->getAuthUser()->id;
+    }
 }

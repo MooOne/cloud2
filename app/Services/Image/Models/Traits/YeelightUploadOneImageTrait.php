@@ -28,15 +28,17 @@ trait YeelightUploadOneImageTrait
         $file = request()->file($inputName);
 
         $yeelightImage = null;
-        try {
-            /** @var YeelightImage $yeelightImage */
-            $yeelightImage = $yeelightImageService->handleUploadedFile($file);
-        } catch (Exception $e) {
-            throw new YeelightImageException('Failed to save: ' . $e->getMessage());
-        }
+        if ($file instanceof \Symfony\Component\HttpFoundation\File\UploadedFile) {
+            try {
+                /** @var YeelightImage $yeelightImage */
+                $yeelightImage = $yeelightImageService->handleUploadedFile($file);
+            } catch (Exception $e) {
+                throw new YeelightImageException('Failed to save: ' . $e->getMessage());
+            }
 
-        if (!$yeelightImage) {
-            throw new YeelightImageException('Failed to save: ' . 'Failed to save uploaded image.');
+            if (!$yeelightImage) {
+                throw new YeelightImageException('Failed to save: ' . 'Failed to save uploaded image.');
+            }
         }
 
         return $yeelightImage;

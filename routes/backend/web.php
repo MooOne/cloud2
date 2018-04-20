@@ -14,8 +14,8 @@ Route::group([
 
     $router->get('/','HomeController@index');
 
-    //$router->get('auth/setting', 'AuthController@getSetting');
-    //$router->put('auth/setting', 'AuthController@putSetting');
+    $router->get('auth/setting', 'AuthController@getSetting')->name('backend.auth.setting.get');
+    $router->put('auth/setting', 'AuthController@putSetting')->name('backend.auth.setting.post');
 
     $router->resource('auth/users', 'AdminUsersController');
     $router->resource('auth/roles', 'AdminRolesController');
