@@ -216,6 +216,12 @@ abstract class Generator
             case ('criteria' === $class):
                 $path = config('repository.generator.paths.criteria', 'Criteria');
                 break;
+            case ('views' === $class):
+                $path = config('repository.generator.paths.views', 'views');
+                break;
+            case ('lang' === $class):
+                $path = config('repository.generator.paths.criteria', 'lang');
+                break;
             default:
                 $path = '';
         }

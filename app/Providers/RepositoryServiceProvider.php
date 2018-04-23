@@ -35,6 +35,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->commands('Yeelight\Generators\Commands\ApiControllerCommand');
         $this->commands('Yeelight\Generators\Commands\BindingsCommand');
         $this->commands('Yeelight\Generators\Commands\CriteriaCommand');
+        $this->commands('Yeelight\Generators\Commands\ViewsCommand');
 
 
         $this->app->bind(\Yeelight\Repositories\Interfaces\AdminUserRepository::class, \Yeelight\Repositories\Eloquent\AdminUserRepositoryEloquent::class);

@@ -234,6 +234,8 @@ return [
             'controllers'  => 'Http/Controllers/Backend',
             'api_controllers'  => 'Http/Controllers/Api/Controllers',
             'provider'     => 'RepositoryServiceProvider',
+            'views'        => 'backend',
+            'lang'         => 'lang',
         ]
     ]
 ];
