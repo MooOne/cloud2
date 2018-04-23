@@ -18,56 +18,18 @@ composer update
 ~~~
 npm install -g npm bower yarn gulp
 
-bower init
 
 yarn install
 
 
-sudo bower install bootstrap#=3.3.7
+sudo bower install
 
-sudo bower install admin-lte
-
-sudo bower install fontawesome
-
-sudo bower install ionicons
-
-sudo bower install sweetalert
-
-sudo bower install nprogress
-
-sudo bower install nestable
-
-sudo bower install toastr
-
-sudo bower install lightbox
-
-sudo bower install jquery-pjax
-
-sudo bower install clipboard
-
-sudo bower install wangEditor
+// 运行所有 Mix 任务... ( 开发环境 )
+yarn run dev
+// 运行所有 Mix 任务并缩小输出.. ( 生产环境 )
+yarn run production
 
 ~~~
-## Database & Seeding
-~~~
-php artisan migrate
-
-php artisan db:seed
-~~~
-### Install Laravel Passport with encryption keys to generate secure access tokens.
-~~~
-php artisan passport:install
-~~~
-## 后台模板
-
-https://github.com/almasaeed2010/AdminLTE/
-
-其他组件手册请自行搜索
-
-## l5-repository
-
-https://github.com/daofirst/l5-repository
-
 
 
 
@@ -116,7 +78,7 @@ yarn install --no-bin-links
 
 如果报错：Laravel Mix "sh: 1: cross-env: not found error"
 ```
-npm install --global cross-env
+yarn install --global cross-env
 ```
 
 如果报错：Error: spawn EACCES
@@ -136,7 +98,27 @@ resources/assets/vendors/google-fonts
 
 ```
 // 运行所有 Mix 任务... ( 开发环境 )
-npm run dev
+yarn run dev
 // 运行所有 Mix 任务并缩小输出.. ( 生产环境 )
-npm run production
+yarn run production
 ```
+
+## Database & Seeding
+~~~
+php artisan migrate
+
+php artisan db:seed
+~~~
+### Install Laravel Passport with encryption keys to generate secure access tokens.
+~~~
+php artisan passport:install
+~~~
+## 后台模板
+
+https://github.com/almasaeed2010/AdminLTE/
+
+其他组件手册请自行搜索
+
+## l5-repository
+
+https://github.com/daofirst/l5-repository
