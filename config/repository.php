@@ -232,6 +232,7 @@ return [
             'presenters'   => 'Presenters',
             'validators'   => 'Validators',
             'controllers'  => 'Http/Controllers/Backend',
+            'api_controllers'  => 'Http/Controllers/Api/Controllers',
             'provider'     => 'RepositoryServiceProvider',
         ]
     ]

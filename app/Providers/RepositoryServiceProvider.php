@@ -32,6 +32,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->commands('Yeelight\Generators\Commands\EntityCommand');
         $this->commands('Yeelight\Generators\Commands\ValidatorCommand');
         $this->commands('Yeelight\Generators\Commands\ControllerCommand');
+        $this->commands('Yeelight\Generators\Commands\ApiControllerCommand');
         $this->commands('Yeelight\Generators\Commands\BindingsCommand');
         $this->commands('Yeelight\Generators\Commands\CriteriaCommand');
 
@@ -40,10 +41,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(\Yeelight\Repositories\Interfaces\AdminRoleRepository::class, \Yeelight\Repositories\Eloquent\AdminRoleRepositoryEloquent::class);
         $this->app->bind(\Yeelight\Repositories\Interfaces\AdminPermissionRepository::class, \Yeelight\Repositories\Eloquent\AdminPermissionRepositoryEloquent::class);
         $this->app->bind(\Yeelight\Repositories\Interfaces\AdminMenuRepository::class, \Yeelight\Repositories\Eloquent\AdminMenuRepositoryEloquent::class);
-        $this->app->bind(\Yeelight\Repositories\Interfaces\AdminRoleUserRepository::class, \Yeelight\Repositories\Eloquent\AdminRoleUserRepositoryEloquent::class);
-        $this->app->bind(\Yeelight\Repositories\Interfaces\AdminRolePermissionRepository::class, \Yeelight\Repositories\Eloquent\AdminRolePermissionRepositoryEloquent::class);
-        $this->app->bind(\Yeelight\Repositories\Interfaces\AdminRoleMenuRepository::class, \Yeelight\Repositories\Eloquent\AdminRoleMenuRepositoryEloquent::class);
-        $this->app->bind(\Yeelight\Repositories\Interfaces\AdminUserPermissionRepository::class, \Yeelight\Repositories\Eloquent\AdminUserPermissionRepositoryEloquent::class);
         $this->app->bind(\Yeelight\Repositories\Interfaces\AdminOperationLogRepository::class, \Yeelight\Repositories\Eloquent\AdminOperationLogRepositoryEloquent::class);
         //:end-bindings:
     }

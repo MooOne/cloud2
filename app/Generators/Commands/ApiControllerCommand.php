@@ -3,12 +3,13 @@ namespace Yeelight\Generators\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
+use Yeelight\Generators\ApiControllerGenerator;
 use Yeelight\Generators\ControllerGenerator;
 use Yeelight\Generators\FileAlreadyExistsException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-class ControllerCommand extends CommandBase
+class ApiControllerCommand extends CommandBase
 {
 
     /**
@@ -16,14 +17,14 @@ class ControllerCommand extends CommandBase
      *
      * @var string
      */
-    protected $name = 'yl:controller';
+    protected $name = 'yl:api_controller';
 
     /**
      * The description of command.
      *
      * @var string
      */
-    protected $description = 'Create a new controller.';
+    protected $description = 'Create a new Restful controller.';
 
     /**
      * The type of class being generated.
@@ -43,14 +44,14 @@ class ControllerCommand extends CommandBase
         try {
             // Generate create request for controller
             $this->call('make:request', [
-                'name' => $this->argument('name') . 'CreateRequest'
+                'name' => 'Api/' . $this->argument('name') . 'CreateRequest'
             ]);
             // Generate update request for controller
             $this->call('make:request', [
-                'name' => $this->argument('name') . 'UpdateRequest'
+                'name' => 'Api/' . $this->argument('name') . 'UpdateRequest'
             ]);
 
-            (new ControllerGenerator([
+            (new ApiControllerGenerator([
                 'name' => $this->argument('name'),
                 'force' => $this->option('force'),
             ]))->run();
