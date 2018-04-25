@@ -1,6 +1,8 @@
 <?php
 namespace Yeelight\Generators;
 
+use Illuminate\Support\Str;
+
 /**
  * Class ControllerGenerator
  * @package Yeelight\Generators
@@ -78,17 +80,35 @@ class ControllerGenerator extends Generator
     }
 
     /**
+     * Get name input.
+     *
+     * @return string
+     */
+    public function getSnakeName()
+    {
+        $name = $this->name;
+        if (str_contains($this->name, '\\')) {
+            $name = str_replace('\\', '/', $this->name);
+        }
+        if (str_contains($this->name, '/')) {
+            $name = str_replace('/', '/', $this->name);
+        }
+
+        return Str::plural(Str::snake(str_replace(' ', '/', ucwords(str_replace('/', ' ', $name)))));
+    }
+
+    /**
      * Get array replacements.
      *
      * @return array
      */
     public function getReplacements()
     {
-
         return array_merge(parent::getReplacements(), [
             'controller' => $this->getControllerName(),
             'plural'     => $this->getPluralName(),
             'singular'   => $this->getSingularName(),
+            'snake'      => $this->getSnakeName(),
             'validator'  => $this->getValidator(),
             'repository' => $this->getRepository(),
             'appname'    => $this->getAppNamespace(),

@@ -24,14 +24,14 @@ class ApiControllerCommand extends CommandBase
      *
      * @var string
      */
-    protected $description = 'Create a new Restful controller.';
+    protected $description = 'Create a new api controller.';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Controller';
+    protected $type = 'API Controller';
 
 
     /**
@@ -75,7 +75,7 @@ class ApiControllerCommand extends CommandBase
             [
                 'name',
                 InputArgument::REQUIRED,
-                'The name of model for which the controller is being generated.',
+                'The name of model for which the api controller is being generated.',
                 null
             ],
         ];

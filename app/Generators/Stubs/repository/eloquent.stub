@@ -14,6 +14,21 @@ $USE_PRESENTER$
 class $CLASS$RepositoryEloquent extends BaseRepository implements $CLASS$Repository
 {
     /**
+     * @var array
+     */
+    protected $fieldSearchable = [
+        'id',
+        'name' => 'like'
+    ];
+
+
+    /**
+     * @var bool
+     */
+    protected $isSearchableForceAndWhere = true;
+
+
+    /**
      * Specify Model class name
      *
      * @return string
