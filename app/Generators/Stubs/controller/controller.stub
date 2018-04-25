@@ -73,7 +73,7 @@ class $CONTROLLER$Controller extends BaseController
     public function edit($id)
     {
         $data = $this->repository->find($id);
-        $columns = trans('admin_roles.columns');
+        $columns = trans('$SNAKE$.columns');
 
         return view('backend.$SNAKE$.edit', [
             'data' => $data['data'],
@@ -101,7 +101,7 @@ class $CONTROLLER$Controller extends BaseController
                 'message' => trans('backend.save_failed'),
             ]);
 
-            return redirect(route('roles.create'))->with(compact('error'));
+            return redirect(route('$SNAKE$.create'))->with(compact('error'));
         }
     }
 
