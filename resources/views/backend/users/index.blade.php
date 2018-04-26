@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            {{ $header or trans('backend.users.header') }}
+            {{ $header or trans('users.header') }}
             <small>{{ $description or trans('backend.list') }}</small>
         </h1>
 
@@ -86,7 +86,29 @@
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-pencil"></i>
                                                         </div>
-                                                        <input type="text" class="form-control id" placeholder="{{ $columns['name'] }}" name="name" value="{{ isset($query['name']) ? $query['name'] : ''}}">
+                                                        <input type="text" class="form-control name" placeholder="{{ $columns['name'] }}" name="name" value="{{ isset($query['name']) ? $query['name'] : ''}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <label>{{ $columns['username'] }}</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control username" placeholder="{{ $columns['username'] }}" name="username" value="{{ isset($query['username']) ? $query['username'] : ''}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <label>{{ $columns['email'] }}</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control email" placeholder="{{ $columns['email'] }}" name="email" value="{{ isset($query['email']) ? $query['email'] : ''}}">
                                                     </div>
                                                 </div>
                                             </div>

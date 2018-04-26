@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            {{ $header or trans('backend.$MODEL$.header') }}
+            {{ $header or trans('$MODEL$.header') }}
             <small>{{ $description or trans('backend.list') }}</small>
         </h1>
 
@@ -86,7 +86,7 @@
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-pencil"></i>
                                                         </div>
-                                                        <input type="text" class="form-control id" placeholder="{{ $columns['name'] }}" name="name" value="{{ isset($query['name']) ? $query['name'] : ''}}">
+                                                        <input type="text" class="form-control name" placeholder="{{ $columns['name'] }}" name="name" value="{{ isset($query['name']) ? $query['name'] : ''}}">
                                                     </div>
                                                 </div>
                                             </div>

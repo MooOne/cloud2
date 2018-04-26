@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            {{ $header or trans('backend.$MODEL$.header') }}
+            {{ $header or trans('$MODEL$.header') }}
             <small>{{ $description or trans('backend.create') }}</small>
         </h1>
 
