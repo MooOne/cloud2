@@ -27,6 +27,7 @@ class SchedulingController extends BaseController
             'events' => $scheduling->getTasks(),
         ]);
     }
+
     /**
      * @param Request $request
      *

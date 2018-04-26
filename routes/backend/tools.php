@@ -27,8 +27,8 @@ Route::group([
     $router->post('terminal/artisan', 'Tools\Terminal\TerminalController@runArtisan')->name('tools.terminal-run-artisan');
 
     //脚手架
-    //$router->get('scaffold', 'Tools\Scaffold\ScaffoldController@index')->name('tools.scaffold-index');
-    //$router->post('scaffold', 'Tools\Scaffold\ScaffoldController@store')->name('tools.scaffold-store');
+    $router->get('scaffold', 'Tools\Scaffold\ScaffoldController@index')->name('tools.scaffold-index');
+    $router->post('scaffold', 'Tools\Scaffold\ScaffoldController@store')->name('tools.scaffold-store');
 
     //路由查看器
     $router->get('routes', 'Tools\Routes\RouteController@index')->name('tools.routes-index');
