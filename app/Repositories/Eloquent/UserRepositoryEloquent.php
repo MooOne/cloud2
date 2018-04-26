@@ -3,7 +3,7 @@ namespace Yeelight\Repositories\Eloquent;
 
 use Yeelight\Repositories\Criteria\RequestCriteria;
 use Yeelight\Repositories\Interfaces\UserRepository;
-use Yeelight\Models\User;
+use Yeelight\Models\Foundation\User;
 use Yeelight\Validators\UserValidator;
 use Yeelight\Presenters\UserPresenter;
 
@@ -69,7 +69,8 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
      */
     public function byUserIds($userIds)
     {
-
+        $this->model = $this->model->whereIn('user_id', $userIds);
+        return $this;
     }
 
     /**

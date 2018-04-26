@@ -3,6 +3,7 @@
 namespace Yeelight\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserUpdateRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UserUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,13 @@ class UserUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'username'	=> 'required|max:50',
+            'email' => [
+                'required',
+                Rule::unique('users')->ignore($this->email, 'email'),
+                'max:150'
+            ],
+            'password'	=> 'required',
         ];
     }
 }

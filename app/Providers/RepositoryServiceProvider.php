@@ -2,8 +2,6 @@
 namespace Yeelight\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Yeelight\Repositories\Eloquent\UserRepositoryEloquent;
-use Yeelight\Repositories\Interfaces\UserRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -44,8 +42,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(\Yeelight\Repositories\Interfaces\AdminPermissionRepository::class, \Yeelight\Repositories\Eloquent\AdminPermissionRepositoryEloquent::class);
         $this->app->bind(\Yeelight\Repositories\Interfaces\AdminMenuRepository::class, \Yeelight\Repositories\Eloquent\AdminMenuRepositoryEloquent::class);
         $this->app->bind(\Yeelight\Repositories\Interfaces\AdminOperationLogRepository::class, \Yeelight\Repositories\Eloquent\AdminOperationLogRepositoryEloquent::class);
-        $this->app->bind(\Yeelight\Repositories\Interfaces\AdminTestRepository::class, \Yeelight\Repositories\Eloquent\AdminTestRepositoryEloquent::class);
-        $this->app->bind(\Yeelight\Repositories\Interfaces\AdminTestRepository::class, \Yeelight\Repositories\Eloquent\AdminTestRepositoryEloquent::class);
         $this->app->bind(\Yeelight\Repositories\Interfaces\UserRepository::class, \Yeelight\Repositories\Eloquent\UserRepositoryEloquent::class);
         //:end-bindings:
     }
