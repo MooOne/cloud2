@@ -114,8 +114,6 @@ class ScaffoldController extends BaseController
             $fillable = rtrim($fillable, ',');
 
             $rules = rtrim($rules, ',');
-            $paths['presenters'] = $this->getBasePath() . '/' . $this->getConfigGeneratorClassPath('presenters', true) . '/' . $this->getName($model_name) . 'Presenter.php';
-            $paths['transformers'] = $this->getBasePath() . '/' . $this->getConfigGeneratorClassPath('transformers', true) . '/' . $this->getName($model_name) . 'Transformer.php';
 
             // 1. Create presenter.
             if (in_array('presenter', $request->get('create'))) {
@@ -124,7 +122,13 @@ class ScaffoldController extends BaseController
                     '--force' => $force
                 ]);
                 $paths['presenters'] = $this->getBasePath() . '/' . $this->getConfigGeneratorClassPath('presenters', true) . '/' . $this->getName($model_name) . 'Presenter.php';
+
+                Artisan::call('yl:transformer', [
+                    'name' => $model_name,
+                    '--force' => $force
+                ]);
                 $paths['transformers'] = $this->getBasePath() . '/' . $this->getConfigGeneratorClassPath('transformers', true) . '/' . $this->getName($model_name) . 'Transformer.php';
+
                 $presenter = 'yes';
             }
 
@@ -132,6 +136,7 @@ class ScaffoldController extends BaseController
             if (in_array('validator', $request->get('create'))) {
                 Artisan::call('yl:validator', [
                     'name' => $model_name,
+                    '--rules' => $rules,
                     '--force' => $force
                 ]);
                 $paths['validators'] = $this->getBasePath() . '/' . $this->getConfigGeneratorClassPath('validators', true) . '/' . $this->getName($model_name) . 'Validator.php';
@@ -144,7 +149,7 @@ class ScaffoldController extends BaseController
                     'name' => $model_name,
                     '--force' => $force
                 ]);
-                $paths['controllers'] = $this->getBasePath() . '/' . $this->getConfigGeneratorClassPath('controllers', true) . '/' . $this->getName($model_name) . 'Controller.php';
+                $paths['controllers'] = $this->getBasePath() . '/' . $this->getConfigGeneratorClassPath('controllers', true) . '/' . Str::plural($this->getName($model_name)) . 'Controller.php';
                 $paths['create_request'] = $this->getBasePath() . '/Http/Requests/' . $this->getName($model_name) . 'CreateRequest.php';
                 $paths['update_request'] = $this->getBasePath() . '/Http/Requests/' . $this->getName($model_name) . 'UpdateRequest.php';
             }
@@ -169,7 +174,7 @@ class ScaffoldController extends BaseController
                 $filesystem = new Filesystem;
                 $directories = $filesystem->directories(resource_path($this->getConfigGeneratorClassPath('lang', true)));
                 foreach ($directories as $index => $directory) {
-                    $paths['lang_' . $index] = $directory . '/' . $this->getSnakeName() . '.php';
+                    $paths['lang_' . $index] = $directory . '/' . $this->getSnakeName($model_name) . '.php';
                 }
             }
 
@@ -179,7 +184,7 @@ class ScaffoldController extends BaseController
                     'name' => $model_name,
                     '--force' => $force
                 ]);
-                $paths['api_controllers'] = $this->getBasePath() . '/' . $this->getConfigGeneratorClassPath('api_controllers', true) . '/' . $this->getName($model_name) . 'Controller.php';
+                $paths['api_controllers'] = $this->getBasePath() . '/' . $this->getConfigGeneratorClassPath('api_controllers', true) . '/' . Str::plural($this->getName($model_name)) . 'Controller.php';
                 $paths['api_create_request'] = $this->getBasePath() . '/Http/Requests/Api/' . $this->getName($model_name) . 'CreateRequest.php';
                 $paths['api_update_request'] = $this->getBasePath() . '/Http/Requests/Api/' . $this->getName($model_name) . 'UpdateRequest.php';
             }
@@ -214,7 +219,7 @@ class ScaffoldController extends BaseController
 
             return $this->backWithException($exception);
         }
-        return $this->backWithSuccess($paths, $message);
+        return $this->backWithSuccess($model_name, $paths, $message);
     }
 
     protected function backWithException(\Exception $exception)
@@ -232,7 +237,7 @@ class ScaffoldController extends BaseController
         foreach ($paths as $name => $path) {
             $messages[] = ucfirst($name).": $path";
         }
-        $messages[] = "Migrations: " . database_path('migrations') . '/' . date('Y_m_d') . '_xxxxxx_' . strtolower($this->getName($model_name)) . '.php';
+        $messages[] = "Migrations: " . database_path('migrations') . '/' . date('Y_m_d') . '_xxxxxx_create_' . $this->getSnakeName($model_name) . '.php';
         $messages[] = "<br />$message";
         $success = new MessageBag([
             'title'   => 'Success',

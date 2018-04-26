@@ -11,6 +11,12 @@
 
     </section>
     <section class="content">
+
+        @include('backend.partials.error')
+        @include('backend.partials.success')
+        @include('backend.partials.exception')
+        @include('backend.partials.toastr')
+
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-primary">
@@ -20,7 +26,7 @@
                     <!-- /.box-header -->
                     <div class="box-body">
 
-                        <form method="post" action="{{$action}}" id="scaffold" pjax-container>
+                        <form method="post" action="{{$action}}" id="scaffold">
 
                             <div class="box-body">
 

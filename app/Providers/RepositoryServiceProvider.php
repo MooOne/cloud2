@@ -44,6 +44,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(\Yeelight\Repositories\Interfaces\AdminPermissionRepository::class, \Yeelight\Repositories\Eloquent\AdminPermissionRepositoryEloquent::class);
         $this->app->bind(\Yeelight\Repositories\Interfaces\AdminMenuRepository::class, \Yeelight\Repositories\Eloquent\AdminMenuRepositoryEloquent::class);
         $this->app->bind(\Yeelight\Repositories\Interfaces\AdminOperationLogRepository::class, \Yeelight\Repositories\Eloquent\AdminOperationLogRepositoryEloquent::class);
+        $this->app->bind(\Yeelight\Repositories\Interfaces\AdminTestRepository::class, \Yeelight\Repositories\Eloquent\AdminTestRepositoryEloquent::class);
+        $this->app->bind(\Yeelight\Repositories\Interfaces\AdminTestRepository::class, \Yeelight\Repositories\Eloquent\AdminTestRepositoryEloquent::class);
         //:end-bindings:
     }
 
