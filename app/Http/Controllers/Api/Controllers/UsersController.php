@@ -1,13 +1,12 @@
 <?php
-
 namespace Yeelight\Http\Controllers\Api\Controllers;
 
 use Dingo\Api\Exception\DeleteResourceFailedException;
 use Dingo\Api\Exception\StoreResourceFailedException;
 use Dingo\Api\Exception\UpdateResourceFailedException;
 use Prettus\Validator\Contracts\ValidatorInterface;
-use Yeelight\Http\Requests\UserCreateRequest;
-use Yeelight\Http\Requests\UserUpdateRequest;
+use Yeelight\Http\Requests\Api\UserCreateRequest;
+use Yeelight\Http\Requests\Api\UserUpdateRequest;
 use Yeelight\Repositories\Interfaces\UserRepository;
 use Yeelight\Validators\UserValidator;
 
@@ -23,7 +22,6 @@ class UsersController extends BaseController
      * @var UserValidator
      */
     protected $validator;
-
 
     public function __construct(UserRepository $repository, UserValidator $validator)
     {
@@ -65,7 +63,7 @@ class UsersController extends BaseController
 //        throw new StoreResourceFailedException('Failed to store.');
 
         // A. return 201 created
-//            return $this->response->created(null);
+//        return $this->response->created(null);
 
         // B. return data
         return $user;
@@ -100,16 +98,18 @@ class UsersController extends BaseController
      * Update the specified resource in storage.
      *
      * @param  UserUpdateRequest $request
-     * @param  string $id
+     * @param  string            $id
      *
      * @return Response
      */
     public function update(UserUpdateRequest $request, $id)
     {
 
-        $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
+        $data = $request->all();
 
-        $user = $this->repository->update($request->all(), $id);
+        $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+
+        $user = $this->repository->update($data, $id);
 
         // throw exception if update failed
 //        throw new UpdateResourceFailedException('Failed to update.');
@@ -136,7 +136,7 @@ class UsersController extends BaseController
             return $this->response->noContent();
         } else {
             // Failed, throw exception
-            throw new DeleteResourceFailedException();
+            throw new DeleteResourceFailedException('Failed to delete.');
         }
     }
 }

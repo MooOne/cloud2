@@ -24,6 +24,8 @@ Route::group([
     $router->post('auth/menus/order', 'AdminMenusController@order')->name('menus.order');
     $router->resource('auth/logs', 'AdminOperationLogsController', ['only' => ['index', 'destroy']]);
 
+    $router->resource('consumer/users', 'UsersController');
+
     //Tools
     require(__DIR__ . '/tools.php');
 });
