@@ -2,6 +2,7 @@
 namespace Yeelight\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Laravel\Passport\Http\Middleware\CheckClientCredentials;
 
 class Kernel extends HttpKernel
 {
@@ -62,6 +63,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \Yeelight\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'client' => CheckClientCredentials::class,
 
         // Passport
         'scopes' => \Laravel\Passport\Http\Middleware\CheckScopes::class,

@@ -17,7 +17,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect(config('yeelight.console.path'));
+            return redirect(config('yeelight.backend.route.prefix'));
         }
 
         return $next($request);

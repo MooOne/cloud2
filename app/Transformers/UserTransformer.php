@@ -1,7 +1,7 @@
 <?php
 namespace Yeelight\Transformers;
 
-use Yeelight\Models\User;
+use Yeelight\Models\Foundation\User;
 
 /**
  * Class UserTransformer

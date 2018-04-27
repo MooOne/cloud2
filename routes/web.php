@@ -20,27 +20,6 @@ require(__DIR__ . '/backend/auth.php');
 // Backend Routes
 require(__DIR__ . '/backend/web.php');
 
-// Mobile Routes
-Route::group([
-    'prefix' => config('yeelight.mobile.route.prefix'),
-    'namespace' => config('yeelight.mobile.route.namespace')
-], function () {
-
-    // Mobile App
-    Route::get('/', 'MobileController@getIndex');
-
-    Route::get('/app', 'MobileController@getApp');
-
-    // Protected Routes
-    Route::group(['middleware' => 'auth'], function () {
-
-        Route::get('users', 'UserController@getUserList');
-
-        Route::get('users/{id}', 'UserController@getUserDetail');
-
-    });
-
-});
 
 
 // Image Routes

@@ -6,7 +6,7 @@ use Dingo\Api\Exception\ResourceException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use League\OAuth2\Server\Exception\OAuthException;
+use League\OAuth2\Server\Exception\OAuthServerException;
 use Prettus\Validator\Exceptions\ValidatorException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -33,9 +33,9 @@ class ApiAccessMiddleware
             }
 
             return $response;
-        } catch (OAuthException $e) {
+        } catch (OAuthServerException $e) {
             $message = env('API_DEBUG') ? $e->getMessage() : null;
-            throw new HttpException($e->httpStatusCode, $message, $e, $e->getHttpHeaders());
+            throw new HttpException($e->getHttpStatusCode(), $message, $e, $e->getHttpHeaders());
         } catch (HttpResponseException $e) {
             $message = env('API_DEBUG') ? $e->getMessage() : null;
             throw new HttpException($e->getResponse()->getStatusCode(), $message, $e);
