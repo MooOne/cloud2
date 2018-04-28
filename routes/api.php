@@ -19,12 +19,23 @@ $api->version('v1', [
     'middleware' => ['api']
 ], function (Router $api) {
 
+    // 登录前操作
+    $api->group(['middleware' => ['api.throttle'], 'prefix' => 'auth' , 'limit' => 100, 'expires' => 5], function (Router $api) {
+        $api->post('register', 'AuthController@register');
+        $api->post('login', 'AuthController@login');
+        $api->post('refresh', 'AuthController@refresh');
+        $api->post('social_auth', 'SocialiteUsersController@socialAuth');
+
+    });
+
     $api->group(['middleware' => ['auth:api']], function (Router $api) {
 
         // Rate: 100 requests per 5 minutes
         $api->group(['middleware' => ['api.throttle'], 'limit' => 100, 'expires' => 5], function (Router $api) {
+            // logout
+            $api->post('auth/logout', 'AuthController@logout');
 
-            // /users
+            // 用户模块
             $api->group(['prefix' => 'users'], function (Router $api) {
                 $api->get('/', 'UsersController@index');
                 $api->post('/', 'UsersController@store');

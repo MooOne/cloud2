@@ -3,6 +3,7 @@ namespace Yeelight\Models\Foundation;
 
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Yeelight\Models\SocialiteUser;
 use Yeelight\Services\Image\Models\Traits\YeelightHasImageablesTrait;
 use Yeelight\Models\Foundation\BaseUser;
 
@@ -81,6 +82,10 @@ class User extends BaseUser
         'remember_token',
     ];
 
+    public function socialiteUser(){
+        return $this->hasMany(SocialiteUser::class);
+    }
+
     /**
      * Called when model is created
      * Other events available are in BaseModelEvents
@@ -89,6 +94,8 @@ class User extends BaseUser
     {
         parent::onCreated();
 
+        //密码
+        $this->password = bcrypt($this->password);
     }
 
 }

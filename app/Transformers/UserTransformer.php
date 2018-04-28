@@ -33,12 +33,12 @@ class UserTransformer extends BaseTransformer
             'password' => (string) $model->password,
             'status' => (int) $model->status,
 
-            'created_by' => (string) $model->created_at,
+            'created_by' => (string) $model->created_by,
             'created_at' => (string) $model->created_at,
-            'created_ip' => (string) $model->created_at,
-            'updated_by' => (string) $model->updated_at,
+            'created_ip' => (string) $model->created_ip,
+            'updated_by' => (string) $model->updated_by,
             'updated_at' => (string) $model->updated_at,
-            'updated_ip' => (string) $model->updated_at
+            'updated_ip' => (string) $model->updated_ip
         ];
     }
 }
