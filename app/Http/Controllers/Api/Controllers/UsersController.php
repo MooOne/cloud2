@@ -31,16 +31,6 @@ class UsersController extends BaseController
 
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return $this->repository->all();
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  UserCreateRequest $request
@@ -69,20 +59,7 @@ class UsersController extends BaseController
         return $user;
 
     }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return $this->repository->find($id);
-    }
-
+    
     /**
      * Display current logged in User info
      *
@@ -90,7 +67,7 @@ class UsersController extends BaseController
      */
     public function me()
     {
-        $user_id = auth_user()->getUserId();
+        $user_id = $this->getAuthUserId();
         return $this->repository->find($user_id);
     }
 

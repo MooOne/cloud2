@@ -2,7 +2,7 @@
 
 namespace Yeelight\Http\Requests\Api;
 
-use Illuminate\Foundation\Http\FormRequest;
+use Dingo\Api\Http\FormRequest;
 
 class SocialiteUserUpdateRequest extends FormRequest
 {

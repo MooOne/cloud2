@@ -2,7 +2,7 @@
 
 namespace Yeelight\Http\Requests\Api;
 
-use Illuminate\Foundation\Http\FormRequest;
+use Dingo\Api\Http\FormRequest;
 
 class SocialiteAuthRequest extends FormRequest
 {
@@ -24,6 +24,7 @@ class SocialiteAuthRequest extends FormRequest
     public function rules()
     {
         return [
+            'grant_type' => 'required',
             'client_id' => 'required',
             'client_secret' => 'required',
             'username' => 'required',

@@ -43,11 +43,6 @@ class AuthController extends BaseController
      */
     public function login(AuthLoginRequest $request)
     {
-        $this->validate($request, [
-            'username' => 'required',
-            'password' => 'required'
-        ]);
-
         return $this->issueToken($request, 'password');
     }
 
@@ -59,9 +54,6 @@ class AuthController extends BaseController
      */
     public function refresh(AuthRefreshRequest $request)
     {
-        $this->validate($request, [
-            'refresh_token' => 'required'
-        ]);
         return $this->issueToken($request, 'refresh_token');
     }
 
@@ -73,7 +65,8 @@ class AuthController extends BaseController
      */
     public function logout(Request $request)
     {
-        $accessToken = Auth::user()->token();
+        $accessToken = $this->getAuthUser()->token();
+
         DB::table('oauth_refresh_tokens')
             ->where('access_token_id', $accessToken->id)
             ->update(['revoked' => true]);

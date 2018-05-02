@@ -37,10 +37,7 @@ $api->version('v1', [
 
             // 用户模块
             $api->group(['prefix' => 'users'], function (Router $api) {
-                $api->get('/', 'UsersController@index');
-                $api->post('/', 'UsersController@store');
                 $api->get('/me', 'UsersController@me');
-                $api->get('/{id}', 'UsersController@show');
                 $api->put('/{id}', 'UsersController@update');
                 $api->delete('/{id}', 'UsersController@destroy');
             });

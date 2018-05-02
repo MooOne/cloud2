@@ -4,7 +4,7 @@ namespace Yeelight\Http\Controllers\Api\Middleware;
 use Closure;
 use Dingo\Api\Auth\Auth as Authentication;
 use Dingo\Api\Routing\Router;
-use League\OAuth2\Server\Exception\AccessDeniedException;
+use League\OAuth2\Server\Exception\OAuthServerException;
 use Yeelight\Http\Controllers\Api\Auth\Provider\OAuth2;
 use Yeelight\Events\User\UserLoggedInEvent;
 use Yeelight\Models\Foundation\User;
@@ -45,7 +45,7 @@ class ApiAuthMiddleware
      * @param $grant
      *
      * @return mixed
-     * @throws AccessDeniedException
+     * @throws OAuthServerException
      */
     public function handle($request, Closure $next, $grant = null)
     {
@@ -70,7 +70,7 @@ class ApiAuthMiddleware
             if ($provider instanceof OAuth2) {
                 // check oauth grant type
                 if (!is_null($grant) && $provider->getResourceOwnerType() !== $grant) {
-                    throw new AccessDeniedException();
+                    throw new OAuthServerException();
                 }
             }
 
