@@ -54,31 +54,24 @@ class SocialiteUsersController extends BaseController
      */
     public function socialAuth(SocialiteAuthRequest $request){
 
-        // 默认密码为账号的 bcrypt
-        if (!$request->offsetExists('password')) {
-            $request->offsetSet('password', bcrypt($request->username));
-        }
-
         // 默认信任客户端的第三方认证
         // 为保险起见，也可以使用客户端获取到的AccessToken再去第三方验证
         // TODO 使用客户端获取到的AccessToken去第三方验证
 
-        $socialiteAuthUser = $this->repository->getByCriteria(new SocialiteAuthUserCriteria($request));
+        $socialiteAuthUser = $this->repository->pushCriteria(new SocialiteAuthUserCriteria($request))->skipPresenter()->first();
 
-        if(!empty($socialiteAuthUser['data'])){
+        if(!empty($socialiteAuthUser)){
             return $this->issueToken($request);
         }
 
-        $authUser = $this->userRepository->getByCriteria(new GetUserByUsernameOrEmailCriteria($request));
-        if(!empty($authUser['data'])){
+        $authUser = $this->userRepository->pushCriteria(new GetUserByUsernameOrEmailCriteria($request))->skipPresenter()->first();
+
+        if(!empty($authUser)){
             // 添加第三方账号和user的关联
-            $this->addSocialiteUser($request, $authUser['data'][0]);
+            $this->addSocialiteUser($request, $authUser);
         }else{
-            try{
-                $this->createUser($request);
-            }catch(\Exception $e){
-                return $this->response->error("An Error Occured, please retry later", 422);
-            }
+            // 根据第三方信息创建新用户
+            $this->createUser($request);
         }
 
         return $this->issueToken($request);

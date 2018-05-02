@@ -19,9 +19,12 @@ class GetUserByUsernameOrEmailCriteria implements CriteriaInterface
         if ($this->request->email) {
             $model = $model
                 ->where('email', '=', $this->request->email)
+                ->orWhere('email', '=', $this->request->username)
                 ->orWhere('username', '=', $this->request->username);
         } else {
-            $model = $model->where('username', '=', $this->request->username);
+            $model = $model
+                ->where('username', '=', $this->request->username)
+                ->orWhere('email', '=', $this->request->username);
         }
 
         return $model;

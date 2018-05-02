@@ -24,7 +24,7 @@ $api->version('v1', [
         $api->post('register', 'AuthController@register');
         $api->post('login', 'AuthController@login');
         $api->post('refresh', 'AuthController@refresh');
-        $api->post('social_auth', 'SocialiteUsersController@socialAuth');
+        $api->post('socialite_auth', 'SocialiteUsersController@socialAuth')->middleware('socialite.auto_password');
 
     });
 

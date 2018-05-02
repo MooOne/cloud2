@@ -68,5 +68,8 @@ class Kernel extends HttpKernel
         // Passport
         'scopes' => \Laravel\Passport\Http\Middleware\CheckScopes::class,
         'scope' => \Laravel\Passport\Http\Middleware\CheckForAnyScope::class,
+
+        // Socialite
+        'socialite.auto_password' => \Yeelight\Http\Middleware\SocialiteAutoPassword::class,
     ];
 }

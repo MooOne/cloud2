@@ -24,11 +24,14 @@ abstract class BaseController extends Controller
      * @param string $scope
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
-    public function issueToken(Request $request, $grantType = 'password', $scope = ""){
+    public function issueToken(Request $request, $grantType = 'password', $scope = "")
+    {
         $params = [
             'grant_type' => $grantType,
             'client_id' => $request->client_id,
             'client_secret' => $request->client_secret,
+            'username' => $request->username,
+            'password' => $request->password,
             'scope' => $scope
         ];
 

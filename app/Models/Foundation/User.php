@@ -86,11 +86,16 @@ class User extends BaseUser
         return $this->hasMany(SocialiteUser::class);
     }
 
+    public function findForPassport($username) {
+        return $this->where('username', $username)->orWhere('email', $username)->first();
+    }
+
+
     /**
-     * Called when model is created
+     * Called when model is creating
      * Other events available are in BaseModelEvents
      */
-    public function onCreated()
+    public function onCreating()
     {
         parent::onCreated();
 
@@ -98,4 +103,12 @@ class User extends BaseUser
         $this->password = bcrypt($this->password);
     }
 
+    /**
+     * Called when model is created
+     * Other events available are in BaseModelEvents
+     */
+    public function onCreated()
+    {
+        parent::onCreated();
+    }
 }
