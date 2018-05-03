@@ -18,6 +18,7 @@
         "dingo/api": "2.0.0-alpha1",
         "doctrine/dbal": "~2.6",
         "fideloper/proxy": "~3.3",
+        "germey/geetest": "^3.0",
         "giggsey/libphonenumber-for-php": "~8.8",
         "guzzlehttp/guzzle": "~6.3",
         "hieu-le/active": "^3.5",

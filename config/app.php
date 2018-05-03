@@ -183,6 +183,7 @@ return [
         Dingo\Api\Provider\LaravelServiceProvider::class,
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         Monarobase\CountryList\CountryListServiceProvider::class,
+        Germey\Geetest\GeetestServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -249,11 +250,11 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-        // 'Image' => Intervention\Image\Facades\Image::class,
-        // 'LaravelLocalization'   => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
+        'Image' => Intervention\Image\Facades\Image::class,
+        'LaravelLocalization'   => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
         'Countries' => Monarobase\CountryList\CountryListFacade::class,
         // 'GeoIP' => Torann\GeoIP\GeoIPFacade::class,
-
+        'Geetest' => Germey\Geetest\Geetest::class
     ],
 
 ];

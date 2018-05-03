@@ -48,6 +48,9 @@
         <input type="password" class="form-control" placeholder="{{ trans('backend.password') }}" name="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
+      <div class="form-group">
+        {!! Geetest::render() !!}
+      </div>
       <div class="row">
 
         <!-- /.col -->

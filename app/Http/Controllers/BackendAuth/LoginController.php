@@ -110,6 +110,9 @@ class LoginController extends BaseController
         $this->validate($request, [
             $this->username() => 'required|string',
             'password' => 'required|string',
+            'geetest_challenge' => 'geetest',
+        ], [
+            'geetest' => config('geetest.server_fail_alert')
         ]);
     }
 
