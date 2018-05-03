@@ -15,6 +15,12 @@ class EventServiceProvider extends ServiceProvider
         'Yeelight\Events\Event' => [
             'Yeelight\Listeners\EventListener',
         ],
+        'Laravel\Passport\Events\AccessTokenCreated' => [
+            'Yeelight\Listeners\Auth\RevokeOldTokens',
+        ],
+        'Laravel\Passport\Events\RefreshTokenCreated' => [
+            'Yeelight\Listeners\Auth\PruneOldTokens',
+        ],
     ];
 
     /**

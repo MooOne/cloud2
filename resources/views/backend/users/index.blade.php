@@ -70,12 +70,12 @@
                                         <div class="form">
                                             <div class="form-group">
                                                 <div class="form-group">
-                                                    <label>{{ $columns['id'] }}</label>
+                                                    <label>{{ $columns['user_id'] }}</label>
                                                     <div class="input-group">
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-pencil"></i>
                                                         </div>
-                                                        <input type="text" class="form-control id" placeholder="{{ $columns['id'] }}" name="id" value="{{ isset($query['id']) ? $query['id'] : ''}}">
+                                                        <input type="text" class="form-control user_id" placeholder="{{ $columns['user_id'] }}" name="user_id" value="{{ isset($query['user_id']) ? $query['user_id'] : ''}}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -109,6 +109,61 @@
                                                             <i class="fa fa-pencil"></i>
                                                         </div>
                                                         <input type="text" class="form-control email" placeholder="{{ $columns['email'] }}" name="email" value="{{ isset($query['email']) ? $query['email'] : ''}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <label>{{ $columns['gender'] }}</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control gender" placeholder="{{ $columns['gender'] }}" name="gender" value="{{ isset($query['gender']) ? $query['gender'] : ''}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <label>{{ $columns['country'] }}</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control country" placeholder="{{ $columns['country'] }}" name="country" value="{{ isset($query['country']) ? $query['country'] : ''}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <label>{{ $columns['timezone'] }}</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control timezone" placeholder="{{ $columns['timezone'] }}" name="timezone" value="{{ isset($query['timezone']) ? $query['timezone'] : ''}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <label>{{ $columns['locale'] }}</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control locale" placeholder="{{ $columns['locale'] }}" name="locale" value="{{ isset($query['locale']) ? $query['locale'] : ''}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <label>{{ $columns['phone_number'] }}</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control phone_number" placeholder="{{ $columns['phone_number'] }}" name="phone_number" value="{{ isset($query['phone_number']) ? $query['phone_number'] : ''}}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -174,27 +229,43 @@
                 <table class="table table-hover">
                     <tr>
                         <th></th>
-                        <th>{{ $columns['id'] }}{!! column_sorter('id') !!}</th>
-                        <th>{{ $columns['name'] }}</th>
+                        <th>{{ $columns['user_id'] }}{!! column_sorter('user_id') !!}</th>
+                        <th>{{ $columns['username'] }}</th>
+                        <th>{{ $columns['email'] }}</th>
+                        <th>{{ $columns['gender'] }}</th>
+                        <th>{{ $columns['birthday'] }}</th>
+                        <th>{{ $columns['country'] }}</th>
+                        <th>{{ $columns['timezone'] }}</th>
+                        <th>{{ $columns['locale'] }}</th>
+                        <th>{{ $columns['phone_number'] }}</th>
                         <th>{{ $columns['created_at'] }}{!! column_sorter('created_at') !!}</th>
                         <th>{{ $columns['updated_at'] }}{!! column_sorter('updated_at') !!}</th>
+                        <th>{{ $columns['status'] }}</th>
                         <th>{{ trans('backend.action') }}</th>
                     </tr>
 
                     @foreach($lists['data'] as $row)
                         <tr>
                             <td>
-                                <input type="checkbox" class="grid-row-checkbox" data-id="{{ $row['id'] }}" />
+                                <input type="checkbox" class="grid-row-checkbox" data-id="{{ $row['user_id'] }}" />
                             </td>
-                            <td>{{ $row['id'] }}</td>
-                            <td>{{ $row['name'] }}</td>
+                            <td>{{ $row['user_id'] }}</td>
+                            <td>{{ $row['username'] }}</td>
+                            <td>{{ $row['email'] }}</td>
+                            <td>{{ $row['gender'] }}</td>
+                            <td>{{ $row['birthday'] }}</td>
+                            <td>{{ $row['country'] }}</td>
+                            <td>{{ $row['timezone'] }}</td>
+                            <td>{{ $row['locale'] }}</td>
+                            <td>{{ $row['phone_number'] }}</td>
                             <td>{{ $row['created_at'] }}</td>
                             <td>{{ $row['updated_at'] }}</td>
+                            <td>{{ $row['status'] }}</td>
                             <td>
-                                <a href="{{ get_resource() }}/{{ $row['id'] }}/edit">
+                                <a href="{{ get_resource() }}/{{ $row['user_id'] }}/edit">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="javascript:void(0);" data-id="{{ $row['id'] }}" class="grid-row-delete">
+                                <a href="javascript:void(0);" data-id="{{ $row['user_id'] }}" class="grid-row-delete">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>

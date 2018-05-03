@@ -2,7 +2,7 @@
 
 return [
     'columns' => [
-        'id'                        => 'ID',
+        'user_id'                   => 'ID',
         'name'                      => '用户昵称',
         'gender'                    => '性别',
         'birthday'                  => '生日',

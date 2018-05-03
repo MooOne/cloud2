@@ -37,7 +37,7 @@
 
                             <p>
                                 {{ backend_user()->name }}
-                                <small>Member since admin {{ backend_user()->created_at }}</small>
+                                <small>创建于 {{ backend_user()->created_at }}</small>
                             </p>
                         </li>
                         <li class="user-footer">

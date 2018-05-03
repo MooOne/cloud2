@@ -2,7 +2,10 @@
 namespace Yeelight\Models\Foundation;
 
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
+use Laravel\Passport\Bridge\AccessToken;
 use Laravel\Passport\HasApiTokens;
+use Laravel\Passport\Token;
 use Yeelight\Models\SocialiteUser;
 use Yeelight\Services\Image\Models\Traits\YeelightHasImageablesTrait;
 use Yeelight\Models\Foundation\BaseUser;
@@ -82,8 +85,12 @@ class User extends BaseUser
         'remember_token',
     ];
 
-    public function socialiteUser(){
-        return $this->hasMany(SocialiteUser::class);
+    public function socialiteUsers(){
+        return $this->hasMany(SocialiteUser::class, 'user_id', 'user_id');
+    }
+
+    public function accessTokens(){
+        return $this->hasMany(Token::class, 'user_id', 'user_id');
     }
 
     public function findForPassport($username) {
@@ -124,5 +131,23 @@ class User extends BaseUser
     public function onCreated()
     {
         parent::onCreated();
+    }
+
+    public function onDeleting()
+    {
+        parent::onDeleting();
+
+        //关联的第三方
+        $this->socialiteUsers()->delete();
+
+        //Token相关
+        $accessTokens = $this->accessTokens;
+
+        foreach ($accessTokens as $accessToken) {
+            DB::table('oauth_refresh_tokens')
+                ->where('access_token_id', $accessToken->id)
+                ->update(['revoked' => true]);
+            $accessToken->revoke();
+        }
     }
 }
