@@ -1,6 +1,7 @@
 <?php
 namespace Yeelight\Http\Controllers\Backend;
 
+
 class HomeController extends BaseController
 {
     /**
@@ -10,33 +11,73 @@ class HomeController extends BaseController
      */
     public function index()
     {
-        $tasks = [
-            [
-                'name' => 'Design New Dashboard',
-                'progress' => '87',
-                'color' => 'danger'
-            ],
-            [
-                'name' => 'Create Home Page',
-                'progress' => '76',
-                'color' => 'warning'
-            ],
-            [
-                'name' => 'Some Other Task',
-                'progress' => '32',
-                'color' => 'success'
-            ],
-            [
-                'name' => 'Start Building Website',
-                'progress' => '56',
-                'color' => 'info'
-            ],
-            [
-                'name' => 'Develop an Awesome Algorithm',
-                'progress' => '10',
-                'color' => 'success'
-            ]
+        // environment
+        $envs = [
+            ['name' => 'PHP version',       'value' => 'PHP/'.PHP_VERSION],
+            ['name' => 'Laravel version',   'value' => app()->version()],
+            ['name' => 'CGI',               'value' => php_sapi_name()],
+            ['name' => 'Uname',             'value' => php_uname()],
+            ['name' => 'Server',            'value' => array_get($_SERVER, 'SERVER_SOFTWARE')],
+
+            ['name' => 'Cache driver',      'value' => config('cache.default')],
+            ['name' => 'Session driver',    'value' => config('session.driver')],
+            ['name' => 'Queue driver',      'value' => config('queue.default')],
+
+            ['name' => 'Timezone',          'value' => config('app.timezone')],
+            ['name' => 'Locale',            'value' => config('app.locale')],
+            ['name' => 'Env',               'value' => config('app.env')],
+            ['name' => 'URL',               'value' => config('app.url')],
         ];
-        return view('backend.index',compact('tasks'));
+
+        // tools
+        $tools = [
+            'log-viewer' => [
+                'name' => '日志查看器',
+                'link' => route('tools.log-viewer-index'),
+                'icon' => 'fa-bug',
+            ],
+            'scheduling' => [
+                'name' => '计划任务',
+                'link' => route('tools.scheduling-index'),
+                'icon' => 'fa-clock-o',
+            ],
+            'terminal_database' => [
+                'name' => '数据库终端',
+                'link' => route('tools.terminal-database'),
+                'icon' => 'fa-database',
+            ],
+            'terminal_artisan' => [
+                'name' => 'Aritsan终端',
+                'link' => route('tools.terminal-artisan'),
+                'icon' => 'fa-terminal',
+            ],
+            'scaffold' => [
+                'name' => '脚手架',
+                'link' => route('tools.scaffold-index'),
+                'icon' => 'fa-keyboard-o',
+            ],
+            'routes' => [
+                'name' => '路由查看器',
+                'link' => route('tools.routes-index'),
+                'icon' => 'fa-list-alt',
+            ],
+            'api-tester' => [
+                'name' => 'Api tester',
+                'link' => route('tools.api-tester-index'),
+                'icon' => 'fa-sliders',
+            ],
+        ];
+
+        foreach ($tools as &$tool) {
+            $name = explode('/', $tool['name']);
+            $tool['installed'] = true;
+        }
+
+        // dependencies
+        $json = file_get_contents(base_path('composer.json'));
+
+        $dependencies = json_decode($json, true)['require'];
+
+        return view('backend.home',compact('envs', 'tools', 'dependencies'));
     }
 }
