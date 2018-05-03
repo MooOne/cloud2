@@ -18,7 +18,6 @@ $api->version('v1', [
     'namespace' => 'Yeelight\Http\Controllers\Api\Controllers',
     'middleware' => ['api']
 ], function (Router $api) {
-
     // 登录前操作
     $api->group(['middleware' => ['api.throttle'], 'prefix' => 'auth' , 'limit' => 100, 'expires' => 5], function (Router $api) {
         $api->post('register', 'AuthController@register');
@@ -38,8 +37,8 @@ $api->version('v1', [
             // 用户模块
             $api->group(['prefix' => 'users'], function (Router $api) {
                 $api->get('/me', 'UsersController@me');
-                $api->put('/{id}', 'UsersController@update');
-                $api->delete('/{id}', 'UsersController@destroy');
+                $api->put('/me', 'UsersController@update');
+                //$api->delete('/me', 'UsersController@destroy');
             });
 
         });

@@ -14,6 +14,10 @@ abstract class BaseController extends Controller
      */
     public function getAuthUser()
     {
+        $auth_user = auth_user();
+        if ($auth_user->status == 0) {
+            return $this->response->errorForbidden('User Are Forbidden');
+        }
         return auth_user();
     }
 

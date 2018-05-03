@@ -19,15 +19,15 @@ class CreateUsersTable extends Migration
             $table->string('name', 50)->nullable()->comment('用户昵称');
 			$table->char('gender', 1)->nullable()->comment('性别');
 			$table->date('birthday')->nullable()->comment('生日');
-			$table->char('country', 2)->nullable()->default('US')->comment('国家');
-			$table->string('timezone', 30)->nullable()->default('UTC')->comment('时区');
-			$table->string('locale', 15)->nullable()->default('en')->comment('语言');
+			$table->char('country', 2)->nullable()->default('CN')->comment('国家');
+			$table->string('timezone', 30)->nullable()->default('Asia/Shanghai')->comment('时区');
+			$table->string('locale', 15)->nullable()->default('cn')->comment('语言');
 			$table->string('username', 50)->unique()->comment('用户名');
 			$table->string('phone_number')->nullable()->comment('手机号码');
 			$table->string('email', 150)->nullable()->unique()->comment('邮箱');
 			$table->string('password', 190)->nullable()->comment('密码');
             $table->rememberToken();
-			$table->tinyInteger('status')->comment('状态')->default(0);
+			$table->tinyInteger('status')->comment('状态')->default(1);
 
 
             $table->unsignedInteger('created_by')->nullable();

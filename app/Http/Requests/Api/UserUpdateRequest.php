@@ -3,6 +3,8 @@
 namespace Yeelight\Http\Requests\Api;
 
 use Dingo\Api\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use Yeelight\Models\Basic\CountryModel;
 
 class UserUpdateRequest extends FormRequest
 {
@@ -13,7 +15,7 @@ class UserUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +26,26 @@ class UserUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'username' => [
+                'nullable',
+                Rule::unique('users')->ignore($this->username, 'username'),
+                'max:50'
+            ],
+            'email' => [
+                'nullable',
+                'email',
+                Rule::unique('users')->ignore($this->email, 'email')
+            ],
+            'gender'	=> [
+                'nullable',
+                Rule::in(['F', 'M']),
+            ],
+            'birthday' => 'nullable|date_format:Y-m-d',
+            'country' => [
+                'nullable',
+                Rule::in(CountryModel::getCountryISOCodeList())
+            ],
+            'timezone' => 'nullable|timezone',
         ];
     }
 }

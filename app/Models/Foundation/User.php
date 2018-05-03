@@ -90,6 +90,20 @@ class User extends BaseUser
         return $this->where('username', $username)->orWhere('email', $username)->first();
     }
 
+    /**
+     * Called when model is updating
+     * Other events available are in BaseModelEvents
+     */
+    public function onUpdating()
+    {
+        parent::onUpdating();
+
+        //密码
+        if ($this->password) {
+            $this->password = bcrypt($this->password);
+        }
+    }
+
 
     /**
      * Called when model is creating
@@ -97,7 +111,7 @@ class User extends BaseUser
      */
     public function onCreating()
     {
-        parent::onCreated();
+        parent::onCreating();
 
         //密码
         $this->password = bcrypt($this->password);

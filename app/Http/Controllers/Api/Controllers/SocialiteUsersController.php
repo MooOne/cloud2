@@ -11,6 +11,7 @@ use Yeelight\Http\Requests\Api\SocialiteAuthRequest;
 use Yeelight\Http\Requests\Api\SocialiteUserCreateRequest;
 use Yeelight\Http\Requests\Api\SocialiteUserUpdateRequest;
 use Yeelight\Models\Foundation\User;
+use Yeelight\Models\SocialiteUser;
 use Yeelight\Repositories\Criteria\GetUserByUsernameOrEmailCriteria;
 use Yeelight\Repositories\Criteria\SocialiteAuthUserCriteria;
 use Yeelight\Repositories\Interfaces\SocialiteUserRepository;
@@ -61,12 +62,18 @@ class SocialiteUsersController extends BaseController
         $socialiteAuthUser = $this->repository->pushCriteria(new SocialiteAuthUserCriteria($request))->skipPresenter()->first();
 
         if(!empty($socialiteAuthUser)){
+            // 更新第三方账号信息
+            $this->updateSocialiteUser($request, $socialiteAuthUser);
             return $this->issueToken($request);
         }
 
         $authUser = $this->userRepository->pushCriteria(new GetUserByUsernameOrEmailCriteria($request))->skipPresenter()->first();
 
         if(!empty($authUser)){
+            // 用户状态是否为禁止
+            if ($authUser->status == 0) {
+                return $this->response->errorForbidden('User Are Forbidden');
+            }
             // 添加第三方账号和user的关联
             $this->addSocialiteUser($request, $authUser);
         }else{
@@ -96,6 +103,17 @@ class SocialiteUsersController extends BaseController
 
         $data['user_id'] = $user->user_id;
         $this->repository->create($data);
+    }
+
+    /**
+     * 更新第三方账号信息
+     *
+     * @param SocialiteAuthRequest $request [description]
+     * @param SocialiteUser    $socialiteUser    [description]
+     */
+    private function updateSocialiteUser(SocialiteAuthRequest $request, SocialiteUser $socialiteUser){
+        $data = $request->all();
+        $this->repository->update($data, $socialiteUser->id);
     }
 
     /**

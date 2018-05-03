@@ -19,7 +19,7 @@ if (!function_exists('current_auth_user')) {
         $user = !empty($user) ? $user : \Auth::user();
         if (!$user || !($user instanceof \Yeelight\Models\Foundation\BaseUser)) {
             if ($throwException) {
-                throw new \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException();
+                throw new \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException('User Invalid Or Token Expired');
             }
         }
         return $user;
