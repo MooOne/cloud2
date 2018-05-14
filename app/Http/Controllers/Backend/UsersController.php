@@ -4,6 +4,7 @@ namespace Yeelight\Http\Controllers\Backend;
 use Illuminate\Support\MessageBag;
 use Yeelight\Http\Requests\UserCreateRequest;
 use Yeelight\Http\Requests\UserUpdateRequest;
+use Yeelight\Models\Basic\CountryModel;
 use Yeelight\Repositories\Interfaces\UserRepository;
 use Yeelight\Validators\UserValidator;
 
@@ -38,6 +39,8 @@ class UsersController extends BaseController
     public function index()
     {
         $columns = trans('users.columns');
+        $countries = CountryModel::getCountryList();
+
         $lists = $this->repository->paginate(null, ['*']);
         $paginator = $this->backendPagination($lists);
 
@@ -47,6 +50,7 @@ class UsersController extends BaseController
         return view('backend.users.index', [
             'lists' => $lists,
             'columns' => $columns,
+            'countries' => $countries,
             'paginator' => $paginator,
             'query' => request()->query()
         ]);
@@ -59,6 +63,7 @@ class UsersController extends BaseController
      */
     public function create()
     {
+        optional();
         $columns = trans('users.columns');
         return view('backend.users.create', [
             'columns' => $columns

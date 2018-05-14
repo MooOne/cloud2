@@ -181,7 +181,7 @@
                 <table class="table table-hover">
                     <tr>
                         <th></th>
-                        <th>{{ $columns['id'] }}{!! column_sorter('id') !!}</th>
+                        <th>{{ $columns['id'] }}</th>
                         <th>{{ $columns['user_name'] }}</th>
                         <th>{{ $columns['method'] }}</th>
                         <th>{{ $columns['path'] }}</th>

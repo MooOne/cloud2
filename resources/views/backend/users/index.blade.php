@@ -126,12 +126,12 @@
                                             <div class="form-group">
                                                 <div class="form-group">
                                                     <label>{{ $columns['country'] }}</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </div>
-                                                        <input type="text" class="form-control country" placeholder="{{ $columns['country'] }}" name="country" value="{{ isset($query['country']) ? $query['country'] : ''}}">
-                                                    </div>
+                                                    <select class="form-control country" name="country" style="width: 100%;">
+                                                        <option></option>
+                                                        @foreach($countries as $ck => $country)
+                                                            <option value="{{ $ck }}"  @if (isset($query['country']) && $query['country'] == $ck) selected @endif>{{ $country }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -232,6 +232,7 @@
                         <th>{{ $columns['user_id'] }}{!! column_sorter('user_id') !!}</th>
                         <th>{{ $columns['username'] }}</th>
                         <th>{{ $columns['email'] }}</th>
+                        <th>{{ $columns['name'] }}</th>
                         <th>{{ $columns['gender'] }}</th>
                         <th>{{ $columns['birthday'] }}</th>
                         <th>{{ $columns['country'] }}</th>
@@ -252,15 +253,16 @@
                             <td>{{ $row['user_id'] }}</td>
                             <td>{{ $row['username'] }}</td>
                             <td>{{ $row['email'] }}</td>
+                            <td>{{ $row['name'] }}</td>
                             <td>{{ $row['gender'] }}</td>
                             <td>{{ $row['birthday'] }}</td>
-                            <td>{{ $row['country'] }}</td>
+                            <td>{{ isset($countries[$row['country']]) ? $countries[$row['country']] : '' }}</td>
                             <td>{{ $row['timezone'] }}</td>
                             <td>{{ $row['locale'] }}</td>
                             <td>{{ $row['phone_number'] }}</td>
                             <td>{{ $row['created_at'] }}</td>
                             <td>{{ $row['updated_at'] }}</td>
-                            <td>{{ $row['status'] }}</td>
+                            <td>{!! $row['status_str'] !!}</td>
                             <td>
                                 <a href="{{ get_resource() }}/{{ $row['user_id'] }}/edit">
                                     <i class="fa fa-edit"></i>
@@ -413,6 +415,10 @@
                             }
                         });
                     });
+            });
+
+            $(".country").select2({
+                placeholder: "{{ trans('users.columns.country') }}"
             });
 
         });

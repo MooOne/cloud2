@@ -44,7 +44,7 @@ class AdminOperationLogsController extends BaseController
     {
         $columns = trans('admin_operation_logs.columns');
         $adminUsers = $this->userRepository->pluck('name', 'id');
-        $lists = $this->repository->paginate(null, ['*']);
+        $lists = $this->repository->orderBy('created_at', 'desc')->paginate(null, ['*']);
         $paginator = $this->backendPagination($lists);
 
         //导出
@@ -58,19 +58,5 @@ class AdminOperationLogsController extends BaseController
             'paginator' => $paginator,
             'query' => request()->query()
         ]);
-    }
-
-    /**
-     * Create interface.
-     *
-     * @return Content
-     */
-    public function create()
-    {
-        return Admin::content(function (Content $content) {
-            $content->header(trans('admin.permissions'));
-            $content->description(trans('admin.create'));
-            $content->body($this->form());
-        });
     }
 }

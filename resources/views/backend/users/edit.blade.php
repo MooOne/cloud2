@@ -1,5 +1,4 @@
 @extends('backend.index')
-
 @section('content')
     <section class="content-header">
         <h1>
@@ -65,6 +64,50 @@
                 <div class="box-body">
                     <div class="fields-group">
                         {{--Fields Start--}}
+                        <div class="form-group {!! !$errors->has('username') ? '' : 'has-error' !!}">
+                            <label for="username" class="col-sm-2 control-label">{{ $columns['username'] }}</label>
+                            <div class="col-sm-8">
+                                @if($errors->has('username'))
+                                    @foreach($errors->get('username') as $message)
+                                        <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{$message}}</label><br/>
+                                    @endforeach
+                                @endif
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                    <input type="text" id="username" name="username" value="{{ $data['username'] }}" class="form-control username" placeholder="{{ trans('backend.input') }} {{ $columns['username'] }}">
+                                </div>
+                            </div>
+                        </div>
+                        {{--Fields End--}}
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="fields-group">
+                        {{--Fields Start--}}
+                        <div class="form-group {!! !$errors->has('email') ? '' : 'has-error' !!}">
+                            <label for="email" class="col-sm-2 control-label">{{ $columns['email'] }}</label>
+                            <div class="col-sm-8">
+                                @if($errors->has('email'))
+                                    @foreach($errors->get('email') as $message)
+                                        <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{$message}}</label><br/>
+                                    @endforeach
+                                @endif
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-envelope"></i>
+                                </span>
+                                    <input type="text" id="email" name="email" value="{{ $data['email'] }}" class="form-control email" placeholder="{{ trans('backend.input') }} {{ $columns['email'] }}">
+                                </div>
+                            </div>
+                        </div>
+                        {{--Fields End--}}
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="fields-group">
+                        {{--Fields Start--}}
                         <div class="form-group {!! !$errors->has('name') ? '' : 'has-error' !!}">
                             <label for="name" class="col-sm-2 control-label">{{ $columns['name'] }}</label>
                             <div class="col-sm-8">
@@ -78,6 +121,52 @@
                                     <i class="fa fa-pencil"></i>
                                 </span>
                                     <input type="text" id="name" name="name" value="{{ $data['name'] }}" class="form-control name" placeholder="{{ trans('backend.input') }} {{ $columns['name'] }}">
+                                </div>
+                            </div>
+                        </div>
+                        {{--Fields End--}}
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="fields-group">
+                        {{--Fields Start--}}
+                        <div class="form-group {!! !$errors->has('gender') ? '' : 'has-error' !!}">
+                            <label for="gender" class="col-sm-2 control-label">{{ $columns['gender'] }}</label>
+                            <div class="col-sm-8">
+                                @if($errors->has('gender'))
+                                    @foreach($errors->get('gender') as $message)
+                                        <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{$message}}</label><br/>
+                                    @endforeach
+                                @endif
+                                <div class="radio">
+                                    <label >
+                                        <input type="radio" name="gender" value="F" class="minimal gender" {{ ($data['gender'] == 'F' )?'checked':'' }} />&nbsp;F&nbsp;
+                                    </label>
+                                    <label >
+                                        <input type="radio" name="gender" value="M" class="minimal gender" {{ ($data['gender'] == 'M' )?'checked':'' }} />&nbsp;M&nbsp;
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        {{--Fields End--}}
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="fields-group">
+                        {{--Fields Start--}}
+                        <div class="form-group {!! !$errors->has('birthday') ? '' : 'has-error' !!}">
+                            <label for="birthday" class="col-sm-2 control-label">{{ $columns['birthday'] }}</label>
+                            <div class="col-sm-8">
+                                @if($errors->has('birthday'))
+                                    @foreach($errors->get('birthday') as $message)
+                                        <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{$message}}</label><br/>
+                                    @endforeach
+                                @endif
+                                <div class="input-group">
+                                <span class="input-group-addon birthday">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                                    <input type="text" style="width: 110px" id="birthday" name="birthday" value="{{ $data['birthday'] }}" class="form-control birthday" readonly placeholder="{{ trans('backend.choose') }} {{ $columns['birthday'] }}">
                                 </div>
                             </div>
                         </div>
@@ -124,6 +213,17 @@
                 event.preventDefault();
                 history.back(1);
             });
+            $('.gender').iCheck({radioClass:'iradio_minimal-blue'});
+            $('.birthday').datepicker({
+                autoclose: true,         //自动关闭
+                format:"yyyy-mm-dd",     //日期格式
+                language: 'zh-CN',       //语言
+                todayBtn: true,          //今天按钮
+                todayHighlight: true,    //今天高亮
+                calendarWeeks: true,     //是否显示今年是第几周
+                clearBtn: true,          //显示清除按钮
+            });
         });
+
     </script>
 @endsection

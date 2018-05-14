@@ -134,9 +134,9 @@ mix.copy(paths.slimScroll + 'jquery.slimscroll.js', destJs);
 // iCheck
 mix.copy(paths.iCheck + 'icheck.js', destJs);
 mix.copyDirectory(paths.iCheck, destCss + 'icheck');
+mix.copy(paths.iCheck + 'skins/minimal/blue.png', destCss);
 
 //duallistbox
-// iCheck
 mix.copy(paths.duallistbox + 'jquery.bootstrap-duallistbox.js', destJs);
 mix.copy(paths.duallistbox + 'bootstrap-duallistbox.css', destCss);
 
@@ -248,7 +248,7 @@ mix.styles(
         destCss + 'bootstrap-editable.css',
         destCss + 'fileinput.css',
         destCss + 'datepicker.css',
-        destCss + 'icheck/minimal/_all.css'
+        destCss + 'icheck/skins/minimal/_all.css'
     ],
     destCss + 'app.css'
 ).options({

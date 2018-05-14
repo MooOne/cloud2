@@ -32,6 +32,7 @@ class UserTransformer extends BaseTransformer
             'email' => (string) $model->email,
             'password' => (string) $model->password,
             'status' => (int) $model->status,
+            'status_str' => (string) $this->getStatusStrAttr($model),
 
             'created_by' => (string) $model->created_by,
             'created_at' => (string) $model->created_at,
@@ -40,5 +41,10 @@ class UserTransformer extends BaseTransformer
             'updated_at' => (string) $model->updated_at,
             'updated_ip' => (string) $model->updated_ip
         ];
+    }
+
+    private function getStatusStrAttr(User $model)
+    {
+        return $model->status == 0 ? '<span class="label label-danger">禁用</span>' : '<span class="label label-success">正常</span>';
     }
 }

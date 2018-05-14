@@ -1,6 +1,7 @@
 <?php
 namespace Yeelight\Repositories\Eloquent;
 
+use Illuminate\Support\Collection;
 use Yeelight\Repositories\Criteria\RequestCriteria;
 use Yeelight\Repositories\Interfaces\UserRepository;
 use Yeelight\Models\Foundation\User;
@@ -17,10 +18,15 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'id',
+        'user_id',
         'name' => 'like',
         'username' => 'like',
         'email' => 'like',
+        'gender',
+        'country',
+        'timezone' => 'like',
+        'locale',
+        'phone_number' => 'like',
     ];
 
 
