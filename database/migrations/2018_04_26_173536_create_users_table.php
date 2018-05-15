@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
 			$table->date('birthday')->nullable()->comment('生日');
 			$table->char('country', 2)->nullable()->default('CN')->comment('国家');
 			$table->string('timezone', 30)->nullable()->default('Asia/Shanghai')->comment('时区');
-			$table->string('locale', 15)->nullable()->default('cn')->comment('语言');
+			$table->string('locale', 15)->nullable()->default('zh')->comment('语言');
 			$table->string('username', 50)->unique()->comment('用户名');
 			$table->string('phone_number')->nullable()->comment('手机号码');
 			$table->string('email', 150)->nullable()->unique()->comment('邮箱');

@@ -45,7 +45,7 @@ class BaseModel extends Model implements BaseModelEventsInterface
      *
      * @var bool
      */
-    protected $timestamp_always_save_in_utc = true;
+    protected $timestamp_always_save_in_utc = false;
 
     /**
      * Indicates timestamp is always get in user timezone
@@ -82,9 +82,13 @@ class BaseModel extends Model implements BaseModelEventsInterface
     public function getAuthUser()
     {
         $user = null;
-        if ($this->api_auth()->check()) {
+        if ($this->api_auth()->check()) { // API
             $user = $this->api_auth()->user();
+        } else if (\Auth::guard(config('yeelight.backend.route.prefix'))->check()) {
+            // Backend
+            $user = \Auth::guard(config('yeelight.backend.route.prefix'))->user();
         } else if (\Auth::check()) {
+            // Normal
             $user = \Auth::user();
         }
         return $user;
@@ -100,7 +104,7 @@ class BaseModel extends Model implements BaseModelEventsInterface
         $user_id = null;
         $user = $this->getAuthUser();
         if ($user) {
-            $user_id = $user->user_id;
+            $user_id = isset($user->user_id) ? $user->user_id : $user->id;
         }
         return $user_id;
     }

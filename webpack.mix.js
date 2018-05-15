@@ -91,6 +91,9 @@ const paths = {
 
     //bootstrap-fileinput
     'fileinput': vendors + 'bootstrap-fileinput/',
+
+    //bootstrap-switch
+    'switch': vendors + 'bootstrap-switch/dist/',
 };
 
 // Copy fonts straight to public
@@ -179,6 +182,10 @@ mix.copy(paths.clipboard + 'clipboard.js', destJs);
 mix.copy(paths.wangEditor + 'wangEditor.js', destJs);
 mix.copy(paths.wangEditor + 'wangEditor.css', destCss);
 
+//bootstrap-switch
+mix.copy(paths.switch + 'js/bootstrap-switch.min.js', destJs);
+mix.copy(paths.switch + 'css/bootstrap3/bootstrap-switch.min.css', destCss);
+
 //bootstrap-editable
 mix.copy(paths.editable + 'js/bootstrap-editable.js', destJs);
 mix.copy(paths.editable + 'js/bootstrap-datepicker.js', destJs);
@@ -248,6 +255,7 @@ mix.styles(
         destCss + 'bootstrap-editable.css',
         destCss + 'fileinput.css',
         destCss + 'datepicker.css',
+        destCss + 'bootstrap-switch.min.css',
         destCss + 'icheck/skins/minimal/_all.css'
     ],
     destCss + 'app.css'
@@ -283,6 +291,7 @@ mix.scripts(
         destJs + 'plugins/purify.js',
         destJs + 'plugins/canvas-to-blob.js',
         destJs + 'locales/zh.js',
+        destJs + 'bootstrap-switch.min.js',
         destJs + 'wangEditor.js'
     ],
     destJs + 'app.js'

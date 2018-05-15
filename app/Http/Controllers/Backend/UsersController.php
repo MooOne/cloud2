@@ -40,6 +40,8 @@ class UsersController extends BaseController
     {
         $columns = trans('users.columns');
         $countries = CountryModel::getCountryList();
+        $timezones = timezone_identifiers_list();
+        $locales = CountryModel::getLocaleCallingCodes();
 
         $lists = $this->repository->paginate(null, ['*']);
         $paginator = $this->backendPagination($lists);
@@ -51,6 +53,8 @@ class UsersController extends BaseController
             'lists' => $lists,
             'columns' => $columns,
             'countries' => $countries,
+            'timezones' => $timezones,
+            'locales' => $locales,
             'paginator' => $paginator,
             'query' => request()->query()
         ]);
@@ -63,10 +67,16 @@ class UsersController extends BaseController
      */
     public function create()
     {
-        optional();
         $columns = trans('users.columns');
+        $countries = CountryModel::getCountryList();
+        $timezones = timezone_identifiers_list();
+        $locales = CountryModel::getLocaleCallingCodes();
+
         return view('backend.users.create', [
-            'columns' => $columns
+            'columns' => $columns,
+            'countries' => $countries,
+            'timezones' => $timezones,
+            'locales' => $locales
         ]);
     }
 
@@ -79,10 +89,16 @@ class UsersController extends BaseController
     {
         $data = $this->repository->find($id);
         $columns = trans('users.columns');
+        $countries = CountryModel::getCountryList();
+        $timezones = timezone_identifiers_list();
+        $locales = CountryModel::getLocaleCallingCodes();
 
         return view('backend.users.edit', [
             'data' => $data['data'],
-            'columns' => $columns
+            'columns' => $columns,
+            'countries' => $countries,
+            'timezones' => $timezones,
+            'locales' => $locales
         ]);
     }
 

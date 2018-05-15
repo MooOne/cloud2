@@ -137,23 +137,23 @@
                                             <div class="form-group">
                                                 <div class="form-group">
                                                     <label>{{ $columns['timezone'] }}</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </div>
-                                                        <input type="text" class="form-control timezone" placeholder="{{ $columns['timezone'] }}" name="timezone" value="{{ isset($query['timezone']) ? $query['timezone'] : ''}}">
-                                                    </div>
+                                                    <select class="form-control timezone" name="timezone" style="width: 100%;">
+                                                        <option></option>
+                                                        @foreach($timezones as $timezone)
+                                                            <option value="{{ $timezone }}"  @if (isset($query['timezone']) && $query['timezone'] == $timezone) selected @endif>{{ $timezone }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="form-group">
                                                     <label>{{ $columns['locale'] }}</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </div>
-                                                        <input type="text" class="form-control locale" placeholder="{{ $columns['locale'] }}" name="locale" value="{{ isset($query['locale']) ? $query['locale'] : ''}}">
-                                                    </div>
+                                                    <select class="form-control locale" name="locale" style="width: 100%;">
+                                                        <option></option>
+                                                        @foreach($locales as $lk => $locale)
+                                                            <option value="{{ $lk }}"  @if (isset($query['locale']) && $query['locale'] == $lk) selected @endif>{{ $locale }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -258,8 +258,8 @@
                             <td>{{ $row['birthday'] }}</td>
                             <td>{{ isset($countries[$row['country']]) ? $countries[$row['country']] : '' }}</td>
                             <td>{{ $row['timezone'] }}</td>
-                            <td>{{ $row['locale'] }}</td>
-                            <td>{{ $row['phone_number'] }}</td>
+                            <td>{{ isset($locales[$row['locale']]) ? $locales[$row['locale']] : '' }}</td>
+                            <td>{{ phone_model_from($row['phone_number'], $row['country'])->format_e164 }}</td>
                             <td>{{ $row['created_at'] }}</td>
                             <td>{{ $row['updated_at'] }}</td>
                             <td>{!! $row['status_str'] !!}</td>
@@ -420,7 +420,9 @@
             $(".country").select2({
                 placeholder: "{{ trans('users.columns.country') }}"
             });
-
+            $(".timezone").select2({
+                placeholder: "{{ trans('users.columns.timezone') }}"
+            });
         });
     </script>
 @endsection

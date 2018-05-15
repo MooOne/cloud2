@@ -67,6 +67,29 @@ class User extends BaseUser
     use YeelightHasImageablesTrait;
 
     /**
+     * Indicates if the model should be auto set user_id.
+     *
+     * @var bool
+     */
+    protected $autoUserId = false;
+
+    /**
+     * Indicates if the model should be recorded ips.
+     *
+     * @var bool
+     */
+    protected $ips = true;
+
+    /**
+     * Indicates if the model should be recorded users.
+     *
+     * @var bool
+     */
+    protected $update_users = true;
+
+    protected $primaryKey = 'user_id';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -106,9 +129,12 @@ class User extends BaseUser
         parent::onUpdating();
 
         //密码
-        if ($this->password) {
-            $this->password = bcrypt($this->password);
+        if (request()->get('password') && $this->password != request()->get('password')) {
+            $this->password = bcrypt(request()->get('password'));
         }
+
+        //phone
+        $this->phone_number = phone_model_from($this->phone_number, $this->country)->format_e164;
     }
 
 
@@ -122,6 +148,9 @@ class User extends BaseUser
 
         //密码
         $this->password = bcrypt($this->password);
+
+        //phone
+        $this->phone_number = phone_model_from($this->phone_number, $this->country)->format_e164;
     }
 
     /**
@@ -131,6 +160,19 @@ class User extends BaseUser
     public function onCreated()
     {
         parent::onCreated();
+    }
+
+    public function onSaving()
+    {
+        // update ips if true
+        if ($this->ips) {
+            $this->updateIps();
+        }
+
+        // update users if true
+        if ($this->update_users) {
+            $this->updateUsers();
+        }
     }
 
     public function onDeleting()

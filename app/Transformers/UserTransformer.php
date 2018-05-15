@@ -45,6 +45,6 @@ class UserTransformer extends BaseTransformer
 
     private function getStatusStrAttr(User $model)
     {
-        return $model->status == 0 ? '<span class="label label-danger">禁用</span>' : '<span class="label label-success">正常</span>';
+        return $model->status == 0 ? '<span class="label label-danger">'.trans('users.columns.status_forbidden').'</span>' : '<span class="label label-success">'.trans('users.columns.status_normal').'</span>';
     }
 }
