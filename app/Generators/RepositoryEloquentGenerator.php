@@ -72,6 +72,7 @@ class RepositoryEloquentGenerator extends Generator
 
         return array_merge(parent::getReplacements(), [
             'fillable'      => $this->getFillable(),
+            'searchable'      => $this->getSearchable(),
             'use_validator' => $this->getValidatorUse(),
             'validator'     => $this->getValidatorMethod(),
             'use_presenter' => $this->getPresenterUse(),
@@ -99,6 +100,66 @@ class RepositoryEloquentGenerator extends Generator
         }
 
         return $results . "\t" . ']';
+    }
+
+    /**
+     * Get the Searchable attributes.
+     *
+     * @return string
+     */
+    public function getSearchable()
+    {
+        if (!$this->fields) {
+            return '[]';
+        }
+        $results = '[' . PHP_EOL;
+
+        foreach ($this->fields as $column => $field) {
+            $results .= $this->getSearchAbleFromField($field);
+        }
+
+        return $results . "\t" . ']';
+    }
+
+    private function getSearchAbleFromField($filed)
+    {
+        switch ($filed['type']) {
+            case 'string':
+            case 'text':
+            case 'char':
+            case 'mediumText':
+            case 'longText':
+            case 'enum':
+            case 'json':
+            case 'jsonb':
+            case 'binary':
+            case 'ipAddress':
+            case 'macAddress':
+                return "\t\t'{$filed['name']}' => 'like'," . PHP_EOL;
+            case 'integer':
+            case 'tinyInteger':
+            case 'smallInteger':
+            case 'mediumInteger':
+            case 'bigInteger':
+            case 'unsignedTinyInteger':
+            case 'unsignedSmallInteger':
+            case 'unsignedMediumInteger':
+            case 'unsignedInteger':
+            case 'unsignedBigInteger':
+            case 'date':
+            case 'time':
+            case 'dateTime':
+            case 'timestamp':
+            case 'dateTimeTz':
+            case 'timeTz':
+            case 'timestampTz':
+            case 'nullableTimestamps':
+            case 'float':
+            case 'decimal':
+            case 'double':
+            case 'boolean':
+                return "\t\t'{$filed['name']}'," . PHP_EOL;
+        }
     }
 
     /**

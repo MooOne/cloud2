@@ -67,6 +67,7 @@ class EntityCommand extends CommandBase
             // Generate a controller resource
             $this->call('yl:controller', [
                 'name' => $this->argument('name'),
+                '--fields' => $this->option('fields'),
                 '--force' => $this->option('force')
             ]);
         }
@@ -76,6 +77,7 @@ class EntityCommand extends CommandBase
             // Generate a api controller resource
             $this->call('yl:api_controller', [
                 'name' => $this->argument('name'),
+                '--fields' => $this->option('fields'),
                 '--force' => $this->option('force')
             ]);
         }
@@ -85,6 +87,7 @@ class EntityCommand extends CommandBase
             // Generate a controller resource
             $this->call('yl:views', [
                 'name' => $this->argument('name'),
+                '--fields' => $this->option('fields'),
                 '--force' => $this->option('force')
             ]);
         }
@@ -94,6 +97,7 @@ class EntityCommand extends CommandBase
             // Generate a controller resource
             $this->call('yl:lang', [
                 'name' => $this->argument('name'),
+                '--fields' => $this->option('fields'),
                 '--force' => $this->option('force')
             ]);
         }
@@ -102,6 +106,7 @@ class EntityCommand extends CommandBase
             'name' => $this->argument('name'),
             '--fillable' => $this->option('fillable'),
             '--rules' => $this->option('rules'),
+            '--fields' => $this->option('fields'),
             '--validator' => $validator,
             '--presenter' => $presenter,
             '--force' => $this->option('force')

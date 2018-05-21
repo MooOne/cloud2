@@ -83,6 +83,7 @@ class RepositoryCommand extends CommandBase
             (new RepositoryEloquentGenerator([
                 'name'      => $this->argument('name'),
                 'rules'     => $this->option('rules'),
+                'fields'    => $this->option('fields'),
                 'validator' => $this->option('validator'),
                 'presenter' => $this->option('presenter'),
                 'force'     => $this->option('force'),
@@ -135,6 +136,13 @@ class RepositoryCommand extends CommandBase
                 null,
                 InputOption::VALUE_OPTIONAL,
                 'The rules of validation attributes.',
+                null
+            ],
+            [
+                'fields',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'The fields attributes.',
                 null
             ],
             [

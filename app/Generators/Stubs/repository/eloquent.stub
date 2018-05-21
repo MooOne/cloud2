@@ -16,10 +16,7 @@ class $CLASS$RepositoryEloquent extends BaseRepository implements $CLASS$Reposit
     /**
      * @var array
      */
-    protected $fieldSearchable = [
-        'id',
-        'name' => 'like'
-    ];
+    protected $fieldSearchable = $SEARCHABLE$;
 
 
     /**

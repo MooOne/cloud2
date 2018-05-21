@@ -68,6 +68,7 @@ class ModelGenerator extends Generator
         return array_merge(parent::getReplacements(), [
             'fillable' => $this->getFillable(),
             'use_base_model' => 'use ' . $this->getRootNamespace() . '\BaseModel;',
+            'table_singular' => str_singular(strtolower($this->name)) . "_id",
         ]);
     }
 
