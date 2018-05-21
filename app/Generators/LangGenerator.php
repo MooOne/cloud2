@@ -76,6 +76,26 @@ class LangGenerator extends Generator
     }
 
     /**
+     * Get default Columns description.
+     *
+     * @return string
+     */
+    public function getColumns()
+    {
+        $fields = $this->fields;
+        $result = "[\r\n";
+        if (!empty($fields)) {
+            foreach ($fields as $index => $field) {
+                $result .= "\t\t'{$field['name']}' => '{$field['comment']}',\r\n";
+            }
+
+        }
+        $result .= "\t]";
+
+        return $result;
+    }
+
+    /**
      * Get base path of destination file.
      *
      * @return string
@@ -93,7 +113,8 @@ class LangGenerator extends Generator
     public function getReplacements()
     {
         return array_merge(parent::getReplacements(), [
-            'model' => $this->getHeader()
+            'model' => $this->getHeader(),
+            'model_fields' => $this->getColumns()
         ]);
     }
 

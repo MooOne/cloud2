@@ -42,6 +42,7 @@ class LangCommand extends CommandBase
         try {
             (new LangGenerator([
                 'name' => $this->argument('name'),
+                'fields' => $this->option('fields'),
                 'force' => $this->option('force'),
             ]))->run();
             $this->info("Language package created successfully.");
@@ -84,7 +85,14 @@ class LangCommand extends CommandBase
                 InputOption::VALUE_NONE,
                 'Force the creation if file already exists.',
                 null
-            ]
+            ],
+            [
+                'fields',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'The fields attributes.',
+                null
+            ],
         ];
     }
 }
