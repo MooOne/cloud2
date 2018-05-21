@@ -42,6 +42,7 @@ class TransformerCommand extends CommandBase
         try {
             (new TransformerGenerator([
                 'name' => $this->argument('name'),
+                'fields' => $this->option('fields'),
                 'force' => $this->option('force'),
             ]))->run();
             $this->info("Transformer created successfully.");
@@ -84,7 +85,14 @@ class TransformerCommand extends CommandBase
                 InputOption::VALUE_NONE,
                 'Force the creation if file already exists.',
                 null
-            ]
+            ],
+            [
+                'fields',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'The fields attributes.',
+                null
+            ],
         ];
     }
 }

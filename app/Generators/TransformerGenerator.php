@@ -1,6 +1,7 @@
 <?php
 namespace Yeelight\Generators;
 
+
 /**
  * Class TransformerGenerator
  * @package Yeelight\Generators
@@ -56,6 +57,75 @@ class TransformerGenerator extends Generator
     }
 
     /**
+     * Get default Columns description.
+     *
+     * @return string
+     */
+    public function getColumns()
+    {
+        $fields = $this->fields;
+        $result = "";
+        if (!empty($fields)) {
+            foreach ($fields as $index => $field) {
+                $type = $this->getTypeFromField($field);
+                $result .= "\t\t\t'{$field['name']}' => '($type) " .'$model->'. "{$field['name']}',\r\n";
+            }
+
+        }
+        $result .= "";
+
+        return $result;
+    }
+
+    private function getTypeFromField($filed)
+    {
+        switch ($filed['type']) {
+            case 'string':
+            case 'text':
+            case 'date':
+            case 'time':
+            case 'dateTime':
+            case 'timestamp':
+            case 'char':
+            case 'mediumText':
+            case 'longText':
+            case 'enum':
+            case 'json':
+            case 'jsonb':
+            case 'dateTimeTz':
+            case 'timeTz':
+            case 'timestampTz':
+            case 'nullableTimestamps':
+            case 'binary':
+            case 'ipAddress':
+            case 'macAddress':
+                return 'string';
+
+            case 'integer':
+            case 'tinyInteger':
+            case 'smallInteger':
+            case 'mediumInteger':
+            case 'bigInteger':
+            case 'unsignedTinyInteger':
+            case 'unsignedSmallInteger':
+            case 'unsignedMediumInteger':
+            case 'unsignedInteger':
+            case 'unsignedBigInteger':
+                return 'int';
+
+            case 'float':
+            case 'decimal':
+                return 'float';
+
+            case 'double':
+                return 'double';
+
+            case 'boolean':
+                return 'boolean';
+        }
+    }
+
+    /**
      * Get array replacements.
      *
      * @return array
@@ -72,7 +142,9 @@ class TransformerGenerator extends Generator
         ], '\\', $model);
 
         return array_merge(parent::getReplacements(), [
-            'model' => $model
+            'model' => $model,
+            'transformer_fields' => $this->getColumns(),
+            'table_singular'  => str_singular(strtolower($this->name)),
         ]);
     }
 }
