@@ -68,28 +68,7 @@
                                 <form action="{{ url_without_filters($columns)}}" method="get" pjax-container>
                                     <div class="modal-body">
                                         <div class="form">
-                                            <div class="form-group">
-                                                <div class="form-group">
-                                                    <label>{{ $columns['id'] }}</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </div>
-                                                        <input type="text" class="form-control id" placeholder="{{ $columns['id'] }}" name="id" value="{{ isset($query['id']) ? $query['id'] : ''}}">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="form-group">
-                                                    <label>{{ $columns['name'] }}</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </div>
-                                                        <input type="text" class="form-control name" placeholder="{{ $columns['name'] }}" name="name" value="{{ isset($query['name']) ? $query['name'] : ''}}">
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            $INDEX_FILTER_FIELDS$
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -152,8 +131,7 @@
                 <table class="table table-hover">
                     <tr>
                         <th></th>
-                        <th>{{ $columns['id'] }}{!! column_sorter('id') !!}</th>
-                        <th>{{ $columns['name'] }}</th>
+                        $INDEX_TABLE_TH_FIELDS$
                         <th>{{ $columns['created_at'] }}{!! column_sorter('created_at') !!}</th>
                         <th>{{ $columns['updated_at'] }}{!! column_sorter('updated_at') !!}</th>
                         <th>{{ trans('backend.action') }}</th>
@@ -161,11 +139,7 @@
 
                     @foreach($lists['data'] as $row)
                         <tr>
-                            <td>
-                                <input type="checkbox" class="grid-row-checkbox" data-id="{{ $row['id'] }}" />
-                            </td>
-                            <td>{{ $row['id'] }}</td>
-                            <td>{{ $row['name'] }}</td>
+                            $INDEX_TABLE_TD_FIELDS$
                             <td>{{ $row['created_at'] }}</td>
                             <td>{{ $row['updated_at'] }}</td>
                             <td>

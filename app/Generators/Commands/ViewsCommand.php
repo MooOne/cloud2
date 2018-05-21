@@ -42,6 +42,7 @@ class ViewsCommand extends CommandBase
         try {
             (new ViewsGenerator([
                 'name' => $this->argument('name'),
+                'fields' => $this->option('fields'),
                 'force' => $this->option('force'),
             ]))->run();
             $this->info("Views created successfully.");
@@ -84,7 +85,14 @@ class ViewsCommand extends CommandBase
                 InputOption::VALUE_NONE,
                 'Force the creation if file already exists.',
                 null
-            ]
+            ],
+            [
+                'fields',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'The fields attributes.',
+                null
+            ],
         ];
     }
 }

@@ -63,27 +63,7 @@
             <form action="{{ get_resource(-1) }}" method="post" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data" pjax-container>
 
             <div class="box-body">
-                <div class="fields-group">
-                    {{--Fields Start--}}
-
-                    <div class="form-group {!! !$errors->has('name') ? '' : 'has-error' !!}">
-                        <label for="name" class="col-sm-2 control-label">{{ $columns['name'] }}</label>
-                        <div class="col-sm-8">
-                            @if($errors->has('name'))
-                                @foreach($errors->get('name') as $message)
-                                    <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{$message}}</label><br/>
-                                @endforeach
-                            @endif
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="fa fa-pencil"></i>
-                                </span>
-                                <input type="text" id="name" name="name" value="" class="form-control name" placeholder="{{ trans('backend.input') }} {{ $columns['name'] }}">
-                            </div>
-                        </div>
-                    </div>
-                    {{--Fields End--}}
-                </div>
+                $CREATE_FORM_FIELDS$
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
