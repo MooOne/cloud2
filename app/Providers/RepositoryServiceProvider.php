@@ -31,6 +31,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->commands('Yeelight\Generators\Commands\ValidatorCommand');
         $this->commands('Yeelight\Generators\Commands\ControllerCommand');
         $this->commands('Yeelight\Generators\Commands\ApiControllerCommand');
+        $this->commands('Yeelight\Generators\Commands\RequestCommand');
         $this->commands('Yeelight\Generators\Commands\BindingsCommand');
         $this->commands('Yeelight\Generators\Commands\CriteriaCommand');
         $this->commands('Yeelight\Generators\Commands\ViewsCommand');

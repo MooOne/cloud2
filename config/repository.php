@@ -233,6 +233,7 @@ return [
             'validators'   => 'Validators',
             'controllers'  => 'Http/Controllers/Backend',
             'api_controllers'  => 'Http/Controllers/Api/Controllers',
+            'requests'     => 'Http/Requests',
             'provider'     => 'RepositoryServiceProvider',
             'views'        => 'backend',
             'lang'         => 'lang',

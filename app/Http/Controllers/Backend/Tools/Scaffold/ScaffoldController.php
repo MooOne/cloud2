@@ -104,7 +104,7 @@ class ScaffoldController extends BaseController
                         }
                         $fillable .= ',';
                         if ($field['rule']) {
-                            $rules .= $field['name'] . '=>' .$field['rule'] . ',';
+                            $rules .= $field['name'] . '=>'. $field['rule'] . ',';
                         }
                     }
                 }
@@ -114,7 +114,12 @@ class ScaffoldController extends BaseController
             $fillable = rtrim($fillable, ',');
 
             $rules = rtrim($rules, ',');
-
+            Artisan::call('yl:api_controller', [
+                'name' => $model_name,
+                '--fields' => $fields,
+                '--force' => true
+            ]);
+dd($fields);
             // 1. Create presenter.
             if (in_array('presenter', $request->get('create'))) {
                 Artisan::call('yl:presenter', [
@@ -125,6 +130,7 @@ class ScaffoldController extends BaseController
 
                 Artisan::call('yl:transformer', [
                     'name' => $model_name,
+                    '--fields' => $fields,
                     '--force' => $force
                 ]);
                 $paths['transformers'] = $this->getBasePath() . '/' . $this->getConfigGeneratorClassPath('transformers', true) . '/' . $this->getName($model_name) . 'Transformer.php';
@@ -147,6 +153,7 @@ class ScaffoldController extends BaseController
             if (in_array('controller', $request->get('create'))) {
                 Artisan::call('yl:controller', [
                     'name' => $model_name,
+                    '--fields' => $fields,
                     '--force' => $force
                 ]);
                 $paths['controllers'] = $this->getBasePath() . '/' . $this->getConfigGeneratorClassPath('controllers', true) . '/' . Str::plural($this->getName($model_name)) . 'Controller.php';
@@ -158,6 +165,7 @@ class ScaffoldController extends BaseController
             if (in_array('views', $request->get('create'))) {
                 Artisan::call('yl:views', [
                     'name' => $model_name,
+                    '--fields' => $fields,
                     '--force' => $force
                 ]);
                 $paths['views_index'] = resource_path($this->getConfigGeneratorClassPath('views', true)) . '/' . $this->getSnakeName($model_name) . '/index.blade.php';
@@ -169,6 +177,7 @@ class ScaffoldController extends BaseController
             if (in_array('lang', $request->get('create'))) {
                 Artisan::call('yl:lang', [
                     'name' => $model_name,
+                    '--fields' => $fields,
                     '--force' => $force
                 ]);
                 $filesystem = new Filesystem;
@@ -182,6 +191,7 @@ class ScaffoldController extends BaseController
             if (in_array('api_controller', $request->get('create'))) {
                 Artisan::call('yl:api_controller', [
                     'name' => $model_name,
+                    '--fields' => $fields,
                     '--force' => $force
                 ]);
                 $paths['api_controllers'] = $this->getBasePath() . '/' . $this->getConfigGeneratorClassPath('api_controllers', true) . '/' . Str::plural($this->getName($model_name)) . 'Controller.php';
@@ -194,6 +204,7 @@ class ScaffoldController extends BaseController
                 'name' => $model_name,
                 '--fillable' => $fillable,
                 '--rules' => $rules,
+                '--fields' => $fields,
                 '--validator' => $validator,
                 '--presenter' => $presenter,
                 '--force' => $force

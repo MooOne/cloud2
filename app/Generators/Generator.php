@@ -210,6 +210,9 @@ abstract class Generator
             case ('api_controllers' === $class):
                 $path = config('repository.generator.paths.api_controllers', 'Http/Controllers/Api/Controllers');
                 break;
+            case ('requests' === $class):
+                $path = config('repository.generator.paths.requests', 'Http/Requests');
+                break;
             case ('provider' === $class):
                 $path = config('repository.generator.paths.provider', 'RepositoryServiceProvider');
                 break;

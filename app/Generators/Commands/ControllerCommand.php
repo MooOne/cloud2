@@ -42,12 +42,18 @@ class ControllerCommand extends CommandBase
     {
         try {
             // Generate create request for controller
-            $this->call('make:request', [
-                'name' => $this->argument('name') . 'CreateRequest'
+            $this->call('yl:request', [
+                'name' => $this->argument('name') . 'Create',
+                '--type' => 'web',
+                '--fields' => $this->option('fields'),
+                '--force' => $this->option('force')
             ]);
             // Generate update request for controller
-            $this->call('make:request', [
-                'name' => $this->argument('name') . 'UpdateRequest'
+            $this->call('yl:request', [
+                'name' => $this->argument('name') . 'Update',
+                '--type' => 'web',
+                '--fields' => $this->option('fields'),
+                '--force' => $this->option('force')
             ]);
 
             (new ControllerGenerator([
@@ -94,6 +100,13 @@ class ControllerCommand extends CommandBase
                 'f',
                 InputOption::VALUE_NONE,
                 'Force the creation if file already exists.',
+                null
+            ],
+            [
+                'fields',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'The fields attributes.',
                 null
             ],
         ];

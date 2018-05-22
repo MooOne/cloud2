@@ -121,9 +121,9 @@ class RepositoryEloquentGenerator extends Generator
         return $results . "\t" . ']';
     }
 
-    private function getSearchAbleFromField($filed)
+    private function getSearchAbleFromField($field)
     {
-        switch ($filed['type']) {
+        switch ($field['type']) {
             case 'string':
             case 'text':
             case 'char':
@@ -135,7 +135,7 @@ class RepositoryEloquentGenerator extends Generator
             case 'binary':
             case 'ipAddress':
             case 'macAddress':
-                return "\t\t'{$filed['name']}' => 'like'," . PHP_EOL;
+                return "\t\t'{$field['name']}' => 'like'," . PHP_EOL;
             case 'integer':
             case 'tinyInteger':
             case 'smallInteger':
@@ -158,7 +158,7 @@ class RepositoryEloquentGenerator extends Generator
             case 'decimal':
             case 'double':
             case 'boolean':
-                return "\t\t'{$filed['name']}'," . PHP_EOL;
+                return "\t\t'{$field['name']}'," . PHP_EOL;
         }
     }
 
