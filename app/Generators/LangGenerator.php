@@ -89,7 +89,12 @@ class LangGenerator extends Generator
             foreach ($fields as $index => $field) {
                 $result .= "\t\t'{$field['name']}' => '{$field['comment']}',\r\n";
             }
-
+            $result .= "\t\t'created_by' => 'CREATED_BY',\r\n";
+            $result .= "\t\t'created_at' => 'CREATED_AT',\r\n";
+            $result .= "\t\t'created_ip' => 'CREATED_IP',\r\n";
+            $result .= "\t\t'updated_by' => 'UPDATED_BY',\r\n";
+            $result .= "\t\t'updated_at' => 'UPDATED_AT',\r\n";
+            $result .= "\t\t'updated_ip' => 'UPDATED_IP',\r\n";
         }
         $result .= "\t]";
 

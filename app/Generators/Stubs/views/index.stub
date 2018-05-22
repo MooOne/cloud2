@@ -143,10 +143,10 @@
                             <td>{{ $row['created_at'] }}</td>
                             <td>{{ $row['updated_at'] }}</td>
                             <td>
-                                <a href="{{ get_resource() }}/{{ $row['id'] }}/edit">
+                                <a href="{{ get_resource() }}/{{ $row['$_ID_NAME$'] }}/edit">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="javascript:void(0);" data-id="{{ $row['id'] }}" class="grid-row-delete">
+                                <a href="javascript:void(0);" data-id="{{ $row['$_ID_NAME$'] }}" class="grid-row-delete">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>

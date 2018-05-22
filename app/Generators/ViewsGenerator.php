@@ -225,7 +225,7 @@ EOF;
 EOF;
             foreach ($fields as $index => $field) {
                 $result .= <<<EOF
-                            <td>{{ \$columns['{$field['name']}'] }}</td>\n
+                            <td>{{ \$row['{$field['name']}'] }}</td>\n
 EOF;
             }
 
@@ -249,6 +249,7 @@ EOF;
             'index_filter_fields' => $this->buildIndexFilterFields(),
             'index_table_th_fields' => $this->buildIndexTableThFields(),
             'index_table_td_fields' => $this->buildIndexTableTdFields(),
+            '_id_name' => str_singular(strtolower($this->name)) . "_id",
         ]);
     }
 

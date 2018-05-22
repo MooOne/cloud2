@@ -68,7 +68,7 @@ class TransformerGenerator extends Generator
         if (!empty($fields)) {
             foreach ($fields as $index => $field) {
                 $type = $this->getTypeFromField($field);
-                $result .= "\t\t\t'{$field['name']}' => '($type) " .'$model->'. "{$field['name']}',\r\n";
+                $result .= "\t\t\t'{$field['name']}' => ($type) " .'$model->'. "{$field['name']},\r\n";
             }
 
         }

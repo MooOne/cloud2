@@ -114,12 +114,7 @@ class ScaffoldController extends BaseController
             $fillable = rtrim($fillable, ',');
 
             $rules = rtrim($rules, ',');
-            Artisan::call('yl:api_controller', [
-                'name' => $model_name,
-                '--fields' => $fields,
-                '--force' => true
-            ]);
-dd($fields);
+
             // 1. Create presenter.
             if (in_array('presenter', $request->get('create'))) {
                 Artisan::call('yl:presenter', [
