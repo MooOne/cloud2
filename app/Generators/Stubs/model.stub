@@ -30,7 +30,7 @@ class $CLASS$ extends BaseModel implements Transformable
      */
     protected $update_users = true;
 
-    protected $primaryKey = '$TABLE_SINGULAR$';
+    protected $primaryKey = '$_ID_NAME$';
 
     protected $fillable = $FILLABLE$;
 

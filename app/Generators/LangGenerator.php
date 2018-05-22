@@ -84,7 +84,7 @@ class LangGenerator extends Generator
     {
         $fields = $this->fields;
         $result = "[\r\n";
-        $result .= "\t\t'". str_singular(strtolower($this->name)) ."_id' => '" .str_singular(strtoupper($this->name)). "_ID',\r\n";
+        $result .= "\t\t'". $this->getIdName() ."' => '" .str_singular($this->getIdName()). "',\r\n";
         if (!empty($fields)) {
             foreach ($fields as $index => $field) {
                 $result .= "\t\t'{$field['name']}' => '{$field['comment']}',\r\n";

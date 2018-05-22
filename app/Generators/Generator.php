@@ -144,6 +144,34 @@ abstract class Generator
 
 
     /**
+     * Get name input.
+     *
+     * @return string
+     */
+    public function getSnakeName()
+    {
+        $name = $this->name;
+        if (str_contains($this->name, '\\')) {
+            $name = str_replace('\\', '/', $this->name);
+        }
+        if (str_contains($this->name, '/')) {
+            $name = str_replace('/', '/', $this->name);
+        }
+
+        return Str::plural(Str::snake(str_replace(' ', '/', ucwords(str_replace('/', ' ', $name)))));
+    }
+
+    /**
+     * Gets id name based on model
+     *
+     * @return string
+     */
+    public function getIdName()
+    {
+        return str_singular($this->getSnakeName()) . '_id';
+    }
+
+    /**
      * Get class name.
      *
      * @return string

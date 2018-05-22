@@ -19,7 +19,7 @@ class $CLASS$Transformer extends BaseTransformer
     public function transform($CLASS$ $model)
     {
         return [
-            '$TABLE_SINGULAR$_id' => (int) $model->$TABLE_SINGULAR$_id,
+            '$_ID_NAME$' => (int) $model->$_ID_NAME$,
 
 $TRANSFORMER_FIELDS$
             'created_by' => (string) $model->created_by,

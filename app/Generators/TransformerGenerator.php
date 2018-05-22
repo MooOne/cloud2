@@ -144,7 +144,7 @@ class TransformerGenerator extends Generator
         return array_merge(parent::getReplacements(), [
             'model' => $model,
             'transformer_fields' => $this->getColumns(),
-            'table_singular'  => str_singular(strtolower($this->name)),
+            '_id_name'  => $this->getIdName(),
         ]);
     }
 }

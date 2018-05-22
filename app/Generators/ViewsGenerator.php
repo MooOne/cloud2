@@ -192,7 +192,7 @@ EOF;
     {
         $fields = $this->fields;
         $result = "";
-        $_id_name = str_singular(strtolower($this->name)) . "_id";
+        $_id_name = $this->getIdName();
 
         if (!empty($fields)) {
             $result .= <<<EOF
@@ -214,7 +214,7 @@ EOF;
     {
         $fields = $this->fields;
         $result = "";
-        $_id_name = str_singular(strtolower($this->name)) . "_id";
+        $_id_name = $this->getIdName();
 
         if (!empty($fields)) {
             $result .= <<<EOF
@@ -249,7 +249,7 @@ EOF;
             'index_filter_fields' => $this->buildIndexFilterFields(),
             'index_table_th_fields' => $this->buildIndexTableThFields(),
             'index_table_td_fields' => $this->buildIndexTableTdFields(),
-            '_id_name' => str_singular(strtolower($this->name)) . "_id",
+            '_id_name' => $this->getIdName(),
         ]);
     }
 

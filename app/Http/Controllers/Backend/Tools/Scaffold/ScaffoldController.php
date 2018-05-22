@@ -74,7 +74,7 @@ class ScaffoldController extends BaseController
         $paths = [];
         $message = '';
         try {
-            $model_name = ucfirst(str_singular(lcfirst(ucwords($request->get('model_name')))));
+            $model_name = Str::camel(ucfirst(str_singular(lcfirst(ucwords($request->get('model_name'))))));
 
             $force = false;
             if (in_array('force', $request->get('create'))) {
