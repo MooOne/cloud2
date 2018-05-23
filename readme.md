@@ -122,3 +122,29 @@ https://github.com/almasaeed2010/AdminLTE/
 ## l5-repository
 
 https://github.com/daofirst/l5-repository
+
+## 通过后台脚手架快速创建模块
+
+### 1. 快捷创建模型
+
+后台=》
+
+工具=》
+
+脚手架=》
+
+填写模型信息=》
+
+php artisan migrate（如果没有点选 Run migrate）
+
+### 2.增加模型路由
+
+在 route/backend/web.php 增加路由：
+
+$router->resource('your/route', 'YourModelsController');
+
+在 route/api.php 增加路由：
+
+$api->resource('your_route', 'YourModelsController');
+
+### 3.增加后台菜单
