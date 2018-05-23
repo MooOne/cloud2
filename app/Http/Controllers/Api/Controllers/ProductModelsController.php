@@ -1,31 +1,31 @@
 <?php
-$NAMESPACE$
+namespace Yeelight\Http\Controllers\Api\Controllers;
 
 use Dingo\Api\Exception\DeleteResourceFailedException;
 use Dingo\Api\Exception\StoreResourceFailedException;
 use Dingo\Api\Exception\UpdateResourceFailedException;
-use $APPNAME$Http\Requests\Api\$CLASS$CreateRequest;
-use $APPNAME$Http\Requests\Api\$CLASS$UpdateRequest;
-$REPOSITORY$
-$VALIDATOR$
+use Yeelight\Http\Requests\Api\ProductModelCreateRequest;
+use Yeelight\Http\Requests\Api\ProductModelUpdateRequest;
+use Yeelight\Repositories\Interfaces\ProductModelRepository;
+use Yeelight\Validators\ProductModelValidator;
 
-class $CONTROLLER$Controller extends BaseController
+class ProductModelsController extends BaseController
 {
 
     /**
-     * @var $CLASS$Repository
+     * @var ProductModelRepository
      */
     protected $repository;
 
     /**
-     * @var $CLASS$Validator
+     * @var ProductModelValidator
      */
     protected $validator;
 
     public function __construct(
-        $CLASS$Repository $repository,
-        $CLASS$Validator $validator
-     )
+        ProductModelRepository $repository,
+        ProductModelValidator $validator
+    )
     {
         $this->repository = $repository;
         $this->validator = $validator;
@@ -45,15 +45,15 @@ class $CONTROLLER$Controller extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $CLASS$CreateRequest $request
+     * @param  ProductModelCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function store($CLASS$CreateRequest $request)
+    public function store(ProductModelCreateRequest $request)
     {
         $data = $request->all();
 
-        $$SINGULAR$ = $this->repository->create($data);
+        $productModel = $this->repository->create($data);
 
         // throw exception if store failed
         // throw new StoreResourceFailedException('Failed to store.');
@@ -62,7 +62,7 @@ class $CONTROLLER$Controller extends BaseController
         // return $this->response->created(null);
 
         // B. return data
-        return $$SINGULAR$;
+        return $this->response->created();
 
     }
 
@@ -82,16 +82,17 @@ class $CONTROLLER$Controller extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  $CLASS$UpdateRequest $request
+     * @param  ProductModelUpdateRequest $request
      * @param  string            $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function update($CLASS$UpdateRequest $request, $id)
+    public function update(ProductModelUpdateRequest $request, $id)
     {
+
         $data = $request->all();
 
-        $$SINGULAR$ = $this->repository->update($data, $id);
+        $productModel = $this->repository->update($data, $id);
 
         // throw exception if update failed
         // throw new UpdateResourceFailedException('Failed to update.');

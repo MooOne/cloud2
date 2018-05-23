@@ -25,6 +25,7 @@ Route::group([
     $router->resource('auth/logs', 'AdminOperationLogsController', ['only' => ['index', 'destroy']]);
 
     $router->resource('consumer/users', 'UsersController');
+    $router->resource('product/product_models', 'ProductModelsController');
 
     //Tools
     require(__DIR__ . '/tools.php');

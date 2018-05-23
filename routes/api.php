@@ -41,6 +41,9 @@ $api->version('v1', [
                 //$api->delete('/me', 'UsersController@destroy');
             });
 
+            // 产品模型模块
+            $api->resource('product_models', 'ProductModelsController');
+
         });
 
     });
