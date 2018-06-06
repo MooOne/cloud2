@@ -95,9 +95,12 @@ class SocialiteUsersController extends BaseController
 
         // 验证 provider + provider_user_id 唯一性
         $this->validate($request, [
-            'provider' => ['required', Rule::unique('socialite_users')->where(function($query) use ($user) {
-                return $query->where('user_id', $user->user_id);
-            })],
+            'provider' => [
+                'required',
+                Rule::unique('socialite_users')->where(function($query) use ($user) {
+                    return $query->where('user_id', $user->user_id);
+                })
+            ],
             'provider_user_id' => 'required'
         ]);
 
@@ -113,6 +116,7 @@ class SocialiteUsersController extends BaseController
      */
     private function updateSocialiteUser(SocialiteAuthRequest $request, SocialiteUser $socialiteUser){
         $data = $request->all();
+        $data['user_id'] = $socialiteUser->user_id;
         $this->repository->update($data, $socialiteUser->id);
     }
 
