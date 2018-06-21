@@ -27,7 +27,15 @@
 * 前台用户管理
 
 ## 界面预览
+![Alt text](https://raw.githubusercontent.com/Yeelight/cloud2/master/public/screenshot/1.png)
 
+![Alt text](https://raw.githubusercontent.com/Yeelight/cloud2/master/public/screenshot/2.png)
+
+![Alt text](https://raw.githubusercontent.com/Yeelight/cloud2/master/public/screenshot/3.png)
+
+![Alt text](https://raw.githubusercontent.com/Yeelight/cloud2/master/public/screenshot/4.png)
+
+![Alt text](https://raw.githubusercontent.com/Yeelight/cloud2/master/public/screenshot/5.png)
 ## 目录权限
 ~~~
 chmod -R 755 storage
