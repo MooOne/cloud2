@@ -3,13 +3,12 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-4-18
- * Time: 上午10:39
+ * Time: 上午10:39.
  */
 
 namespace Yeelight\Services\Tree;
 
 use Closure;
-use Yeelight\Services\Tree\Tools;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Model;
 use Yeelight\Services\Assets\Assets;
@@ -75,7 +74,6 @@ class Tree implements Renderable
      * @var array
      */
     protected $nestableOptions = [];
-
 
     /**
      * Menu constructor.
@@ -314,6 +312,7 @@ SCRIPT;
      * Return all items of the tree.
      *
      * @return
+     *
      * @internal param array $items
      */
     public function getItems()

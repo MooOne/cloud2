@@ -1,6 +1,6 @@
 <?php
 /**
- * Yeelight 自定义配置
+ * Yeelight 自定义配置.
  */
 return [
     'backend' => [
@@ -48,7 +48,6 @@ return [
             ],
             'super_role' => 'administrator',
         ],
-
 
         /*
         * Route configration.
@@ -100,9 +99,9 @@ return [
 
             // Pivot table for table above.
             'admin_operation_logs_table'    => 'admin_operation_logs',
-            'admin_user_permissions_table' => 'admin_user_permissions',
-            'admin_role_users_table'       => 'admin_role_users',
-            'admin_role_permissions_table' => 'admin_role_permissions',
+            'admin_user_permissions_table'  => 'admin_user_permissions',
+            'admin_role_users_table'        => 'admin_role_users',
+            'admin_role_permissions_table'  => 'admin_role_permissions',
             'admin_role_menus_table'        => 'admin_role_menus',
         ],
 
@@ -162,7 +161,7 @@ return [
 
         'pagination' => [
             'per_page' => 20,
-            'pageName' => 'page'
+            'pageName' => 'page',
         ],
 
         /*
@@ -181,7 +180,7 @@ return [
                 'user_retriever' => function ($id) {
                     return Yeelight\User::find($id);
                 },
-            ]
+            ],
         ],
 
     ],
@@ -195,5 +194,5 @@ return [
 
             'namespace'     => 'Mobile',
         ],
-    ]
+    ],
 ];

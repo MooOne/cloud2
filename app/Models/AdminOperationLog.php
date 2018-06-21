@@ -1,10 +1,10 @@
 <?php
+
 namespace Yeelight\Models;
 
-use Yeelight\Models\BaseModel;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class AdminOperationLog extends BaseModel implements Transformable
 {

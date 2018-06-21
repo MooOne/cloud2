@@ -1,12 +1,10 @@
 <?php
+
 namespace Yeelight\Generators;
 
-
 /**
- * Class RequestGenerator
- * @package Yeelight\Generators
+ * Class RequestGenerator.
  */
-
 class RequestGenerator extends Generator
 {
     /**
@@ -23,7 +21,7 @@ class RequestGenerator extends Generator
      */
     public function getRootNamespace()
     {
-        return parent::getRootNamespace() . parent::getConfigGeneratorClassPath($this->getPathConfigNode());
+        return parent::getRootNamespace().parent::getConfigGeneratorClassPath($this->getPathConfigNode());
     }
 
     /**
@@ -43,7 +41,7 @@ class RequestGenerator extends Generator
      */
     public function getPath()
     {
-        return $this->getBasePath() . '/' . parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true) . '/' . $this->getName() . 'Request.php';
+        return $this->getBasePath().'/'.parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true).'/'.$this->getName().'Request.php';
     }
 
     /**
@@ -66,15 +64,15 @@ class RequestGenerator extends Generator
         if (!$this->fields) {
             return '[]';
         }
-        $results = '[' . PHP_EOL;
+        $results = '['.PHP_EOL;
 
         foreach ($this->fields as $column => $field) {
             if (isset($field['rule'])) {
-                $results .= "\t\t\t'{$field['name']}' => '{$field['rule']}'," . PHP_EOL;
+                $results .= "\t\t\t'{$field['name']}' => '{$field['rule']}',".PHP_EOL;
             }
         }
 
-        return $results . "\t\t" . ']';
+        return $results."\t\t".']';
     }
 
     /**
@@ -88,8 +86,8 @@ class RequestGenerator extends Generator
         $formRequest = $type == 'api' ? 'Dingo\Api\Http\FormRequest' : 'Illuminate\Foundation\Http\FormRequest';
 
         return array_merge(parent::getReplacements(), [
-            'form_request' => $formRequest,
-            'request_rules' => $this->getRules()
+            'form_request'  => $formRequest,
+            'request_rules' => $this->getRules(),
         ]);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as Middleware;

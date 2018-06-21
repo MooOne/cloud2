@@ -1,15 +1,14 @@
 <?php
+
 namespace Yeelight\Generators;
 
 /**
- * Class BindingsGenerator
- * @package Yeelight\Generators
+ * Class BindingsGenerator.
  */
 class BindingsGenerator extends Generator
 {
-
     /**
-     * The placeholder for repository bindings
+     * The placeholder for repository bindings.
      *
      * @var string
      */
@@ -24,12 +23,11 @@ class BindingsGenerator extends Generator
     public function run()
     {
 
-
         // Add entity repository binding to the repository service provider
         $provider = \File::get($this->getPath());
-        $repositoryInterface = '\\' . $this->getRepository() . "::class";
-        $repositoryEloquent = '\\' . $this->getEloquentRepository() . "::class";
-        \File::put($this->getPath(), str_replace($this->bindPlaceholder, "\$this->app->bind({$repositoryInterface}, $repositoryEloquent);" . PHP_EOL . '        ' . $this->bindPlaceholder, $provider));
+        $repositoryInterface = '\\'.$this->getRepository().'::class';
+        $repositoryEloquent = '\\'.$this->getEloquentRepository().'::class';
+        \File::put($this->getPath(), str_replace($this->bindPlaceholder, "\$this->app->bind({$repositoryInterface}, $repositoryEloquent);".PHP_EOL.'        '.$this->bindPlaceholder, $provider));
     }
 
     /**
@@ -39,7 +37,7 @@ class BindingsGenerator extends Generator
      */
     public function getPath()
     {
-        return $this->getBasePath() . '/Providers/' . parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true) . '.php';
+        return $this->getBasePath().'/Providers/'.parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true).'.php';
     }
 
     /**
@@ -63,7 +61,7 @@ class BindingsGenerator extends Generator
     }
 
     /**
-     * Gets repository full class name
+     * Gets repository full class name.
      *
      * @return string
      */
@@ -73,16 +71,16 @@ class BindingsGenerator extends Generator
             'name' => $this->name,
         ]);
 
-        $repository = $repositoryGenerator->getRootNamespace() . '\\' . $repositoryGenerator->getName();
+        $repository = $repositoryGenerator->getRootNamespace().'\\'.$repositoryGenerator->getName();
 
         return str_replace([
-            "\\",
-            '/'
-        ], '\\', $repository) . 'Repository';
+            '\\',
+            '/',
+        ], '\\', $repository).'Repository';
     }
 
     /**
-     * Gets eloquent repository full class name
+     * Gets eloquent repository full class name.
      *
      * @return string
      */
@@ -92,12 +90,12 @@ class BindingsGenerator extends Generator
             'name' => $this->name,
         ]);
 
-        $repository = $repositoryGenerator->getRootNamespace() . '\\' . $repositoryGenerator->getName();
+        $repository = $repositoryGenerator->getRootNamespace().'\\'.$repositoryGenerator->getName();
 
         return str_replace([
-            "\\",
-            '/'
-        ], '\\', $repository) . 'RepositoryEloquent';
+            '\\',
+            '/',
+        ], '\\', $repository).'RepositoryEloquent';
     }
 
     /**
@@ -107,7 +105,7 @@ class BindingsGenerator extends Generator
      */
     public function getRootNamespace()
     {
-        return parent::getRootNamespace() . parent::getConfigGeneratorClassPath($this->getPathConfigNode());
+        return parent::getRootNamespace().parent::getConfigGeneratorClassPath($this->getPathConfigNode());
     }
 
     /**
@@ -117,10 +115,9 @@ class BindingsGenerator extends Generator
      */
     public function getReplacements()
     {
-
         return array_merge(parent::getReplacements(), [
-            'repository' => $this->getRepository(),
-            'eloquent' => $this->getEloquentRepository(),
+            'repository'  => $this->getRepository(),
+            'eloquent'    => $this->getEloquentRepository(),
             'placeholder' => $this->bindPlaceholder,
         ]);
     }

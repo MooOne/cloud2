@@ -1,10 +1,9 @@
 <?php
+
 namespace Tests\Unit;
 
-use Yeelight\Models\Foundation\User;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Yeelight\Models\Foundation\User;
 
 class ModelTest extends TestCase
 {

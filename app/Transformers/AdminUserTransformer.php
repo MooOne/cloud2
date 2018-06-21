@@ -1,17 +1,17 @@
 <?php
+
 namespace Yeelight\Transformers;
 
 use Yeelight\Models\AdminUser;
 
 /**
- * Class AdminUserTransformer
- * @package namespace Yeelight\Transformers;
+ * Class AdminUserTransformer.
  */
 class AdminUserTransformer extends BaseTransformer
 {
-
     /**
-     * Transform the AdminUser entity
+     * Transform the AdminUser entity.
+     *
      * @param AdminUser $model
      *
      * @return array
@@ -33,7 +33,7 @@ class AdminUserTransformer extends BaseTransformer
             'permission_ids'    => (array) $model->permissions->pluck($model->getKeyName())->toArray(),
             'permissions_str'   => (string) $this->getPermissionsAttr($model),
             'created_at'        => (string) $model->created_at,
-            'updated_at'        => (string) $model->updated_at
+            'updated_at'        => (string) $model->updated_at,
         ];
     }
 
@@ -42,9 +42,11 @@ class AdminUserTransformer extends BaseTransformer
         $roles = "<div style='margin-bottom: 5px;'>";
         $roles .= collect($model->roles)->map(function ($role, $index) {
             $br = $index && $index % 3 == 0 ? '</div><div style=\'margin-bottom: 5px;\'>' : '';
+
             return "<span class='label label-success'>{$role->name}</span>{$br}";
         })->implode('&nbsp;');
-        $roles .= "</div>";
+        $roles .= '</div>';
+
         return $roles;
     }
 
@@ -53,9 +55,11 @@ class AdminUserTransformer extends BaseTransformer
         $permissions = "<div style='margin-bottom: 5px;'>";
         $permissions .= collect($model->permissions)->map(function ($permission, $index) {
             $br = $index && $index % 3 == 0 ? '</div><div style=\'margin-bottom: 5px;\'>' : '';
+
             return "<span class='label label-success'>{$permission->name}</span>{$br}";
         })->implode('&nbsp;');
-        $permissions .= "</div>";
+        $permissions .= '</div>';
+
         return $permissions;
     }
 }

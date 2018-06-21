@@ -1,15 +1,15 @@
 <?php
+
 namespace Yeelight\Repositories\Eloquent;
 
+use Yeelight\Models\ProductModel;
+use Yeelight\Presenters\ProductModelPresenter;
 use Yeelight\Repositories\Criteria\RequestCriteria;
 use Yeelight\Repositories\Interfaces\productModelRepository;
-use Yeelight\Models\ProductModel;
 use Yeelight\Validators\ProductModelValidator;
-use Yeelight\Presenters\ProductModelPresenter;
 
 /**
- * Class ProductModelRepositoryEloquent
- * @package namespace Yeelight\Repositories\Eloquent;
+ * Class ProductModelRepositoryEloquent.
  */
 class ProductModelRepositoryEloquent extends BaseRepository implements ProductModelRepository
 {
@@ -17,21 +17,19 @@ class ProductModelRepositoryEloquent extends BaseRepository implements ProductMo
      * @var array
      */
     protected $fieldSearchable = [
-		'title' => 'like',
-		'model_name' => 'like',
-		'code' => 'like',
-		'status',
-	];
-
+        'title'      => 'like',
+        'model_name' => 'like',
+        'code'       => 'like',
+        'status',
+    ];
 
     /**
      * @var bool
      */
     protected $isSearchableForceAndWhere = true;
 
-
     /**
-     * Specify Model class name
+     * Specify Model class name.
      *
      * @return string
      */
@@ -41,31 +39,27 @@ class ProductModelRepositoryEloquent extends BaseRepository implements ProductMo
     }
 
     /**
-    * Specify Validator class name
-    *
-    * @return mixed
-    */
+     * Specify Validator class name.
+     *
+     * @return mixed
+     */
     public function validator()
     {
-
         return ProductModelValidator::class;
     }
 
-
     /**
-    * Specify Presenter class name
-    *
-    * @return mixed
-    */
+     * Specify Presenter class name.
+     *
+     * @return mixed
+     */
     public function presenter()
     {
-
         return ProductModelPresenter::class;
     }
 
-
     /**
-     * Boot up the repository, pushing criteria
+     * Boot up the repository, pushing criteria.
      */
     public function boot()
     {

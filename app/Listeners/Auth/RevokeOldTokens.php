@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-5-3
- * Time: 下午6:14
+ * Time: 下午6:14.
  */
 
 namespace Yeelight\Listeners\Auth;
@@ -17,11 +17,11 @@ class RevokeOldTokens
 {
     use SerializesModels;
 
-
     /**
      * Handle the event.
      *
-     * @param  AccessTokenCreated  $event
+     * @param AccessTokenCreated $event
+     *
      * @return void
      */
     public function handle(AccessTokenCreated $event)

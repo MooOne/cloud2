@@ -13,7 +13,6 @@ class AdminUserCreateRequest extends FormRequest
      */
     protected $redirectRoute = 'users.create';
 
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -32,12 +31,12 @@ class AdminUserCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|unique:admin_users|max:190',
-            'name' => 'required|max:255',
-            'password' => 'required|confirmed',
+            'username'              => 'required|unique:admin_users|max:190',
+            'name'                  => 'required|max:255',
+            'password'              => 'required|confirmed',
             'password_confirmation' => 'required',
-            'permissions' => 'array',
-            'roles' => 'array'
+            'permissions'           => 'array',
+            'roles'                 => 'array',
         ];
     }
 }

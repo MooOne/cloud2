@@ -2,11 +2,10 @@
 
 namespace Yeelight\Http\Middleware;
 
-use Yeelight\Models\AdminOperationLog as OperationLogModel;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use Yeelight\Models\AdminUser;
+use Yeelight\Models\AdminOperationLog as OperationLogModel;
 
 class LogOperation
 {

@@ -1,11 +1,9 @@
 <?php
+
 namespace Yeelight\Repositories\Interfaces;
 
-use Yeelight\Repositories\Interfaces\BaseRepositoryInterface;
-
 /**
- * Interface AdminOperationLogRepository
- * @package namespace Yeelight\Repositories\Interfaces;
+ * Interface AdminOperationLogRepository.
  */
 interface AdminOperationLogRepository extends BaseRepositoryInterface
 {

@@ -1,9 +1,9 @@
 <?php
+
 namespace Yeelight\Http\Controllers\Api\Auth\Provider;
 
 class OAuth2 extends \Dingo\Api\Auth\Provider\JWT
 {
-
     /**
      * @return \League\OAuth2\Server\ResourceServer
      */
@@ -19,7 +19,6 @@ class OAuth2 extends \Dingo\Api\Auth\Provider\JWT
     {
         return $this->resource->getAccessToken();
     }
-
 
     /**
      * @return \Laravel\Passport\Bridge\SessionEntity
@@ -68,5 +67,4 @@ class OAuth2 extends \Dingo\Api\Auth\Provider\JWT
     {
         return $this->getClient()->getId();
     }
-
 }

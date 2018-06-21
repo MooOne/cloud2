@@ -3,8 +3,9 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-4-10
- * Time: 上午11:30
+ * Time: 上午11:30.
  */
+
 namespace Yeelight\Services\Exporters;
 
 use Illuminate\Database\Eloquent\Model;
@@ -20,14 +21,11 @@ class ExcelExporter extends AbstractExporter
      */
     public function export()
     {
-        Excel::create($this->getTable() . date('YmdHis'), function($excel) {
-
-            $excel->sheet($this->getTable(), function($sheet) {
-
+        Excel::create($this->getTable().date('YmdHis'), function ($excel) {
+            $excel->sheet($this->getTable(), function ($sheet) {
                 $titles = [];
 
                 $this->chunk(function ($records) use ($sheet, &$titles) {
-
                     if (empty($titles)) {
                         $titles = $this->getHeaderRowFromRecords($records);
                         $sheet->prependRow($titles);
@@ -41,12 +39,12 @@ class ExcelExporter extends AbstractExporter
                                 $return[$in] = $it;
                             }
                         }
+
                         return $return;
                     });
                     $sheet->rows($rows);
                 });
             });
-
         })->export('xlsx');
     }
 

@@ -25,7 +25,7 @@ class AdminMenuCreateRequest extends FormRequest
     {
         return [
             'title' => 'required|max:50',
-            'icon' => 'required|max:50',
+            'icon'  => 'required|max:50',
         ];
     }
 }

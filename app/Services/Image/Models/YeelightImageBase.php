@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Services\Image\Models;
 
 use Prettus\Repository\Contracts\Presentable;
@@ -8,7 +9,7 @@ use Yeelight\Base\Models\BaseModel;
 use Yeelight\Services\Image\Models\Traits\YeelightPivotTrait;
 
 /**
- * Yeelight\Services\Image\Models\YeelightImageBase
+ * Yeelight\Services\Image\Models\YeelightImageBase.
  *
  * @property int $yeelight_image_id
  * @property int|null $user_id
@@ -26,6 +27,7 @@ use Yeelight\Services\Image\Models\Traits\YeelightPivotTrait;
  * @property string|null $updated_ip
  * @property-read mixed $id
  * @property-read null|string $image_url
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Services\Image\Models\YeelightImageBase whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Services\Image\Models\YeelightImageBase whereCreatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Services\Image\Models\YeelightImageBase whereCreatedIp($value)
@@ -54,7 +56,7 @@ class YeelightImageBase extends BaseModel implements Transformable, Presentable
     protected $primaryKey = 'yeelight_image_id';
 
     protected $fillable = [
-        'user_id', 'image_name', 'exif', 'is_gif', 'file_size', 'width', 'height'
+        'user_id', 'image_name', 'exif', 'is_gif', 'file_size', 'width', 'height',
     ];
 
     protected $hidden = [
@@ -63,7 +65,7 @@ class YeelightImageBase extends BaseModel implements Transformable, Presentable
     ];
 
     /**
-     * @return Int
+     * @return int
      */
     public function getYeelightImageId()
     {
@@ -104,14 +106,15 @@ class YeelightImageBase extends BaseModel implements Transformable, Presentable
 
     /**
      * @param $type
+     *
      * @return null|string
      */
     public function getTypeImageUrl($type = null)
     {
-        $type = $type ? $type . '/' : null;
+        $type = $type ? $type.'/' : null;
 
         if ($this->isValid()) {
-            return url('/image/' . $type . $this->getImageName());
+            return url('/image/'.$type.$this->getImageName());
         } else {
             return $this->getDefaultImageUrl($type = null);
         }
@@ -119,11 +122,11 @@ class YeelightImageBase extends BaseModel implements Transformable, Presentable
 
     /**
      * @param null $type
+     *
      * @return null|string
      */
     public function getDefaultImageUrl($type = null)
     {
-        return null;
     }
 
     /**
@@ -131,8 +134,9 @@ class YeelightImageBase extends BaseModel implements Transformable, Presentable
      */
     public function getImagePath()
     {
-        $storage_path = config("yeelight-image.storage_path");
-        return $storage_path . $this->getImageName();
+        $storage_path = config('yeelight-image.storage_path');
+
+        return $storage_path.$this->getImageName();
     }
 
     /**
@@ -142,7 +146,7 @@ class YeelightImageBase extends BaseModel implements Transformable, Presentable
     {
         return [
             'yeelight_image_id' => $this->getYeelightImageId(),
-            'image_name' => $this->getImageName(),
+            'image_name'        => $this->getImageName(),
         ];
     }
 
@@ -152,11 +156,11 @@ class YeelightImageBase extends BaseModel implements Transformable, Presentable
     public function toSimpleArray()
     {
         $yeelightImage = $this;
+
         return [
-            'yeelight_image_id' => $yeelightImage->getYeelightImageId(),
-            'yeelight_image_url' => $yeelightImage->getImageUrl(),
+            'yeelight_image_id'   => $yeelightImage->getYeelightImageId(),
+            'yeelight_image_url'  => $yeelightImage->getImageUrl(),
             'thumbnail_image_url' => $yeelightImage->getTypeImageUrl('thumbnail'),
         ];
     }
-
 }

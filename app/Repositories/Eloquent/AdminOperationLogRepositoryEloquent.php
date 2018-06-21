@@ -1,15 +1,15 @@
 <?php
+
 namespace Yeelight\Repositories\Eloquent;
 
+use Yeelight\Models\AdminOperationLog;
+use Yeelight\Presenters\AdminOperationLogPresenter;
 use Yeelight\Repositories\Criteria\RequestCriteria;
 use Yeelight\Repositories\Interfaces\AdminOperationLogRepository;
-use Yeelight\Models\AdminOperationLog;
 use Yeelight\Validators\AdminOperationLogValidator;
-use Yeelight\Presenters\AdminOperationLogPresenter;
 
 /**
- * Class AdminOperationLogRepositoryEloquent
- * @package namespace Yeelight\Repositories\Eloquent;
+ * Class AdminOperationLogRepositoryEloquent.
  */
 class AdminOperationLogRepositoryEloquent extends BaseRepository implements AdminOperationLogRepository
 {
@@ -20,8 +20,8 @@ class AdminOperationLogRepositoryEloquent extends BaseRepository implements Admi
         'id',
         'user_id',
         'method',
-        'path' => 'like',
-        'ip' => 'like',
+        'path'  => 'like',
+        'ip'    => 'like',
         'input' => 'like',
     ];
 
@@ -31,7 +31,7 @@ class AdminOperationLogRepositoryEloquent extends BaseRepository implements Admi
     protected $isSearchableForceAndWhere = true;
 
     /**
-     * Specify Model class name
+     * Specify Model class name.
      *
      * @return string
      */
@@ -41,31 +41,27 @@ class AdminOperationLogRepositoryEloquent extends BaseRepository implements Admi
     }
 
     /**
-    * Specify Validator class name
-    *
-    * @return mixed
-    */
+     * Specify Validator class name.
+     *
+     * @return mixed
+     */
     public function validator()
     {
-
         return AdminOperationLogValidator::class;
     }
 
-
     /**
-    * Specify Presenter class name
-    *
-    * @return mixed
-    */
+     * Specify Presenter class name.
+     *
+     * @return mixed
+     */
     public function presenter()
     {
-
         return AdminOperationLogPresenter::class;
     }
 
-
     /**
-     * Boot up the repository, pushing criteria
+     * Boot up the repository, pushing criteria.
      */
     public function boot()
     {

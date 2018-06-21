@@ -1,14 +1,14 @@
 <?php
+
 namespace Tests\Api;
 
-use Tests\TestCase;
 use Lukasoppermann\Httpstatus\Httpstatuscodes;
 use Psr\Http\Message\ResponseInterface;
+use Tests\TestCase;
 use Yeelight\Services\Rest\RestClient;
 
 class BaseApiTestCase extends TestCase implements Httpstatuscodes
 {
-
     /**
      * @var RestClient
      */
@@ -37,55 +37,63 @@ class BaseApiTestCase extends TestCase implements Httpstatuscodes
     }
 
     /**
-     *  Set OAuth Request Data
+     *  Set OAuth Request Data.
      */
     private function setOAuthRequestData()
     {
         return $this->client->setOAuthGrantRequestData(RestClient::GRANT_TYPE_PASSWORD, [
             'username' => env('API_TEST_USERNAME'),
             'password' => env('API_TEST_PASSWORD'),
-            'scope' => '*',
+            'scope'    => '*',
         ]);
     }
 
     /**
      * @param $grant_type
      * @param array|null $requestData
+     *
      * @return $this
      */
     public function withOAuthToken($grant_type, $requestData = null)
     {
         $this->withOAuthToken($grant_type, $requestData);
+
         return $this;
     }
 
     /**
      * @param array|null $requestData
+     *
      * @return RestClient
      */
     public function withOAuthTokenTypePassword($requestData = null)
     {
         $this->client->withOAuthTokenTypePassword($requestData);
+
         return $this;
     }
 
     /**
      * @param array|null $requestData
+     *
      * @return RestClient
      */
     public function withOAuthTokenTypeClientCredentials($requestData = null)
     {
         $this->client->withOAuthTokenTypeClientCredentials($requestData);
+
         return $this;
     }
 
     /**
      * @param array|null $requestData
+     *
      * @return RestClient
      */
     public function withOAuthTokenTypeAuthorizationCode($requestData = null)
     {
         $this->client->withOAuthTokenTypeAuthorizationCode($requestData);
+
         return $this;
     }
 
@@ -95,6 +103,7 @@ class BaseApiTestCase extends TestCase implements Httpstatuscodes
     public function withoutOAuthToken()
     {
         $this->client->withoutOAuthToken();
+
         return $this;
     }
 
@@ -108,41 +117,48 @@ class BaseApiTestCase extends TestCase implements Httpstatuscodes
 
     /**
      * @param string $uri
-     * @param array $query
-     * @param array $options
+     * @param array  $query
+     * @param array  $options
+     *
      * @return $this
      */
     public function getApi($uri, array $query = [], array $options = [])
     {
         $response = $this->client->get($uri, $query, $options)->getGuzzleResponse();
         $this->setGuzzleResponse($response);
+
         return $this;
     }
 
     /**
      * @param string $uri
-     * @param array $data
-     * @param array $options
+     * @param array  $data
+     * @param array  $options
+     *
      * @return $this
      */
     public function postApi($uri, array $data = [], array $options = [])
     {
         $response = $this->client->post($uri, $data, $options)->getGuzzleResponse();
         $this->setGuzzleResponse($response);
+
         return $this;
     }
 
     /**
      * @url http://docs.guzzlephp.org/en/latest/quickstart.html#sending-form-files
+     *
      * @param $uri
      * @param array $multipart
      * @param array $options
+     *
      * @return $this
      */
     public function postApiMultipart($uri, array $multipart = [], array $options = [])
     {
         $response = $this->client->postMultipart($uri, $multipart, $options)->getGuzzleResponse();
         $this->setGuzzleResponse($response);
+
         return $this;
     }
 
@@ -150,64 +166,74 @@ class BaseApiTestCase extends TestCase implements Httpstatuscodes
      * @param $uri
      * @param array $data
      * @param array $options
+     *
      * @return $this
      */
     public function postApiMultipartSimple($uri, array $data = [], array $options = [])
     {
         $response = $this->client->postMultipartSimple($uri, $data, $options)->getGuzzleResponse();
         $this->setGuzzleResponse($response);
+
         return $this;
     }
 
     /**
      * @param string $uri
-     * @param array $data
-     * @param array $options
+     * @param array  $data
+     * @param array  $options
+     *
      * @return $this
      */
     public function headApi($uri, array $data = [], array $options = [])
     {
         $response = $this->client->head($uri, $data, $options)->getGuzzleResponse();
         $this->setGuzzleResponse($response);
+
         return $this;
     }
 
     /**
      * @param string $uri
-     * @param array $data
-     * @param array $options
+     * @param array  $data
+     * @param array  $options
+     *
      * @return $this
      */
     public function putApi($uri, array $data = [], array $options = [])
     {
         $response = $this->client->put($uri, $data, $options)->getGuzzleResponse();
         $this->setGuzzleResponse($response);
+
         return $this;
     }
 
     /**
      * @param string $uri
-     * @param array $data
-     * @param array $options
+     * @param array  $data
+     * @param array  $options
+     *
      * @return $this
      */
     public function patchApi($uri, array $data = [], array $options = [])
     {
         $response = $this->client->patch($uri, $data, $options)->getGuzzleResponse();
         $this->setGuzzleResponse($response);
+
         return $this;
     }
 
     /**
      * @param string $uri
-     * @param array $data
-     * @param array $options
+     * @param array  $data
+     * @param array  $options
+     *
      * @return $this
      */
     public function deleteApi($uri, array $data = [], array $options = [])
     {
         $response = $this->client->delete($uri, $data, $options)->getGuzzleResponse();
         $this->setGuzzleResponse($response);
+
         return $this;
     }
 
@@ -262,12 +288,14 @@ class BaseApiTestCase extends TestCase implements Httpstatuscodes
     public function printResponseData()
     {
         print_r($this->getResponseData());
+
         return $this;
     }
 
     public function printResponseOriginContent()
     {
-        print_r((string)$this->response->getOriginalContent());
+        print_r((string) $this->response->getOriginalContent());
+
         return $this;
     }
 
@@ -305,6 +333,7 @@ class BaseApiTestCase extends TestCase implements Httpstatuscodes
     {
         $response = $this->getTestResponse();
         $response->assertStatus($code);
+
         return $this;
     }
 
@@ -312,6 +341,7 @@ class BaseApiTestCase extends TestCase implements Httpstatuscodes
     {
         $response = $this->getTestResponse();
         $response->assertRedirect($uri);
+
         return $this;
     }
 
@@ -319,6 +349,7 @@ class BaseApiTestCase extends TestCase implements Httpstatuscodes
     {
         $response = $this->getTestResponse();
         $response->assertHeader($headerName, $value);
+
         return $this;
     }
 
@@ -326,6 +357,7 @@ class BaseApiTestCase extends TestCase implements Httpstatuscodes
     {
         $response = $this->getTestResponse();
         $response->assertCookie($cookieName, $value);
+
         return $this;
     }
 
@@ -333,6 +365,7 @@ class BaseApiTestCase extends TestCase implements Httpstatuscodes
     {
         $response = $this->getTestResponse();
         $response->assertPlainCookie($cookieName, $value);
+
         return $this;
     }
 
@@ -340,6 +373,7 @@ class BaseApiTestCase extends TestCase implements Httpstatuscodes
     {
         $response = $this->getTestResponse();
         $response->assertSessionHas($key, $value);
+
         return $this;
     }
 
@@ -347,6 +381,7 @@ class BaseApiTestCase extends TestCase implements Httpstatuscodes
     {
         $response = $this->getTestResponse();
         $response->assertSessionHasErrors($keys);
+
         return $this;
     }
 
@@ -354,6 +389,7 @@ class BaseApiTestCase extends TestCase implements Httpstatuscodes
     {
         $response = $this->getTestResponse();
         $response->assertSessionMissing($key);
+
         return $this;
     }
 
@@ -361,6 +397,7 @@ class BaseApiTestCase extends TestCase implements Httpstatuscodes
     {
         $response = $this->getTestResponse();
         $response->assertJson($data);
+
         return $this;
     }
 
@@ -368,6 +405,7 @@ class BaseApiTestCase extends TestCase implements Httpstatuscodes
     {
         $response = $this->getTestResponse();
         $response->assertJsonFragment($data);
+
         return $this;
     }
 
@@ -375,6 +413,7 @@ class BaseApiTestCase extends TestCase implements Httpstatuscodes
     {
         $response = $this->getTestResponse();
         $response->assertExactJson($data);
+
         return $this;
     }
 
@@ -382,6 +421,7 @@ class BaseApiTestCase extends TestCase implements Httpstatuscodes
     {
         $response = $this->getTestResponse();
         $response->assertJsonStructure($structure);
+
         return $this;
     }
 
@@ -389,7 +429,7 @@ class BaseApiTestCase extends TestCase implements Httpstatuscodes
     {
         $response = $this->getTestResponse();
         $response->assertViewHas($key, $value);
+
         return $this;
     }
-
 }

@@ -1,16 +1,15 @@
 <?php
+
 namespace Yeelight\Generators\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Collection;
-use Yeelight\Generators\ControllerGenerator;
-use Yeelight\Generators\FileAlreadyExistsException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use Yeelight\Generators\ControllerGenerator;
+use Yeelight\Generators\FileAlreadyExistsException;
 
 class ControllerCommand extends CommandBase
 {
-
     /**
      * The name of command.
      *
@@ -32,7 +31,6 @@ class ControllerCommand extends CommandBase
      */
     protected $type = 'Controller';
 
-
     /**
      * Execute the command.
      *
@@ -43,31 +41,30 @@ class ControllerCommand extends CommandBase
         try {
             // Generate create request for controller
             $this->call('yl:request', [
-                'name' => $this->argument('name') . 'Create',
-                '--type' => 'web',
+                'name'     => $this->argument('name').'Create',
+                '--type'   => 'web',
                 '--fields' => $this->option('fields'),
-                '--force' => $this->option('force')
+                '--force'  => $this->option('force'),
             ]);
             // Generate update request for controller
             $this->call('yl:request', [
-                'name' => $this->argument('name') . 'Update',
-                '--type' => 'web',
+                'name'     => $this->argument('name').'Update',
+                '--type'   => 'web',
                 '--fields' => $this->option('fields'),
-                '--force' => $this->option('force')
+                '--force'  => $this->option('force'),
             ]);
 
             (new ControllerGenerator([
-                'name' => $this->argument('name'),
+                'name'  => $this->argument('name'),
                 'force' => $this->option('force'),
             ]))->run();
-            $this->info($this->type . ' created successfully.');
+            $this->info($this->type.' created successfully.');
         } catch (FileAlreadyExistsException $e) {
-            $this->error($this->type . ' already exists!');
+            $this->error($this->type.' already exists!');
 
             return false;
         }
     }
-
 
     /**
      * The array of command arguments.
@@ -81,11 +78,10 @@ class ControllerCommand extends CommandBase
                 'name',
                 InputArgument::REQUIRED,
                 'The name of model for which the controller is being generated.',
-                null
+                null,
             ],
         ];
     }
-
 
     /**
      * The array of command options.
@@ -100,14 +96,14 @@ class ControllerCommand extends CommandBase
                 'f',
                 InputOption::VALUE_NONE,
                 'Force the creation if file already exists.',
-                null
+                null,
             ],
             [
                 'fields',
                 null,
                 InputOption::VALUE_OPTIONAL,
                 'The fields attributes.',
-                null
+                null,
             ],
         ];
     }

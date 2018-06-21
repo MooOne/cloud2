@@ -1,16 +1,15 @@
 <?php
+
 namespace Yeelight\Generators\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Collection;
-use Yeelight\Generators\FileAlreadyExistsException;
-use Yeelight\Generators\RequestGenerator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use Yeelight\Generators\FileAlreadyExistsException;
+use Yeelight\Generators\RequestGenerator;
 
 class RequestCommand extends CommandBase
 {
-
     /**
      * The name of command.
      *
@@ -41,19 +40,18 @@ class RequestCommand extends CommandBase
     {
         try {
             (new RequestGenerator([
-                'name' => $this->argument('name'),
-                'type' => $this->option('type'),
+                'name'   => $this->argument('name'),
+                'type'   => $this->option('type'),
                 'fields' => $this->option('fields'),
-                'force' => $this->option('force'),
+                'force'  => $this->option('force'),
             ]))->run();
-            $this->info("Request created successfully.");
+            $this->info('Request created successfully.');
         } catch (FileAlreadyExistsException $e) {
-            $this->error($this->type . ' already exists!');
+            $this->error($this->type.' already exists!');
 
             return false;
         }
     }
-
 
     /**
      * The array of command arguments.
@@ -67,7 +65,7 @@ class RequestCommand extends CommandBase
                 'name',
                 InputArgument::REQUIRED,
                 'The name of model for which the transformer is being generated.',
-                null
+                null,
             ],
         ];
     }
@@ -85,21 +83,21 @@ class RequestCommand extends CommandBase
                 'f',
                 InputOption::VALUE_NONE,
                 'Force the creation if file already exists.',
-                null
+                null,
             ],
             [
                 'type',
                 't',
                 InputOption::VALUE_REQUIRED,
                 'The type attributes, options: web, api.The default value is web',
-                'web'
+                'web',
             ],
             [
                 'fields',
                 null,
                 InputOption::VALUE_OPTIONAL,
                 'The fields attributes.',
-                null
+                null,
             ],
         ];
     }

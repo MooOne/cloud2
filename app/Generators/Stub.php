@@ -1,9 +1,9 @@
 <?php
+
 namespace Yeelight\Generators;
 
 /**
- * Class Stub
- * @package Yeelight\Generators
+ * Class Stub.
  */
 class Stub
 {
@@ -41,8 +41,8 @@ class Stub
     /**
      * Create new self instance.
      *
-     * @param  string $path
-     * @param  array  $replaces
+     * @param string $path
+     * @param array  $replaces
      *
      * @return self
      */
@@ -54,7 +54,7 @@ class Stub
     /**
      * Set base path.
      *
-     * @param  string $path
+     * @param string $path
      *
      * @return void
      */
@@ -66,7 +66,7 @@ class Stub
     /**
      * Set replacements array.
      *
-     * @param  array $replaces
+     * @param array $replaces
      *
      * @return $this
      */
@@ -116,7 +116,7 @@ class Stub
     {
         $contents = file_get_contents($this->getPath());
         foreach ($this->replaces as $search => $replace) {
-            $contents = str_replace('$' . strtoupper($search) . '$', $replace, $contents);
+            $contents = str_replace('$'.strtoupper($search).'$', $replace, $contents);
         }
 
         return $contents;
@@ -129,7 +129,7 @@ class Stub
      */
     public function getPath()
     {
-        return static::$basePath . $this->path;
+        return static::$basePath.$this->path;
     }
 
     /**

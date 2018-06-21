@@ -1,17 +1,16 @@
 <?php
+
 namespace Yeelight\Presenters;
 
 use Yeelight\Transformers\AdminOperationLogTransformer;
 
 /**
- * Class AdminOperationLogPresenter
- *
- * @package namespace Yeelight\Presenters;
+ * Class AdminOperationLogPresenter.
  */
 class AdminOperationLogPresenter extends BasePresenter
 {
     /**
-     * Transformer
+     * Transformer.
      *
      * @return \League\Fractal\TransformerAbstract
      */

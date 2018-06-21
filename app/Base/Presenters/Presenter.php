@@ -1,22 +1,23 @@
 <?php
+
 namespace Yeelight\Base\Presenters;
 
+use Illuminate\Pagination\AbstractPaginator;
 use Illuminate\Support\Collection;
 use Prettus\Repository\Presenter\FractalPresenter;
-use Illuminate\Pagination\AbstractPaginator;
 
 abstract class Presenter extends FractalPresenter
 {
-
     protected $meta = [];
 
     /**
-     * Prepare data to present
+     * Prepare data to present.
      *
      * @param $data
      *
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function present($data)
     {

@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Repositories\Interfaces;
 
 use Yeelight\Base\Repositories\Interfaces\RepositoryInterface;

@@ -3,8 +3,9 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-4-10
- * Time: 上午11:33
+ * Time: 上午11:33.
  */
+
 namespace Yeelight\Services\Exporters;
 
 use Yeelight\Repositories\Eloquent\BaseRepository as Repository;

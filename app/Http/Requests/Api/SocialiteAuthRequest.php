@@ -24,15 +24,15 @@ class SocialiteAuthRequest extends FormRequest
     public function rules()
     {
         return [
-            'grant_type' => 'required',
-            'client_id' => 'required',
-            'client_secret' => 'required',
-            'username' => 'required',
-            'email' => 'nullable|email',
-            'provider' => 'required|in:xiaomi,facebook,twitter,google',
+            'grant_type'       => 'required',
+            'client_id'        => 'required',
+            'client_secret'    => 'required',
+            'username'         => 'required',
+            'email'            => 'nullable|email',
+            'provider'         => 'required|in:xiaomi,facebook,twitter,google',
             'provider_user_id' => 'required',
-            'oauth_data' => 'required|json',
-            'expires_at' => 'required|date'
+            'oauth_data'       => 'required|json',
+            'expires_at'       => 'required|date',
         ];
     }
 }

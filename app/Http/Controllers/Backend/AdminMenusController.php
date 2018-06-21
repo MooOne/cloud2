@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Http\Controllers\Backend;
 
 use Illuminate\Support\Facades\Request;
@@ -12,7 +13,6 @@ use Yeelight\Validators\AdminMenuValidator;
 
 class AdminMenusController extends BaseController
 {
-
     /**
      * @var AdminMenuRepository
      */
@@ -26,12 +26,10 @@ class AdminMenusController extends BaseController
     public function __construct(
         AdminMenuRepository $repository,
         AdminMenuValidator $validator
-    )
-    {
+    ) {
         $this->repository = $repository;
         $this->validator = $validator;
     }
-
 
     /**
      * Display a listing of the resource.
@@ -47,14 +45,14 @@ class AdminMenusController extends BaseController
 
         return view('backend.admin_menus.index', [
             'treeView' => $treeView,
-            'columns' => $columns,
-            'menus' => $menus,
-            'roles' => $roles
+            'columns'  => $columns,
+            'menus'    => $menus,
+            'roles'    => $roles,
         ]);
     }
 
     /**
-     * 返回菜单列表
+     * 返回菜单列表.
      *
      * @return Tree
      */
@@ -81,9 +79,8 @@ class AdminMenusController extends BaseController
         });
     }
 
-
     /**
-     * Edit
+     * Edit.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -95,18 +92,17 @@ class AdminMenusController extends BaseController
         $roles = AdminRole::all()->pluck('name', 'id');
 
         return view('backend.admin_menus.edit', [
-            'data' => $data['data'],
+            'data'    => $data['data'],
             'columns' => $columns,
-            'roles' => $roles,
-            'menus' => $menus
+            'roles'   => $roles,
+            'menus'   => $menus,
         ]);
     }
-
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  AdminMenuCreateRequest $request
+     * @param AdminMenuCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -125,14 +121,14 @@ class AdminMenusController extends BaseController
 
             return redirect(route('menus.index'))->with(compact('error'));
         }
-
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param AdminMenuUpdateRequest $request
-     * @param int $id
+     * @param int                    $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(AdminMenuUpdateRequest $request, $id)
@@ -144,6 +140,7 @@ class AdminMenusController extends BaseController
                 'title'   => trans('backend.failed'),
                 'message' => trans('backend.parent_select_error'),
             ]);
+
             return redirect($request->session()->previousUrl())->with(compact('error'));
         }
 
@@ -156,12 +153,14 @@ class AdminMenusController extends BaseController
                 'title'   => trans('backend.failed'),
                 'message' => trans('backend.update_failed'),
             ]);
+
             return redirect($request->session()->previousUrl())->with(compact('error'));
         }
     }
 
     /**
-     * 菜单排序
+     * 菜单排序.
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function order()
@@ -189,6 +188,7 @@ class AdminMenusController extends BaseController
      * Remove the specified resource from storage.
      *
      * @param $id
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)

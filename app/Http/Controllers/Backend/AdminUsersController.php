@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Http\Controllers\Backend;
 
 use Illuminate\Support\MessageBag;
@@ -11,7 +12,6 @@ use Yeelight\Validators\AdminUserValidator;
 
 class AdminUsersController extends BaseController
 {
-
     /**
      * @var AdminUserRepository
      */
@@ -25,12 +25,10 @@ class AdminUsersController extends BaseController
     public function __construct(
         AdminUserRepository $repository,
         AdminUserValidator $validator
-    )
-    {
+    ) {
         $this->repository = $repository;
         $this->validator = $validator;
     }
-
 
     /**
      * Display a listing of the resource.
@@ -47,15 +45,15 @@ class AdminUsersController extends BaseController
         $this->setupExporter();
 
         return view('backend.admin_users.index', [
-            'lists' => $lists,
-            'columns' => $columns,
+            'lists'     => $lists,
+            'columns'   => $columns,
             'paginator' => $paginator,
-            'query' => request()->query()
+            'query'     => request()->query(),
         ]);
     }
 
     /**
-     * Create
+     * Create.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -64,15 +62,16 @@ class AdminUsersController extends BaseController
         $columns = trans('admin_users.columns');
         $permissions = AdminPermission::all()->pluck('name', 'id');
         $roles = AdminRole::all()->pluck('name', 'id');
+
         return view('backend.admin_users.create', [
-            'columns' => $columns,
+            'columns'     => $columns,
             'permissions' => $permissions,
-            'roles' => $roles
+            'roles'       => $roles,
         ]);
     }
 
     /**
-     * Edit
+     * Edit.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -84,18 +83,17 @@ class AdminUsersController extends BaseController
         $columns = trans('admin_users.columns');
 
         return view('backend.admin_users.edit', [
-            'data' => $data['data'],
-            'columns' => $columns,
+            'data'        => $data['data'],
+            'columns'     => $columns,
             'permissions' => $permissions,
-            'roles' => $roles
+            'roles'       => $roles,
         ]);
     }
-
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  AdminUserCreateRequest $request
+     * @param AdminUserCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -115,14 +113,14 @@ class AdminUsersController extends BaseController
 
             return redirect(route('roles.create'))->with(compact('error'));
         }
-
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param AdminUserUpdateRequest $request
-     * @param int $id
+     * @param int                    $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(AdminUserUpdateRequest $request, $id)
@@ -138,6 +136,7 @@ class AdminUsersController extends BaseController
                 'title'   => trans('backend.failed'),
                 'message' => trans('backend.update_failed'),
             ]);
+
             return redirect($request->session()->previousUrl())->with(compact('error'));
         }
     }
@@ -146,6 +145,7 @@ class AdminUsersController extends BaseController
      * Remove the specified resource from storage.
      *
      * @param $id
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)

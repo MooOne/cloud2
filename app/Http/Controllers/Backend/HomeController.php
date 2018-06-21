@@ -1,6 +1,6 @@
 <?php
-namespace Yeelight\Http\Controllers\Backend;
 
+namespace Yeelight\Http\Controllers\Backend;
 
 class HomeController extends BaseController
 {
@@ -78,6 +78,6 @@ class HomeController extends BaseController
 
         $dependencies = json_decode($json, true)['require'];
 
-        return view('backend.home',compact('envs', 'tools', 'dependencies'));
+        return view('backend.home', compact('envs', 'tools', 'dependencies'));
     }
 }

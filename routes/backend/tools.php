@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-4-20
- * Time: 下午4:11
+ * Time: 下午4:11.
  */
 //Tools
 Route::group([

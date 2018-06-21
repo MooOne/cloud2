@@ -1,12 +1,9 @@
 <?php
-namespace Yeelight\Services\Image\Models\Traits;
 
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Yeelight\Models\Image\YeelightImage;
+namespace Yeelight\Services\Image\Models\Traits;
 
 trait YeelightPivotTrait
 {
-
     /**
      * @return mixed
      */
@@ -31,8 +28,7 @@ trait YeelightPivotTrait
         if ($this->hasPivot()) {
             return $this->getPivot()->parent;
         } else {
-            return null;
+            return;
         }
     }
-
 }

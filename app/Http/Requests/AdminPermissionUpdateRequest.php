@@ -35,14 +35,14 @@ class AdminPermissionUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'slug' => 'required|max:50',
+            'slug'  => 'required|max:50',
             'name'  => [
                 'required',
                 Rule::unique('admin_permissions')->ignore($this->name, 'name'),
-                'max:50'
+                'max:50',
             ],
             'http_method' => 'array',
-            'http_path' => 'required'
+            'http_path'   => 'required',
         ];
     }
 }

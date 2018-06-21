@@ -38,13 +38,13 @@ class AdminUserUpdateRequest extends FormRequest
             'username' => [
                 'required',
                 Rule::unique('admin_users')->ignore($this->username, 'username'),
-                'max:190'
+                'max:190',
             ],
-            'name' => 'required|max:255',
-            'password' => 'required|confirmed',
+            'name'                  => 'required|max:255',
+            'password'              => 'required|confirmed',
             'password_confirmation' => 'required',
-            'permissions' => 'array',
-            'roles' => 'array'
+            'permissions'           => 'array',
+            'roles'                 => 'array',
         ];
     }
 }

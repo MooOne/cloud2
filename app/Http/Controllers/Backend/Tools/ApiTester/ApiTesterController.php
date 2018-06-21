@@ -3,8 +3,9 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-4-19
- * Time: 上午9:26
+ * Time: 上午9:26.
  */
+
 namespace Yeelight\Http\Controllers\Backend\Tools\ApiTester;
 
 use Illuminate\Http\Request;
@@ -24,8 +25,8 @@ class ApiTesterController extends BaseController
         return view('backend.tools.api_tester.index', [
             'routes' => $tester->getRoutes(),
             //'logs'   => ApiLogger::load(),
-            'methodColors' => ApiTester::$methodColors,
-            'header_description' => 'Api tester'
+            'methodColors'       => ApiTester::$methodColors,
+            'header_description' => 'Api tester',
         ]);
     }
 
@@ -48,6 +49,7 @@ class ApiTesterController extends BaseController
         }, ARRAY_FILTER_USE_KEY);
         $tester = new ApiTester();
         $response = $tester->call($method, $uri, $parameters, $user);
+
         return [
             'status'    => true,
             'message'   => 'success',

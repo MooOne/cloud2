@@ -1,15 +1,15 @@
 <?php
+
 namespace Yeelight\Repositories\Eloquent;
 
+use Yeelight\Models\AdminRole;
+use Yeelight\Presenters\AdminRolePresenter;
 use Yeelight\Repositories\Criteria\RequestCriteria;
 use Yeelight\Repositories\Interfaces\AdminRoleRepository;
-use Yeelight\Models\AdminRole;
 use Yeelight\Validators\AdminRoleValidator;
-use Yeelight\Presenters\AdminRolePresenter;
 
 /**
- * Class AdminRoleRepositoryEloquent
- * @package namespace Yeelight\Repositories\Eloquent;
+ * Class AdminRoleRepositoryEloquent.
  */
 class AdminRoleRepositoryEloquent extends BaseRepository implements AdminRoleRepository
 {
@@ -22,16 +22,13 @@ class AdminRoleRepositoryEloquent extends BaseRepository implements AdminRoleRep
         'slug' => 'like',
     ];
 
-
     /**
      * @var bool
      */
     protected $isSearchableForceAndWhere = true;
 
-
-
     /**
-     * Specify Model class name
+     * Specify Model class name.
      *
      * @return string
      */
@@ -41,31 +38,27 @@ class AdminRoleRepositoryEloquent extends BaseRepository implements AdminRoleRep
     }
 
     /**
-    * Specify Validator class name
-    *
-    * @return mixed
-    */
+     * Specify Validator class name.
+     *
+     * @return mixed
+     */
     public function validator()
     {
-
         return AdminRoleValidator::class;
     }
 
-
     /**
-    * Specify Presenter class name
-    *
-    * @return mixed
-    */
+     * Specify Presenter class name.
+     *
+     * @return mixed
+     */
     public function presenter()
     {
-
         return AdminRolePresenter::class;
     }
 
-
     /**
-     * Boot up the repository, pushing criteria
+     * Boot up the repository, pushing criteria.
      */
     public function boot()
     {

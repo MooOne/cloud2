@@ -29,21 +29,21 @@ class UserUpdateRequest extends FormRequest
             'username' => [
                 'nullable',
                 Rule::unique('users')->ignore($this->username, 'username'),
-                'max:50'
+                'max:50',
             ],
             'email' => [
                 'nullable',
                 'email',
-                Rule::unique('users')->ignore($this->email, 'email')
+                Rule::unique('users')->ignore($this->email, 'email'),
             ],
             'gender'	=> [
                 'nullable',
                 Rule::in(['F', 'M']),
             ],
             'birthday' => 'nullable|date_format:Y-m-d',
-            'country' => [
+            'country'  => [
                 'nullable',
-                Rule::in(CountryModel::getCountryISOCodeList())
+                Rule::in(CountryModel::getCountryISOCodeList()),
             ],
             'timezone' => 'nullable|timezone',
         ];

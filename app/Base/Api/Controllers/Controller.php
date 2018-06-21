@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Base\Api\Controllers;
 
 use Dingo\Api\Routing\Helpers;
@@ -13,5 +14,4 @@ abstract class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     use AuthUserHelpers;
     use Helpers;
-
 }

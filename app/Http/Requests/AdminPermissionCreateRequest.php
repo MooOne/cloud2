@@ -13,7 +13,6 @@ class AdminPermissionCreateRequest extends FormRequest
      */
     protected $redirectRoute = 'permissions.create';
 
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -32,10 +31,10 @@ class AdminPermissionCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'slug' => 'required|max:50',
-            'name' => 'required|unique:admin_permissions|max:50',
+            'slug'        => 'required|max:50',
+            'name'        => 'required|unique:admin_permissions|max:50',
             'http_method' => 'array',
-            'http_path' => 'required'
+            'http_path'   => 'required',
         ];
     }
 }

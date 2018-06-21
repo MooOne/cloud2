@@ -1,13 +1,12 @@
 <?php
+
 namespace Yeelight\Generators;
 
 /**
- * Class ApiControllerGenerator
- * @package Yeelight\Generators
+ * Class ApiControllerGenerator.
  */
 class ApiControllerGenerator extends Generator
 {
-
     /**
      * Get stub name.
      *
@@ -22,7 +21,7 @@ class ApiControllerGenerator extends Generator
      */
     public function getRootNamespace()
     {
-        return str_replace('/', '\\', parent::getRootNamespace() . parent::getConfigGeneratorClassPath($this->getPathConfigNode()));
+        return str_replace('/', '\\', parent::getRootNamespace().parent::getConfigGeneratorClassPath($this->getPathConfigNode()));
     }
 
     /**
@@ -42,7 +41,7 @@ class ApiControllerGenerator extends Generator
      */
     public function getPath()
     {
-        return $this->getBasePath() . '/' . parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true) . '/' . $this->getControllerName() . 'Controller.php';
+        return $this->getBasePath().'/'.parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true).'/'.$this->getControllerName().'Controller.php';
     }
 
     /**
@@ -56,24 +55,22 @@ class ApiControllerGenerator extends Generator
     }
 
     /**
-     * Gets controller name based on model
+     * Gets controller name based on model.
      *
      * @return string
      */
     public function getControllerName()
     {
-
         return ucfirst($this->getPluralName());
     }
 
     /**
-     * Gets plural name based on model
+     * Gets plural name based on model.
      *
      * @return string
      */
     public function getPluralName()
     {
-
         return str_plural(lcfirst(ucwords($this->getClass())));
     }
 
@@ -84,7 +81,6 @@ class ApiControllerGenerator extends Generator
      */
     public function getReplacements()
     {
-
         return array_merge(parent::getReplacements(), [
             'controller' => $this->getControllerName(),
             'plural'     => $this->getPluralName(),
@@ -96,7 +92,7 @@ class ApiControllerGenerator extends Generator
     }
 
     /**
-     * Gets singular name based on model
+     * Gets singular name based on model.
      *
      * @return string
      */
@@ -106,7 +102,7 @@ class ApiControllerGenerator extends Generator
     }
 
     /**
-     * Gets validator full class name
+     * Gets validator full class name.
      *
      * @return string
      */
@@ -116,17 +112,16 @@ class ApiControllerGenerator extends Generator
             'name' => $this->name,
         ]);
 
-        $validator = $validatorGenerator->getRootNamespace() . '\\' . $validatorGenerator->getName();
+        $validator = $validatorGenerator->getRootNamespace().'\\'.$validatorGenerator->getName();
 
-        return 'use ' . str_replace([
-            "\\",
-            '/'
-        ], '\\', $validator) . 'Validator;';
+        return 'use '.str_replace([
+            '\\',
+            '/',
+        ], '\\', $validator).'Validator;';
     }
 
-
     /**
-     * Gets repository full class name
+     * Gets repository full class name.
      *
      * @return string
      */
@@ -136,11 +131,11 @@ class ApiControllerGenerator extends Generator
             'name' => $this->name,
         ]);
 
-        $repository = $repositoryGenerator->getRootNamespace() . '\\' . $repositoryGenerator->getName();
+        $repository = $repositoryGenerator->getRootNamespace().'\\'.$repositoryGenerator->getName();
 
-        return 'use ' . str_replace([
-            "\\",
-            '/'
-        ], '\\', $repository) . 'Repository;';
+        return 'use '.str_replace([
+            '\\',
+            '/',
+        ], '\\', $repository).'Repository;';
     }
 }

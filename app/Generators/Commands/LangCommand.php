@@ -1,16 +1,15 @@
 <?php
+
 namespace Yeelight\Generators\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Collection;
-use Yeelight\Generators\FileAlreadyExistsException;
-use Yeelight\Generators\LangGenerator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use Yeelight\Generators\FileAlreadyExistsException;
+use Yeelight\Generators\LangGenerator;
 
 class LangCommand extends CommandBase
 {
-
     /**
      * The name of command.
      *
@@ -41,18 +40,17 @@ class LangCommand extends CommandBase
     {
         try {
             (new LangGenerator([
-                'name' => $this->argument('name'),
+                'name'   => $this->argument('name'),
                 'fields' => $this->option('fields'),
-                'force' => $this->option('force'),
+                'force'  => $this->option('force'),
             ]))->run();
-            $this->info("Language package created successfully.");
+            $this->info('Language package created successfully.');
         } catch (FileAlreadyExistsException $e) {
-            $this->error($this->type . ' already exists!');
+            $this->error($this->type.' already exists!');
 
             return false;
         }
     }
-
 
     /**
      * The array of command arguments.
@@ -66,7 +64,7 @@ class LangCommand extends CommandBase
                 'name',
                 InputArgument::REQUIRED,
                 'The name of model for which the language package is being generated.',
-                null
+                null,
             ],
         ];
     }
@@ -84,14 +82,14 @@ class LangCommand extends CommandBase
                 'f',
                 InputOption::VALUE_NONE,
                 'Force the creation if file already exists.',
-                null
+                null,
             ],
             [
                 'fields',
                 null,
                 InputOption::VALUE_OPTIONAL,
                 'The fields attributes.',
-                null
+                null,
             ],
         ];
     }

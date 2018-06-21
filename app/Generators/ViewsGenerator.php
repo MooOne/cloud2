@@ -1,14 +1,13 @@
 <?php
+
 namespace Yeelight\Generators;
 
 use Illuminate\Support\Str;
 use League\Flysystem\FileNotFoundException;
 
 /**
- * Class ViewsGenerator
- * @package Yeelight\Generators
+ * Class ViewsGenerator.
  */
-
 class ViewsGenerator extends Generator
 {
     /**
@@ -19,15 +18,15 @@ class ViewsGenerator extends Generator
     protected $stub = '';
 
     /**
-     * Get the views array
+     * Get the views array.
+     *
      * @var array
      */
     protected $views = [
-        'index' => 'index.blade.php',
+        'index'  => 'index.blade.php',
         'create' => 'create.blade.php',
-        'edit' => 'edit.blade.php',
+        'edit'   => 'edit.blade.php',
     ];
-
 
     /**
      * Get root namespace.
@@ -56,7 +55,7 @@ class ViewsGenerator extends Generator
      */
     public function getPath()
     {
-        return $this->getBasePath() . '/' . parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true) . '/' . $this->getName() . '/';
+        return $this->getBasePath().'/'.parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true).'/'.$this->getName().'/';
     }
 
     /**
@@ -90,7 +89,7 @@ class ViewsGenerator extends Generator
     private function buildCreateFormFields()
     {
         $fields = $this->fields;
-        $result = "";
+        $result = '';
         if (!empty($fields)) {
             foreach ($fields as $index => $field) {
                 $result .= <<<EOF
@@ -117,9 +116,8 @@ class ViewsGenerator extends Generator
                 </div>\n
 EOF;
             }
-
         }
-        $result .= "";
+        $result .= '';
 
         return $result;
     }
@@ -127,7 +125,7 @@ EOF;
     private function buildEditFormFields()
     {
         $fields = $this->fields;
-        $result = "";
+        $result = '';
         if (!empty($fields)) {
             foreach ($fields as $index => $field) {
                 $result .= <<<EOF
@@ -154,9 +152,8 @@ EOF;
                 </div>\n
 EOF;
             }
-
         }
-        $result .= "";
+        $result .= '';
 
         return $result;
     }
@@ -164,7 +161,7 @@ EOF;
     private function buildIndexFilterFields()
     {
         $fields = $this->fields;
-        $result = "";
+        $result = '';
         if (!empty($fields)) {
             foreach ($fields as $index => $field) {
                 $result .= <<<EOF
@@ -181,9 +178,8 @@ EOF;
                 \t\t\t\t\t\t\t</div>\n
 EOF;
             }
-
         }
-        $result .= "";
+        $result .= '';
 
         return $result;
     }
@@ -191,7 +187,7 @@ EOF;
     private function buildIndexTableThFields()
     {
         $fields = $this->fields;
-        $result = "";
+        $result = '';
         $_id_name = $this->getIdName();
 
         if (!empty($fields)) {
@@ -203,9 +199,8 @@ EOF;
                         <th>{{ \$columns['{$field['name']}'] }}</th>\n
 EOF;
             }
-
         }
-        $result .= "";
+        $result .= '';
 
         return $result;
     }
@@ -213,7 +208,7 @@ EOF;
     private function buildIndexTableTdFields()
     {
         $fields = $this->fields;
-        $result = "";
+        $result = '';
         $_id_name = $this->getIdName();
 
         if (!empty($fields)) {
@@ -228,9 +223,8 @@ EOF;
                             <td>{{ \$row['{$field['name']}'] }}</td>\n
 EOF;
             }
-
         }
-        $result .= "";
+        $result .= '';
 
         return $result;
     }
@@ -243,25 +237,26 @@ EOF;
     public function getReplacements()
     {
         return array_merge(parent::getReplacements(), [
-            'model' => $this->getName(),
-            'create_form_fields' => $this->buildCreateFormFields(),
-            'edit_form_fields' => $this->buildEditFormFields(),
-            'index_filter_fields' => $this->buildIndexFilterFields(),
+            'model'                 => $this->getName(),
+            'create_form_fields'    => $this->buildCreateFormFields(),
+            'edit_form_fields'      => $this->buildEditFormFields(),
+            'index_filter_fields'   => $this->buildIndexFilterFields(),
             'index_table_th_fields' => $this->buildIndexTableThFields(),
             'index_table_td_fields' => $this->buildIndexTableTdFields(),
-            '_id_name' => $this->getIdName(),
+            '_id_name'              => $this->getIdName(),
         ]);
     }
 
     /**
      * Run the generator.
+     *
      * @throws FileAlreadyExistsException
      * @throws FileNotFoundException
      */
     public function run()
     {
         foreach ($this->views as $index => $view) {
-            if ($this->filesystem->exists($path = $this->getPath() . $view) && !$this->force) {
+            if ($this->filesystem->exists($path = $this->getPath().$view) && !$this->force) {
                 throw new FileAlreadyExistsException($path);
             }
 
@@ -271,15 +266,15 @@ EOF;
 
             $stubsOverridePath = config('repository.generator.stubsOverridePath', __DIR__);
 
-            if (!file_exists($stubsOverridePath . "/Stubs/views/{$index}.stub")) {
+            if (!file_exists($stubsOverridePath."/Stubs/views/{$index}.stub")) {
                 $stubsOverridePath = __DIR__;
             }
 
-            if (!file_exists($stubsOverridePath . "/Stubs/views/{$index}.stub")) {
-                throw new FileNotFoundException($stubsOverridePath . "/Stubs/views/{$index}.stub");
+            if (!file_exists($stubsOverridePath."/Stubs/views/{$index}.stub")) {
+                throw new FileNotFoundException($stubsOverridePath."/Stubs/views/{$index}.stub");
             }
 
-            $this->stub = 'views/' . $index;
+            $this->stub = 'views/'.$index;
 
             $this->filesystem->put($path, $this->getStub());
         }

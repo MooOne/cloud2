@@ -1,9 +1,9 @@
 <?php
+
 namespace Yeelight\Http\Controllers;
 
 class ExampleController extends BaseController
 {
-
     public function getIndexExample()
     {
         return view('app.example.index');
@@ -18,5 +18,4 @@ class ExampleController extends BaseController
     {
         return view('app.example.blank');
     }
-
 }

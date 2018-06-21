@@ -3,8 +3,9 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-4-10
- * Time: 上午11:30
+ * Time: 上午11:30.
  */
+
 namespace Yeelight\Services\Exporters;
 
 use Illuminate\Database\Eloquent\Model;
@@ -32,7 +33,6 @@ class CsvExporter extends AbstractExporter
             $titles = [];
 
             $this->chunk(function ($records) use ($handle, &$titles) {
-
                 if (empty($titles)) {
                     $titles = $this->getHeaderRowFromRecords($records);
 

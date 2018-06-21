@@ -1,11 +1,11 @@
 <?php
+
 namespace Yeelight\Http\Controllers\Mobile;
 
 use Yeelight\Http\Controllers\BaseController;
 
 class UserController extends BaseController
 {
-
     public function getUserList()
     {
         return view('mobile.users.user_list');
@@ -17,5 +17,4 @@ class UserController extends BaseController
             'user_id' => $id,
         ]);
     }
-
 }

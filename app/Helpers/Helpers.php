@@ -3,15 +3,16 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 17-10-25
- * Time: 下午4:51
+ * Time: 下午4:51.
  */
-
 if (!function_exists('current_auth_user')) {
 
     /**
      * @param bool $throwException
-     * @return \Yeelight\Models\Foundation\BaseUser
+     *
      * @throws \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
+     *
+     * @return \Yeelight\Models\Foundation\BaseUser
      */
     function current_auth_user($throwException = true)
     {
@@ -22,25 +23,23 @@ if (!function_exists('current_auth_user')) {
                 throw new \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException('User Invalid Or Token Expired');
             }
         }
+
         return $user;
     }
-
 }
 
 if (!function_exists('auth_check')) {
 
     /**
-     * @return boolean
+     * @return bool
      */
     function auth_check()
     {
         return \Auth::check();
     }
-
 }
 
 if (!function_exists('current_full_url')) {
-
     function current_full_url($withQueryString = true)
     {
         $url = \Request::url();
@@ -48,17 +47,17 @@ if (!function_exists('current_full_url')) {
 
         if ($query) {
             $path = \Request::path();
-            if (starts_with($query, $path . '&')) {
+            if (starts_with($query, $path.'&')) {
                 $query = substr($query, strlen($path) + 1);
-            } else if (starts_with($query, $path)) {
+            } elseif (starts_with($query, $path)) {
                 $query = substr($query, strlen($path));
             }
         }
 
-        $url = $query ? $url . '?' . $query : $url;
+        $url = $query ? $url.'?'.$query : $url;
+
         return $url;
     }
-
 }
 
 if (!function_exists('get_client_ip')) {
@@ -73,18 +72,16 @@ if (!function_exists('get_client_ip')) {
         if (empty($clientIp)) {
             $clientIp = $request->getClientIp(true);
         }
+
         return $clientIp;
     }
-
 }
 
 if (!function_exists('app_locale')) {
-
     function app_locale()
     {
         return \App::getLocale();
     }
-
 }
 
 if (!function_exists('app_timezone')) {
@@ -94,9 +91,8 @@ if (!function_exists('app_timezone')) {
      */
     function app_timezone()
     {
-        return \Config::get("app.timezone");
+        return \Config::get('app.timezone');
     }
-
 }
 
 if (!function_exists('jwt_token')) {
@@ -115,9 +111,9 @@ if (!function_exists('jwt_token')) {
                 $jwt_token = $refreshed_token;
             }
         }
+
         return $jwt_token;
     }
-
 }
 
 if (!function_exists('refresh_jwt_token')) {
@@ -132,9 +128,9 @@ if (!function_exists('refresh_jwt_token')) {
             $jwt_token = \JWTAuth::fromUser(current_auth_user());
             \Session::put('jwt_token', $jwt_token);
         }
+
         return $jwt_token;
     }
-
 }
 
 if (!function_exists('is_jwt_token_valid_for_refresh')) {
@@ -142,11 +138,13 @@ if (!function_exists('is_jwt_token_valid_for_refresh')) {
     /**
      * @param $token
      * @param bool $allowExpireRefresh
+     *
      * @return bool
      */
     function is_jwt_token_valid_for_refresh($token, $allowExpireRefresh = false)
     {
         $is_jwt_token_valid_for_refresh = false;
+
         try {
             $payload = \JWTAuth::getPayload($token);
             $exp = $payload->get('exp');
@@ -173,9 +171,9 @@ if (!function_exists('is_jwt_token_valid_for_refresh')) {
             }
         } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
         }
+
         return $is_jwt_token_valid_for_refresh;
     }
-
 }
 
 if (!function_exists('phone_parse')) {
@@ -183,19 +181,21 @@ if (!function_exists('phone_parse')) {
     /**
      * @param string $phone_number
      * @param string $country_code An ISO 3166-1 two letter country code
+     *
      * @return null|\libphonenumber\PhoneNumber
      */
     function phone_parse($phone_number, $country_code)
     {
         $phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
+
         try {
             $phoneNumberProto = $phoneUtil->parseAndKeepRawInput($phone_number, $country_code);
+
             return $phoneNumberProto;
         } catch (\libphonenumber\NumberParseException $e) {
-            return null;
+            return;
         }
     }
-
 }
 
 if (!function_exists('phone_model_from')) {
@@ -203,17 +203,16 @@ if (!function_exists('phone_model_from')) {
     /**
      * @param string $phone_number
      * @param string $country_code An ISO 3166-1 two letter country code
+     *
      * @return \Yeelight\Models\Basic\PhoneNumberModel
      */
     function phone_model_from($phone_number, $country_code)
     {
         return new \Yeelight\Models\Basic\PhoneNumberModel($phone_number, $country_code);
     }
-
 }
 
 if (!function_exists('ip_to_country_iso_code')) {
-
     function ip_to_country_iso_code($ip = null, $default_iso_code = 'US')
     {
         if (empty($ip)) {
@@ -225,13 +224,12 @@ if (!function_exists('ip_to_country_iso_code')) {
         // check if NOT returned default
         if ($location['default'] === false && !empty($location['iso_code'])) {
             return $location['iso_code'];
-        } else if ($location['default'] === false && !empty($location['isoCode'])) {
+        } elseif ($location['default'] === false && !empty($location['isoCode'])) {
             return $location['isoCode'];
         } else {
             return $default_iso_code;
         }
     }
-
 }
 
 if (!function_exists('collection_paginate')) {
@@ -240,7 +238,8 @@ if (!function_exists('collection_paginate')) {
      * @param \Illuminate\Support\Collection $collection
      * @param $perPage
      * @param string $pageName
-     * @param null $page
+     * @param null   $page
+     *
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
     function collection_paginate(\Illuminate\Support\Collection $collection, $perPage, $pageName = 'page', $page = null)
@@ -254,47 +253,41 @@ if (!function_exists('collection_paginate')) {
 
         return new \Illuminate\Pagination\LengthAwarePaginator($results, $collection->count(), $perPage, $page, [
                 'pageName' => $pageName,
-                'path' => \Illuminate\Pagination\LengthAwarePaginator::resolveCurrentPath(),
-                'query' => $query,
+                'path'     => \Illuminate\Pagination\LengthAwarePaginator::resolveCurrentPath(),
+                'query'    => $query,
             ]
         );
     }
-
 }
 
 if (!function_exists('str_contains_ascii_only')) {
-
     function str_contains_ascii_only($string)
     {
-        return (preg_match('%^[ -~]+$%', $string, $m));
+        return preg_match('%^[ -~]+$%', $string, $m);
     }
-
 }
 
 if (!function_exists('in_arrayi')) {
-
     function in_arrayi($needle, $haystack)
     {
         return in_array(strtolower($needle), array_map('strtolower', $haystack));
     }
-
 }
 
 if (!function_exists('auth_user')) {
 
     /**
      * @param bool $throwException
+     *
      * @return null|\Yeelight\Models\Foundation\BaseUser|\Yeelight\Models\Foundation\BaseUser
      */
     function auth_user($throwException = true)
     {
         return current_auth_user($throwException);
     }
-
 }
 
 if (!function_exists('yee_mix')) {
-
     function yee_mix($path, $manifestDirectory = '', $supportHot = true)
     {
         $path = mix($path, $manifestDirectory);
@@ -304,9 +297,9 @@ if (!function_exists('yee_mix')) {
                 $path = str_replace($hotUrl, '', $path);
             }
         }
+
         return $path;
     }
-
 }
 
 if (!function_exists('rest_client')) {
@@ -314,18 +307,16 @@ if (!function_exists('rest_client')) {
     /**
      * @param null $service_name
      * @param null $debug_mode
+     *
      * @return \Yeelight\Services\Rest\RestClient
      */
     function rest_client($service_name = null, $debug_mode = null)
     {
         return new \Yeelight\Services\Rest\RestClient($service_name, $debug_mode);
     }
-
 }
 
-
 if (!function_exists('json_encode_safe')) {
-
     function json_encode_safe($value, $options = 0, $depth = 512)
     {
         $encoded = json_encode($value, $options, $depth);
@@ -342,6 +333,7 @@ if (!function_exists('json_encode_safe')) {
                 throw new Exception('Syntax error, malformed JSON');
             case JSON_ERROR_UTF8:
                 $clean = utf8ize($value);
+
                 return json_encode_safe($clean, $options, $depth);
             default:
                 throw new Exception('Unknown error');
@@ -350,7 +342,6 @@ if (!function_exists('json_encode_safe')) {
 }
 
 if (!function_exists('json_decode_safe')) {
-
     function json_decode_safe($json, $assoc = false, $depth = 512)
     {
         $decoded = json_decode($json, $assoc, $depth);
@@ -367,6 +358,7 @@ if (!function_exists('json_decode_safe')) {
                 throw new Exception('Syntax error, malformed JSON');
             case JSON_ERROR_UTF8:
                 $clean = utf8ize($decoded);
+
                 return json_decode_safe($clean, $assoc, $depth);
             default:
                 throw new Exception('Unknown error');
@@ -375,32 +367,31 @@ if (!function_exists('json_decode_safe')) {
 }
 
 if (!function_exists('utf8ize')) {
-
     function utf8ize($mixed)
     {
         if (is_array($mixed)) {
             foreach ($mixed as $key => $value) {
                 $mixed[$key] = utf8ize($value);
             }
-        } else if (is_string($mixed)) {
+        } elseif (is_string($mixed)) {
             return utf8_encode($mixed);
         }
+
         return $mixed;
     }
-
 }
 
 if (!function_exists('read_exif_data_safe')) {
-
     function read_exif_data_safe($file, $sections_needed = null, $sub_arrays = null, $read_thumbnail = null)
     {
         $data = null;
+
         try {
             $data = read_exif_data($file);
         } catch (\Exception $e) {
             $data = null;
         }
+
         return $data;
     }
-
 }

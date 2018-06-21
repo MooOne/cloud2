@@ -1,9 +1,10 @@
 <?php
+
 namespace Yeelight\Http\Controllers\BackendAuth;
 
+use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Yeelight\Http\Controllers\BaseController;
-use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class ResetPasswordController extends BaseController
 {
@@ -42,8 +43,9 @@ class ResetPasswordController extends BaseController
      *
      * If no token is present, display the link request form.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  string|null  $token
+     * @param \Illuminate\Http\Request $request
+     * @param string|null              $token
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showResetForm(Request $request, $token = null)
@@ -52,5 +54,4 @@ class ResetPasswordController extends BaseController
             ['token' => $token, 'email' => $request->email]
         );
     }
-
 }

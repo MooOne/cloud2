@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Transformers;
 
 use Yeelight\Base\Models\BaseModel;
@@ -6,10 +7,11 @@ use Yeelight\Base\Transformers\Transformer;
 
 class BaseTransformer extends Transformer
 {
-
     /**
-     * Include User
+     * Include User.
+     *
      * @param BaseModel $model
+     *
      * @return \League\Fractal\Resource\Item
      */
     public function includeUser(BaseModel $model)
@@ -18,12 +20,13 @@ class BaseTransformer extends Transformer
         if ($user) {
             return $this->item($user, new UserTransformer(), 'user');
         }
-        return null;
     }
 
     /**
-     * Include User
+     * Include User.
+     *
      * @param BaseModel $model
+     *
      * @return \League\Fractal\Resource\Item
      */
     public function includeAuthUser(BaseModel $model)
@@ -32,7 +35,5 @@ class BaseTransformer extends Transformer
         if ($user) {
             return $this->item($user, new UserTransformer());
         }
-        return null;
     }
-
 }

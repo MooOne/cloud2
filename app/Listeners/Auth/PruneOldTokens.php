@@ -3,8 +3,9 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-5-3
- * Time: 下午6:18
+ * Time: 下午6:18.
  */
+
 namespace Yeelight\Listeners\Auth;
 
 use Illuminate\Queue\SerializesModels;
@@ -15,11 +16,11 @@ class PruneOldTokens
 {
     use SerializesModels;
 
-
     /**
      * Handle the event.
      *
-     * @param  RefreshTokenCreated  $event
+     * @param RefreshTokenCreated $event
+     *
      * @return void
      */
     public function handle(RefreshTokenCreated $event)

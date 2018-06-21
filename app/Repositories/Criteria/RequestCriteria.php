@@ -1,22 +1,21 @@
 <?php
+
 namespace Yeelight\Repositories\Criteria;
 
 use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Schema;
-use Prettus\Repository\Contracts\CriteriaInterface;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 class RequestCriteria extends \Prettus\Repository\Criteria\RequestCriteria
 {
-
     /**
-     * Apply criteria in query repository
+     * Apply criteria in query repository.
      *
-     * @param         Builder|Model $model
+     * @param Builder|Model       $model
      * @param RepositoryInterface $repository
      *
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function apply($model, RepositoryInterface $repository)
     {
@@ -31,7 +30,6 @@ class RequestCriteria extends \Prettus\Repository\Criteria\RequestCriteria
         $sortedBy = !empty($sortedBy) ? $sortedBy : 'asc';
 
         if ($search && is_array($fieldsSearchable) && count($fieldsSearchable)) {
-
             $searchFields = is_array($searchFields) || is_null($searchFields) ? $searchFields : explode(';', $searchFields);
             $fields = $this->parserFieldsSearch($fieldsSearchable, $searchFields);
             $isFirstField = true;
@@ -40,13 +38,12 @@ class RequestCriteria extends \Prettus\Repository\Criteria\RequestCriteria
             $modelForceAndWhere = method_exists($repository, 'getIsSearchableForceAndWhere') ? $repository->getIsSearchableForceAndWhere() : false;
 
             $model = $model->where(function ($query) use ($fields, $search, $searchData, $isFirstField, $modelForceAndWhere) {
-                /** @var Builder $query */
+                /* @var Builder $query */
 
                 foreach ($fields as $field => $condition) {
-
                     if (is_numeric($field)) {
                         $field = $condition;
-                        $condition = "=";
+                        $condition = '=';
                     }
 
                     $value = null;
@@ -54,33 +51,33 @@ class RequestCriteria extends \Prettus\Repository\Criteria\RequestCriteria
                     $condition = trim(strtolower($condition));
 
                     if (isset($searchData[$field])) {
-                        if ($condition == "like_raw") {
-                            $condition = "like";
+                        if ($condition == 'like_raw') {
+                            $condition = 'like';
                             $value = $searchData[$field];
-                        } else if ($condition == "like_safe") {
-                            $condition = "like";
+                        } elseif ($condition == 'like_safe') {
+                            $condition = 'like';
                             if (str_contains_ascii_only($searchData[$field])) {
                                 $value = "%{$searchData[$field]}%";
                             } else {
                                 $value = null;
                             }
                         } else {
-                            $value = ($condition == "like" || $condition == "ilike") ? "%{$searchData[$field]}%" : $searchData[$field];
+                            $value = ($condition == 'like' || $condition == 'ilike') ? "%{$searchData[$field]}%" : $searchData[$field];
                         }
                     } else {
                         if (!is_null($search)) {
-                            if ($condition == "like_raw") {
-                                $condition = "like";
+                            if ($condition == 'like_raw') {
+                                $condition = 'like';
                                 $value = $searchData[$field];
-                            } else if ($condition == "like_safe") {
-                                $condition = "like";
+                            } elseif ($condition == 'like_safe') {
+                                $condition = 'like';
                                 if (str_contains_ascii_only($search)) {
                                     $value = "%{$search}%";
                                 } else {
                                     $value = null;
                                 }
                             } else {
-                                $value = ($condition == "like" || $condition == "ilike") ? "%{$search}%" : $search;
+                                $value = ($condition == 'like' || $condition == 'ilike') ? "%{$search}%" : $search;
                             }
                         }
                     }
@@ -99,7 +96,7 @@ class RequestCriteria extends \Prettus\Repository\Criteria\RequestCriteria
                                     $query->where($field, $condition, $value);
                                 });
                             } else {
-                                $query->where($modelTableName . '.' . $field, $condition, $value);
+                                $query->where($modelTableName.'.'.$field, $condition, $value);
                             }
                             $isFirstField = false;
                         }
@@ -110,7 +107,7 @@ class RequestCriteria extends \Prettus\Repository\Criteria\RequestCriteria
                                     $query->where($field, $condition, $value);
                                 });
                             } else {
-                                $query->orWhere($modelTableName . '.' . $field, $condition, $value);
+                                $query->orWhere($modelTableName.'.'.$field, $condition, $value);
                             }
                         }
                     }
@@ -135,7 +132,7 @@ class RequestCriteria extends \Prettus\Repository\Criteria\RequestCriteria
                 $split = explode(':', $sortTable);
                 if (count($split) > 1) {
                     $sortTable = $split[0];
-                    $keyName = $table . '.' . $split[1];
+                    $keyName = $table.'.'.$split[1];
                 } else {
                     /*
                      * If you do not define which column to use as a joining column on current table, it will
@@ -145,13 +142,13 @@ class RequestCriteria extends \Prettus\Repository\Criteria\RequestCriteria
                      * products -> product_id
                      */
                     $prefix = rtrim($sortTable, 's');
-                    $keyName = $table . '.' . $prefix . '_id';
+                    $keyName = $table.'.'.$prefix.'_id';
                 }
 
                 $model = $model
-                    ->leftJoin($sortTable, $keyName, '=', $sortTable . '.id')
+                    ->leftJoin($sortTable, $keyName, '=', $sortTable.'.id')
                     ->orderBy($sortColumn, $sortedBy)
-                    ->addSelect($table . '.*');
+                    ->addSelect($table.'.*');
             } else {
                 $model = $model->orderBy($orderBy, $sortedBy);
             }
@@ -205,7 +202,7 @@ class RequestCriteria extends \Prettus\Repository\Criteria\RequestCriteria
             foreach ($originalFields as $field => $condition) {
                 if (is_numeric($field)) {
                     $field = $condition;
-                    $condition = "=";
+                    $condition = '=';
                 }
                 if (in_array($field, $searchFields)) {
                     $fields[$field] = $condition;
@@ -215,17 +212,16 @@ class RequestCriteria extends \Prettus\Repository\Criteria\RequestCriteria
             if (count($fields) == 0) {
                 throw new \Exception(trans('repository::criteria.fields_not_accepted', ['field' => implode(',', $searchFields)]));
             }
-
         }
 
         return $fields;
     }
 
-
     /**
      * Parser query to Search String.
      *
      * @param $columns
+     *
      * @return string
      */
     protected function parserQueryToSearch($columns)
@@ -243,8 +239,8 @@ class RequestCriteria extends \Prettus\Repository\Criteria\RequestCriteria
                 $column = '=';
             }
             if (isset($query[$index]) && !empty($query[$index])) {
-                $search .= $index . ':' . $query[$index] . ';';
-                $searchFields .= $index . ':' . $column . ';';
+                $search .= $index.':'.$query[$index].';';
+                $searchFields .= $index.':'.$column.';';
             }
         }
 

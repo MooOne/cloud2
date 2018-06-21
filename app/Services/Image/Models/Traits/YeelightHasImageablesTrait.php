@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Services\Image\Models\Traits;
 
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -6,7 +7,6 @@ use Yeelight\Models\Image\YeelightImage;
 
 trait YeelightHasImageablesTrait
 {
-
     /**
      * @return mixed|MorphToMany
      */
@@ -81,6 +81,7 @@ trait YeelightHasImageablesTrait
 
     /**
      * @param $type
+     *
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getTypeImages($type)
@@ -90,6 +91,7 @@ trait YeelightHasImageablesTrait
 
     /**
      * @param $type
+     *
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getTypeMainImages($type)
@@ -99,27 +101,32 @@ trait YeelightHasImageablesTrait
 
     /**
      * @param YeelightImage $yeelightImage
+     *
      * @return int
      */
     public function setAsMainImage(YeelightImage $yeelightImage)
     {
         $this->images()->rawUpdate(['is_main' => false]);
+
         return $this->images()->updateExistingPivot($yeelightImage->getKey(), ['is_main' => true]);
     }
 
     /**
-     * @param string $type
+     * @param string        $type
      * @param YeelightImage $yeelightImage
+     *
      * @return int
      */
     public function setAsTypeMainImage($type, YeelightImage $yeelightImage)
     {
         $this->type_images($type)->rawUpdate(['is_main' => false]);
+
         return $this->type_images($type)->updateExistingPivot($yeelightImage->getKey(), ['is_main' => true]);
     }
 
     /**
      * @param bool $withYeelightImageId
+     *
      * @return \Illuminate\Support\Collection
      */
     public function getImageUrls($withYeelightImageId = false)
@@ -130,11 +137,13 @@ trait YeelightHasImageablesTrait
     /**
      * @param $imageUrlAttributeName
      * @param bool $withYeelightImageId
+     *
      * @return \Illuminate\Support\Collection
      */
     public function getNamedImageUrls($imageUrlAttributeName, $withYeelightImageId = false)
     {
         $key = $withYeelightImageId ? 'yeelight_image_id' : null;
+
         return $this->getImages()->pluck($imageUrlAttributeName, $key);
     }
 
@@ -142,12 +151,13 @@ trait YeelightHasImageablesTrait
      * @param $type
      * @param $imageUrlAttributeName
      * @param bool $withYeelightImageId
+     *
      * @return \Illuminate\Support\Collection
      */
     public function getTypeNamedImageUrls($type, $imageUrlAttributeName, $withYeelightImageId = false)
     {
         $key = $withYeelightImageId ? 'yeelight_image_id' : null;
+
         return $this->getTypeImages($type)->pluck($imageUrlAttributeName, $key);
     }
-
 }

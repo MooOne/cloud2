@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Yeelight\Models\AdminUser;
-use Yeelight\Models\AdminRole;
-use Yeelight\Models\AdminPermission;
 use Yeelight\Models\AdminMenu;
+use Yeelight\Models\AdminPermission;
+use Yeelight\Models\AdminRole;
+use Yeelight\Models\AdminUser;
 
 class DatabaseSeeder extends Seeder
 {

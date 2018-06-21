@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Http\Controllers\Backend;
 
 use Illuminate\Support\MessageBag;
@@ -23,15 +24,14 @@ class AdminPermissionsController extends BaseController
     public function __construct(
         AdminPermissionRepository $repository,
         AdminPermissionValidator $validator
-    )
-    {
+    ) {
         $this->repository = $repository;
         $this->validator = $validator;
     }
 
-
     /**
      * Display a listing of the resource.
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
@@ -44,30 +44,31 @@ class AdminPermissionsController extends BaseController
         $this->setupExporter();
 
         return view('backend.admin_permissions.index', [
-            'lists' => $lists,
-            'columns' => $columns,
+            'lists'       => $lists,
+            'columns'     => $columns,
             'httpMethods' => AdminPermission::$httpMethods,
-            'paginator' => $paginator,
-            'query' => request()->query()
+            'paginator'   => $paginator,
+            'query'       => request()->query(),
         ]);
     }
 
     /**
-     * Create
+     * Create.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
         $columns = trans('admin_permissions.columns');
+
         return view('backend.admin_permissions.create', [
-            'columns' => $columns,
-            'httpMethods' => AdminPermission::$httpMethods
+            'columns'     => $columns,
+            'httpMethods' => AdminPermission::$httpMethods,
         ]);
     }
 
     /**
-     * Edit
+     * Edit.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -75,17 +76,18 @@ class AdminPermissionsController extends BaseController
     {
         $data = $this->repository->find($id);
         $columns = trans('admin_permissions.columns');
+
         return view('backend.admin_permissions.edit', [
-            'data' => $data['data'],
-            'columns' => $columns,
-            'httpMethods' => AdminPermission::$httpMethods
+            'data'        => $data['data'],
+            'columns'     => $columns,
+            'httpMethods' => AdminPermission::$httpMethods,
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  AdminPermissionCreateRequest $request
+     * @param AdminPermissionCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -104,14 +106,14 @@ class AdminPermissionsController extends BaseController
 
             return redirect(route('permissions.create'))->with(compact('error'));
         }
-
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param AdminPermissionUpdateRequest $request
-     * @param int $id
+     * @param int                          $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(AdminPermissionUpdateRequest $request, $id)
@@ -127,6 +129,7 @@ class AdminPermissionsController extends BaseController
                 'title'   => trans('backend.failed'),
                 'message' => trans('backend.update_failed'),
             ]);
+
             return redirect($request->session()->previousUrl())->with(compact('error'));
         }
     }

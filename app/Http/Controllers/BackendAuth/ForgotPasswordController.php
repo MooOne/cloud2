@@ -1,8 +1,9 @@
 <?php
+
 namespace Yeelight\Http\Controllers\BackendAuth;
 
-use Yeelight\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Yeelight\Http\Controllers\Controller;
 
 class ForgotPasswordController extends Controller
 {

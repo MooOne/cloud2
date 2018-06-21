@@ -1,8 +1,8 @@
 <?php
+
 namespace Yeelight\Models\Observers;
 
 use Yeelight\Models\Interfaces\BaseModelEventsInterface;
-use Yeelight\Traits\BaseModelEvents;
 
 /**
  * Whenever a new model is saved for the first time,
@@ -13,7 +13,6 @@ use Yeelight\Traits\BaseModelEvents;
  *
  * @CREATE: saving > creating > created > saved
  * @UPDATE: saving > updating > updated > saved
- *
  */
 class BaseModelObserver
 {
@@ -66,5 +65,4 @@ class BaseModelObserver
     {
         $model->onRestored();
     }
-
 }

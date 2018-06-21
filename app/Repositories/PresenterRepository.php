@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Repositories;
 
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -9,15 +10,15 @@ use Yeelight\Presenters\BasicPresenter;
 
 class PresenterRepository
 {
-
     protected $skipPresenter = false;
 
     protected $presenter = null;
 
     /**
      * PresenterRepository constructor.
+     *
      * @param string|null $transformer
-     * @param bool $skipPresenter
+     * @param bool        $skipPresenter
      */
     public function __construct(string $transformer = null, $skipPresenter = false)
     {
@@ -60,7 +61,7 @@ class PresenterRepository
     }
 
     /**
-     * Wrapper result data
+     * Wrapper result data.
      *
      * @param mixed $result
      *
@@ -69,7 +70,6 @@ class PresenterRepository
     public function parserResult($result)
     {
         if ($this->presenter instanceof PresenterInterface) {
-
             if ($result instanceof Collection || $result instanceof LengthAwarePaginator) {
                 $result->each(function ($model) {
                     if ($model instanceof Presentable) {
@@ -89,5 +89,4 @@ class PresenterRepository
 
         return $result;
     }
-
 }

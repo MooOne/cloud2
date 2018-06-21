@@ -1,20 +1,19 @@
 <?php
+
 namespace Yeelight\Listeners\User;
 
 use Yeelight\Events\User\UserLoggedInEvent;
 use Yeelight\Events\User\UserRegisteredEvent;
-use Yeelight\Models\BaseModel;
 
 class UserEventListener
 {
-
     public function __construct()
     {
     }
 
-
     /**
      * Handle user login events.
+     *
      * @param UserLoggedInEvent $event
      */
     public function onUserLogin(UserLoggedInEvent $event)
@@ -23,6 +22,7 @@ class UserEventListener
 
     /**
      * Handle user registered events.
+     *
      * @param UserRegisteredEvent $event
      */
     public function onUserRegistered(UserRegisteredEvent $event)
@@ -39,7 +39,7 @@ class UserEventListener
     /**
      * Register the listeners for the subscriber.
      *
-     * @param  \Illuminate\Events\Dispatcher $events
+     * @param \Illuminate\Events\Dispatcher $events
      */
     public function subscribe($events)
     {
@@ -58,5 +58,4 @@ class UserEventListener
 //            'Yeelight\Listeners\UserEventListener@onUserLogout'
 //        );
     }
-
 }

@@ -1,5 +1,5 @@
 <?php
-use Illuminate\Http\Request;
+
 use Dingo\Api\Routing\Router;
 
 /*
@@ -15,16 +15,15 @@ use Dingo\Api\Routing\Router;
 
 // v1
 $api->version('v1', [
-    'namespace' => 'Yeelight\Http\Controllers\Api\Controllers',
-    'middleware' => ['api']
+    'namespace'  => 'Yeelight\Http\Controllers\Api\Controllers',
+    'middleware' => ['api'],
 ], function (Router $api) {
     // 登录前操作
-    $api->group(['middleware' => ['api.throttle'], 'prefix' => 'auth' , 'limit' => 100, 'expires' => 5], function (Router $api) {
+    $api->group(['middleware' => ['api.throttle'], 'prefix' => 'auth', 'limit' => 100, 'expires' => 5], function (Router $api) {
         $api->post('register', 'AuthController@register');
         $api->post('login', 'AuthController@login');
         $api->post('refresh', 'AuthController@refresh');
         $api->post('socialite_auth', 'SocialiteUsersController@socialAuth')->middleware('socialite.auto_password');
-
     });
 
     $api->group(['middleware' => ['auth:api']], function (Router $api) {
@@ -43,9 +42,6 @@ $api->version('v1', [
 
             // 产品模型模块
             $api->resource('product_models', 'ProductModelsController');
-
         });
-
     });
-
 });

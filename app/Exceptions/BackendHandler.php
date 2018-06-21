@@ -3,8 +3,9 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-3-27
- * Time: 下午5:30
+ * Time: 下午5:30.
  */
+
 namespace Yeelight\Exceptions;
 
 use Illuminate\Support\MessageBag;

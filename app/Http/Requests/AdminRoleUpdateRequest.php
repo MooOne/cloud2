@@ -35,13 +35,13 @@ class AdminRoleUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'slug' => 'required|max:50',
+            'slug'  => 'required|max:50',
             'name'  => [
                 'required',
                 Rule::unique('admin_roles')->ignore($this->name, 'name'),
-                'max:50'
+                'max:50',
             ],
-            'permissions' => 'array|required'
+            'permissions' => 'array|required',
         ];
     }
 }

@@ -1,8 +1,9 @@
 <?php
+
 namespace Yeelight\Repositories\Criteria;
 
-use Prettus\Repository\Contracts\RepositoryInterface;
 use Prettus\Repository\Contracts\CriteriaInterface;
+use Prettus\Repository\Contracts\RepositoryInterface;
 use Yeelight\Http\Requests\Api\SocialiteAuthRequest;
 
 class SocialiteAuthUserCriteria implements CriteriaInterface
@@ -22,7 +23,7 @@ class SocialiteAuthUserCriteria implements CriteriaInterface
         $model = $model
             ->where('provider', '=', $this->request->provider)
             ->where('provider_user_id', '=', $this->request->provider_user_id);
+
         return $model;
     }
-
 }

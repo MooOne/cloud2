@@ -3,8 +3,9 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-4-19
- * Time: 上午9:41
+ * Time: 上午9:41.
  */
+
 namespace Yeelight\Models\Tools\ApiTester;
 
 use Illuminate\Foundation\Application;
@@ -50,11 +51,12 @@ class ApiTester
     /**
      * @param string $method
      * @param string $uri
-     * @param array $parameters
-     * @param null $user
-     * @return Response
-     * @internal param string $userId
+     * @param array  $parameters
+     * @param null   $user
      *
+     * @return Response
+     *
+     * @internal param string $userId
      */
     public function call($method, $uri, $parameters = [], $user = null)
     {
@@ -76,12 +78,14 @@ class ApiTester
             [], $files, ['HTTP_ACCEPT' => 'application/json']
         );
         $request = Request::createFromBase($symfonyRequest);
+
         try {
             $response = $kernel->handle($request);
         } catch (\Exception $e) {
             $response = app('Illuminate\Contracts\Debug\ExceptionHandler')->render($request, $e);
         }
         $kernel->terminate($request, $response);
+
         return $response;
     }
 
@@ -118,6 +122,7 @@ class ApiTester
         if (Str::contains($contentType, 'html')) {
             $lang = 'html';
         }
+
         return [
             'headers'    => json_encode($response->headers->all(), JSON_PRETTY_PRINT),
             'cookies'    => json_encode($response->headers->getCookies(), JSON_PRETTY_PRINT),
@@ -139,6 +144,7 @@ class ApiTester
     {
         $statusText = new \ReflectionProperty($response, 'statusText');
         $statusText->setAccessible(true);
+
         return $statusText->getValue($response);
     }
 
@@ -165,6 +171,7 @@ class ApiTester
             }
             unset($files[$key]);
         }
+
         return $files;
     }
 
@@ -183,6 +190,7 @@ class ApiTester
         if (!Str::startsWith($uri, 'http')) {
             $uri = config('app.url').'/'.$uri;
         }
+
         return trim($uri, '/');
     }
 
@@ -206,8 +214,10 @@ class ApiTester
         $routes = collect($routes)->filter()->map(function ($route) {
             $route['parameters'] = json_encode($this->getRouteParameters($route['action']));
             unset($route['middleware'], $route['host'], $route['name'], $route['action']);
+
             return $route;
         })->toArray();
+
         return array_filter($routes);
     }
 
@@ -242,8 +252,10 @@ class ApiTester
                     $parameters[] = array_combine($match[1], $match[2]);
                 }
             }
+
             return $parameters;
         }
+
         return [];
     }
 
@@ -257,6 +269,7 @@ class ApiTester
         if (!method_exists($action, '__invoke')) {
             throw new \UnexpectedValueException("Invalid route action: [{$action}].");
         }
+
         return [$action, '__invoke'];
     }
 

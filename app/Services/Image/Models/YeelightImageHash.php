@@ -1,11 +1,12 @@
 <?php
+
 namespace Yeelight\Services\Image\Models;
 
 use Yeelight\Base\Models\BaseModel;
 use Yeelight\Models\Image\YeelightImage;
 
 /**
- * Yeelight\Services\Image\Models\YeelightImageHash
+ * Yeelight\Services\Image\Models\YeelightImageHash.
  *
  * @property int $yeelight_image_hash_id
  * @property int|null $user_id
@@ -19,6 +20,7 @@ use Yeelight\Models\Image\YeelightImage;
  * @property string|null $updated_ip
  * @property-read mixed $id
  * @property-read \Yeelight\Models\Image\YeelightImage $image
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Services\Image\Models\YeelightImageHash whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Services\Image\Models\YeelightImageHash whereCreatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Services\Image\Models\YeelightImageHash whereCreatedIp($value)
@@ -33,7 +35,6 @@ use Yeelight\Models\Image\YeelightImage;
  */
 class YeelightImageHash extends BaseModel
 {
-
     protected $table = 'yeelight_image_hashes';
 
     protected $primaryKey = 'yeelight_image_hash_id';
@@ -49,5 +50,4 @@ class YeelightImageHash extends BaseModel
     {
         return $this->belongsTo(YeelightImage::class, 'yeelight_image_id', 'yeelight_image_id');
     }
-
 }

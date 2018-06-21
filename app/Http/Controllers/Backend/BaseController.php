@@ -1,8 +1,9 @@
 <?php
+
 namespace Yeelight\Http\Controllers\Backend;
 
-use Yeelight\Services\Assets\Assets;
 use Yeelight\Http\Controllers\BaseController as BackendController;
+use Yeelight\Services\Assets\Assets;
 use Yeelight\Traits\BackendCurd;
 use Yeelight\Traits\BackendExporter;
 use Yeelight\Traits\BackendPagination;

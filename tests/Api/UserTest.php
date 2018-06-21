@@ -1,13 +1,9 @@
 <?php
-namespace Tests\Api;
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+namespace Tests\Api;
 
 class UserTest extends BaseApiTestCase
 {
-
     public function testGetAllUsers()
     {
         $this->withOAuthTokenTypePassword();
@@ -19,7 +15,7 @@ class UserTest extends BaseApiTestCase
                     'user_id',
                     'name',
                 ],
-            ]
+            ],
         ]);
     }
 
@@ -42,8 +38,8 @@ class UserTest extends BaseApiTestCase
     {
         $this->withOAuthTokenTypePassword();
         $this->postApi('users', [
-            'name' => 'Abc',
-            'email' => rand(100000, 999999) . 'abc@example.com',
+            'name'     => 'Abc',
+            'email'    => rand(100000, 999999).'abc@example.com',
             'password' => '12345678',
         ]);
         $this->printResponseData();
@@ -74,5 +70,4 @@ class UserTest extends BaseApiTestCase
         $this->printResponseData();
         $this->assertResponseNoContent();
     }
-
 }

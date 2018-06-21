@@ -1,14 +1,13 @@
 <?php
+
 namespace Yeelight\Models;
 
-use Yeelight\Models\BaseModel;
-use Prettus\Repository\Contracts\Transformable;
-use Prettus\Repository\Traits\TransformableTrait;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Prettus\Repository\Traits\TransformableTrait;
 use Yeelight\Services\Image\Models\Traits\YeelightHasOneImageTrait;
-use Yeelight\Traits\HasPermissions;
 use Yeelight\Services\Image\Models\Traits\YeelightUploadOneImageTrait;
+use Yeelight\Traits\HasPermissions;
 
 class AdminUser extends BaseModel implements AuthenticatableContract
 {
@@ -63,7 +62,6 @@ class AdminUser extends BaseModel implements AuthenticatableContract
         parent::__construct($attributes);
     }
 
-
     public function onCreating()
     {
         parent::onCreating();
@@ -97,7 +95,6 @@ class AdminUser extends BaseModel implements AuthenticatableContract
         if (!empty($roles)) {
             $this->roles()->sync($roles);
         }
-
     }
 
     public function onUpdating()

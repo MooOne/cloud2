@@ -13,7 +13,6 @@ class AdminRoleCreateRequest extends FormRequest
      */
     protected $redirectRoute = 'roles.create';
 
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -32,9 +31,9 @@ class AdminRoleCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'slug' => 'required|max:50',
-            'name' => 'required|unique:admin_roles|max:50',
-            'permissions' => 'array|required'
+            'slug'        => 'required|max:50',
+            'name'        => 'required|unique:admin_roles|max:50',
+            'permissions' => 'array|required',
         ];
     }
 }

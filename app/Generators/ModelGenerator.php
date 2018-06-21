@@ -1,15 +1,14 @@
 <?php
+
 namespace Yeelight\Generators;
 
 use Yeelight\Generators\Migrations\SchemaParser;
 
 /**
- * Class ModelGenerator
- * @package Yeelight\Generators
+ * Class ModelGenerator.
  */
 class ModelGenerator extends Generator
 {
-
     /**
      * Get stub name.
      *
@@ -24,7 +23,7 @@ class ModelGenerator extends Generator
      */
     public function getRootNamespace()
     {
-        return parent::getRootNamespace() . parent::getConfigGeneratorClassPath($this->getPathConfigNode());
+        return parent::getRootNamespace().parent::getConfigGeneratorClassPath($this->getPathConfigNode());
     }
 
     /**
@@ -44,7 +43,7 @@ class ModelGenerator extends Generator
      */
     public function getPath()
     {
-        return $this->getBasePath() . '/' . parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true) . '/' . $this->getName() . '.php';
+        return $this->getBasePath().'/'.parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true).'/'.$this->getName().'.php';
     }
 
     /**
@@ -52,7 +51,6 @@ class ModelGenerator extends Generator
      *
      * @return string
      */
-
     public function getBasePath()
     {
         return config('repository.generator.basePath', app_path());
@@ -66,9 +64,9 @@ class ModelGenerator extends Generator
     public function getReplacements()
     {
         return array_merge(parent::getReplacements(), [
-            'fillable' => $this->getFillable(),
-            'use_base_model' => 'use ' . $this->getRootNamespace() . '\BaseModel;',
-            '_id_name' => $this->getIdName(),
+            'fillable'       => $this->getFillable(),
+            'use_base_model' => 'use '.$this->getRootNamespace().'\BaseModel;',
+            '_id_name'       => $this->getIdName(),
         ]);
     }
 
@@ -82,13 +80,13 @@ class ModelGenerator extends Generator
         if (!$this->fillable) {
             return '[]';
         }
-        $results = '[' . PHP_EOL;
+        $results = '['.PHP_EOL;
 
         foreach ($this->getSchemaParser()->toArray() as $column => $value) {
-            $results .= "\t\t'{$column}'," . PHP_EOL;
+            $results .= "\t\t'{$column}',".PHP_EOL;
         }
 
-        return $results . "\t" . ']';
+        return $results."\t".']';
     }
 
     /**

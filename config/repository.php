@@ -15,7 +15,7 @@ return [
     |
     */
     'pagination' => [
-        'limit' => 15
+        'limit' => 15,
     ],
 
     /*
@@ -32,9 +32,9 @@ return [
     */
     'fractal'    => [
         'params'     => [
-            'include' => 'include'
+            'include' => 'include',
         ],
-        'serializer' => League\Fractal\Serializer\DataArraySerializer::class
+        'serializer' => League\Fractal\Serializer\DataArraySerializer::class,
     ],
 
     /*
@@ -106,7 +106,7 @@ return [
                 'create' => true,
                 'update' => true,
                 'delete' => true,
-            ]
+            ],
         ],
 
         'params'     => [
@@ -119,7 +119,7 @@ return [
             | Ex: http://prettus.local/?search=lorem&skipCache=true
             |
             */
-            'skipCache' => 'skipCache'
+            'skipCache' => 'skipCache',
         ],
 
         /*
@@ -139,8 +139,8 @@ return [
        */
         'allowed'    => [
             'only'   => null,
-            'except' => null
-        ]
+            'except' => null,
+        ],
     ],
 
     /*
@@ -212,8 +212,8 @@ return [
             'filter'       => 'filter',
             'orderBy'      => 'orderBy',
             'sortedBy'     => 'sortedBy',
-            'with'         => 'with'
-        ]
+            'with'         => 'with',
+        ],
     ],
     /*
     |--------------------------------------------------------------------------
@@ -225,18 +225,18 @@ return [
         'basePath'      => app_path(),
         'rootNamespace' => 'Yeelight\\',
         'paths'         => [
-            'models'       => 'Models',
-            'repositories' => 'Repositories\Eloquent',
-            'interfaces'   => 'Repositories\Interfaces',
-            'transformers' => 'Transformers',
-            'presenters'   => 'Presenters',
-            'validators'   => 'Validators',
-            'controllers'  => 'Http/Controllers/Backend',
+            'models'           => 'Models',
+            'repositories'     => 'Repositories\Eloquent',
+            'interfaces'       => 'Repositories\Interfaces',
+            'transformers'     => 'Transformers',
+            'presenters'       => 'Presenters',
+            'validators'       => 'Validators',
+            'controllers'      => 'Http/Controllers/Backend',
             'api_controllers'  => 'Http/Controllers/Api/Controllers',
-            'requests'     => 'Http/Requests',
-            'provider'     => 'RepositoryServiceProvider',
-            'views'        => 'backend',
-            'lang'         => 'lang',
-        ]
-    ]
+            'requests'         => 'Http/Requests',
+            'provider'         => 'RepositoryServiceProvider',
+            'views'            => 'backend',
+            'lang'             => 'lang',
+        ],
+    ],
 ];

@@ -3,8 +3,9 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-4-11
- * Time: 下午1:12
+ * Time: 下午1:12.
  */
+
 namespace Yeelight\Traits;
 
 use Illuminate\Support\Facades\Input;
@@ -13,6 +14,7 @@ trait BackendCurd
 {
     /**
      * Display a listing of the resource.
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
@@ -24,6 +26,7 @@ trait BackendCurd
      * Display the specified resource.
      *
      * @param $id
+     *
      * @return mixed
      */
     public function show($id)
@@ -31,11 +34,11 @@ trait BackendCurd
         return $this->repository->find($id);
     }
 
-
     /**
      * Remove the specified resource from storage.
      *
      * @param $id
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)

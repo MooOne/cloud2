@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Base\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;

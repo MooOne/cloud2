@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Providers;
 
 use Illuminate\Support\ServiceProvider;

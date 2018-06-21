@@ -1,16 +1,15 @@
 <?php
+
 namespace Yeelight\Generators\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Collection;
-use Yeelight\Generators\FileAlreadyExistsException;
-use Yeelight\Generators\TransformerGenerator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use Yeelight\Generators\FileAlreadyExistsException;
+use Yeelight\Generators\TransformerGenerator;
 
 class TransformerCommand extends CommandBase
 {
-
     /**
      * The name of command.
      *
@@ -41,18 +40,17 @@ class TransformerCommand extends CommandBase
     {
         try {
             (new TransformerGenerator([
-                'name' => $this->argument('name'),
+                'name'   => $this->argument('name'),
                 'fields' => $this->option('fields'),
-                'force' => $this->option('force'),
+                'force'  => $this->option('force'),
             ]))->run();
-            $this->info("Transformer created successfully.");
+            $this->info('Transformer created successfully.');
         } catch (FileAlreadyExistsException $e) {
-            $this->error($this->type . ' already exists!');
+            $this->error($this->type.' already exists!');
 
             return false;
         }
     }
-
 
     /**
      * The array of command arguments.
@@ -66,7 +64,7 @@ class TransformerCommand extends CommandBase
                 'name',
                 InputArgument::REQUIRED,
                 'The name of model for which the transformer is being generated.',
-                null
+                null,
             ],
         ];
     }
@@ -84,14 +82,14 @@ class TransformerCommand extends CommandBase
                 'f',
                 InputOption::VALUE_NONE,
                 'Force the creation if file already exists.',
-                null
+                null,
             ],
             [
                 'fields',
                 null,
                 InputOption::VALUE_OPTIONAL,
                 'The fields attributes.',
-                null
+                null,
             ],
         ];
     }

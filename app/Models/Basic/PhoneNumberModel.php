@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Models\Basic;
 
 use Illuminate\Contracts\Support\Arrayable;
@@ -24,23 +25,23 @@ class PhoneNumberModel implements Arrayable
     private $phoneNumberProto;
 
     private $countryCodeSourcesText = [
-        CountryCodeSource::FROM_DEFAULT_COUNTRY => 'FROM_DEFAULT_COUNTRY',
-        CountryCodeSource::FROM_NUMBER_WITH_IDD => 'FROM_NUMBER_WITH_IDD',
-        CountryCodeSource::FROM_NUMBER_WITH_PLUS_SIGN => 'FROM_NUMBER_WITH_PLUS_SIGN',
+        CountryCodeSource::FROM_DEFAULT_COUNTRY          => 'FROM_DEFAULT_COUNTRY',
+        CountryCodeSource::FROM_NUMBER_WITH_IDD          => 'FROM_NUMBER_WITH_IDD',
+        CountryCodeSource::FROM_NUMBER_WITH_PLUS_SIGN    => 'FROM_NUMBER_WITH_PLUS_SIGN',
         CountryCodeSource::FROM_NUMBER_WITHOUT_PLUS_SIGN => 'FROM_NUMBER_WITHOUT_PLUS_SIGN',
     ];
 
     private $phoneNumberTypesText = [
-        PhoneNumberType::FIXED_LINE => 'FIXED_LINE',
+        PhoneNumberType::FIXED_LINE           => 'FIXED_LINE',
         PhoneNumberType::FIXED_LINE_OR_MOBILE => 'FIXED_LINE_OR_MOBILE',
-        PhoneNumberType::MOBILE => 'MOBILE',
-        PhoneNumberType::EMERGENCY => 'EMERGENCY',
-        PhoneNumberType::SHORT_CODE => 'SHORT_CODE',
-        PhoneNumberType::UNKNOWN => 'UNKNOWN',
+        PhoneNumberType::MOBILE               => 'MOBILE',
+        PhoneNumberType::EMERGENCY            => 'EMERGENCY',
+        PhoneNumberType::SHORT_CODE           => 'SHORT_CODE',
+        PhoneNumberType::UNKNOWN              => 'UNKNOWN',
     ];
 
     /**
-     * Fields from libphonenumber\PhoneNumber
+     * Fields from libphonenumber\PhoneNumber.
      */
     public $country_code;                       // 65
     public $country_code_plus_sign;             // +65
@@ -53,7 +54,7 @@ class PhoneNumberModel implements Arrayable
     public $raw_input_country;
 
     /**
-     * Validation Results
+     * Validation Results.
      */
     public $is_possible_number = false;
     public $is_valid_number = false;
@@ -63,7 +64,7 @@ class PhoneNumberModel implements Arrayable
     public $number_type_text;           // MOBILE
 
     /**
-     * From Formatting
+     * From Formatting.
      */
     public $format_e164;                // +6590919293
     public $format_national;            // 9091 9293
@@ -71,7 +72,7 @@ class PhoneNumberModel implements Arrayable
     public $format_rfc3966;             // tel:+65-9091-9293
 
     /**
-     * From additional
+     * From additional.
      */
     public $description;                // Singapore
     public $carrier_name;               // M1
@@ -79,6 +80,7 @@ class PhoneNumberModel implements Arrayable
 
     /**
      * PhoneNumberModel constructor.
+     *
      * @param string $phone_number
      * @param string $country_code An ISO 3166-1 two letter country code
      */
@@ -98,7 +100,7 @@ class PhoneNumberModel implements Arrayable
         if ($this->phoneNumberProto) {
             // from phoneNumberProto
             $this->country_code = $this->phoneNumberProto->getCountryCode();
-            $this->country_code_plus_sign = "+" . $this->country_code;
+            $this->country_code_plus_sign = '+'.$this->country_code;
             $this->national_number = $this->phoneNumberProto->getNationalNumber();
             $this->extension = $this->phoneNumberProto->getExtension();
             $this->country_code_source = $this->phoneNumberProto->getCountryCodeSource();
@@ -117,7 +119,7 @@ class PhoneNumberModel implements Arrayable
             if (isset($this->phoneNumberTypesText[$this->number_type])) {
                 $this->number_type_text = $this->phoneNumberTypesText[$this->number_type];
             } else {
-                $this->number_type_text = "OTHER";
+                $this->number_type_text = 'OTHER';
             }
             $this->is_mobile_number = in_array($this->number_type, [
                 PhoneNumberType::FIXED_LINE_OR_MOBILE,
@@ -164,46 +166,46 @@ class PhoneNumberModel implements Arrayable
 
     public function __toString()
     {
-        return (string)$this->phoneNumberProto;
+        return (string) $this->phoneNumberProto;
     }
 
-    public function equals(PhoneNumberModel $other)
+    public function equals(self $other)
     {
         if (empty($this->isValid()) || empty($other->isValid())) {
             return false;
         }
+
         return $this->phoneNumberProto->equals($other->phoneNumberProto);
     }
 
     public function toArray()
     {
         return [
-            'country_code' => $this->country_code,
-            'country_code_plus_sign' => $this->country_code_plus_sign,
-            'national_number' => $this->national_number,
-            'extension' => $this->extension,
-            'country_code_source' => $this->country_code_source,
-            'country_code_source_text' => $this->country_code_source_text,
+            'country_code'                    => $this->country_code,
+            'country_code_plus_sign'          => $this->country_code_plus_sign,
+            'national_number'                 => $this->national_number,
+            'extension'                       => $this->extension,
+            'country_code_source'             => $this->country_code_source,
+            'country_code_source_text'        => $this->country_code_source_text,
             'preferred_domestic_carrier_code' => $this->preferred_domestic_carrier_code,
-            'raw_input' => $this->raw_input,
-            'raw_input_country' => $this->raw_input_country,
+            'raw_input'                       => $this->raw_input,
+            'raw_input_country'               => $this->raw_input_country,
 
-            'is_possible_number' => $this->is_possible_number,
-            'is_valid_number' => $this->is_valid_number,
-            'is_mobile_number' => $this->is_mobile_number,
+            'is_possible_number'     => $this->is_possible_number,
+            'is_valid_number'        => $this->is_valid_number,
+            'is_mobile_number'       => $this->is_mobile_number,
             'region_code_for_number' => $this->region_code_for_number,
-            'number_type' => $this->number_type,
-            'number_type_text' => $this->number_type_text,
+            'number_type'            => $this->number_type,
+            'number_type_text'       => $this->number_type_text,
 
-            'format_e164' => $this->format_e164,
-            'format_national' => $this->format_national,
+            'format_e164'          => $this->format_e164,
+            'format_national'      => $this->format_national,
             'format_international' => $this->format_international,
-            'format_rfc3966' => $this->format_rfc3966,
+            'format_rfc3966'       => $this->format_rfc3966,
 
-            'description' => $this->description,
+            'description'  => $this->description,
             'carrier_name' => $this->carrier_name,
-            'timezones' => $this->timezones,
+            'timezones'    => $this->timezones,
         ];
     }
-
 }

@@ -1,11 +1,10 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateYeelightImageablesTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -13,7 +12,7 @@ class CreateYeelightImageablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('yeelight_imageables', function(Blueprint $table) {
+        Schema::create('yeelight_imageables', function (Blueprint $table) {
 //            $table->increments('yeelight_imageable_id');
 //            $table->unsignedInteger('user_id')->index();
 
@@ -43,5 +42,4 @@ class CreateYeelightImageablesTable extends Migration
     {
         Schema::drop('yeelight_imageables');
     }
-
 }

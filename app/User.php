@@ -1,11 +1,12 @@
 <?php
+
 namespace Yeelight;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 /**
- * Yeelight\User
+ * Yeelight\User.
  *
  * @property int $user_id
  * @property string $name
@@ -27,6 +28,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property \Carbon\Carbon|null $updated_at
  * @property string|null $updated_ip
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\User whereBirthday($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\User whereCountry($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\User whereCreatedAt($value)

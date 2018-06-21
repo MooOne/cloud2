@@ -1,15 +1,10 @@
 <?php
+
 namespace Yeelight\Http\Controllers\Api\Controllers;
 
-use Dingo\Api\Exception\DeleteResourceFailedException;
-use Dingo\Api\Exception\StoreResourceFailedException;
-use Dingo\Api\Exception\UpdateResourceFailedException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
-use Prettus\Validator\Contracts\ValidatorInterface;
 use Yeelight\Http\Requests\Api\SocialiteAuthRequest;
-use Yeelight\Http\Requests\Api\SocialiteUserCreateRequest;
-use Yeelight\Http\Requests\Api\SocialiteUserUpdateRequest;
 use Yeelight\Models\Foundation\User;
 use Yeelight\Models\SocialiteUser;
 use Yeelight\Repositories\Criteria\GetUserByUsernameOrEmailCriteria;
@@ -39,21 +34,21 @@ class SocialiteUsersController extends BaseController
         SocialiteUserRepository $repository,
         SocialiteUserValidator $validator,
         UserRepository $userRepository
-    )
-    {
+    ) {
         $this->repository = $repository;
         $this->validator = $validator;
         $this->userRepository = $userRepository;
     }
 
-
     /**
-     * 第三方登录
+     * 第三方登录.
      *
      * @param SocialiteAuthRequest $request
+     *
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|\Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
      */
-    public function socialAuth(SocialiteAuthRequest $request){
+    public function socialAuth(SocialiteAuthRequest $request)
+    {
 
         // 默认信任客户端的第三方认证
         // 为保险起见，也可以使用客户端获取到的AccessToken再去第三方验证
@@ -61,22 +56,23 @@ class SocialiteUsersController extends BaseController
 
         $socialiteAuthUser = $this->repository->pushCriteria(new SocialiteAuthUserCriteria($request))->skipPresenter()->first();
 
-        if(!empty($socialiteAuthUser)){
+        if (!empty($socialiteAuthUser)) {
             // 更新第三方账号信息
             $this->updateSocialiteUser($request, $socialiteAuthUser);
+
             return $this->issueToken($request);
         }
 
         $authUser = $this->userRepository->pushCriteria(new GetUserByUsernameOrEmailCriteria($request))->skipPresenter()->first();
 
-        if(!empty($authUser)){
+        if (!empty($authUser)) {
             // 用户状态是否为禁止
             if ($authUser->status == 0) {
                 return $this->response->errorForbidden('User Are Forbidden');
             }
             // 添加第三方账号和user的关联
             $this->addSocialiteUser($request, $authUser);
-        }else{
+        } else {
             // 根据第三方信息创建新用户
             $this->createUser($request);
         }
@@ -85,23 +81,24 @@ class SocialiteUsersController extends BaseController
     }
 
     /**
-     * 添加第三方账号和user的关联
+     * 添加第三方账号和user的关联.
      *
      * @param SocialiteAuthRequest $request [description]
-     * @param User    $user    [description]
+     * @param User                 $user    [description]
      */
-    private function addSocialiteUser(SocialiteAuthRequest $request, User $user){
+    private function addSocialiteUser(SocialiteAuthRequest $request, User $user)
+    {
         $data = $request->all();
 
         // 验证 provider + provider_user_id 唯一性
         $this->validate($request, [
             'provider' => [
                 'required',
-                Rule::unique('socialite_users')->where(function($query) use ($user) {
+                Rule::unique('socialite_users')->where(function ($query) use ($user) {
                     return $query->where('user_id', $user->user_id);
-                })
+                }),
             ],
-            'provider_user_id' => 'required'
+            'provider_user_id' => 'required',
         ]);
 
         $data['user_id'] = $user->user_id;
@@ -109,26 +106,28 @@ class SocialiteUsersController extends BaseController
     }
 
     /**
-     * 更新第三方账号信息
+     * 更新第三方账号信息.
      *
-     * @param SocialiteAuthRequest $request [description]
-     * @param SocialiteUser    $socialiteUser    [description]
+     * @param SocialiteAuthRequest $request       [description]
+     * @param SocialiteUser        $socialiteUser [description]
      */
-    private function updateSocialiteUser(SocialiteAuthRequest $request, SocialiteUser $socialiteUser){
+    private function updateSocialiteUser(SocialiteAuthRequest $request, SocialiteUser $socialiteUser)
+    {
         $data = $request->all();
         $data['user_id'] = $socialiteUser->user_id;
         $this->repository->update($data, $socialiteUser->id);
     }
 
     /**
-     * 创建用户和对应的第三方账号并关联
+     * 创建用户和对应的第三方账号并关联.
      *
      * @param SocialiteAuthRequest $request
      */
-    private function createUser(SocialiteAuthRequest $request){
+    private function createUser(SocialiteAuthRequest $request)
+    {
         $data = $request->all();
 
-        DB::transaction( function () use ($request, $data){
+        DB::transaction(function () use ($request, $data) {
             $user = $this->userRepository->create($data);
             $this->addSocialiteUser($request, $user);
         });

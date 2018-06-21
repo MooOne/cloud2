@@ -1,13 +1,13 @@
 <?php
+
 namespace Yeelight\Models;
 
-use Yeelight\Models\BaseModel;
-use Prettus\Repository\Contracts\Transformable;
-use Prettus\Repository\Traits\TransformableTrait;
-use Yeelight\Traits\ModelTree;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\DB;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
+use Yeelight\Traits\ModelTree;
 
 class AdminMenu extends BaseModel implements Transformable
 {
@@ -119,5 +119,4 @@ class AdminMenu extends BaseModel implements Transformable
     {
         static::treeBoot();
     }
-
 }

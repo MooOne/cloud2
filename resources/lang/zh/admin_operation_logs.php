@@ -11,6 +11,6 @@ return [
         'ip'            => 'IP',
         'input'         => '请求数据',
         'created_at'    => '请求时间',
-        'updated_at'    => '修改时间'
-    ]
+        'updated_at'    => '修改时间',
+    ],
 ];

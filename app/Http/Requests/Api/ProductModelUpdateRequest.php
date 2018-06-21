@@ -1,15 +1,14 @@
 <?php
+
 namespace Yeelight\Http\Requests\Api;
 
 use Dingo\Api\Http\FormRequest;
 
 /**
- * Class ProductModelUpdateRequest
- * @package namespace Yeelight\Http\Requests\Api;
+ * Class ProductModelUpdateRequest.
  */
 class ProductModelUpdateRequest extends FormRequest
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -28,9 +27,9 @@ class ProductModelUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-			'title' => 'required',
-			'model_name' => 'required|max:150',
-			'code' => 'required|max:50',
-		];
+            'title'      => 'required',
+            'model_name' => 'required|max:150',
+            'code'       => 'required|max:50',
+        ];
     }
 }

@@ -1,11 +1,11 @@
 <?php
+
 namespace Yeelight\Generators;
 
 use Exception;
 
 /**
- * Class FileAlreadyExistsException
- * @package Yeelight\Generators
+ * Class FileAlreadyExistsException.
  */
 class FileAlreadyExistsException extends Exception
 {
