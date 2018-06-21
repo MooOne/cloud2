@@ -21,7 +21,6 @@ before_script:
   - php artisan migrate:install --no-interaction -vvv
 
 script:
-  - vendor/bin/phpunit
   - php artisan migrate --no-interaction -vvv
-  - php artisan db:seed --no-interaction -vvv
+  - vendor/bin/phpunit
   - php artisan migrate:rollback --no-interaction -vvv
