@@ -1,3 +1,33 @@
+## 简介
+
+* 基于Laravel5.5和AdminLTE的后台开发框架
+* 借鉴Laravel-admin 和 someline-starter 良多。
+* 实现基本的前端打包环境(基于laravel-mix)
+* 使用了l5-repository
+* 实现了通过后台脚手架快速创建模块，一键生成模型所需所有的符合repository模式标准的代码骨架
+* 实现了基于oauth2的接口开发骨架
+* 前后台用户分离
+* 多语言支持
+* 需要一定的laravel、前端构建基础，需要php技能中级以上。
+
+## 功能
+
+* 登录验证(极验证)
+* 后台用户管理
+* 角色管理
+* 权限管理
+* 后台菜单
+* 操作记录
+* 工具=》日志查看器
+* 工具=》路由查看器
+* 工具=》Artisan终端
+* 工具=》数据库终端
+* 工具=》脚手架（可以一件添加模块）
+* 工具=》计划任务
+* 前台用户管理
+
+## 界面预览
+
 ## 目录权限
 ~~~
 chmod -R 755 storage
@@ -148,3 +178,5 @@ $router->resource('your/route', 'YourModelsController');
 $api->resource('your_route', 'YourModelsController');
 
 ### 3.增加后台菜单
+
+自行在后台添加模型对于的菜单
