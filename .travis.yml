@@ -13,6 +13,11 @@ sudo: false
 services:
   - mysql
 
+before_install:
+  - sudo mysql -e "use mysql; update user set User='forge',authentication_string=PASSWORD('forge') where User='travis'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
+  - sudo mysql_upgrade
+  - sudo service mysql restart
+
 before_script:
   - mysql -e 'create database if not exists cloud2;'
   - travis_retry composer self-update
