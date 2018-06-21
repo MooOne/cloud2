@@ -1,16 +1,16 @@
 <?php
+
 namespace Yeelight\Generators\Commands;
 
 use Illuminate\Console\Command;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 use Yeelight\Generators\FileAlreadyExistsException;
 use Yeelight\Generators\PresenterGenerator;
 use Yeelight\Generators\TransformerGenerator;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 
 class PresenterCommand extends CommandBase
 {
-
     /**
      * The name of command.
      *
@@ -32,7 +32,6 @@ class PresenterCommand extends CommandBase
      */
     protected $type = 'Presenter';
 
-
     /**
      * Execute the command.
      *
@@ -40,30 +39,28 @@ class PresenterCommand extends CommandBase
      */
     public function fire()
     {
-
         try {
             (new PresenterGenerator([
                 'name'  => $this->argument('name'),
                 'force' => $this->option('force'),
             ]))->run();
-            $this->info("Presenter created successfully.");
+            $this->info('Presenter created successfully.');
 
-            if (!\File::exists(app_path() . '/Transformers/' . $this->argument('name') . 'Transformer.php')) {
+            if (!\File::exists(app_path().'/Transformers/'.$this->argument('name').'Transformer.php')) {
                 if ($this->confirm('Would you like to create a Transformer? [y|N]')) {
                     (new TransformerGenerator([
                         'name'  => $this->argument('name'),
                         'force' => $this->option('force'),
                     ]))->run();
-                    $this->info("Transformer created successfully.");
+                    $this->info('Transformer created successfully.');
                 }
             }
         } catch (FileAlreadyExistsException $e) {
-            $this->error($this->type . ' already exists!');
+            $this->error($this->type.' already exists!');
 
             return false;
         }
     }
-
 
     /**
      * The array of command arguments.
@@ -77,11 +74,10 @@ class PresenterCommand extends CommandBase
                 'name',
                 InputArgument::REQUIRED,
                 'The name of model for which the presenter is being generated.',
-                null
+                null,
             ],
         ];
     }
-
 
     /**
      * The array of command options.
@@ -96,8 +92,8 @@ class PresenterCommand extends CommandBase
                 'f',
                 InputOption::VALUE_NONE,
                 'Force the creation if file already exists.',
-                null
-            ]
+                null,
+            ],
         ];
     }
 }

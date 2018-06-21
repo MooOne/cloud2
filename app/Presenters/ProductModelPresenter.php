@@ -1,17 +1,16 @@
 <?php
+
 namespace Yeelight\Presenters;
 
 use Yeelight\Transformers\ProductModelTransformer;
 
 /**
- * Class ProductModelPresenter
- *
- * @package namespace Yeelight\Presenters;
+ * Class ProductModelPresenter.
  */
 class ProductModelPresenter extends BasePresenter
 {
     /**
-     * Transformer
+     * Transformer.
      *
      * @return \League\Fractal\TransformerAbstract
      */

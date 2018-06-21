@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Http\Controllers\Backend;
 
 use Illuminate\Support\MessageBag;
@@ -10,7 +11,6 @@ use Yeelight\Validators\UserValidator;
 
 class UsersController extends BaseController
 {
-
     /**
      * @var UserRepository
      */
@@ -24,12 +24,10 @@ class UsersController extends BaseController
     public function __construct(
         UserRepository $repository,
         UserValidator $validator
-        )
-    {
+        ) {
         $this->repository = $repository;
         $this->validator = $validator;
     }
-
 
     /**
      * Display a listing of the resource.
@@ -50,18 +48,18 @@ class UsersController extends BaseController
         $this->setupExporter();
 
         return view('backend.users.index', [
-            'lists' => $lists,
-            'columns' => $columns,
+            'lists'     => $lists,
+            'columns'   => $columns,
             'countries' => $countries,
             'timezones' => $timezones,
-            'locales' => $locales,
+            'locales'   => $locales,
             'paginator' => $paginator,
-            'query' => request()->query()
+            'query'     => request()->query(),
         ]);
     }
 
     /**
-     * Create
+     * Create.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -73,15 +71,15 @@ class UsersController extends BaseController
         $locales = CountryModel::getLocaleCallingCodes();
 
         return view('backend.users.create', [
-            'columns' => $columns,
+            'columns'   => $columns,
             'countries' => $countries,
             'timezones' => $timezones,
-            'locales' => $locales
+            'locales'   => $locales,
         ]);
     }
 
     /**
-     * Edit
+     * Edit.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -94,18 +92,18 @@ class UsersController extends BaseController
         $locales = CountryModel::getLocaleCallingCodes();
 
         return view('backend.users.edit', [
-            'data' => $data['data'],
-            'columns' => $columns,
+            'data'      => $data['data'],
+            'columns'   => $columns,
             'countries' => $countries,
             'timezones' => $timezones,
-            'locales' => $locales
+            'locales'   => $locales,
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  UserCreateRequest $request
+     * @param UserCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -126,11 +124,10 @@ class UsersController extends BaseController
         }
     }
 
-
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -142,8 +139,8 @@ class UsersController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  UserUpdateRequest $request
-     * @param  int            $id
+     * @param UserUpdateRequest $request
+     * @param int               $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -160,15 +157,15 @@ class UsersController extends BaseController
                 'title'   => trans('backend.failed'),
                 'message' => trans('backend.update_failed'),
             ]);
+
             return redirect($request->session()->previousUrl())->with(compact('error'));
         }
     }
 
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */

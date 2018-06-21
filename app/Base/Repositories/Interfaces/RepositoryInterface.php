@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Base\Repositories\Interfaces;
 
 use Illuminate\Database\Eloquent\Model;
@@ -6,7 +7,6 @@ use Prettus\Repository\Contracts\RepositoryInterface as BaseRepositoryInterface;
 
 interface RepositoryInterface extends BaseRepositoryInterface
 {
-
     /**
      * @return $this
      */
@@ -19,30 +19,35 @@ interface RepositoryInterface extends BaseRepositoryInterface
 
     /**
      * @param array $attributes
+     *
      * @return void
      */
     public function validateCreate(array $attributes);
 
     /**
      * @param array $attributes
+     *
      * @return void
      */
     public function validateUpdate(array $attributes);
 
     /**
      * @param $validator
+     *
      * @return $this
      */
     public function setValidator($validator);
 
     /**
      * @param $results
+     *
      * @return mixed
      */
     public function present($results);
 
     /**
      * @param Model $targetModel
+     *
      * @return $this
      */
     public function setRelateModel(Model $targetModel);
@@ -63,7 +68,7 @@ interface RepositoryInterface extends BaseRepositoryInterface
     public function getIsSearchableForceAndWhere();
 
     /**
-     * Find data by where conditions
+     * Find data by where conditions.
      *
      * @param array $where
      *
@@ -72,7 +77,7 @@ interface RepositoryInterface extends BaseRepositoryInterface
     public function where(array $where);
 
     /**
-     * Retrieve first data of repository with fail if not found
+     * Retrieve first data of repository with fail if not found.
      *
      * @param array $columns
      *
@@ -81,16 +86,17 @@ interface RepositoryInterface extends BaseRepositoryInterface
     public function firstOrFail($columns = ['*']);
 
     /**
-     * Where first
+     * Where first.
      *
      * @param array $where
      * @param array $columns
+     *
      * @return mixed
      */
     public function whereFirst(array $where, $columns = ['*']);
 
     /**
-     * Wrapper result data
+     * Wrapper result data.
      *
      * @param mixed $result
      *
@@ -99,9 +105,10 @@ interface RepositoryInterface extends BaseRepositoryInterface
     public function parserResult($result);
 
     /**
-     * Use Model for custom usages
+     * Use Model for custom usages.
      *
      * @param callable $callback
+     *
      * @return $this
      */
     public function useModel(callable $callback);
@@ -109,7 +116,8 @@ interface RepositoryInterface extends BaseRepositoryInterface
     /**
      * Remove all or passed registered global scopes.
      *
-     * @param  array|null  $scopes
+     * @param array|null $scopes
+     *
      * @return $this
      */
     public function withoutGlobalScopes(array $scopes = null);

@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Services\Rest;
 
 use GuzzleHttp\Client;
@@ -63,8 +64,8 @@ class RestClient
     protected $oauth_grant_request_data = [
         self::GRANT_TYPE_CLIENT_CREDENTIALS => [],
         self::GRANT_TYPE_AUTHORIZATION_CODE => [],
-        self::GRANT_TYPE_PASSWORD => [],
-        self::GRANT_TYPE_REFRESH_TOKEN => [],
+        self::GRANT_TYPE_PASSWORD           => [],
+        self::GRANT_TYPE_REFRESH_TOKEN      => [],
     ];
 
     /**
@@ -78,7 +79,8 @@ class RestClient
     protected $environment;
 
     /**
-     * Create a new RestClient Instance
+     * Create a new RestClient Instance.
+     *
      * @param $service_name
      * @param null $debug_mode
      */
@@ -107,8 +109,8 @@ class RestClient
             throw new RuntimeException("Rest Client Error: Service [$service_name] is not found in environment [{$this->environment}] config.");
         }
 
-        $this->printLine("--------");
-        $this->printLine("REST CLIENT SERVICE: " . $service_name . ", ENVIRONMENT: " . $this->environment);
+        $this->printLine('--------');
+        $this->printLine('REST CLIENT SERVICE: '.$service_name.', ENVIRONMENT: '.$this->environment);
 
         // get cache
         $minutes = $this->getConfig('oauth_tokens_cache_minutes', 10);
@@ -123,6 +125,7 @@ class RestClient
     /**
      * @param $key
      * @param null $default
+     *
      * @return mixed
      */
     public function getConfig($key, $default = null)
@@ -158,11 +161,11 @@ class RestClient
     }
 
     /**
-     *
-     * New Config will override Base Config if both present
+     * New Config will override Base Config if both present.
      *
      * @param array $baseConfig
      * @param array $newConfig
+     *
      * @return array
      */
     private function mergeConfig($baseConfig = [], $newConfig = [])
@@ -171,15 +174,17 @@ class RestClient
         foreach ($baseConfig as $key => $config) {
             if (is_array($config) && isset($combined_service_config[$key])) {
                 $combined_service_config[$key] = array_merge($config, $combined_service_config[$key]);
-            } else if (!isset($combined_service_config[$key])) {
+            } elseif (!isset($combined_service_config[$key])) {
                 $combined_service_config[$key] = $config;
             }
         }
+
         return $combined_service_config;
     }
 
     /**
      * @param $key
+     *
      * @return mixed
      */
     public function getServiceConfig($key)
@@ -188,7 +193,7 @@ class RestClient
     }
 
     /**
-     *  Set Up Client
+     *  Set Up Client.
      */
     public function setUp()
     {
@@ -197,15 +202,15 @@ class RestClient
         if (!ends_with($base_uri, '/')) {
             $base_uri .= '/';
         }
-        $this->printLine("REST CLIENT BASE URI: " . $base_uri);
+        $this->printLine('REST CLIENT BASE URI: '.$base_uri);
         $this->client = new Client(array_merge($guzzle_client_config, [
-            'base_uri' => $base_uri,
+            'base_uri'   => $base_uri,
             'exceptions' => false,
         ]));
     }
 
     /**
-     * @param boolean $debug_mode
+     * @param bool $debug_mode
      */
     public function setDebugMode($debug_mode)
     {
@@ -222,6 +227,7 @@ class RestClient
 
     /**
      * @deprecated Please use setOAuthGrantRequestData() instead
+     *
      * @param $oauth_user_credentials
      */
     public function setOAuthUserCredentials($oauth_user_credentials)
@@ -236,6 +242,7 @@ class RestClient
 
     /**
      * @deprecated Please use getOAuthGrantRequestData() instead
+     *
      * @return null
      */
     protected function getOAuthUserCredentialsData()
@@ -243,6 +250,7 @@ class RestClient
         if (empty($this->oauth_user_credentials)) {
             throw new RuntimeException('Please set "oauth_user_credentials" by calling setOAuthUserCredentialsData()!');
         }
+
         return $this->oauth_user_credentials;
     }
 
@@ -258,25 +266,29 @@ class RestClient
 
     /**
      * @param $grant_type
+     *
      * @return array
      */
     public function getOAuthGrantRequestData($grant_type)
     {
         if (!isset($this->oauth_grant_request_data[$grant_type])) {
-            throw new RuntimeException('Request Data was not found for grant type [' . $grant_type . '] in "oauth_grant_request_data"');
+            throw new RuntimeException('Request Data was not found for grant type ['.$grant_type.'] in "oauth_grant_request_data"');
         }
         $data = $this->oauth_grant_request_data[$grant_type];
+
         return array_merge($this->getClientData(), $data);
     }
 
     /**
      * @param $grant_type
      * @param $data
+     *
      * @return $this;
      */
     protected function postRequestAccessToken($grant_type, $data)
     {
         $url = $this->getServiceConfig('oauth2_access_token_url');
+
         return $this->post($url, array_merge($data, [
             'grant_type' => $grant_type,
         ]), [], false);
@@ -284,6 +296,7 @@ class RestClient
 
     /**
      * @param $options
+     *
      * @return array
      */
     private function configureOptions($options)
@@ -298,7 +311,7 @@ class RestClient
         $headers['Accept-Language'] = $request->header('Accept-Language', app()->getLocale());
 
         if ($this->use_oauth_token_grant_type) {
-            $headers['Authorization'] = 'Bearer ' . $this->getOAuthToken($this->use_oauth_token_grant_type);
+            $headers['Authorization'] = 'Bearer '.$this->getOAuthToken($this->use_oauth_token_grant_type);
         }
 
         if (isset($options['headers'])) {
@@ -312,7 +325,7 @@ class RestClient
     }
 
     /**
-     *  Use OAuth Tokens from Cache
+     *  Use OAuth Tokens from Cache.
      */
     private function useOAuthTokenFromCache()
     {
@@ -322,7 +335,7 @@ class RestClient
 
         $this->oauth_tokens = \Cache::get($this->getOauthTokensCacheKey(), []);
         if (!empty($this->oauth_tokens)) {
-            $this->printLine("Using OAuth Tokens from cache:");
+            $this->printLine('Using OAuth Tokens from cache:');
             $this->printArray($this->oauth_tokens);
         }
     }
@@ -334,14 +347,16 @@ class RestClient
     {
         $user_hash = '';
         if (!empty($this->oauth_user_credentials)) {
-            $user_hash = "." . sha1(serialize($this->oauth_user_credentials));
+            $user_hash = '.'.sha1(serialize($this->oauth_user_credentials));
         }
-        $cache_key = $this->oauth_tokens_cache_key . '.' . $this->service_name . '.' . $this->environment . $user_hash;
+        $cache_key = $this->oauth_tokens_cache_key.'.'.$this->service_name.'.'.$this->environment.$user_hash;
+
         return $cache_key;
     }
 
     /**
      * @param $grant_type
+     *
      * @return mixed
      */
     private function getOAuthToken($grant_type)
@@ -353,7 +368,7 @@ class RestClient
 
             // handle access token
             if ($this->getResponse()->getStatusCode() != 200) {
-                throw new RuntimeException('Failed to get access token for grant type [' . $grant_type . ']!');
+                throw new RuntimeException('Failed to get access token for grant type ['.$grant_type.']!');
             }
 
             $data = $this->getResponseData();
@@ -363,6 +378,7 @@ class RestClient
             $access_token = $data['access_token'];
             $this->setOAuthToken($grant_type, $access_token);
         }
+
         return $this->oauth_tokens[$grant_type];
     }
 
@@ -390,6 +406,7 @@ class RestClient
     /**
      * @param $grant_type
      * @param array|null $requestData
+     *
      * @return $this
      */
     public function withOAuthToken($grant_type, $requestData = null)
@@ -399,11 +416,13 @@ class RestClient
         }
         $this->getOAuthToken($grant_type);
         $this->use_oauth_token_grant_type = $grant_type;
+
         return $this;
     }
 
     /**
      * @param array|null $requestData
+     *
      * @return RestClient
      */
     public function withOAuthTokenTypePassword($requestData = null)
@@ -413,6 +432,7 @@ class RestClient
 
     /**
      * @param array|null $requestData
+     *
      * @return RestClient
      */
     public function withOAuthTokenTypeClientCredentials($requestData = null)
@@ -422,6 +442,7 @@ class RestClient
 
     /**
      * @param array|null $requestData
+     *
      * @return RestClient
      */
     public function withOAuthTokenTypeAuthorizationCode($requestData = null)
@@ -435,62 +456,70 @@ class RestClient
     public function withoutOAuthToken()
     {
         $this->use_oauth_token_grant_type = null;
+
         return $this;
     }
 
     /**
      * @param string $uri
-     * @param array $query
-     * @param array $options
-     * @param bool $api
+     * @param array  $query
+     * @param array  $options
+     * @param bool   $api
+     *
      * @return $this ;
      */
     public function get($uri, array $query = [], array $options = [], $api = true)
     {
         $options = $this->configureOptions($options);
-        $uri = $api ? $this->getServiceConfig('api_url') . $uri : $uri;
+        $uri = $api ? $this->getServiceConfig('api_url').$uri : $uri;
         $this->printArray($options);
         $response = $this->client->get($uri, array_merge($options, [
             'query' => $query,
         ]));
         $this->setGuzzleResponse($response);
+
         return $this;
     }
 
     /**
      * @param string $uri
-     * @param array $data
-     * @param array $options
-     * @param bool $api
+     * @param array  $data
+     * @param array  $options
+     * @param bool   $api
+     *
      * @return $this;
      */
     public function post($uri, array $data = [], array $options = [], $api = true)
     {
         $options = $this->configureOptions($options);
-        $uri = $api ? $this->getServiceConfig('api_url') . $uri : $uri;
+        $uri = $api ? $this->getServiceConfig('api_url').$uri : $uri;
         $response = $this->client->post($uri, array_merge($options, [
             'form_params' => $data,
         ]));
         $this->setGuzzleResponse($response);
+
         return $this;
     }
 
     /**
      * @url http://docs.guzzlephp.org/en/latest/quickstart.html#sending-form-files
+     *
      * @param $uri
      * @param array $multipart
      * @param array $options
-     * @param bool $api
+     * @param bool  $api
+     *
      * @return $this;
      */
     public function postMultipart($uri, array $multipart = [], array $options = [], $api = true)
     {
         $options = $this->configureOptions($options);
-        $uri = $api ? $this->getServiceConfig('api_url') . $uri : $uri;
+        $uri = $api ? $this->getServiceConfig('api_url').$uri : $uri;
         $response = $this->client->post($uri, array_merge($options, [
             'multipart' => $multipart,
         ]));
         $this->setGuzzleResponse($response);
+
         return $this;
     }
 
@@ -498,17 +527,18 @@ class RestClient
      * @param $uri
      * @param array $data
      * @param array $options
-     * @param bool $api
+     * @param bool  $api
+     *
      * @return $this;
      */
     public function postMultipartSimple($uri, array $data = [], array $options = [], $api = true)
     {
         $options = $this->configureOptions($options);
-        $uri = $api ? $this->getServiceConfig('api_url') . $uri : $uri;
+        $uri = $api ? $this->getServiceConfig('api_url').$uri : $uri;
         $multipart = [];
         foreach ($data as $key => $value) {
             $multipart[] = [
-                'name' => $key,
+                'name'     => $key,
                 'contents' => $value,
             ];
         }
@@ -516,77 +546,86 @@ class RestClient
             'multipart' => $multipart,
         ]));
         $this->setGuzzleResponse($response);
+
         return $this;
     }
 
     /**
      * @param string $uri
-     * @param array $data
-     * @param array $options
-     * @param bool $api
+     * @param array  $data
+     * @param array  $options
+     * @param bool   $api
+     *
      * @return $this;
      */
     public function head($uri, array $data = [], array $options = [], $api = true)
     {
-        $uri = $api ? $this->getServiceConfig('api_url') . $uri : $uri;
+        $uri = $api ? $this->getServiceConfig('api_url').$uri : $uri;
         $response = $this->client->head($uri, array_merge($options, [
             'body' => $data,
         ]));
         $this->setGuzzleResponse($response);
+
         return $this;
     }
 
     /**
      * @param string $uri
-     * @param array $data
-     * @param array $options
-     * @param bool $api
+     * @param array  $data
+     * @param array  $options
+     * @param bool   $api
+     *
      * @return $this;
      */
     public function put($uri, array $data = [], array $options = [], $api = true)
     {
         $options = $this->configureOptions($options);
-        $uri = $api ? $this->getServiceConfig('api_url') . $uri : $uri;
+        $uri = $api ? $this->getServiceConfig('api_url').$uri : $uri;
         $response = $this->client->put($uri, array_merge($options, [
             'form_params' => $data,
         ]));
         $this->setGuzzleResponse($response);
+
         return $this;
     }
 
     /**
      * @param string $uri
-     * @param array $data
-     * @param array $options
-     * @param bool $api
+     * @param array  $data
+     * @param array  $options
+     * @param bool   $api
+     *
      * @return $this;
      */
     public function patch($uri, array $data = [], array $options = [], $api = true)
     {
         $options = $this->configureOptions($options);
-        $uri = $api ? $this->getServiceConfig('api_url') . $uri : $uri;
+        $uri = $api ? $this->getServiceConfig('api_url').$uri : $uri;
         $response = $this->client->patch($uri, array_merge($options, [
             'form_params' => $data,
         ]));
         $this->setGuzzleResponse($response);
+
         return $this;
     }
 
     /**
      * @param string $uri
-     * @param array $data
-     * @param array $options
-     * @param bool $api
+     * @param array  $data
+     * @param array  $options
+     * @param bool   $api
+     *
      * @return $this;
      */
     public function delete($uri, array $data = [], array $options = [], $api = true)
     {
         $options = $this->configureOptions($options);
-        $uri = $api ? $this->getServiceConfig('api_url') . $uri : $uri;
+        $uri = $api ? $this->getServiceConfig('api_url').$uri : $uri;
         $response = $this->client->delete($uri, array_merge($options, [
             'form_params' => $data,
         ]));
         $this->setGuzzleResponse($response);
+
         return $this;
     }
 
@@ -626,7 +665,7 @@ class RestClient
     }
 
     /**
-     * Response is success if status code is < 300
+     * Response is success if status code is < 300.
      *
      * @return bool
      */
@@ -637,6 +676,7 @@ class RestClient
 
     /**
      * @param $status_code
+     *
      * @return bool
      */
     public function isResponseStatusCode($status_code)
@@ -654,6 +694,7 @@ class RestClient
 
     /**
      * @param bool $assoc
+     *
      * @return mixed
      */
     public function getResponseAsJson($assoc = true)
@@ -678,7 +719,7 @@ class RestClient
         if (is_array($responseData) && isset($responseData['errors'])) {
             return $responseData['errors'];
         } else {
-            return null;
+            return;
         }
     }
 
@@ -691,7 +732,7 @@ class RestClient
         if (is_array($responseData) && isset($responseData['message'])) {
             return $responseData['message'];
         } else {
-            return null;
+            return;
         }
     }
 
@@ -701,6 +742,7 @@ class RestClient
     public function printResponseData()
     {
         print_r($this->getResponseData());
+
         return $this;
     }
 
@@ -709,7 +751,8 @@ class RestClient
      */
     public function printResponseOriginContent()
     {
-        print_r((string)$this->response->getOriginalContent());
+        print_r((string) $this->response->getOriginalContent());
+
         return $this;
     }
 
@@ -719,7 +762,7 @@ class RestClient
     protected function printLine($string)
     {
         if ($this->debug_mode) {
-            echo $string . "\n";
+            echo $string."\n";
         }
     }
 
@@ -732,5 +775,4 @@ class RestClient
             print_r($array);
         }
     }
-
 }

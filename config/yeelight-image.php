@@ -1,31 +1,32 @@
 <?php
+
 use Yeelight\Services\Image\ImageTemplate;
 
-return array(
+return [
 
-    /**
+    /*
      * Default image store quality
      * default: 75
      */
     'default_quality' => 75,
 
-    /**
+    /*
      * Store quality for large images, which are 2000kb or larger,
      * default: 65
      */
     'large_image_quality' => 65,
 
-    /**
+    /*
      * Storage Path for all images
      */
     'storage_path' => storage_path('app/images/original/'),
 
-    /**
+    /*
      * Templates that will be used when showing image
      */
     'image_templates' => [
 
-        'original' => (new ImageTemplate(0, 0)),
+        'original'  => (new ImageTemplate(0, 0)),
         'thumbnail' => (new ImageTemplate(120, 120)),
 
         'avatar_small' => (new ImageTemplate(80, 80)),
@@ -38,4 +39,4 @@ return array(
 
     ],
 
-);
+];

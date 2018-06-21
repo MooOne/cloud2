@@ -1,14 +1,13 @@
 <?php
+
 namespace Yeelight\Generators;
 
 use Illuminate\Support\Str;
 use League\Flysystem\FileNotFoundException;
 
 /**
- * Class LangGenerator
- * @package Yeelight\Generators
+ * Class LangGenerator.
  */
-
 class LangGenerator extends Generator
 {
     /**
@@ -37,7 +36,6 @@ class LangGenerator extends Generator
     {
         return 'lang';
     }
-
 
     /**
      * Get name input.
@@ -84,7 +82,7 @@ class LangGenerator extends Generator
     {
         $fields = $this->fields;
         $result = "[\r\n";
-        $result .= "\t\t'". $this->getIdName() ."' => '" .str_singular($this->getIdName()). "',\r\n";
+        $result .= "\t\t'".$this->getIdName()."' => '".str_singular($this->getIdName())."',\r\n";
         if (!empty($fields)) {
             foreach ($fields as $index => $field) {
                 $result .= "\t\t'{$field['name']}' => '{$field['comment']}',\r\n";
@@ -119,13 +117,14 @@ class LangGenerator extends Generator
     public function getReplacements()
     {
         return array_merge(parent::getReplacements(), [
-            'model' => $this->getHeader(),
-            'model_fields' => $this->getColumns()
+            'model'        => $this->getHeader(),
+            'model_fields' => $this->getColumns(),
         ]);
     }
 
     /**
      * Run the generator.
+     *
      * @throws FileAlreadyExistsException
      * @throws FileNotFoundException
      */
@@ -134,18 +133,18 @@ class LangGenerator extends Generator
         $directories = $this->filesystem->directories($this->getBasePath());
 
         foreach ($directories as $index => $directory) {
-            if ($this->filesystem->exists($path = $directory . '/' . $this->getName() . '.php') && !$this->force) {
+            if ($this->filesystem->exists($path = $directory.'/'.$this->getName().'.php') && !$this->force) {
                 throw new FileAlreadyExistsException($path);
             }
 
             $stubsOverridePath = config('repository.generator.stubsOverridePath', __DIR__);
 
-            if (!file_exists($stubsOverridePath . "/Stubs/lang/lang.stub")) {
+            if (!file_exists($stubsOverridePath.'/Stubs/lang/lang.stub')) {
                 $stubsOverridePath = __DIR__;
             }
 
-            if (!file_exists($stubsOverridePath . "/Stubs/lang/lang.stub")) {
-                throw new FileNotFoundException($stubsOverridePath . "/Stubs/lang/lang.stub");
+            if (!file_exists($stubsOverridePath.'/Stubs/lang/lang.stub')) {
+                throw new FileNotFoundException($stubsOverridePath.'/Stubs/lang/lang.stub');
             }
 
             $this->filesystem->put($path, $this->getStub());

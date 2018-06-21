@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Providers;
 
 use Illuminate\Support\ServiceProvider;
@@ -36,7 +37,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->commands('Yeelight\Generators\Commands\CriteriaCommand');
         $this->commands('Yeelight\Generators\Commands\ViewsCommand');
         $this->commands('Yeelight\Generators\Commands\LangCommand');
-
 
         $this->app->bind(\Yeelight\Repositories\Interfaces\AdminUserRepository::class, \Yeelight\Repositories\Eloquent\AdminUserRepositoryEloquent::class);
         $this->app->bind(\Yeelight\Repositories\Interfaces\AdminRoleRepository::class, \Yeelight\Repositories\Eloquent\AdminRoleRepositoryEloquent::class);

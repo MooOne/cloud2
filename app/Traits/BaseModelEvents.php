@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Traits;
 
 use Illuminate\Database\Eloquent\Model;
@@ -13,11 +14,9 @@ use Yeelight\Models\Observers\BaseModelObserver;
  *
  * @CREATE: saving > creating > created > saved
  * @UPDATE: saving > updating > updated > saved
- *
  */
 trait BaseModelEvents
 {
-
     protected static function boot()
     {
         parent::boot();
@@ -26,7 +25,7 @@ trait BaseModelEvents
         $ModelName = get_called_class();
 
         // Setup event bindings...
-        $ModelName::observe(new BaseModelObserver);
+        $ModelName::observe(new BaseModelObserver());
     }
 
     public function onCreating()
@@ -39,7 +38,6 @@ trait BaseModelEvents
                 $this->user_id = $user_id;
             }
         }
-
     }
 
     public function onCreated()
@@ -66,7 +64,6 @@ trait BaseModelEvents
         if ($this->update_users) {
             $this->updateUsers();
         }
-
     }
 
     public function onSaved()

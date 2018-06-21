@@ -1,12 +1,13 @@
 <?php
+
 namespace Yeelight\Http\Controllers\Api\Middleware;
 
 use Closure;
 use Dingo\Api\Auth\Auth as Authentication;
 use Dingo\Api\Routing\Router;
 use League\OAuth2\Server\Exception\OAuthServerException;
-use Yeelight\Http\Controllers\Api\Auth\Provider\OAuth2;
 use Yeelight\Events\User\UserLoggedInEvent;
+use Yeelight\Http\Controllers\Api\Auth\Provider\OAuth2;
 use Yeelight\Models\Foundation\User;
 
 class ApiAuthMiddleware
@@ -29,7 +30,7 @@ class ApiAuthMiddleware
      * Create a new auth middleware instance.
      *
      * @param \Dingo\Api\Routing\Router $router
-     * @param \Dingo\Api\Auth\Auth $auth
+     * @param \Dingo\Api\Auth\Auth      $auth
      */
     public function __construct(Router $router, Authentication $auth)
     {
@@ -41,17 +42,18 @@ class ApiAuthMiddleware
      * Perform authentication before a request is executed.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Closure $next
+     * @param \Closure                 $next
      * @param $grant
      *
-     * @return mixed
      * @throws OAuthServerException
+     *
+     * @return mixed
      */
     public function handle($request, Closure $next, $grant = null)
     {
         $route = $this->router->getCurrentRoute();
 
-        /**
+        /*
          * FOR (Internal API requests)
          * @note GRANT(user) will always be able to access routes that are protected by: GRANT(client)
          *

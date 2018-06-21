@@ -1,7 +1,7 @@
 <?php
+
 namespace Yeelight\Models;
 
-use Yeelight\Models\BaseModel;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
@@ -33,13 +33,12 @@ class ProductModel extends BaseModel implements Transformable
     protected $primaryKey = 'product_model_id';
 
     protected $fillable = [
-		'title',
-		'model_name',
-		'code',
-		'status',
-	];
+        'title',
+        'model_name',
+        'code',
+        'status',
+    ];
 
     // Fields to be converted to Carbon object automatically
     protected $dates = [];
-
 }

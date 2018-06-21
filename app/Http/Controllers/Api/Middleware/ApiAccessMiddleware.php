@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Http\Controllers\Api\Middleware;
 
 use Closure;
@@ -17,10 +18,12 @@ class ApiAccessMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
-     * @return mixed
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     *
      * @throws HttpException
+     *
+     * @return mixed
      */
     public function handle($request, Closure $next)
     {
@@ -35,14 +38,17 @@ class ApiAccessMiddleware
             return $response;
         } catch (OAuthServerException $e) {
             $message = env('API_DEBUG') ? $e->getMessage() : null;
+
             throw new HttpException($e->getHttpStatusCode(), $message, $e, $e->getHttpHeaders());
         } catch (HttpResponseException $e) {
             $message = env('API_DEBUG') ? $e->getMessage() : null;
+
             throw new HttpException($e->getResponse()->getStatusCode(), $message, $e);
         } catch (AuthenticationException $e) {
             throw new UnauthorizedHttpException(null, $e->getMessage(), $e);
         } catch (ValidatorException $e) {
             $messageBag = $e->getMessageBag();
+
             throw new ResourceException($messageBag->first(), $messageBag->all());
         } catch (ModelNotFoundException $e) {
             throw new NotFoundHttpException('No results found.');

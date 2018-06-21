@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Presenters;
 
 use Yeelight\Base\Presenters\Presenter;

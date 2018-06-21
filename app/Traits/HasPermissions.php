@@ -3,8 +3,9 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-3-27
- * Time: 下午4:12
+ * Time: 下午4:12.
  */
+
 namespace Yeelight\Traits;
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;

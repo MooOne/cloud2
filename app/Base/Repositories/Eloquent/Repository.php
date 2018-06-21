@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Base\Repositories\Eloquent;
 
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +13,6 @@ use Yeelight\Repositories\Criteria\AuthUserCriteria;
 
 abstract class Repository extends BaseRepository implements RepositoryInterface
 {
-
     /**
      * @var bool
      */
@@ -31,6 +31,7 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
     public function byAuthUser()
     {
         $this->pushCriteria(new AuthUserCriteria());
+
         return $this;
     }
 
@@ -57,11 +58,13 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
 
     /**
      * @param $validator
+     *
      * @return $this
      */
     public function setValidator($validator)
     {
         $this->validator = $validator;
+
         return $this;
     }
 
@@ -72,6 +75,7 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
 
     /**
      * @param Model $relateModel
+     *
      * @return $this
      */
     public function setRelateModel(Model $relateModel)
@@ -80,6 +84,7 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
         if ($relateModel) {
             $this->makeModel();
         }
+
         return $this;
     }
 
@@ -88,29 +93,28 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
      */
     public function relation()
     {
-        return null;
     }
 
     /**
-     * @return Model
      * @throws RepositoryException
+     *
+     * @return Model
      */
     public function makeModel()
     {
         $model = $this->relateModel ? $this->relation() : $this->app->make($this->model());
 
         if (!($model instanceof Model || $model instanceof Relation)) {
-            throw new RepositoryException("Class " . get_class($model) . " must be an instance of Illuminate\\Database\\Eloquent\\Model");
+            throw new RepositoryException('Class '.get_class($model).' must be an instance of Illuminate\\Database\\Eloquent\\Model');
         }
 
         return $this->model = $model;
     }
 
-
     /**
-     * Retrieve data array for populate field select
+     * Retrieve data array for populate field select.
      *
-     * @param string $column
+     * @param string      $column
      * @param string|null $key
      *
      * @return \Illuminate\Support\Collection|array
@@ -128,12 +132,13 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
     }
 
     /**
-     * Retrieve all data of repository
+     * Retrieve all data of repository.
      *
      * @param array $columns
+     *
      * @return mixed
      */
-    public function all($columns = array('*'))
+    public function all($columns = ['*'])
     {
         $this->applyCriteria();
         $this->applyScope();
@@ -151,17 +156,18 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
         return $this->parserResult($results);
     }
 
-
     /**
      * Add a basic where clause to the model.
      *
-     * @param  string|array|\Closure $column
-     * @param  mixed $value
+     * @param string|array|\Closure $column
+     * @param mixed                 $value
+     *
      * @return $this
      */
     protected function modelWhere($column, $value = null)
     {
         $this->model = $this->model->where($column, $value);
+
         return $this;
     }
 
@@ -192,7 +198,7 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
     }
 
     /**
-     * Find data by where conditions
+     * Find data by where conditions.
      *
      * @param array $where
      *
@@ -209,7 +215,7 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
     }
 
     /**
-     * Retrieve first data of repository with fail if not found
+     * Retrieve first data of repository with fail if not found.
      *
      * @param array $columns
      *
@@ -228,10 +234,11 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
     }
 
     /**
-     * Where first
+     * Where first.
      *
      * @param array $where
      * @param array $columns
+     *
      * @return mixed
      */
     public function whereFirst(array $where, $columns = ['*'])
@@ -240,27 +247,30 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
     }
 
     /**
-     * Use Model for custom usages
+     * Use Model for custom usages.
      *
      * @param callable $callback
+     *
      * @return $this
      */
     public function useModel(callable $callback)
     {
         $this->model = $callback($this->model);
+
         return $this;
     }
 
     /**
      * Remove all or passed registered global scopes.
      *
-     * @param  array|null  $scopes
+     * @param array|null $scopes
+     *
      * @return $this
      */
     public function withoutGlobalScopes(array $scopes = null)
     {
         $this->model = $this->model->withoutGlobalScopes($scopes);
+
         return $this;
     }
-
 }

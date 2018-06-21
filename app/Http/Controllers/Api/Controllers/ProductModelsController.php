@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Http\Controllers\Api\Controllers;
 
 use Dingo\Api\Exception\DeleteResourceFailedException;
@@ -11,7 +12,6 @@ use Yeelight\Validators\ProductModelValidator;
 
 class ProductModelsController extends BaseController
 {
-
     /**
      * @var ProductModelRepository
      */
@@ -25,12 +25,10 @@ class ProductModelsController extends BaseController
     public function __construct(
         ProductModelRepository $repository,
         ProductModelValidator $validator
-    )
-    {
+    ) {
         $this->repository = $repository;
         $this->validator = $validator;
     }
-
 
     /**
      * Display a listing of the resource.
@@ -45,7 +43,7 @@ class ProductModelsController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  ProductModelCreateRequest $request
+     * @param ProductModelCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -63,14 +61,12 @@ class ProductModelsController extends BaseController
 
         // B. return data
         return $this->response->created();
-
     }
-
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -82,14 +78,13 @@ class ProductModelsController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  ProductModelUpdateRequest $request
-     * @param  string            $id
+     * @param ProductModelUpdateRequest $request
+     * @param string                    $id
      *
      * @return \Illuminate\Http\Response
      */
     public function update(ProductModelUpdateRequest $request, $id)
     {
-
         $data = $request->all();
 
         $productModel = $this->repository->update($data, $id);
@@ -99,14 +94,12 @@ class ProductModelsController extends BaseController
 
         // Updated, return 204 No Content
         return $this->response->noContent();
-
     }
-
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */

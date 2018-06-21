@@ -3,8 +3,9 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-4-10
- * Time: 上午11:40
+ * Time: 上午11:40.
  */
+
 namespace Yeelight\Services\Exporters;
 
 use Illuminate\Support\Facades\Input;
@@ -23,7 +24,6 @@ class Exporter
      * @var \Yeelight\Repositories\Eloquent\BaseRepository
      */
     protected $repository;
-
 
     /**
      * Available exporter drivers.
@@ -116,7 +116,8 @@ class Exporter
      * Format query for export url.
      *
      * @param int|string $scope
-     * @param null $args
+     * @param null       $args
+     *
      * @return array
      */
     public static function formatExportQuery($scope = '', $args = null)

@@ -3,16 +3,15 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-4-19
- * Time: 上午10:25
+ * Time: 上午10:25.
  */
+
 namespace Yeelight\Http\Controllers\Backend\Tools\Routes;
 
-use Yeelight\Http\Controllers\BaseController;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Routing\Controller;
 use Illuminate\Routing\Route;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Yeelight\Http\Controllers\BaseController;
 
 class RouteController extends BaseController
 {
@@ -35,14 +34,14 @@ class RouteController extends BaseController
         ];
 
         $columns = [
-            'method' => 'Method',
-            'uri' => 'Uri',
-            'name' => 'Name',
-            'action' => 'Action',
+            'method'     => 'Method',
+            'uri'        => 'Uri',
+            'name'       => 'Name',
+            'action'     => 'Action',
             'middleware' => 'Middleware',
         ];
 
-        $routes = collect($routes)->map(function ($item) use ($colors){
+        $routes = collect($routes)->map(function ($item) use ($colors) {
             $data = [];
 
             $data['method'] = collect($item->method)->map(function ($method) use ($colors) {
@@ -51,14 +50,15 @@ class RouteController extends BaseController
             $data['uri'] = preg_replace('/\{.+?\}/', '<code>$0</span>', $item->uri);
             $data['name'] = $item->name;
             $data['action'] = preg_replace('/\{.+?\}/', '<code>$0</span>', $item->action);
-            $data['middleware'] = '<span class="badge bg-danger">' . $item->middleware . '</span>';
+            $data['middleware'] = '<span class="badge bg-danger">'.$item->middleware.'</span>';
+
             return $data;
         });
 
         return view('backend.tools.routes.index', [
-            'lists' => $routes,
+            'lists'   => $routes,
             'columns' => $columns,
-            'query' => request()->query()
+            'query'   => request()->query(),
         ]);
     }
 
@@ -67,22 +67,28 @@ class RouteController extends BaseController
         return new class() extends Model {
             protected $routes;
             protected $where = [];
+
             public function setRoutes($routes)
             {
                 $this->routes = $routes;
+
                 return $this;
             }
+
             public function where($column, $condition)
             {
                 if (trim($condition)) {
                     $this->where[$column] = trim($condition);
                 }
+
                 return $this;
             }
+
             public function orderBy()
             {
                 return $this;
             }
+
             public function get()
             {
                 $this->routes = collect($this->routes)->filter(function ($route) {
@@ -91,9 +97,11 @@ class RouteController extends BaseController
                             return false;
                         }
                     }
+
                     return true;
                 })->all();
                 $instance = $this->newModelInstance();
+
                 return $instance->newCollection(array_map(function ($item) use ($instance) {
                     return $instance->newFromBuilder($item);
                 }, $this->routes));
@@ -110,6 +118,7 @@ class RouteController extends BaseController
         if ($sort = request('orderBy')) {
             $routes = $this->sortRoutes($sort, $routes);
         }
+
         return array_filter($routes);
     }
 
@@ -144,10 +153,12 @@ class RouteController extends BaseController
     {
         $sortedBy = request('sortedBy');
         if ($sortedBy == 'desc') {
-            array_multisort(array_column($routes,$sort),SORT_DESC,$routes);
+            array_multisort(array_column($routes, $sort), SORT_DESC, $routes);
+
             return $routes;
         } else {
-            array_multisort(array_column($routes,$sort),SORT_ASC,$routes);
+            array_multisort(array_column($routes, $sort), SORT_ASC, $routes);
+
             return $routes;
         }
     }

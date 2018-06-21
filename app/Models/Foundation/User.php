@@ -1,17 +1,14 @@
 <?php
+
 namespace Yeelight\Models\Foundation;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
-use Laravel\Passport\Bridge\AccessToken;
-use Laravel\Passport\HasApiTokens;
 use Laravel\Passport\Token;
 use Yeelight\Models\SocialiteUser;
 use Yeelight\Services\Image\Models\Traits\YeelightHasImageablesTrait;
-use Yeelight\Models\Foundation\BaseUser;
 
 /**
- * Yeelight\Models\Foundation\User
+ * Yeelight\Models\Foundation\User.
  *
  * @property int $user_id
  * @property string $name
@@ -39,6 +36,7 @@ use Yeelight\Models\Foundation\BaseUser;
  * @property-read \Illuminate\Database\Eloquent\Collection|\Yeelight\Models\Permission[] $permissions
  * @property-read \Illuminate\Database\Eloquent\Collection|\Yeelight\Models\Role[] $roles
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Models\Foundation\User whereBirthday($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Models\Foundation\User whereCountry($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Models\Foundation\User whereCreatedAt($value)
@@ -108,21 +106,24 @@ class User extends BaseUser
         'remember_token',
     ];
 
-    public function socialiteUsers(){
+    public function socialiteUsers()
+    {
         return $this->hasMany(SocialiteUser::class, 'user_id', 'user_id');
     }
 
-    public function accessTokens(){
+    public function accessTokens()
+    {
         return $this->hasMany(Token::class, 'user_id', 'user_id');
     }
 
-    public function findForPassport($username) {
+    public function findForPassport($username)
+    {
         return $this->where('username', $username)->orWhere('email', $username)->first();
     }
 
     /**
      * Called when model is updating
-     * Other events available are in BaseModelEvents
+     * Other events available are in BaseModelEvents.
      */
     public function onUpdating()
     {
@@ -137,10 +138,9 @@ class User extends BaseUser
         $this->phone_number = phone_model_from($this->phone_number, $this->country)->format_e164;
     }
 
-
     /**
      * Called when model is creating
-     * Other events available are in BaseModelEvents
+     * Other events available are in BaseModelEvents.
      */
     public function onCreating()
     {
@@ -155,7 +155,7 @@ class User extends BaseUser
 
     /**
      * Called when model is created
-     * Other events available are in BaseModelEvents
+     * Other events available are in BaseModelEvents.
      */
     public function onCreated()
     {

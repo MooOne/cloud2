@@ -1,10 +1,9 @@
 <?php
+
 namespace Yeelight\Repositories\Eloquent;
 
 use Yeelight\Base\Repositories\Eloquent\Repository;
-use Yeelight\Presenters\Presenter;
 use Yeelight\Repositories\Interfaces\BaseRepositoryInterface;
-use Prettus\Repository\Events\RepositoryEntityDeleted;
 
 abstract class BaseRepository extends Repository implements BaseRepositoryInterface
 {
@@ -23,6 +22,7 @@ abstract class BaseRepository extends Repository implements BaseRepositoryInterf
                 $deleted = $this->delete($id);
             }
         }
+
         return $deleted;
     }
 
@@ -30,7 +30,8 @@ abstract class BaseRepository extends Repository implements BaseRepositoryInterf
      * Chunk the results of the query.
      *
      * @param callable $callback
-     * @param int $count
+     * @param int      $count
+     *
      * @return bool
      */
     public function chunk(callable $callback, $count = 100)

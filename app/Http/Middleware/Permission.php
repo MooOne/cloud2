@@ -2,10 +2,10 @@
 
 namespace Yeelight\Http\Middleware;
 
-use Yeelight\Models\Permission as Checker;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Yeelight\Models\Permission as Checker;
 
 class Permission
 {

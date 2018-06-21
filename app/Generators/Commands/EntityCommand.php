@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Generators\Commands;
 
 use Illuminate\Console\Command;
@@ -8,7 +9,6 @@ use Symfony\Component\Console\Input\InputOption;
 
 class EntityCommand extends CommandBase
 {
-
     /**
      * The name of command.
      *
@@ -28,7 +28,6 @@ class EntityCommand extends CommandBase
      */
     protected $generators = null;
 
-
     /**
      * Execute the command.
      *
@@ -36,7 +35,6 @@ class EntityCommand extends CommandBase
      */
     public function fire()
     {
-
         $presenter = $this->option('presenter');
         if (is_null($presenter) && $this->confirm('Would you like to create a Presenter? [y|N]')) {
             $presenter = 'yes';
@@ -44,7 +42,7 @@ class EntityCommand extends CommandBase
 
         if ($presenter == 'yes') {
             $this->call('yl:presenter', [
-                'name' => $this->argument('name'),
+                'name'    => $this->argument('name'),
                 '--force' => $this->option('force'),
             ]);
         }
@@ -56,7 +54,7 @@ class EntityCommand extends CommandBase
 
         if ($validator == 'yes') {
             $this->call('yl:validator', [
-                'name' => $this->argument('name'),
+                'name'    => $this->argument('name'),
                 '--rules' => $this->option('rules'),
                 '--force' => $this->option('force'),
             ]);
@@ -66,9 +64,9 @@ class EntityCommand extends CommandBase
 
             // Generate a controller resource
             $this->call('yl:controller', [
-                'name' => $this->argument('name'),
+                'name'     => $this->argument('name'),
                 '--fields' => $this->option('fields'),
-                '--force' => $this->option('force')
+                '--force'  => $this->option('force'),
             ]);
         }
 
@@ -76,9 +74,9 @@ class EntityCommand extends CommandBase
 
             // Generate a api controller resource
             $this->call('yl:api_controller', [
-                'name' => $this->argument('name'),
+                'name'     => $this->argument('name'),
                 '--fields' => $this->option('fields'),
-                '--force' => $this->option('force')
+                '--force'  => $this->option('force'),
             ]);
         }
 
@@ -86,9 +84,9 @@ class EntityCommand extends CommandBase
 
             // Generate a controller resource
             $this->call('yl:views', [
-                'name' => $this->argument('name'),
+                'name'     => $this->argument('name'),
                 '--fields' => $this->option('fields'),
-                '--force' => $this->option('force')
+                '--force'  => $this->option('force'),
             ]);
         }
 
@@ -96,28 +94,27 @@ class EntityCommand extends CommandBase
 
             // Generate a controller resource
             $this->call('yl:lang', [
-                'name' => $this->argument('name'),
+                'name'     => $this->argument('name'),
                 '--fields' => $this->option('fields'),
-                '--force' => $this->option('force')
+                '--force'  => $this->option('force'),
             ]);
         }
 
         $this->call('yl:repository', [
-            'name' => $this->argument('name'),
-            '--fillable' => $this->option('fillable'),
-            '--rules' => $this->option('rules'),
-            '--fields' => $this->option('fields'),
+            'name'        => $this->argument('name'),
+            '--fillable'  => $this->option('fillable'),
+            '--rules'     => $this->option('rules'),
+            '--fields'    => $this->option('fields'),
             '--validator' => $validator,
             '--presenter' => $presenter,
-            '--force' => $this->option('force')
+            '--force'     => $this->option('force'),
         ]);
 
         $this->call('yl:bindings', [
-            'name' => $this->argument('name'),
-            '--force' => $this->option('force')
+            'name'    => $this->argument('name'),
+            '--force' => $this->option('force'),
         ]);
     }
-
 
     /**
      * The array of command arguments.
@@ -131,11 +128,10 @@ class EntityCommand extends CommandBase
                 'name',
                 InputArgument::REQUIRED,
                 'The name of class being generated.',
-                null
+                null,
             ],
         ];
     }
-
 
     /**
      * The array of command options.
@@ -150,36 +146,36 @@ class EntityCommand extends CommandBase
                 null,
                 InputOption::VALUE_OPTIONAL,
                 'The fillable attributes.',
-                null
+                null,
             ],
             [
                 'rules',
                 null,
                 InputOption::VALUE_OPTIONAL,
                 'The rules of validation attributes.',
-                null
+                null,
             ],
             [
                 'validator',
                 null,
                 InputOption::VALUE_OPTIONAL,
                 'Adds validator reference to the repository.',
-                null
+                null,
             ],
             [
                 'presenter',
                 null,
                 InputOption::VALUE_OPTIONAL,
                 'Adds presenter reference to the repository.',
-                null
+                null,
             ],
             [
                 'force',
                 'f',
                 InputOption::VALUE_NONE,
                 'Force the creation if file already exists.',
-                null
-            ]
+                null,
+            ],
         ];
     }
 }

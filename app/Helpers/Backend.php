@@ -3,9 +3,8 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-3-23
- * Time: 上午9:21
+ * Time: 上午9:21.
  */
-
 if (!function_exists('backend_path')) {
 
     /**
@@ -103,7 +102,7 @@ if (!function_exists('backend_asset')) {
      */
     function backend_asset($path)
     {
-        return asset('assets/' . $path, config('yeelight.backend.secure'));
+        return asset('assets/'.$path, config('yeelight.backend.secure'));
     }
 }
 
@@ -154,6 +153,7 @@ if (!function_exists('column_sorter')) {
      * Create the column sorter.
      *
      * @param $column_name
+     *
      * @return string|void
      */
     function column_sorter($column_name)
@@ -176,8 +176,8 @@ if (!function_exists('column_sorter')) {
 
         $query = app('request')->all();
         $query = array_merge($query, [
-            config('repository.criteria.params.orderBy') => $column_name,
-            config('repository.criteria.params.sortedBy') => $type
+            config('repository.criteria.params.orderBy')  => $column_name,
+            config('repository.criteria.params.sortedBy') => $type,
         ]);
 
         $url = URL::current().'?'.http_build_query($query);
@@ -188,9 +188,11 @@ if (!function_exists('column_sorter')) {
 
 if (!function_exists('get_resource')) {
     /**
-     * get resource uri
-     * @param null $slice
+     * get resource uri.
+     *
+     * @param null   $slice
      * @param string $mode
+     *
      * @return string
      */
     function get_resource($slice = null, $mode = '')
@@ -218,6 +220,7 @@ if (!function_exists('url_without_filters')) {
      * Get url without filter queryString.
      *
      * @param $columns
+     *
      * @return string
      */
     function url_without_filters($columns)

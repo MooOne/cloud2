@@ -1,25 +1,26 @@
 <?php
-namespace Yeelight\Models\Interfaces;
 
-use Illuminate\Database\Eloquent\Model;
-use Yeelight\Models\Observers\BaseModelObserver;
+namespace Yeelight\Models\Interfaces;
 
 interface BaseModelEventsInterface
 {
+    public function onCreating();
 
-    function onCreating();
-    function onCreated();
+    public function onCreated();
 
-    function onUpdating();
-    function onUpdated();
+    public function onUpdating();
 
-    function onSaving();
-    function onSaved();
+    public function onUpdated();
 
-    function onDeleting();
-    function onDeleted();
+    public function onSaving();
 
-    function onRestoring();
-    function onRestored();
+    public function onSaved();
 
+    public function onDeleting();
+
+    public function onDeleted();
+
+    public function onRestoring();
+
+    public function onRestored();
 }

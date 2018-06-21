@@ -3,14 +3,13 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-3-27
- * Time: 下午5:03
+ * Time: 下午5:03.
  */
 
 namespace Yeelight\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Request;
 
 trait ModelTree
 {
@@ -285,6 +284,5 @@ trait ModelTree
     protected static function boot()
     {
         parent::boot();
-
     }
 }

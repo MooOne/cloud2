@@ -1,24 +1,24 @@
 <?php
+
 namespace Yeelight\Services\Image;
 
 use Carbon\Carbon;
 use File;
 use Image;
 use Intervention\Image\ImageManager;
-use Yeelight\Services\Image\Exception\YeelightImageException;
-use Yeelight\Services\Image\Exception\StoreImageException;
-use Yeelight\Services\Image\Models\YeelightImageHash;
-use Yeelight\Models\Image\YeelightImage;
-use Storage;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Validator;
+use Yeelight\Models\Image\YeelightImage;
+use Yeelight\Services\Image\Exception\StoreImageException;
+use Yeelight\Services\Image\Exception\YeelightImageException;
+use Yeelight\Services\Image\Models\YeelightImageHash;
 
 class YeelightImageService
 {
-
     /**
      * @param $key
      * @param null $default
+     *
      * @return mixed
      */
     public function getConfig($key, $default = null)
@@ -39,7 +39,7 @@ class YeelightImageService
      */
     private function defaultQuality()
     {
-        return (int)$this->getConfig('default_quality', 75);
+        return (int) $this->getConfig('default_quality', 75);
     }
 
     /**
@@ -47,15 +47,16 @@ class YeelightImageService
      */
     private function largeImageQuality()
     {
-        return (int)$this->getConfig('large_image_quality', 65);
+        return (int) $this->getConfig('large_image_quality', 65);
     }
 
     /**
      * @param UploadedFile $file
-     * @param string $additionValidatorRule
-     * @param bool $isAllowGIF
-     * @param int $maxSizeAllowed
-     * @param bool $isStorePNG
+     * @param string       $additionValidatorRule
+     * @param bool         $isAllowGIF
+     * @param int          $maxSizeAllowed
+     * @param bool         $isStorePNG
+     *
      * @return YeelightImage
      */
     public function handleUploadedFile(UploadedFile $file, $additionValidatorRule = '', $isAllowGIF = false, $maxSizeAllowed = 12829, $isStorePNG = false)
@@ -66,11 +67,11 @@ class YeelightImageService
         }
 
         // validate image
-        $additionValidatorRule = !empty($additionValidatorRule) ? '|' . $additionValidatorRule : '';
+        $additionValidatorRule = !empty($additionValidatorRule) ? '|'.$additionValidatorRule : '';
         $mimes = $isAllowGIF ? ',gif' : '';
         /** @var Validator $validator */
         $validator = Validator::make(['image' => $file], [
-            'image' => 'required|mimes:jpg,jpeg,bmp,png' . $mimes . '|max:' . $maxSizeAllowed . $additionValidatorRule,
+            'image' => 'required|mimes:jpg,jpeg,bmp,png'.$mimes.'|max:'.$maxSizeAllowed.$additionValidatorRule,
         ]);
         if ($validator->fails()) {
             throw new StoreImageException($validator->errors()->first());
@@ -79,6 +80,7 @@ class YeelightImageService
         // file info
         $path_with_name = $file->getPathname();
         $file_extension = $file->getClientOriginalExtension();
+
         return $this->storeImageFromPath($path_with_name, $file_extension, $isAllowGIF, $isStorePNG);
     }
 
@@ -87,6 +89,7 @@ class YeelightImageService
      * @param null $file_extension
      * @param bool $isAllowGIF
      * @param bool $isStorePNG
+     *
      * @return null|YeelightImage
      */
     public function storeImageFromPath($path_with_name, $file_extension = null, $isAllowGIF = false, $isStorePNG = false)
@@ -97,9 +100,8 @@ class YeelightImageService
         $file_origin_size = filesize($path_with_name);
         $is_animated_gif = $is_file_gif && $this->isAnimatedGif($path_with_name);
 
-
         if (!File::exists($path_with_name)) {
-            throw new StoreImageException("File not found: " . $path_with_name);
+            throw new StoreImageException('File not found: '.$path_with_name);
         }
 
         // read exif info
@@ -124,17 +126,17 @@ class YeelightImageService
         $storage_path = $this->storagePath();
         $file_sha1 = sha1_file($path_with_name);
         $final_file_sha1 = null;
-        if ($file_sha1 === FALSE) {
-            throw new StoreImageException('Failed to create SHA1 for file: ' . $path_with_name);
+        if ($file_sha1 === false) {
+            throw new StoreImageException('Failed to create SHA1 for file: '.$path_with_name);
         }
 
         // final
-        $final_file_name = strtolower($file_sha1 . '.' . $default_file_extension);
-        $final_path_with_name = $storage_path . $final_file_name;
+        $final_file_name = strtolower($file_sha1.'.'.$default_file_extension);
+        $final_path_with_name = $storage_path.$final_file_name;
 
         // check directory
         if (!self::autoCreateDirectory($final_path_with_name)) {
-            throw new StoreImageException('Failed to make dir: ' . dirname($final_path_with_name));
+            throw new StoreImageException('Failed to make dir: '.dirname($final_path_with_name));
         }
 
         // save
@@ -156,7 +158,7 @@ class YeelightImageService
                 if (File::copy($path_with_name, $final_path_with_name)) {
                     @chmod($final_path_with_name, 0666 & ~umask());
                 } else {
-                    throw new StoreImageException('Failed to move file to path: ' . $final_path_with_name);
+                    throw new StoreImageException('Failed to move file to path: '.$final_path_with_name);
                 }
                 $final_file_sha1 = sha1_file($final_path_with_name);
                 $final_file_size = filesize($final_path_with_name);
@@ -185,14 +187,16 @@ class YeelightImageService
     /**
      * @param $originImageEncodedData
      * @param bool $isAllowGIF
+     *
      * @return null|YeelightImage
      */
     public function storeImageFromURLEncodedImageData($originImageEncodedData, $isAllowGIF = false)
     {
         $exif = read_exif_data_safe($originImageEncodedData);
-        $is_gif = YeelightImageService::isDataURLEncodedImageGif($originImageEncodedData);
-        $origin_image_data = YeelightImageService::convertDataURLEncodedToImageData($originImageEncodedData);
+        $is_gif = self::isDataURLEncodedImageGif($originImageEncodedData);
+        $origin_image_data = self::convertDataURLEncodedToImageData($originImageEncodedData);
         $origin_image_sha1 = sha1($origin_image_data);
+
         return $this->storeImageFromMake($origin_image_data, $origin_image_sha1, $exif, $isAllowGIF, $is_gif);
     }
 
@@ -202,6 +206,7 @@ class YeelightImageService
      * @param $exif
      * @param bool $isAllowGIF
      * @param bool $isGIF
+     *
      * @return YeelightImage
      */
     public function storeImageFromMake($source, $file_sha1, $exif, $isAllowGIF = false, $isGIF = false)
@@ -209,7 +214,7 @@ class YeelightImageService
         try {
             $image = Image::make($source);
         } catch (StoreImageException $e) {
-            throw new StoreImageException("YeelightImageService: Unable to make image [" + (string)$e + "]");
+            throw new StoreImageException('YeelightImageService: Unable to make image [' + (string) $e + ']');
         }
 
         $is_allowed_animated_gif = $isAllowGIF && $isGIF;
@@ -222,17 +227,17 @@ class YeelightImageService
         }
         $storage_path = $this->storagePath();
         $final_file_sha1 = null;
-        if ($file_sha1 === FALSE || strlen($file_sha1) != 40) {
+        if ($file_sha1 === false || strlen($file_sha1) != 40) {
             throw new StoreImageException('Invalid SHA1 for file.');
         }
 
         // final
-        $final_file_name = strtolower($file_sha1 . '.' . $default_file_extension);
-        $final_path_with_name = $storage_path . $final_file_name;
+        $final_file_name = strtolower($file_sha1.'.'.$default_file_extension);
+        $final_path_with_name = $storage_path.$final_file_name;
 
         // check directory
         if (!self::autoCreateDirectory($final_path_with_name)) {
-            throw new StoreImageException('Failed to make dir: ' . dirname($final_path_with_name));
+            throw new StoreImageException('Failed to make dir: '.dirname($final_path_with_name));
         }
 
         // save
@@ -254,7 +259,7 @@ class YeelightImageService
                 if (file_put_contents($final_path_with_name, $source)) {
                     @chmod($final_path_with_name, 0666 & ~umask());
                 } else {
-                    throw new StoreImageException('Failed to move file to path: ' . $final_path_with_name);
+                    throw new StoreImageException('Failed to move file to path: '.$final_path_with_name);
                 }
                 $final_file_sha1 = sha1_file($final_path_with_name);
                 $final_file_size = filesize($final_path_with_name);
@@ -282,6 +287,7 @@ class YeelightImageService
 
     /**
      * @param $filename
+     *
      * @return bool
      */
     public function isAnimatedGif($filename)
@@ -294,13 +300,13 @@ class YeelightImageService
         // There is no point in continuing after we find a 2nd frame
         while ($count < 2) {
             $where1 = strpos($file_contents, "\x00\x21\xF9\x04", $str_loc);
-            if ($where1 === FALSE) {
+            if ($where1 === false) {
                 break;
             }
 
             $str_loc = $where1 + 1;
             $where2 = strpos($file_contents, "\x00\x2C", $str_loc);
-            if ($where2 === FALSE) {
+            if ($where2 === false) {
                 break;
             } else {
                 if ($where1 + 8 == $where2) {
@@ -311,11 +317,12 @@ class YeelightImageService
         }
 
         // gif is animated when it has two or more frames
-        return ($count >= 2);
+        return $count >= 2;
     }
 
     /**
      * @param $image_name
+     *
      * @return mixed
      */
     public function getImageOrFail($image_name)
@@ -328,6 +335,7 @@ class YeelightImageService
      * @param $image_name The image name for showing
      * @param $image_templates array Additional image templates, if same template exists, will be replaced
      * @param null $storage_path
+     *
      * @return mixed|\Symfony\Component\HttpFoundation\BinaryFileResponse
      */
     public function showImage($template_name, $image_name, array $image_templates = [], $storage_path = null)
@@ -335,7 +343,7 @@ class YeelightImageService
         $cache_minutes = 60 * 24 * 15; // 15 days
         $storage_path = $storage_path ?: $this->storagePath();
         $image_templates = array_merge($this->getConfig('image_templates', []), $image_templates);
-        $file_path = $storage_path . $image_name;
+        $file_path = $storage_path.$image_name;
 
         // check exists
         $isExists = File::exists($file_path);
@@ -367,7 +375,7 @@ class YeelightImageService
 
         // convert to image
         $img = Image::cache(function ($image) use ($file_path, $imageTemplate) {
-            /** @var \Intervention\Image\Image $image */
+            /* @var \Intervention\Image\Image $image */
             $image->make($file_path);
 
             // resize
@@ -408,9 +416,7 @@ class YeelightImageService
                 $amount = $blur_option['amount'];
                 $image->blur($amount);
             }
-
         }, $cache_minutes, true);
-
 
         return $img->response()->setPublic()
             ->setMaxAge(604800)
@@ -423,6 +429,7 @@ class YeelightImageService
      * @param $final_path_with_name
      * @param null $final_file_sha1
      * @param null $final_file_size
+     *
      * @return bool
      */
     public function saveImage($image, $exif, $final_path_with_name,
@@ -491,6 +498,7 @@ class YeelightImageService
         $final_file_sha1 = sha1_file($final_path_with_name);
         $final_file_size = filesize($final_path_with_name);
         $isSaved = File::exists($final_path_with_name);
+
         return $isSaved;
     }
 
@@ -504,6 +512,7 @@ class YeelightImageService
      * @param $exif
      * @param $file_sha1
      * @param $final_file_sha1
+     *
      * @return YeelightImage
      */
     private function saveImageInfo($isSimilarExists, $yeelight_image_hash, $final_file_name, $is_allowed_animated_gif, $final_file_size, $image, $exif, $file_sha1, $final_file_sha1)
@@ -522,55 +531,62 @@ class YeelightImageService
             // create
             $yeelight_image = YeelightImage::firstOrCreate([
                 'image_name' => $final_file_name,
-                'is_gif' => $is_allowed_animated_gif,
-                'exif' => $exif_data,
-                'file_size' => $final_file_size,
-                'width' => $image->getWidth(),
-                'height' => $image->getHeight(),
+                'is_gif'     => $is_allowed_animated_gif,
+                'exif'       => $exif_data,
+                'file_size'  => $final_file_size,
+                'width'      => $image->getWidth(),
+                'height'     => $image->getHeight(),
             ]);
 
             // add to image hash
             YeelightImageHash::firstOrCreate([
                 'yeelight_image_id' => $yeelight_image->yeelight_image_id,
-                'file_sha1' => $file_sha1,
+                'file_sha1'         => $file_sha1,
             ]);
             if (!empty($final_file_sha1) && $final_file_sha1 != $file_sha1) {
                 YeelightImageHash::firstOrCreate([
                     'yeelight_image_id' => $yeelight_image->yeelight_image_id,
-                    'file_sha1' => $final_file_sha1,
+                    'file_sha1'         => $final_file_sha1,
                 ]);
             }
         }
+
         return $yeelight_image;
     }
 
     public static function convertDataURLEncodedToImageData($encodedData)
     {
         try {
-            $filteredData = substr($encodedData, strpos($encodedData, ",") + 1);
+            $filteredData = substr($encodedData, strpos($encodedData, ',') + 1);
             $image_data = base64_decode($filteredData);
+
             return $image_data;
         } catch (StoreImageException $e) {
-            \Log::error("YeelightImageService: Unable to convert to image [" + (string)$e + "]");
-            return null;
+            \Log::error('YeelightImageService: Unable to convert to image [' + (string) $e + ']');
+
+            return;
         }
     }
 
     public static function isDataURLEncodedImageGif($encodedData)
     {
         try {
-            $image_type = substr($encodedData, 0, strpos($encodedData, ","));
+            $image_type = substr($encodedData, 0, strpos($encodedData, ','));
             $is_gif = str_contains($image_type, 'gif');
+
             return $is_gif;
         } catch (StoreImageException $e) {
-            \Log::error("YeelightImageService: Unable to convert to image [" + (string)$e + "]");
+            \Log::error('YeelightImageService: Unable to convert to image [' + (string) $e + ']');
+
             return false;
         }
     }
 
     /**
-     * auto create directory if not exists
+     * auto create directory if not exists.
+     *
      * @param $path_name
+     *
      * @return bool
      */
     public static function autoCreateDirectory($path_name)
@@ -582,11 +598,13 @@ class YeelightImageService
                 return false;
             }
         }
+
         return true;
     }
 
     /**
-     * @param integer $yeelight_image_id
+     * @param int $yeelight_image_id
+     *
      * @return \Intervention\Image\Image
      */
     public static function getImageFromYeelightImageId($yeelight_image_id)
@@ -597,7 +615,7 @@ class YeelightImageService
         }
         $imageManager = new ImageManager(config('image'));
         $background_image = $imageManager->make($yeelight_image->getImagePath());
+
         return $background_image;
     }
-
 }

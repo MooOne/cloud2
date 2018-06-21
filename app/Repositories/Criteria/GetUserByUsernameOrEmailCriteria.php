@@ -1,14 +1,13 @@
 <?php
+
 namespace Yeelight\Repositories\Criteria;
 
-use Illuminate\Support\Facades\Request;
-use Prettus\Repository\Contracts\RepositoryInterface;
 use Prettus\Repository\Contracts\CriteriaInterface;
+use Prettus\Repository\Contracts\RepositoryInterface;
 use Yeelight\Http\Requests\Api\SocialiteAuthRequest;
 
 class GetUserByUsernameOrEmailCriteria implements CriteriaInterface
 {
-
     public function __construct(SocialiteAuthRequest $request)
     {
         $this->request = $request;
@@ -29,5 +28,4 @@ class GetUserByUsernameOrEmailCriteria implements CriteriaInterface
 
         return $model;
     }
-
 }

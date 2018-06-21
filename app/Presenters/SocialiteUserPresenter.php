@@ -1,17 +1,16 @@
 <?php
+
 namespace Yeelight\Presenters;
 
 use Yeelight\Transformers\SocialiteUserTransformer;
 
 /**
- * Class SocialiteUserPresenter
- *
- * @package namespace Yeelight\Presenters;
+ * Class SocialiteUserPresenter.
  */
 class SocialiteUserPresenter extends BasePresenter
 {
     /**
-     * Transformer
+     * Transformer.
      *
      * @return \League\Fractal\TransformerAbstract
      */

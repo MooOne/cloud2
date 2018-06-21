@@ -1,11 +1,11 @@
 <?php
+
 namespace Yeelight\Services\Image\Models\Traits;
 
 use Yeelight\Models\Image\YeelightImage;
 
 trait YeelightHasOneImageTrait
 {
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -28,11 +28,13 @@ trait YeelightHasOneImageTrait
     public function getYeelightImageUrl()
     {
         $yeelightImageType = $this->getYeelightImageType();
+
         return $this->getYeelightImageUrlForType($yeelightImageType);
     }
 
     /**
      * @param $type
+     *
      * @return \Illuminate\Contracts\Routing\UrlGenerator|null|string
      */
     public function getYeelightImageUrlForType($type)
@@ -73,7 +75,6 @@ trait YeelightHasOneImageTrait
         if ($yeelight_image) {
             return $yeelight_image->getImageName();
         }
-        return null;
     }
 
     /**
@@ -89,7 +90,6 @@ trait YeelightHasOneImageTrait
      */
     protected function getYeelightImageType()
     {
-        return null;
     }
 
     /**
@@ -97,7 +97,6 @@ trait YeelightHasOneImageTrait
      */
     protected function getYeelightImageDefaultUrl()
     {
-        return backend_asset('img/user2-160x160.jpg');;
+        return backend_asset('img/user2-160x160.jpg');
     }
-
 }

@@ -1,10 +1,11 @@
 <?php
+
 namespace Yeelight\Http\Controllers\Backend;
 
 use Yeelight\Models\AdminOperationLog;
 use Yeelight\Repositories\Interfaces\AdminOperationLogRepository;
-use Yeelight\Validators\AdminOperationLogValidator;
 use Yeelight\Repositories\Interfaces\AdminUserRepository;
+use Yeelight\Validators\AdminOperationLogValidator;
 
 class AdminOperationLogsController extends BaseController
 {
@@ -27,13 +28,11 @@ class AdminOperationLogsController extends BaseController
         AdminOperationLogRepository $repository,
         AdminOperationLogValidator $validator,
         AdminUserRepository $userRepository
-    )
-    {
+    ) {
         $this->repository = $repository;
         $this->validator = $validator;
         $this->userRepository = $userRepository;
     }
-
 
     /**
      * Display a listing of the resource.
@@ -51,12 +50,12 @@ class AdminOperationLogsController extends BaseController
         $this->setupExporter();
 
         return view('backend.admin_operation_logs.index', [
-            'lists' => $lists,
-            'columns' => $columns,
+            'lists'      => $lists,
+            'columns'    => $columns,
             'adminUsers' => $adminUsers,
-            'methods' => AdminOperationLog::$methods,
-            'paginator' => $paginator,
-            'query' => request()->query()
+            'methods'    => AdminOperationLog::$methods,
+            'paginator'  => $paginator,
+            'query'      => request()->query(),
         ]);
     }
 }

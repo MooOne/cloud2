@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Events\User;
 
 use Illuminate\Queue\SerializesModels;

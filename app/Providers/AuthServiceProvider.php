@@ -1,7 +1,7 @@
 <?php
+
 namespace Yeelight\Providers;
 
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
 
@@ -41,6 +41,5 @@ class AuthServiceProvider extends ServiceProvider
 //            'place-orders' => 'Place orders',
 //            'check-status' => 'Check order status',
 //        ]);
-
     }
 }

@@ -1,7 +1,7 @@
 <?php
+
 namespace Yeelight\Models;
 
-use Yeelight\Models\BaseModel;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
@@ -36,5 +36,4 @@ class AdminRolePermission extends BaseModel implements Transformable
 
     // Fields to be converted to Carbon object automatically
     protected $dates = [];
-
 }

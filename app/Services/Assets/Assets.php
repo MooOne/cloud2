@@ -3,8 +3,9 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-4-2
- * Time: 上午10:06
+ * Time: 上午10:06.
  */
+
 namespace Yeelight\Services\Assets;
 
 class Assets

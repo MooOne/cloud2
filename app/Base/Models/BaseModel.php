@@ -1,6 +1,6 @@
 <?php
-namespace Yeelight\Base\Models;
 
+namespace Yeelight\Base\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +10,7 @@ use Yeelight\Models\Interfaces\BaseModelEventsInterface;
 use Yeelight\Traits\BaseModelEvents;
 
 /**
- * Yeelight\Base\Models\BaseModel
+ * Yeelight\Base\Models\BaseModel.
  *
  * @property-read mixed $id
  * @mixin \Eloquent
@@ -41,14 +41,14 @@ class BaseModel extends Model implements BaseModelEventsInterface
     protected $update_users = true;
 
     /**
-     * Indicates timestamp is always saved in UTC timezone
+     * Indicates timestamp is always saved in UTC timezone.
      *
      * @var bool
      */
     protected $timestamp_always_save_in_utc = false;
 
     /**
-     * Indicates timestamp is always get in user timezone
+     * Indicates timestamp is always get in user timezone.
      *
      * @var bool
      */
@@ -65,7 +65,7 @@ class BaseModel extends Model implements BaseModelEventsInterface
     }
 
     /**
-     * Get ID from the model primary key
+     * Get ID from the model primary key.
      *
      * @return mixed
      */
@@ -75,7 +75,7 @@ class BaseModel extends Model implements BaseModelEventsInterface
     }
 
     /**
-     * Get current auth user
+     * Get current auth user.
      *
      * @return BaseUser|null
      */
@@ -84,18 +84,19 @@ class BaseModel extends Model implements BaseModelEventsInterface
         $user = null;
         if ($this->api_auth()->check()) { // API
             $user = $this->api_auth()->user();
-        } else if (\Auth::guard(config('yeelight.backend.route.prefix'))->check()) {
+        } elseif (\Auth::guard(config('yeelight.backend.route.prefix'))->check()) {
             // Backend
             $user = \Auth::guard(config('yeelight.backend.route.prefix'))->user();
-        } else if (\Auth::check()) {
+        } elseif (\Auth::check()) {
             // Normal
             $user = \Auth::user();
         }
+
         return $user;
     }
 
     /**
-     * Get current auth user_id
+     * Get current auth user_id.
      *
      * @return mixed|null
      */
@@ -106,11 +107,12 @@ class BaseModel extends Model implements BaseModelEventsInterface
         if ($user) {
             $user_id = isset($user->user_id) ? $user->user_id : $user->id;
         }
+
         return $user_id;
     }
 
     /**
-     * Get current model's user_id
+     * Get current model's user_id.
      *
      * @return mixed|null
      */
@@ -199,17 +201,19 @@ class BaseModel extends Model implements BaseModelEventsInterface
     }
 
     /**
-     * Set Model Presenter
+     * Set Model Presenter.
+     *
      * @return $this
      */
     public function setModelPresenter()
     {
         $this->setPresenter(new ModelFractalPresenter());
+
         return $this;
     }
 
     /**
-     * Return a timezone for all Datetime objects
+     * Return a timezone for all Datetime objects.
      *
      * @return mixed
      */
@@ -227,13 +231,13 @@ class BaseModel extends Model implements BaseModelEventsInterface
      * Set a given attribute on the model.
      *
      *
-     * @param  string $key
-     * @param  mixed $value
+     * @param string $key
+     * @param mixed  $value
+     *
      * @return $this
      */
     public function setAttribute($key, $value)
     {
-
         if ($this->timestamp_always_save_in_utc) {
             // set to UTC only if Carbon
             if ($value instanceof Carbon) {
@@ -247,7 +251,8 @@ class BaseModel extends Model implements BaseModelEventsInterface
     /**
      * Get a plain attribute (not a relationship).
      *
-     * @param  string $key
+     * @param string $key
+     *
      * @return mixed
      */
     public function getAttributeValue($key)
@@ -264,7 +269,8 @@ class BaseModel extends Model implements BaseModelEventsInterface
     /**
      * Prepare a date for array / JSON serialization.
      *
-     * @param  \DateTimeInterface $date
+     * @param \DateTimeInterface $date
+     *
      * @return string
      */
     protected function serializeDate(\DateTimeInterface $date)
@@ -272,7 +278,7 @@ class BaseModel extends Model implements BaseModelEventsInterface
         if ($date instanceof Carbon && $this->timestamp_get_with_user_timezone) {
             $date->setTimezone($this->getAuthUserDateTimezone());
         }
+
         return $date->format($this->getDateFormat());
     }
-
 }

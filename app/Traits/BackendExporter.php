@@ -3,8 +3,9 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-4-10
- * Time: 下午2:12
+ * Time: 下午2:12.
  */
+
 namespace Yeelight\Traits;
 
 use Illuminate\Support\Facades\Input;

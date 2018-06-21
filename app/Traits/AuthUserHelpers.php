@@ -1,9 +1,9 @@
 <?php
+
 namespace Yeelight\Traits;
 
 trait AuthUserHelpers
 {
-
     /**
      * @return \Yeelight\Models\Foundation\User
      */
@@ -19,5 +19,4 @@ trait AuthUserHelpers
     {
         return $this->getAuthUser()->getUserId();
     }
-
 }

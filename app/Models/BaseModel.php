@@ -1,11 +1,12 @@
 <?php
+
 namespace Yeelight\Models;
 
 use Yeelight\Base\Models\BaseModel as Model;
 use Yeelight\Models\Foundation\User;
 
 /**
- * Yeelight\Models\BaseModel
+ * Yeelight\Models\BaseModel.
  *
  * @property-read mixed $id
  * @mixin \Eloquent
@@ -13,7 +14,8 @@ use Yeelight\Models\Foundation\User;
 class BaseModel extends Model
 {
     /**
-     * 模型标记
+     * 模型标记.
+     *
      * @var
      */
     public $modelTag;
@@ -51,6 +53,4 @@ class BaseModel extends Model
     {
         return $this->related_user;
     }
-
-
 }

@@ -3,16 +3,14 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-4-20
- * Time: 下午4:17
+ * Time: 下午4:17.
  */
-
 Route::group([
     'prefix'        => config('yeelight.backend.route.prefix'),
     'namespace'     => config('yeelight.backend.route.namespace'),
     'middleware'    => config('yeelight.backend.route.middleware'),
 ], function ($router) {
-
-    $router->get('/','HomeController@index');
+    $router->get('/', 'HomeController@index');
 
     $router->get('auth/setting', 'AuthController@getSetting')->name('backend.auth.setting.get');
     $router->put('auth/setting', 'AuthController@putSetting')->name('backend.auth.setting.post');
@@ -28,5 +26,5 @@ Route::group([
     $router->resource('product/product_models', 'ProductModelsController');
 
     //Tools
-    require(__DIR__ . '/tools.php');
+    require __DIR__.'/tools.php';
 });

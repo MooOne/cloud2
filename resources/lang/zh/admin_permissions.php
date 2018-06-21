@@ -10,6 +10,6 @@ return [
         'http_path'     => 'HTTP路径',
         'http_route'    => '路由',
         'created_at'    => '添加时间',
-        'updated_at'    => '修改时间'
-    ]
+        'updated_at'    => '修改时间',
+    ],
 ];

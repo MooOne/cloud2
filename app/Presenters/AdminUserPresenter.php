@@ -1,17 +1,16 @@
 <?php
+
 namespace Yeelight\Presenters;
 
 use Yeelight\Transformers\AdminUserTransformer;
 
 /**
- * Class AdminUserPresenter
- *
- * @package namespace Yeelight\Presenters;
+ * Class AdminUserPresenter.
  */
 class AdminUserPresenter extends BasePresenter
 {
     /**
-     * Transformer
+     * Transformer.
      *
      * @return \League\Fractal\TransformerAbstract
      */

@@ -24,5 +24,5 @@ return [
         'status_normal'             => '正常',
         'status_forbidden'          => '禁止',
     ],
-    'header' => '用户'
+    'header' => '用户',
 ];

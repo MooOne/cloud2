@@ -3,11 +3,11 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-4-20
- * Time: 下午4:20
+ * Time: 下午4:20.
  */
 Route::group([
-    'prefix' => config('yeelight.backend.auth_route.prefix'),
-    'namespace' => config('yeelight.backend.auth_route.namespace')
+    'prefix'    => config('yeelight.backend.auth_route.prefix'),
+    'namespace' => config('yeelight.backend.auth_route.namespace'),
 ], function ($router) {
     // Authentication Routes...
     $router->get('login', 'LoginController@showLoginForm')->name('backend.auth.login');

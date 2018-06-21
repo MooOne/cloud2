@@ -1,10 +1,10 @@
 <?php
+
 namespace Yeelight\Models;
 
-use Yeelight\Models\BaseModel;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class AdminRole extends BaseModel implements Transformable
 {
@@ -102,7 +102,7 @@ class AdminRole extends BaseModel implements Transformable
         return !$this->can($permission);
     }
 
-    function onCreated()
+    public function onCreated()
     {
         parent::onCreated();
         $permissions = array_filter(request()->get('permissions', []));
@@ -111,7 +111,7 @@ class AdminRole extends BaseModel implements Transformable
         }
     }
 
-    function onUpdated()
+    public function onUpdated()
     {
         parent::onUpdated();
         $permissions = array_filter(request()->get('permissions', []));
@@ -120,7 +120,7 @@ class AdminRole extends BaseModel implements Transformable
         }
     }
 
-    function onDeleting()
+    public function onDeleting()
     {
         parent::onDeleting();
         $this->administrators()->detach();

@@ -3,8 +3,9 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-4-20
- * Time: 下午4:46
+ * Time: 下午4:46.
  */
+
 namespace Yeelight\Http\Controllers\Backend;
 
 use Illuminate\Support\MessageBag;
@@ -28,8 +29,7 @@ class AuthController extends BaseController
     public function __construct(
         AdminUserRepository $repository,
         AdminUserValidator $validator
-    )
-    {
+    ) {
         $this->repository = $repository;
         $this->validator = $validator;
     }
@@ -44,8 +44,8 @@ class AuthController extends BaseController
         $columns = trans('admin_users.columns');
 
         return view('backend.auth.setting', [
-            'data' => $this->getAuthUser()->toArray(),
-            'columns' => $columns
+            'data'    => $this->getAuthUser()->toArray(),
+            'columns' => $columns,
         ]);
     }
 
@@ -53,6 +53,7 @@ class AuthController extends BaseController
      * Update user setting.
      *
      * @param AdminUserSettingRequest $request
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function putSetting(AdminUserSettingRequest $request)
@@ -72,6 +73,7 @@ class AuthController extends BaseController
                 'title'   => trans('backend.failed'),
                 'message' => trans('backend.update_failed'),
             ]);
+
             return redirect(backend_base_path('auth/setting'))->with(compact('error'));
         }
     }

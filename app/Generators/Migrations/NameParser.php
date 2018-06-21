@@ -1,9 +1,9 @@
 <?php
+
 namespace Yeelight\Generators\Migrations;
 
 /**
- * Class NameParser
- * @package Yeelight\Generators\Migrations
+ * Class NameParser.
  */
 class NameParser
 {
@@ -27,22 +27,22 @@ class NameParser
     protected $actions = [
         'create' => [
             'create',
-            'make'
+            'make',
         ],
         'delete' => [
             'delete',
-            'remove'
+            'remove',
         ],
         'add'    => [
             'add',
             'update',
             'append',
-            'insert'
+            'insert',
         ],
         'drop'   => [
             'destroy',
-            'drop'
-        ]
+            'drop',
+        ],
     ];
 
     /**

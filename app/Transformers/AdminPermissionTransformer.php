@@ -1,18 +1,18 @@
 <?php
+
 namespace Yeelight\Transformers;
 
 use Illuminate\Support\Str;
 use Yeelight\Models\AdminPermission;
 
 /**
- * Class AdminPermissionTransformer
- * @package namespace Yeelight\Transformers;
+ * Class AdminPermissionTransformer.
  */
 class AdminPermissionTransformer extends BaseTransformer
 {
-
     /**
-     * Transform the AdminPermission entity
+     * Transform the AdminPermission entity.
+     *
      * @param AdminPermission $model
      *
      * @return array
@@ -20,15 +20,15 @@ class AdminPermissionTransformer extends BaseTransformer
     public function transform(AdminPermission $model)
     {
         return [
-            'id' => (int) $model->id,
-            'name'          => (string) $model->name,
-            'slug'          => (string) $model->slug,
-            'http_method'   => (array) $model->http_method,
+            'id'                => (int) $model->id,
+            'name'              => (string) $model->name,
+            'slug'              => (string) $model->slug,
+            'http_method'       => (array) $model->http_method,
             'http_method_str'   => (string) $this->getHttpMethodAttr($model),
-            'http_path'     => (string) $model->http_path,
+            'http_path'         => (string) $model->http_path,
             'http_path_str'     => (string) $this->getHttpPathAttr($model),
-            'created_at'    => (string) $model->created_at,
-            'updated_at'    => (string) $model->updated_at
+            'created_at'        => (string) $model->created_at,
+            'updated_at'        => (string) $model->updated_at,
         ];
     }
 

@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-4-18
- * Time: 下午4:59
+ * Time: 下午4:59.
  */
 
 namespace Yeelight\Models\Tools\LogViewer;
-
 
 /**
  * Class LogViewer.

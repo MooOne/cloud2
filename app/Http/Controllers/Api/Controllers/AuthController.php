@@ -1,24 +1,17 @@
 <?php
+
 namespace Yeelight\Http\Controllers\Api\Controllers;
 
-use Dingo\Api\Auth\Auth;
-use Dingo\Api\Exception\DeleteResourceFailedException;
-use Dingo\Api\Exception\StoreResourceFailedException;
-use Dingo\Api\Exception\UpdateResourceFailedException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Prettus\Validator\Contracts\ValidatorInterface;
 use Yeelight\Http\Requests\Api\AuthLoginRequest;
 use Yeelight\Http\Requests\Api\AuthRefreshRequest;
 use Yeelight\Http\Requests\Api\AuthRegisterRequest;
-use Yeelight\Http\Requests\Api\UserCreateRequest;
-use Yeelight\Http\Requests\Api\UserUpdateRequest;
 use Yeelight\Repositories\Interfaces\UserRepository;
 use Yeelight\Validators\UserValidator;
 
 class AuthController extends BaseController
 {
-
     /**
      * @var UserRepository
      */
@@ -36,9 +29,10 @@ class AuthController extends BaseController
     }
 
     /**
-     * 登录
+     * 登录.
      *
      * @param AuthLoginRequest $request
+     *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
     public function login(AuthLoginRequest $request)
@@ -47,9 +41,10 @@ class AuthController extends BaseController
     }
 
     /**
-     * 刷新 token
+     * 刷新 token.
      *
      * @param AuthRefreshRequest $request
+     *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
     public function refresh(AuthRefreshRequest $request)
@@ -58,9 +53,10 @@ class AuthController extends BaseController
     }
 
     /**
-     * 登出
+     * 登出.
      *
      * @param Request $request
+     *
      * @return \Dingo\Api\Http\Response
      */
     public function logout(Request $request)
@@ -77,9 +73,10 @@ class AuthController extends BaseController
     }
 
     /**
-     * 注册
+     * 注册.
      *
      * @param AuthRegisterRequest $request
+     *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
     public function register(AuthRegisterRequest $request)

@@ -1,10 +1,11 @@
 <?php
+
 namespace Yeelight\Models\Image;
 
 use Yeelight\Services\Image\Models\YeelightImageBase;
 
 /**
- * Yeelight\Models\Image\YeelightImage
+ * Yeelight\Models\Image\YeelightImage.
  *
  * @property int $yeelight_image_id
  * @property int|null $user_id
@@ -23,6 +24,7 @@ use Yeelight\Services\Image\Models\YeelightImageBase;
  * @property-read null|string $cover_image_url
  * @property-read mixed $id
  * @property-read null|string $image_url
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Models\Image\YeelightImage whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Models\Image\YeelightImage whereCreatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Yeelight\Models\Image\YeelightImage whereCreatedIp($value)
@@ -41,19 +43,18 @@ use Yeelight\Services\Image\Models\YeelightImageBase;
  */
 class YeelightImage extends YeelightImageBase
 {
-
     /**
      * @param null $type
+     *
      * @return null|string
      */
     public function getDefaultImageUrl($type = null)
     {
 //        return url('images/default.jpg');
-        return null;
     }
 
     /**
-     * For usage: $yeelightImage->cover_image_url;
+     * For usage: $yeelightImage->cover_image_url;.
      *
      * @return null|string
      */
@@ -61,5 +62,4 @@ class YeelightImage extends YeelightImageBase
     {
         return $this->getTypeImageUrl('cover');
     }
-
 }

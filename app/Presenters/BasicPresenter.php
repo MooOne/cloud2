@@ -1,16 +1,14 @@
 <?php
+
 namespace Yeelight\Presenters;
 
 use Yeelight\Transformers\BasicTransformer;
 
 /**
- * Class BasicPresenter
- *
- * @package namespace Yeelight\Presenters;
+ * Class BasicPresenter.
  */
 class BasicPresenter extends BasePresenter
 {
-
     /**
      * @var string
      */
@@ -25,7 +23,7 @@ class BasicPresenter extends BasePresenter
     }
 
     /**
-     * Transformer
+     * Transformer.
      *
      * @return \League\Fractal\TransformerAbstract
      */
@@ -37,5 +35,4 @@ class BasicPresenter extends BasePresenter
             return new BasicTransformer();
         }
     }
-
 }

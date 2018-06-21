@@ -38,7 +38,6 @@ class BackendServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
     }
 
     /**
@@ -51,7 +50,6 @@ class BackendServiceProvider extends ServiceProvider
         $this->loadBackendAuthConfig();
 
         $this->registerRouteMiddleware();
-
     }
 
     /**

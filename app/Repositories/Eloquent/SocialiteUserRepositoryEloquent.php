@@ -1,15 +1,15 @@
 <?php
+
 namespace Yeelight\Repositories\Eloquent;
 
+use Yeelight\Models\SocialiteUser;
+use Yeelight\Presenters\SocialiteUserPresenter;
 use Yeelight\Repositories\Criteria\RequestCriteria;
 use Yeelight\Repositories\Interfaces\SocialiteUserRepository;
-use Yeelight\Models\SocialiteUser;
 use Yeelight\Validators\SocialiteUserValidator;
-use Yeelight\Presenters\SocialiteUserPresenter;
 
 /**
- * Class SocialiteUserRepositoryEloquent
- * @package namespace Yeelight\Repositories\Eloquent;
+ * Class SocialiteUserRepositoryEloquent.
  */
 class SocialiteUserRepositoryEloquent extends BaseRepository implements SocialiteUserRepository
 {
@@ -19,18 +19,16 @@ class SocialiteUserRepositoryEloquent extends BaseRepository implements Socialit
     protected $fieldSearchable = [
         'id',
         'provider',
-        'provider_user_id'
+        'provider_user_id',
     ];
-
 
     /**
      * @var bool
      */
     protected $isSearchableForceAndWhere = true;
 
-
     /**
-     * Specify Model class name
+     * Specify Model class name.
      *
      * @return string
      */
@@ -40,31 +38,27 @@ class SocialiteUserRepositoryEloquent extends BaseRepository implements Socialit
     }
 
     /**
-    * Specify Validator class name
-    *
-    * @return mixed
-    */
+     * Specify Validator class name.
+     *
+     * @return mixed
+     */
     public function validator()
     {
-
         return SocialiteUserValidator::class;
     }
 
-
     /**
-    * Specify Presenter class name
-    *
-    * @return mixed
-    */
+     * Specify Presenter class name.
+     *
+     * @return mixed
+     */
     public function presenter()
     {
-
         return SocialiteUserPresenter::class;
     }
 
-
     /**
-     * Boot up the repository, pushing criteria
+     * Boot up the repository, pushing criteria.
      */
     public function boot()
     {

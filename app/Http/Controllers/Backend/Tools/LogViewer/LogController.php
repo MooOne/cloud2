@@ -3,8 +3,9 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-4-18
- * Time: 下午5:02
+ * Time: 下午5:02.
  */
+
 namespace Yeelight\Http\Controllers\Backend\Tools\LogViewer;
 
 use Illuminate\Http\Request;
@@ -14,28 +15,30 @@ use Yeelight\Models\Tools\LogViewer\LogViewer;
 class LogController extends BaseController
 {
     /**
-     * 主页
-     * @param null $file
+     * 主页.
+     *
+     * @param null    $file
      * @param Request $request
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index($file = null, Request $request)
+    public function index($file, Request $request)
     {
         $offset = $request->get('offset');
 
         $viewer = new LogViewer($file);
 
         return view('backend.tools.log_viewer.logs', [
-            'logs'      => $viewer->fetch($offset),
-            'logFiles'  => $viewer->getLogFiles(),
-            'fileName'  => $viewer->file,
-            'end'       => $viewer->getFilesize(),
-            'tailPath'  => route('tools.log-viewer-tail', ['file' => $viewer->file]),
-            'prevUrl'   => $viewer->getPrevPageUrl(),
-            'nextUrl'   => $viewer->getNextPageUrl(),
-            'filePath'  => $viewer->getFilePath(),
-            'size'      => static::bytesToHuman($viewer->getFilesize()),
-            'levelColors' => LogViewer::$levelColors
+            'logs'        => $viewer->fetch($offset),
+            'logFiles'    => $viewer->getLogFiles(),
+            'fileName'    => $viewer->file,
+            'end'         => $viewer->getFilesize(),
+            'tailPath'    => route('tools.log-viewer-tail', ['file' => $viewer->file]),
+            'prevUrl'     => $viewer->getPrevPageUrl(),
+            'nextUrl'     => $viewer->getNextPageUrl(),
+            'filePath'    => $viewer->getFilePath(),
+            'size'        => static::bytesToHuman($viewer->getFilesize()),
+            'levelColors' => LogViewer::$levelColors,
         ]);
     }
 

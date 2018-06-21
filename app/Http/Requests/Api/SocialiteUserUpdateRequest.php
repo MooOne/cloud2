@@ -24,8 +24,8 @@ class SocialiteUserUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id'	=> 'required',
-            'provider'	=> 'required',
+            'user_id'	         => 'required',
+            'provider'	        => 'required',
             'provider_user_id'	=> 'required',
         ];
     }

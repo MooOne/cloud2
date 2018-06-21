@@ -1,17 +1,17 @@
 <?php
+
 namespace Yeelight\Transformers;
 
 use Yeelight\Models\AdminOperationLog;
 
 /**
- * Class AdminOperationLogTransformer
- * @package namespace Yeelight\Transformers;
+ * Class AdminOperationLogTransformer.
  */
 class AdminOperationLogTransformer extends BaseTransformer
 {
-
     /**
-     * Transform the AdminOperationLog entity
+     * Transform the AdminOperationLog entity.
+     *
      * @param AdminOperationLog $model
      *
      * @return array
@@ -19,16 +19,16 @@ class AdminOperationLogTransformer extends BaseTransformer
     public function transform(AdminOperationLog $model)
     {
         return [
-            'id' => (int) $model->id,
-            'user_id' => (int) $model->user_id,
-            'user_name' => (string) $model->user->name,
-            'path' => (string) $model->path,
-            'method' => (string) $model->method,
+            'id'           => (int) $model->id,
+            'user_id'      => (int) $model->user_id,
+            'user_name'    => (string) $model->user->name,
+            'path'         => (string) $model->path,
+            'method'       => (string) $model->method,
             'method_color' => (string) isset(AdminOperationLog::$methodColors[$model->method]) ? AdminOperationLog::$methodColors[$model->method] : '',
-            'ip' => (string) $model->ip,
-            'input' => (string) $model->input,
-            'created_at' => (string) $model->created_at,
-            'updated_at' => (string) $model->updated_at
+            'ip'           => (string) $model->ip,
+            'input'        => (string) $model->input,
+            'created_at'   => (string) $model->created_at,
+            'updated_at'   => (string) $model->updated_at,
         ];
     }
 }

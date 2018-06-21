@@ -3,8 +3,9 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-4-18
- * Time: 下午5:43
+ * Time: 下午5:43.
  */
+
 namespace Yeelight\Models\Tools\Scheduling;
 
 use Illuminate\Console\Scheduling\CallbackEvent;
@@ -16,6 +17,7 @@ class Scheduling
      * @var string out put file for command.
      */
     protected $sendOutputTo;
+
     /**
      * Get all events in console kernel.
      *
@@ -24,8 +26,10 @@ class Scheduling
     protected function getKernelEvents()
     {
         app()->make('Illuminate\Contracts\Console\Kernel');
+
         return app()->make('Illuminate\Console\Scheduling\Schedule')->events();
     }
+
     /**
      * Get all formatted tasks.
      *
@@ -45,8 +49,10 @@ class Scheduling
                 'readable'      => CronSchedule::fromCronString($event->expression)->asNaturalLanguage(),
             ];
         }
+
         return $tasks;
     }
+
     /**
      * Format a giving task.
      *
@@ -64,16 +70,19 @@ class Scheduling
         }
         if (Str::contains($event->command, '\'artisan\'')) {
             $exploded = explode(' ', $event->command);
+
             return [
                 'type' => 'artisan',
                 'name' => 'artisan '.implode(' ', array_slice($exploded, 2)),
             ];
         }
+
         return [
             'type' => 'command',
             'name' => $event->command,
         ];
     }
+
     /**
      * Run specific task.
      *
@@ -88,8 +97,10 @@ class Scheduling
         $event = $this->getKernelEvents()[$id - 1];
         $event->sendOutputTo($this->getOutputTo());
         $event->run(app());
+
         return $this->readOutput();
     }
+
     /**
      * @return string
      */
@@ -98,8 +109,10 @@ class Scheduling
         if (!$this->sendOutputTo) {
             $this->sendOutputTo = storage_path('app/task-schedule.output');
         }
+
         return $this->sendOutputTo;
     }
+
     /**
      * Read output info from output file.
      *

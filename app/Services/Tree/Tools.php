@@ -3,8 +3,9 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-4-18
- * Time: 上午10:54
+ * Time: 上午10:54.
  */
+
 namespace Yeelight\Services\Tree;
 
 use Illuminate\Contracts\Support\Htmlable;
@@ -31,6 +32,7 @@ class Tools implements Renderable
      * Create a new Tools instance.
      *
      * @param Tree $tree
+     *
      * @internal param Builder $builder
      */
     public function __construct(Tree $tree)

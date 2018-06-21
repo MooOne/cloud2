@@ -1,15 +1,15 @@
 <?php
+
 namespace Yeelight\Repositories\Eloquent;
 
+use Yeelight\Models\AdminPermission;
+use Yeelight\Presenters\AdminPermissionPresenter;
 use Yeelight\Repositories\Criteria\RequestCriteria;
 use Yeelight\Repositories\Interfaces\AdminPermissionRepository;
-use Yeelight\Models\AdminPermission;
 use Yeelight\Validators\AdminPermissionValidator;
-use Yeelight\Presenters\AdminPermissionPresenter;
 
 /**
- * Class AdminPermissionRepositoryEloquent
- * @package namespace Yeelight\Repositories\Eloquent;
+ * Class AdminPermissionRepositoryEloquent.
  */
 class AdminPermissionRepositoryEloquent extends BaseRepository implements AdminPermissionRepository
 {
@@ -29,9 +29,8 @@ class AdminPermissionRepositoryEloquent extends BaseRepository implements AdminP
      */
     protected $isSearchableForceAndWhere = true;
 
-
     /**
-     * Specify Model class name
+     * Specify Model class name.
      *
      * @return string
      */
@@ -41,31 +40,27 @@ class AdminPermissionRepositoryEloquent extends BaseRepository implements AdminP
     }
 
     /**
-    * Specify Validator class name
-    *
-    * @return mixed
-    */
+     * Specify Validator class name.
+     *
+     * @return mixed
+     */
     public function validator()
     {
-
         return AdminPermissionValidator::class;
     }
 
-
     /**
-    * Specify Presenter class name
-    *
-    * @return mixed
-    */
+     * Specify Presenter class name.
+     *
+     * @return mixed
+     */
     public function presenter()
     {
-
         return AdminPermissionPresenter::class;
     }
 
-
     /**
-     * Boot up the repository, pushing criteria
+     * Boot up the repository, pushing criteria.
      */
     public function boot()
     {

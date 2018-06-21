@@ -3,8 +3,9 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-4-19
- * Time: 上午9:39
+ * Time: 上午9:39.
  */
+
 namespace Yeelight\Models\Tools\ApiTester;
 
 use Illuminate\Support\Facades\File;
@@ -37,6 +38,7 @@ class ApiLogger
         foreach ($history as &$item) {
             $item['parameters'] = static::formatParameters($item['parameters']);
         }
+
         return $history;
     }
 
@@ -52,6 +54,7 @@ class ApiLogger
                 'defaultValue' => $value,
             ];
         }
+
         return json_encode($retval);
     }
 }

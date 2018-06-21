@@ -1,12 +1,10 @@
 <?php
+
 namespace Yeelight\Generators;
 
-
 /**
- * Class TransformerGenerator
- * @package Yeelight\Generators
+ * Class TransformerGenerator.
  */
-
 class TransformerGenerator extends Generator
 {
     /**
@@ -23,7 +21,7 @@ class TransformerGenerator extends Generator
      */
     public function getRootNamespace()
     {
-        return parent::getRootNamespace() . parent::getConfigGeneratorClassPath($this->getPathConfigNode());
+        return parent::getRootNamespace().parent::getConfigGeneratorClassPath($this->getPathConfigNode());
     }
 
     /**
@@ -43,7 +41,7 @@ class TransformerGenerator extends Generator
      */
     public function getPath()
     {
-        return $this->getBasePath() . '/' . parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true) . '/' . $this->getName() . 'Transformer.php';
+        return $this->getBasePath().'/'.parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true).'/'.$this->getName().'Transformer.php';
     }
 
     /**
@@ -64,15 +62,14 @@ class TransformerGenerator extends Generator
     public function getColumns()
     {
         $fields = $this->fields;
-        $result = "";
+        $result = '';
         if (!empty($fields)) {
             foreach ($fields as $index => $field) {
                 $type = $this->getTypeFromField($field);
-                $result .= "\t\t\t'{$field['name']}' => ($type) " .'$model->'. "{$field['name']},\r\n";
+                $result .= "\t\t\t'{$field['name']}' => ($type) ".'$model->'."{$field['name']},\r\n";
             }
-
         }
-        $result .= "";
+        $result .= '';
 
         return $result;
     }
@@ -133,18 +130,18 @@ class TransformerGenerator extends Generator
     public function getReplacements()
     {
         $modelGenerator = new ModelGenerator([
-            'name' => $this->name
+            'name' => $this->name,
         ]);
-        $model = $modelGenerator->getRootNamespace() . '\\' . $modelGenerator->getName();
+        $model = $modelGenerator->getRootNamespace().'\\'.$modelGenerator->getName();
         $model = str_replace([
-            "\\",
-            '/'
+            '\\',
+            '/',
         ], '\\', $model);
 
         return array_merge(parent::getReplacements(), [
-            'model' => $model,
+            'model'              => $model,
             'transformer_fields' => $this->getColumns(),
-            '_id_name'  => $this->getIdName(),
+            '_id_name'           => $this->getIdName(),
         ]);
     }
 }

@@ -3,8 +3,9 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-3-27
- * Time: 下午4:12
+ * Time: 下午4:12.
  */
+
 namespace Yeelight\Traits;
 
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -18,11 +19,11 @@ trait BackendPagination
      */
     protected $backendPagination = null;
 
-
     /**
      * Create a new RepositoryInterface instance.
      *
      * @param array $lists
+     *
      * @return string
      */
     public function backendPagination($lists)
@@ -34,7 +35,7 @@ trait BackendPagination
             $lists['meta']['pagination']['per_page'],
             $lists['meta']['pagination']['current_page'],
             [
-                'path' => Paginator::resolveCurrentPath(), //注释2
+                'path'     => Paginator::resolveCurrentPath(), //注释2
                 'pageName' => config('yeelight.backend.pagination.pageName'),
             ]
         );

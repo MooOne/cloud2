@@ -1,16 +1,15 @@
 <?php
+
 namespace Yeelight\Generators;
 
 use Yeelight\Generators\Migrations\RulesParser;
 use Yeelight\Generators\Migrations\SchemaParser;
 
 /**
- * Class ValidatorGenerator
- * @package Yeelight\Generators
+ * Class ValidatorGenerator.
  */
 class ValidatorGenerator extends Generator
 {
-
     /**
      * Get stub name.
      *
@@ -25,7 +24,7 @@ class ValidatorGenerator extends Generator
      */
     public function getRootNamespace()
     {
-        return parent::getRootNamespace() . parent::getConfigGeneratorClassPath($this->getPathConfigNode());
+        return parent::getRootNamespace().parent::getConfigGeneratorClassPath($this->getPathConfigNode());
     }
 
     /**
@@ -45,7 +44,7 @@ class ValidatorGenerator extends Generator
      */
     public function getPath()
     {
-        return $this->getBasePath() . '/' . parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true) . '/' . $this->getName() . 'Validator.php';
+        return $this->getBasePath().'/'.parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true).'/'.$this->getName().'Validator.php';
     }
 
     /**
@@ -65,7 +64,6 @@ class ValidatorGenerator extends Generator
      */
     public function getReplacements()
     {
-
         return array_merge(parent::getReplacements(), [
             'rules' => $this->getRules(),
         ]);
@@ -81,13 +79,13 @@ class ValidatorGenerator extends Generator
         if (!$this->rules) {
             return '[]';
         }
-        $results = '[' . PHP_EOL;
+        $results = '['.PHP_EOL;
 
         foreach ($this->getSchemaParser()->toArray() as $column => $value) {
-            $results .= "\t\t'{$column}'\t=>'\t{$value}'," . PHP_EOL;
+            $results .= "\t\t'{$column}'\t=>'\t{$value}',".PHP_EOL;
         }
 
-        return $results . "\t" . ']';
+        return $results."\t".']';
     }
 
     /**

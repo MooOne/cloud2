@@ -3,14 +3,14 @@
  * Created by PhpStorm.
  * User: sheldon
  * Date: 18-3-27
- * Time: 下午5:18
+ * Time: 下午5:18.
  */
 
 namespace Yeelight\Models;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
 use Yeelight\Http\Middleware\Pjax;
-use Illuminate\Support\Facades\Auth;
 
 class Permission
 {

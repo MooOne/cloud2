@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Http\Controllers\Api\Foundation\Validation;
 
 use Dingo\Api\Exception\ResourceException;
@@ -20,8 +21,9 @@ trait ValidatesRequests
     /**
      * Run the validation routine against the given validator.
      *
-     * @param  \Illuminate\Contracts\Validation\Validator|array $validator
-     * @param  \Illuminate\Http\Request|null $request
+     * @param \Illuminate\Contracts\Validation\Validator|array $validator
+     * @param \Illuminate\Http\Request|null                    $request
+     *
      * @return void
      */
     public function validateWith($validator, Request $request = null)
@@ -40,10 +42,11 @@ trait ValidatesRequests
     /**
      * Validate the given request with the given rules.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  array $rules
-     * @param  array $messages
-     * @param  array $customAttributes
+     * @param \Illuminate\Http\Request $request
+     * @param array                    $rules
+     * @param array                    $messages
+     * @param array                    $customAttributes
+     *
      * @return void
      */
     public function validate(Request $request, array $rules, array $messages = [], array $customAttributes = [])
@@ -58,11 +61,11 @@ trait ValidatesRequests
     /**
      * Validate the given request with the given rules.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param array $data
-     * @param  array $rules
-     * @param  array $messages
-     * @param  array $customAttributes
+     * @param \Illuminate\Http\Request $request
+     * @param array                    $data
+     * @param array                    $rules
+     * @param array                    $messages
+     * @param array                    $customAttributes
      */
     public function validateData(Request $request, array $data, array $rules, array $messages = [], array $customAttributes = [])
     {
@@ -76,14 +79,15 @@ trait ValidatesRequests
     /**
      * Validate the given request with the given rules.
      *
-     * @param  string $errorBag
-     * @param  \Illuminate\Http\Request $request
-     * @param  array $rules
-     * @param  array $messages
-     * @param  array $customAttributes
-     * @return void
+     * @param string                   $errorBag
+     * @param \Illuminate\Http\Request $request
+     * @param array                    $rules
+     * @param array                    $messages
+     * @param array                    $customAttributes
      *
      * @throws \Illuminate\Foundation\Validation\ValidationException
+     *
+     * @return void
      */
     public function validateWithBag($errorBag, Request $request, array $rules, array $messages = [], array $customAttributes = [])
     {
@@ -95,11 +99,12 @@ trait ValidatesRequests
     /**
      * Throw the failed validation exception.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Illuminate\Contracts\Validation\Validator $validator
-     * @return void
+     * @param \Illuminate\Http\Request                   $request
+     * @param \Illuminate\Contracts\Validation\Validator $validator
      *
      * @throws \Illuminate\Foundation\Validation\ValidationException
+     *
+     * @return void
      */
     protected function throwValidationException(Request $request, $validator)
     {
@@ -112,8 +117,9 @@ trait ValidatesRequests
     /**
      * Create the response for when a request fails validation.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  array $errors
+     * @param \Illuminate\Http\Request $request
+     * @param array                    $errors
+     *
      * @return \Illuminate\Http\Response
      */
     protected function buildFailedValidationResponse(Request $request, array $errors)
@@ -130,7 +136,8 @@ trait ValidatesRequests
     /**
      * Format the validation errors to be returned.
      *
-     * @param  \Illuminate\Contracts\Validation\Validator $validator
+     * @param \Illuminate\Contracts\Validation\Validator $validator
+     *
      * @return array
      */
     protected function formatValidationErrors(Validator $validator)
@@ -161,8 +168,9 @@ trait ValidatesRequests
     /**
      * Execute a Closure within with a given error bag set as the default bag.
      *
-     * @param  string $errorBag
-     * @param  callable $callback
+     * @param string   $errorBag
+     * @param callable $callback
+     *
      * @return void
      */
     protected function withErrorBag($errorBag, callable $callback)

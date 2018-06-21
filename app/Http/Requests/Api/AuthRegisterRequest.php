@@ -24,12 +24,12 @@ class AuthRegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'grant_type' => 'required',
-            'client_id' => 'required',
+            'grant_type'    => 'required',
+            'client_id'     => 'required',
             'client_secret' => 'required',
-            'username' => 'required|max:50|unique:users,email',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6'
+            'username'      => 'required|max:50|unique:users,email',
+            'email'         => 'required|email|unique:users,email',
+            'password'      => 'required|min:6',
         ];
     }
 }

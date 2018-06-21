@@ -1,7 +1,7 @@
 <?php
+
 namespace Yeelight\Models;
 
-use Yeelight\Models\BaseModel;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 use Yeelight\Models\Foundation\User;
@@ -34,20 +34,20 @@ class SocialiteUser extends BaseModel implements Transformable
     protected $primaryKey = 'socialite_user_id';
 
     protected $fillable = [
-		'user_id',
-		'provider',
-		'provider_user_id',
-		'oauth_data',
-		'expires_at',
-	];
+        'user_id',
+        'provider',
+        'provider_user_id',
+        'oauth_data',
+        'expires_at',
+    ];
 
     // Fields to be converted to Carbon object automatically
     protected $dates = [];
 
     protected $guarded = [];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
-
 }

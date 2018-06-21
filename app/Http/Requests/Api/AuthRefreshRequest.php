@@ -24,10 +24,10 @@ class AuthRefreshRequest extends FormRequest
     public function rules()
     {
         return [
-            'grant_type' => 'required',
-            'client_id' => 'required',
+            'grant_type'    => 'required',
+            'client_id'     => 'required',
             'client_secret' => 'required',
-            'refresh_token' => 'required'
+            'refresh_token' => 'required',
         ];
     }
 }

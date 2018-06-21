@@ -1,9 +1,9 @@
 <?php
+
 namespace Yeelight\Services\Image;
 
 class ImageTemplate
 {
-
     protected $width = 0;
     protected $height = 0;
     protected $ratio = true;
@@ -21,14 +21,14 @@ class ImageTemplate
      *      (width=0, height=0)       => original
      *      (width=0, height=500)       => heighten to 500
      *      (width=500, height=0)       => widen to 500
-     *      (width=500, height=500)     => resize to 500 x 500
+     *      (width=500, height=500)     => resize to 500 x 500.
      *
      * @param $width
      * @param $height
-     * @param bool $ratio
-     * @param bool $fit
+     * @param bool  $ratio
+     * @param bool  $fit
      * @param array $options
-     * @param bool $download If TRUE, it will tell browser to download the image instead of showing it.
+     * @param bool  $download If TRUE, it will tell browser to download the image instead of showing it.
      */
     public function __construct($width, $height, $ratio = true, $fit = true, array $options = [], $download = false)
     {
@@ -42,11 +42,12 @@ class ImageTemplate
 
     public static function __set_state($data)
     {
-        $imageTemplate = new ImageTemplate($data['width'], $data['height']);
+        $imageTemplate = new self($data['width'], $data['height']);
         $imageTemplate->fit = $data['fit'];
         $imageTemplate->ratio = $data['ratio'];
         $imageTemplate->options = $data['options'];
         $imageTemplate->download = $data['download'];
+
         return $imageTemplate;
     }
 
@@ -67,7 +68,7 @@ class ImageTemplate
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isRatio()
     {
@@ -75,7 +76,7 @@ class ImageTemplate
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isFit()
     {
@@ -83,7 +84,7 @@ class ImageTemplate
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isDownload()
     {
@@ -100,6 +101,7 @@ class ImageTemplate
 
     /**
      * @param $name
+     *
      * @return mixed|null
      */
     public function getOption($name)
@@ -107,7 +109,7 @@ class ImageTemplate
         if (isset($this->options[$name])) {
             return $this->options[$name];
         } else {
-            return null;
+            return;
         }
     }
 
@@ -142,5 +144,4 @@ class ImageTemplate
     {
         return $this->width == 0 && $this->height == 0;
     }
-
 }

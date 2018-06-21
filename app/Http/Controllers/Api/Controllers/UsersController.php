@@ -1,18 +1,15 @@
 <?php
+
 namespace Yeelight\Http\Controllers\Api\Controllers;
 
 use Dingo\Api\Exception\DeleteResourceFailedException;
-use Dingo\Api\Exception\StoreResourceFailedException;
 use Dingo\Api\Exception\UpdateResourceFailedException;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Yeelight\Http\Requests\Api\UserCreateRequest;
 use Yeelight\Http\Requests\Api\UserUpdateRequest;
 use Yeelight\Repositories\Interfaces\UserRepository;
 use Yeelight\Validators\UserValidator;
 
 class UsersController extends BaseController
 {
-
     /**
      * @var UserRepository
      */
@@ -29,9 +26,8 @@ class UsersController extends BaseController
         $this->validator = $validator;
     }
 
-
     /**
-     * Get current logged in User info
+     * Get current logged in User info.
      *
      * @return mixed
      */
@@ -43,13 +39,12 @@ class UsersController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  UserUpdateRequest $request
+     * @param UserUpdateRequest $request
      *
      * @return Response
      */
     public function update(UserUpdateRequest $request)
     {
-
         $data = $request->all();
 
         $this->repository->update($data, $this->getAuthUserId());
@@ -59,9 +54,7 @@ class UsersController extends BaseController
 
         // Updated, return 204 No Content
         return $this->response->noContent();
-
     }
-
 
     /**
      * Remove the specified resource from storage.

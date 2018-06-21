@@ -1,7 +1,6 @@
 <?php
-namespace Yeelight\Http\Controllers;
 
-use Illuminate\Http\Request;
+namespace Yeelight\Http\Controllers;
 
 class HomeController extends BaseController
 {
@@ -12,7 +11,6 @@ class HomeController extends BaseController
      */
     public function __construct()
     {
-        
     }
 
     /**
@@ -22,6 +20,6 @@ class HomeController extends BaseController
      */
     public function index()
     {
-        return redirect( config( 'yeelight.backend.route.prefix' ) );
+        return redirect(config('yeelight.backend.route.prefix'));
     }
 }

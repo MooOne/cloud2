@@ -1,12 +1,13 @@
 <?php
+
 namespace Yeelight\Http\Controllers\BackendAuth;
 
-use Illuminate\Support\Facades\Lang;
-use Yeelight\Http\Controllers\BaseController;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Redirect;
+use Yeelight\Http\Controllers\BaseController;
 
 class LoginController extends BaseController
 {
@@ -32,20 +33,20 @@ class LoginController extends BaseController
 
     /**
      * The maximum number of attempts to allow.
+     *
      * @var int
      */
     protected $maxAttempts = 5;
 
     /**
      * The number of minutes to throttle for.
+     *
      * @var int
      */
     protected $decayMinutes = 60;
 
-
     /**
      * Create a new controller instance.
-     *
      */
     public function __construct()
     {
@@ -55,6 +56,7 @@ class LoginController extends BaseController
     public function redirectTo()
     {
         $this->redirectTo = config('yeelight.backend.route.prefix');
+
         return $this->redirectTo;
     }
 
@@ -72,6 +74,7 @@ class LoginController extends BaseController
      * Handle a login request to the application.
      *
      * @param \Illuminate\Http\Request|Request $request
+     *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function login(Request $request)
@@ -102,24 +105,26 @@ class LoginController extends BaseController
     /**
      * Validate the user login request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return void
      */
     protected function validateLogin(Request $request)
     {
         $this->validate($request, [
-            $this->username() => 'required|string',
-            'password' => 'required|string',
+            $this->username()   => 'required|string',
+            'password'          => 'required|string',
             'geetest_challenge' => 'geetest',
         ], [
-            'geetest' => config('geetest.server_fail_alert')
+            'geetest' => config('geetest.server_fail_alert'),
         ]);
     }
 
     /**
      * Attempt to log the user into the application.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return bool
      */
     protected function attemptLogin(Request $request)
@@ -132,7 +137,8 @@ class LoginController extends BaseController
     /**
      * Get the needed authorization credentials from the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     protected function credentials(Request $request)
@@ -143,7 +149,8 @@ class LoginController extends BaseController
     /**
      * Send the response after the user was authenticated.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     protected function sendLoginResponse(Request $request)
@@ -161,22 +168,23 @@ class LoginController extends BaseController
     /**
      * Get the failed login response instance.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param \Illuminate\Http\Request $request
      *
      * @throws ValidationException
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function sendFailedLoginResponse(Request $request)
     {
         return Redirect::back()->withInput()->withErrors([$this->username() => $this->getFailedLoginMessage()]);
     }
 
-
     /**
      * The user has been authenticated.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $user
+     * @param \Illuminate\Http\Request $request
+     * @param mixed                    $user
+     *
      * @return mixed
      */
     protected function authenticated(Request $request, $user)
@@ -197,7 +205,8 @@ class LoginController extends BaseController
     /**
      * Log the user out of the application.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function logout(Request $request)
@@ -228,5 +237,4 @@ class LoginController extends BaseController
             ? trans('auth.failed')
             : 'These credentials do not match our records.';
     }
-
 }

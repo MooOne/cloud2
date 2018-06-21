@@ -1,15 +1,14 @@
 <?php
+
 namespace Yeelight\Generators;
 
 use Illuminate\Support\Str;
 
 /**
- * Class ControllerGenerator
- * @package Yeelight\Generators
+ * Class ControllerGenerator.
  */
 class ControllerGenerator extends Generator
 {
-
     /**
      * Get stub name.
      *
@@ -24,7 +23,7 @@ class ControllerGenerator extends Generator
      */
     public function getRootNamespace()
     {
-        return str_replace('/', '\\', parent::getRootNamespace() . parent::getConfigGeneratorClassPath($this->getPathConfigNode()));
+        return str_replace('/', '\\', parent::getRootNamespace().parent::getConfigGeneratorClassPath($this->getPathConfigNode()));
     }
 
     /**
@@ -44,7 +43,7 @@ class ControllerGenerator extends Generator
      */
     public function getPath()
     {
-        return $this->getBasePath() . '/' . parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true) . '/' . $this->getControllerName() . 'Controller.php';
+        return $this->getBasePath().'/'.parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true).'/'.$this->getControllerName().'Controller.php';
     }
 
     /**
@@ -58,24 +57,22 @@ class ControllerGenerator extends Generator
     }
 
     /**
-     * Gets controller name based on model
+     * Gets controller name based on model.
      *
      * @return string
      */
     public function getControllerName()
     {
-
         return ucfirst($this->getPluralName());
     }
 
     /**
-     * Gets plural name based on model
+     * Gets plural name based on model.
      *
      * @return string
      */
     public function getPluralName()
     {
-
         return str_plural(lcfirst(ucwords($this->getClass())));
     }
 
@@ -116,7 +113,7 @@ class ControllerGenerator extends Generator
     }
 
     /**
-     * Gets singular name based on model
+     * Gets singular name based on model.
      *
      * @return string
      */
@@ -126,7 +123,7 @@ class ControllerGenerator extends Generator
     }
 
     /**
-     * Gets validator full class name
+     * Gets validator full class name.
      *
      * @return string
      */
@@ -136,17 +133,16 @@ class ControllerGenerator extends Generator
             'name' => $this->name,
         ]);
 
-        $validator = $validatorGenerator->getRootNamespace() . '\\' . $validatorGenerator->getName();
+        $validator = $validatorGenerator->getRootNamespace().'\\'.$validatorGenerator->getName();
 
-        return 'use ' . str_replace([
-            "\\",
-            '/'
-        ], '\\', $validator) . 'Validator;';
+        return 'use '.str_replace([
+            '\\',
+            '/',
+        ], '\\', $validator).'Validator;';
     }
 
-
     /**
-     * Gets repository full class name
+     * Gets repository full class name.
      *
      * @return string
      */
@@ -156,11 +152,11 @@ class ControllerGenerator extends Generator
             'name' => $this->name,
         ]);
 
-        $repository = $repositoryGenerator->getRootNamespace() . '\\' . $repositoryGenerator->getName();
+        $repository = $repositoryGenerator->getRootNamespace().'\\'.$repositoryGenerator->getName();
 
-        return 'use ' . str_replace([
-            "\\",
-            '/'
-        ], '\\', $repository) . 'Repository;';
+        return 'use '.str_replace([
+            '\\',
+            '/',
+        ], '\\', $repository).'Repository;';
     }
 }

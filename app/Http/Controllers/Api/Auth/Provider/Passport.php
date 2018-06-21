@@ -1,15 +1,15 @@
 <?php
+
 namespace Yeelight\Http\Controllers\Api\Auth\Provider;
 
-use Dingo\Api\Routing\Route;
-use Illuminate\Http\Request;
-use Illuminate\Auth\AuthManager;
 use Dingo\Api\Auth\Provider\Authorization;
+use Dingo\Api\Routing\Route;
+use Illuminate\Auth\AuthManager;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class Passport extends Authorization
 {
-
     /**
      * Illuminate authentication manager.
      *
@@ -44,7 +44,7 @@ class Passport extends Authorization
      */
     public function authenticate(Request $request, Route $route)
     {
-        if ( ! $user = $this->auth->user()) {
+        if (!$user = $this->auth->user()) {
             throw new UnauthorizedHttpException(null, 'Unauthenticated.');
         }
 
@@ -61,5 +61,3 @@ class Passport extends Authorization
         return 'Bearer';
     }
 }
-
-

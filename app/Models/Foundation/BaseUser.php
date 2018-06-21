@@ -1,4 +1,5 @@
 <?php
+
 namespace Yeelight\Models\Foundation;
 
 use Illuminate\Auth\Authenticatable;
@@ -15,7 +16,7 @@ use Yeelight\Base\Models\BaseModel;
 use Yeelight\Models\Interfaces\BaseModelEventsInterface;
 
 /**
- * Yeelight\Models\Foundation\BaseUser
+ * Yeelight\Models\Foundation\BaseUser.
  *
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
  * @property-read mixed $id
@@ -23,7 +24,8 @@ use Yeelight\Models\Interfaces\BaseModelEventsInterface;
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
  * @mixin \Eloquent
  */
-class BaseUser extends BaseModel implements BaseModelEventsInterface,
+class BaseUser extends BaseModel implements
+    BaseModelEventsInterface,
     AuthenticatableContract,
     AuthorizableContract,
     CanResetPasswordContract,
@@ -49,52 +51,52 @@ class BaseUser extends BaseModel implements BaseModelEventsInterface,
      */
     protected $primaryKey = 'user_id';
 
-    function onCreating()
+    public function onCreating()
     {
         // TODO: Implement onCreating() method.
     }
 
-    function onCreated()
+    public function onCreated()
     {
         // TODO: Implement onCreated() method.
     }
 
-    function onUpdating()
+    public function onUpdating()
     {
         // TODO: Implement onUpdating() method.
     }
 
-    function onUpdated()
+    public function onUpdated()
     {
         // TODO: Implement onUpdated() method.
     }
 
-    function onSaving()
+    public function onSaving()
     {
         // TODO: Implement onSaving() method.
     }
 
-    function onSaved()
+    public function onSaved()
     {
         // TODO: Implement onSaved() method.
     }
 
-    function onDeleting()
+    public function onDeleting()
     {
         // TODO: Implement onDeleting() method.
     }
 
-    function onDeleted()
+    public function onDeleted()
     {
         // TODO: Implement onDeleted() method.
     }
 
-    function onRestoring()
+    public function onRestoring()
     {
         // TODO: Implement onRestoring() method.
     }
 
-    function onRestored()
+    public function onRestored()
     {
         // TODO: Implement onRestored() method.
     }

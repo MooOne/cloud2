@@ -24,8 +24,8 @@ class AdminUserSettingRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
-            'password' => 'required|confirmed',
+            'name'                  => 'required|max:255',
+            'password'              => 'required|confirmed',
             'password_confirmation' => 'required',
         ];
     }

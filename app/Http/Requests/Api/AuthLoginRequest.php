@@ -24,11 +24,11 @@ class AuthLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'grant_type' => 'required',
-            'client_id' => 'required',
+            'grant_type'    => 'required',
+            'client_id'     => 'required',
             'client_secret' => 'required',
-            'username' => 'required',
-            'password' => 'required'
+            'username'      => 'required',
+            'password'      => 'required',
         ];
     }
 }

@@ -1,12 +1,12 @@
 <?php
+
 namespace Yeelight\Models;
 
-use Yeelight\Models\BaseModel;
-use Prettus\Repository\Contracts\Transformable;
-use Prettus\Repository\Traits\TransformableTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
 
 class AdminPermission extends BaseModel implements Transformable
 {
@@ -163,7 +163,7 @@ class AdminPermission extends BaseModel implements Transformable
         return $method;
     }
 
-    function onDeleting()
+    public function onDeleting()
     {
         parent::onDeleting();
         // Detach models from the relationship.
