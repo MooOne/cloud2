@@ -13,10 +13,6 @@ sudo: false
 services:
   - mysql
 
-before_install:
-  - sudo mysql -e "use mysql; update user authentication_string=PASSWORD('root') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
-  - sudo service mysql restart
-
 before_script:
   - mv .env.example .env
   - mysql -e 'create database if not exists cloud2;'
