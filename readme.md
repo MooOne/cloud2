@@ -1,3 +1,10 @@
+<p align="center">
+<a href="https://travis-ci.org/yeelight/cloud2"><img src="https://travis-ci.org/yeelight/cloud2.svg" alt="Build Status"></a>
+<a href="https://scrutinizer-ci.com/g/Yeelight/cloud2/"><img src="https://scrutinizer-ci.com/g/Yeelight/cloud2/badges/quality-score.png?b=master" alt="Build Status"></a>
+<a href="https://scrutinizer-ci.com/g/Yeelight/cloud2/"><img src="https://scrutinizer-ci.com/g/Yeelight/cloud2/badges/build.png?b=master" alt="Build Status"></a>
+<a href="https://scrutinizer-ci.com/g/Yeelight/cloud2/"><img src="https://scrutinizer-ci.com/g/Yeelight/cloud2/badges/code-intelligence.svg?b=master" alt="Build Status"></a>
+<a href="https://github.com/Yeelight/cloud2"><img src="https://poser.pugx.org/yeelight/cloud2/license.svg" alt="License"></a>
+</p>
 ## 简介
 
 * 基于Laravel5.5和AdminLTE的后台开发框架

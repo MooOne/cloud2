@@ -15,7 +15,7 @@ services:
 
 before_script:
   - mv .env.example .env
-  - mysql -e 'create database if not exists cloud2;'
+  - mysql -e 'create database if not exists cloud2;set global innodb_file_format = `BARRACUDA`;set global innodb_large_prefix = `ON`;'
   - travis_retry composer self-update
   - travis_retry composer install --prefer-source --no-interaction --dev
   - php artisan migrate:install --no-interaction -vvv
