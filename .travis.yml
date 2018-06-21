@@ -14,14 +14,23 @@ services:
   - mysql
 
 before_install:
-  - sudo mysql -e "use mysql; update user set User='forge',authentication_string=PASSWORD('forge') where User='travis'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
+  - sudo mysql -e "use mysql; update user authentication_string=PASSWORD('root') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
   - sudo service mysql restart
 
 before_script:
-  - mysql -e 'create database if not exists forge;'
+  - mv .env.example .env
+  - mysql -e 'create database if not exists cloud2;'
   - travis_retry composer self-update
-  - travis_retry composer install --no-interaction
-  - travis_retry php artisan migrate -n
+  - travis_retry composer install --prefer-source --no-interaction --dev
+  - chmod -R 777 app/storage
+  - php artisan migrate:install --no-interaction -vvv
 
 script:
   - vendor/bin/phpunit
+  - php artisan migrate --no-interaction -vvv
+  - php artisan db:seed --no-interaction -vvv
+  - php artisan migrate:rollback --no-interaction -vvv
+
+after_script:
+  - ls -laR app/storage
+  - cat app/storage/logs/*
