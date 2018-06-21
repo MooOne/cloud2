@@ -20,8 +20,8 @@ before_install:
 before_script:
   - mysql -e 'create database if not exists forge;'
   - travis_retry composer self-update
-  - php artisan migrate --seed -n
   - travis_retry composer install --no-interaction
+  - php artisan migrate --seed -n
 
 script:
   - vendor/bin/phpunit
