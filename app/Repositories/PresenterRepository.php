@@ -9,14 +9,11 @@ use Prettus\Repository\Contracts\PresenterInterface;
 use Yeelight\Presenters\BasicPresenter;
 
 /**
- * Class PresenterRepository
+ * Class PresenterRepository.
  *
  * @category Yeelight
  *
- * @package Yeelight\Repositories
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -30,8 +27,8 @@ class PresenterRepository
     /**
      * PresenterRepository constructor.
      *
-     * @param string|null $transformer transformer
-     * @param bool $skipPresenter skipPresenter
+     * @param string|null $transformer   transformer
+     * @param bool        $skipPresenter skipPresenter
      *
      * @throws \Exception
      */
@@ -44,7 +41,7 @@ class PresenterRepository
     }
 
     /**
-     * IsSkipPresenter
+     * IsSkipPresenter.
      *
      * @return bool
      */

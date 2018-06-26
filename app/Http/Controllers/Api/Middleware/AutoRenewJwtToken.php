@@ -6,14 +6,11 @@ use Closure;
 use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
 
 /**
- * Class AutoRenewJwtToken
+ * Class AutoRenewJwtToken.
  *
  * @category Yeelight
  *
- * @package Yeelight\Http\Controllers\Api\Middleware
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -24,7 +21,7 @@ class AutoRenewJwtToken extends BaseMiddleware
      * Handle an incoming request.
      *
      * @param \Illuminate\Http\Request $request Request
-     * @param \Closure $next Closure
+     * @param \Closure                 $next    Closure
      *
      * @return mixed
      */

@@ -3,14 +3,11 @@
 namespace Yeelight\Generators;
 
 /**
- * Class TransformerGenerator
+ * Class TransformerGenerator.
  *
  * @category Yeelight
  *
- * @package Yeelight\Generators
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -31,7 +28,7 @@ class TransformerGenerator extends Generator
      */
     public function getRootNamespace()
     {
-        return parent::getRootNamespace() .
+        return parent::getRootNamespace().
             parent::getConfigGeneratorClassPath($this->getPathConfigNode());
     }
 
@@ -52,11 +49,11 @@ class TransformerGenerator extends Generator
      */
     public function getPath()
     {
-        return $this->getBasePath() .
-            '/' .
-            parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true) .
-            '/' .
-            $this->getName() .
+        return $this->getBasePath().
+            '/'.
+            parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true).
+            '/'.
+            $this->getName().
             'Transformer.php';
     }
 
@@ -159,9 +156,9 @@ class TransformerGenerator extends Generator
         return array_merge(
             parent::getReplacements(),
             [
-                'model' => $model,
+                'model'              => $model,
                 'transformer_fields' => $this->getColumns(),
-                '_id_name' => $this->getIdName(),
+                '_id_name'           => $this->getIdName(),
             ]
         );
     }

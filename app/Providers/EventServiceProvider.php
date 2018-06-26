@@ -5,14 +5,11 @@ namespace Yeelight\Providers;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 /**
- * Class EventServiceProvider
+ * Class EventServiceProvider.
  *
  * @category Yeelight
  *
- * @package Yeelight\Providers
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

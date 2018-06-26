@@ -13,14 +13,11 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Input;
 
 /**
- * Trait BackendPagination
+ * Trait BackendPagination.
  *
  * @category Yeelight
  *
- * @package Yeelight\Traits
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

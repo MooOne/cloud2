@@ -9,14 +9,11 @@ use Yeelight\Repositories\Interfaces\AdminMenuRepository;
 use Yeelight\Validators\AdminMenuValidator;
 
 /**
- * Class AdminMenuRepositoryEloquent
+ * Class AdminMenuRepositoryEloquent.
  *
  * @category Yeelight
  *
- * @package Yeelight\Repositories\Eloquent
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -64,8 +61,8 @@ class AdminMenuRepositoryEloquent extends BaseRepository implements AdminMenuRep
     /**
      * Save tree order from a tree like array.
      *
-     * @param array $tree tree
-     * @param int $parentId parentId
+     * @param array $tree     tree
+     * @param int   $parentId parentId
      *
      * @return void
      */

@@ -3,14 +3,11 @@
 namespace Yeelight\Generators;
 
 /**
- * Class ApiControllerGenerator
+ * Class ApiControllerGenerator.
  *
  * @category Yeelight
  *
- * @package Yeelight\Generators
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -34,7 +31,7 @@ class ApiControllerGenerator extends Generator
         return str_replace(
             '/',
             '\\',
-            parent::getRootNamespace() . parent::getConfigGeneratorClassPath($this->getPathConfigNode())
+            parent::getRootNamespace().parent::getConfigGeneratorClassPath($this->getPathConfigNode())
         );
     }
 
@@ -55,13 +52,13 @@ class ApiControllerGenerator extends Generator
      */
     public function getPath()
     {
-        return $this->getBasePath() . '/' .
+        return $this->getBasePath().'/'.
             parent::getConfigGeneratorClassPath(
                 $this->getPathConfigNode(),
                 true
-            ) .
-            '/' .
-            $this->getControllerName() . 'Controller.php';
+            ).
+            '/'.
+            $this->getControllerName().'Controller.php';
     }
 
     /**
@@ -105,11 +102,11 @@ class ApiControllerGenerator extends Generator
             parent::getReplacements(),
             [
                 'controller' => $this->getControllerName(),
-                'plural' => $this->getPluralName(),
-                'singular' => $this->getSingularName(),
-                'validator' => $this->getValidator(),
+                'plural'     => $this->getPluralName(),
+                'singular'   => $this->getSingularName(),
+                'validator'  => $this->getValidator(),
                 'repository' => $this->getRepository(),
-                'appname' => $this->getAppNamespace(),
+                'appname'    => $this->getAppNamespace(),
             ]
         );
     }
@@ -139,12 +136,11 @@ class ApiControllerGenerator extends Generator
 
         $validator = $validatorGenerator->getRootNamespace().'\\'.$validatorGenerator->getName();
 
-        return 'use ' . str_replace(
+        return 'use '.str_replace(
                 [
                     '\\',
                     '/',
-                ]
-                , '\\', $validator) . 'Validator;';
+                ], '\\', $validator).'Validator;';
     }
 
     /**
@@ -162,11 +158,10 @@ class ApiControllerGenerator extends Generator
 
         $repository = $repositoryGenerator->getRootNamespace().'\\'.$repositoryGenerator->getName();
 
-        return 'use ' . str_replace(
+        return 'use '.str_replace(
                 [
                     '\\',
                     '/',
-                ]
-                , '\\', $repository) . 'Repository;';
+                ], '\\', $repository).'Repository;';
     }
 }

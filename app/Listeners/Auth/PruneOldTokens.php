@@ -13,14 +13,11 @@ use Illuminate\Support\Facades\DB;
 use Laravel\Passport\Events\RefreshTokenCreated;
 
 /**
- * Class PruneOldTokens
+ * Class PruneOldTokens.
  *
  * @category Yeelight
  *
- * @package Yeelight\Listeners\Auth
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

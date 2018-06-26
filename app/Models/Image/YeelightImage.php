@@ -9,10 +9,7 @@ use Yeelight\Services\Image\Models\YeelightImageBase;
  *
  * @category Yeelight
  *
- * @package Yeelight\Models\Image
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -54,7 +51,7 @@ use Yeelight\Services\Image\Models\YeelightImageBase;
 class YeelightImage extends YeelightImageBase
 {
     /**
-     * GetDefaultImageUrl
+     * GetDefaultImageUrl.
      *
      * @param string | null $type type
      *

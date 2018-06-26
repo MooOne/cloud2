@@ -6,14 +6,11 @@ use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 /**
- * Class Handler
+ * Class Handler.
  *
  * @category Yeelight
  *
- * @package Yeelight\Exceptions
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -46,9 +43,9 @@ class Handler extends ExceptionHandler
      *
      * @param \Exception $exception Exception
      *
-     * @return void
-     *
      * @throws Exception $exception
+     *
+     * @return void
      */
     public function report(Exception $exception)
     {
@@ -58,8 +55,8 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param \Illuminate\Http\Request $request Request
-     * @param \Exception $exception Exception
+     * @param \Illuminate\Http\Request $request   Request
+     * @param \Exception               $exception Exception
      *
      * @return \Illuminate\Http\Response
      */

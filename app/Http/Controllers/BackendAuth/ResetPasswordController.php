@@ -7,14 +7,11 @@ use Illuminate\Http\Request;
 use Yeelight\Http\Controllers\BaseController;
 
 /**
- * Class ResetPasswordController
+ * Class ResetPasswordController.
  *
  * @category Yeelight
  *
- * @package Yeelight\Http\Controllers\BackendAuth
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -57,7 +54,7 @@ class ResetPasswordController extends BaseController
      * If no token is present, display the link request form.
      *
      * @param \Illuminate\Http\Request $request Request
-     * @param string|null $token token
+     * @param string|null              $token   token
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

@@ -5,14 +5,11 @@ namespace Yeelight\Providers;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * Class BackendServiceProvider
+ * Class BackendServiceProvider.
  *
  * @category Yeelight
  *
- * @package Yeelight\Providers
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

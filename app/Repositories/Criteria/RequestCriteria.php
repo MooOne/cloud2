@@ -6,14 +6,11 @@ use Illuminate\Support\Facades\Request;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
- * Class RequestCriteria
+ * Class RequestCriteria.
  *
  * @category Yeelight
  *
- * @package Yeelight\Repositories\Criteria
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

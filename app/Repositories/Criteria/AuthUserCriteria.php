@@ -6,14 +6,11 @@ use Prettus\Repository\Contracts\CriteriaInterface;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
- * Class AuthUserCriteria
+ * Class AuthUserCriteria.
  *
  * @category Yeelight
  *
- * @package Yeelight\Repositories\Criteria
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -21,7 +18,7 @@ use Prettus\Repository\Contracts\RepositoryInterface;
 class AuthUserCriteria implements CriteriaInterface
 {
     /**
-     * Apply
+     * Apply.
      *
      * @param $model
      * @param RepositoryInterface $repository RepositoryInterface

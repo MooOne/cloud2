@@ -3,14 +3,11 @@
 namespace Yeelight\Models\Interfaces;
 
 /**
- * Interface BaseModelEventsInterface
+ * Interface BaseModelEventsInterface.
  *
  * @category Yeelight
  *
- * @package Yeelight\Models\Interfaces
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

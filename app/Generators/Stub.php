@@ -3,14 +3,11 @@
 namespace Yeelight\Generators;
 
 /**
- * Class Stub
+ * Class Stub.
  *
  * @category Yeelight
  *
- * @package Yeelight\Generators
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -39,8 +36,8 @@ class Stub
     /**
      * The contructor.
      *
-     * @param string $path path
-     * @param array $replaces replaces
+     * @param string $path     path
+     * @param array  $replaces replaces
      */
     public function __construct($path, array $replaces = [])
     {
@@ -51,8 +48,8 @@ class Stub
     /**
      * Create new self instance.
      *
-     * @param string $path path
-     * @param array $replaces replaces
+     * @param string $path     path
+     * @param array  $replaces replaces
      *
      * @return self
      */
@@ -127,7 +124,7 @@ class Stub
         $contents = file_get_contents($this->getPath());
         foreach ($this->replaces as $search => $replace) {
             $contents = str_replace(
-                '$' . strtoupper($search) . '$',
+                '$'.strtoupper($search).'$',
                 $replace,
                 $contents
             );

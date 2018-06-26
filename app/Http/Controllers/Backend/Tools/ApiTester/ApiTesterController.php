@@ -14,14 +14,11 @@ use Yeelight\Models\Tools\ApiTester\ApiTester;
 use Yeelight\Services\Assets\Assets;
 
 /**
- * Class ApiTesterController
+ * Class ApiTesterController.
  *
  * @category Yeelight
  *
- * @package Yeelight\Http\Controllers\Backend\Tools\ApiTester
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -29,7 +26,7 @@ use Yeelight\Services\Assets\Assets;
 class ApiTesterController extends BaseController
 {
     /**
-     * Index
+     * Index.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -45,14 +42,14 @@ class ApiTesterController extends BaseController
             [
                 'routes' => $tester->getRoutes(),
                 //'logs'   => ApiLogger::load(),
-                'methodColors' => ApiTester::$methodColors,
+                'methodColors'       => ApiTester::$methodColors,
                 'header_description' => 'Api tester',
             ]
         );
     }
 
     /**
-     * Handler
+     * Handler.
      *
      * @param Request $request Request
      *

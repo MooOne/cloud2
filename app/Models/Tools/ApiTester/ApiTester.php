@@ -18,14 +18,11 @@ use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class ApiTester
+ * Class ApiTester.
  *
  * @category Yeelight
  *
- * @package Yeelight\Models\Tools\ApiTester
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -40,7 +37,7 @@ class ApiTester
     protected $app;
 
     /**
-     * $methodColors
+     * $methodColors.
      *
      * @var array
      */
@@ -64,7 +61,7 @@ class ApiTester
     }
 
     /**
-     * Call
+     * Call.
      *
      * @param string $method
      * @param string $uri

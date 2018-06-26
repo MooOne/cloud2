@@ -7,14 +7,11 @@ use Illuminate\Validation\Rule;
 use Yeelight\Models\Basic\CountryModel;
 
 /**
- * Class UserUpdateRequest
+ * Class UserUpdateRequest.
  *
  * @category Yeelight
  *
- * @package Yeelight\Http\Requests\Api
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
