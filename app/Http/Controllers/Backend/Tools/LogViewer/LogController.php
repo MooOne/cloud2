@@ -27,14 +27,14 @@ class LogController extends BaseController
     /**
      * 主页.
      *
-     * @param null | string $file file
-     * @param Request $request Request
+     * @param null | string $file    file
+     * @param Request       $request Request
      *
      * @throws \Exception
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index($file = null, Request $request)
+    public function index($file, Request $request)
     {
         $offset = $request->get('offset');
 
