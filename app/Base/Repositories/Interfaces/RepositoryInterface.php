@@ -4,6 +4,7 @@ namespace Yeelight\Base\Repositories\Interfaces;
 
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\RepositoryInterface as BaseRepositoryInterface;
+use Prettus\Repository\Exceptions\RepositoryException;
 use Prettus\Validator\Contracts\ValidatorInterface;
 
 /**
