@@ -2,9 +2,24 @@
 
 namespace Yeelight\Http\Controllers\Api\Auth\Provider;
 
+/**
+ * Class OAuth2
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Http\Controllers\Api\Auth\Provider
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class OAuth2 extends \Dingo\Api\Auth\Provider\JWT
 {
     /**
+     * GetResource
+     *
      * @return \League\OAuth2\Server\ResourceServer
      */
     public function getResource()
@@ -13,6 +28,8 @@ class OAuth2 extends \Dingo\Api\Auth\Provider\JWT
     }
 
     /**
+     * GetAccessToken
+     *
      * @return \Laravel\Passport\Bridge\AccessToken
      */
     public function getAccessToken()
@@ -21,6 +38,8 @@ class OAuth2 extends \Dingo\Api\Auth\Provider\JWT
     }
 
     /**
+     * GetSession
+     *
      * @return \Laravel\Passport\Bridge\SessionEntity
      */
     public function getSession()

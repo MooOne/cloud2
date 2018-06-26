@@ -9,6 +9,19 @@ use Yeelight\Models\Basic\CountryModel;
 use Yeelight\Repositories\Interfaces\UserRepository;
 use Yeelight\Validators\UserValidator;
 
+/**
+ * Class UsersController
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Http\Controllers\Backend
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class UsersController extends BaseController
 {
     /**

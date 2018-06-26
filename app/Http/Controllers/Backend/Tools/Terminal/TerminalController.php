@@ -22,8 +22,26 @@ use Symfony\Component\Console\Input\ArgvInput;
 use Yeelight\Http\Controllers\BaseController;
 use Yeelight\Models\Tools\Terminal\StringOutput;
 
+/**
+ * Class TerminalController
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Http\Controllers\Backend\Tools\Terminal
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class TerminalController extends BaseController
 {
+    /**
+     * Artisan
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function artisan()
     {
         $header_description = 'Artisan 终端';
@@ -34,6 +52,11 @@ class TerminalController extends BaseController
         ]);
     }
 
+    /**
+     * RunArtisan
+     *
+     * @return string
+     */
     public function runArtisan()
     {
         $command = Request::get('c', 'list');
@@ -48,6 +71,11 @@ class TerminalController extends BaseController
         return sprintf('<pre>%s</pre>', $output->getContent());
     }
 
+    /**
+     * 数据库终端
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function database()
     {
         $header_description = '数据库终端';

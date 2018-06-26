@@ -2,12 +2,24 @@
 
 namespace Yeelight\Generators\Commands;
 
-use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Yeelight\Generators\CriteriaGenerator;
 use Yeelight\Generators\FileAlreadyExistsException;
 
+/**
+ * Class CriteriaCommand
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Generators\Commands
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class CriteriaCommand extends CommandBase
 {
     /**
@@ -39,10 +51,12 @@ class CriteriaCommand extends CommandBase
     public function fire()
     {
         try {
-            (new CriteriaGenerator([
-                'name'  => $this->argument('name'),
-                'force' => $this->option('force'),
-            ]))->run();
+            (new CriteriaGenerator(
+                [
+                    'name' => $this->argument('name'),
+                    'force' => $this->option('force'),
+                ]
+            ))->run();
 
             $this->info('Criteria created successfully.');
         } catch (FileAlreadyExistsException $ex) {

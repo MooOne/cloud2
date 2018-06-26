@@ -9,9 +9,21 @@ use Yeelight\Repositories\Interfaces\AdminUserRepository;
 use Yeelight\Validators\AdminUserValidator;
 
 /**
- * Class AdminUserRepositoryEloquent.
+ * Class AdminUserRepositoryEloquent
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Repositories\Eloquent
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
  */
-class AdminUserRepositoryEloquent extends BaseRepository implements AdminUserRepository
+class AdminUserRepositoryEloquent
+    extends BaseRepository
+    implements AdminUserRepository
 {
     /**
      * Specify Model class name.

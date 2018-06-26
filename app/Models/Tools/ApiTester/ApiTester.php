@@ -17,6 +17,19 @@ use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class ApiTester
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Models\Tools\ApiTester
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class ApiTester
 {
     /**
@@ -27,6 +40,8 @@ class ApiTester
     protected $app;
 
     /**
+     * $methodColors
+     *
      * @var array
      */
     public static $methodColors = [
@@ -41,7 +56,7 @@ class ApiTester
     /**
      * ApiTester constructor.
      *
-     * @param \Illuminate\Foundation\Application|null $app
+     * @param \Illuminate\Foundation\Application|null $app Application
      */
     public function __construct(Application $app = null)
     {
@@ -49,6 +64,8 @@ class ApiTester
     }
 
     /**
+     * Call
+     *
      * @param string $method
      * @param string $uri
      * @param array  $parameters
@@ -106,7 +123,7 @@ class ApiTester
     }
 
     /**
-     * @param Response $response
+     * @param Response $response Response
      *
      * @return array
      */

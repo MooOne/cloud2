@@ -5,7 +5,17 @@ namespace Yeelight\Presenters;
 use Yeelight\Transformers\AdminMenuTransformer;
 
 /**
- * Class AdminMenuPresenter.
+ * Class AdminMenuPresenter
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Presenters
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
  */
 class AdminMenuPresenter extends BasePresenter
 {

@@ -5,7 +5,17 @@ namespace Yeelight\Generators;
 use Yeelight\Generators\Migrations\SchemaParser;
 
 /**
- * Class RepositoryInterfaceGenerator.
+ * Class RepositoryInterfaceGenerator
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Generators
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
  */
 class RepositoryInterfaceGenerator extends Generator
 {
@@ -23,7 +33,8 @@ class RepositoryInterfaceGenerator extends Generator
      */
     public function getRootNamespace()
     {
-        return parent::getRootNamespace().parent::getConfigGeneratorClassPath($this->getPathConfigNode());
+        return parent::getRootNamespace() .
+            parent::getConfigGeneratorClassPath($this->getPathConfigNode());
     }
 
     /**
@@ -43,7 +54,12 @@ class RepositoryInterfaceGenerator extends Generator
      */
     public function getPath()
     {
-        return $this->getBasePath().'/'.parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true).'/'.$this->getName().'Repository.php';
+        return $this->getBasePath() .
+            '/' .
+            parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true) .
+            '/' .
+            $this->getName() .
+            'Repository.php';
     }
 
     /**
@@ -63,9 +79,12 @@ class RepositoryInterfaceGenerator extends Generator
      */
     public function getReplacements()
     {
-        return array_merge(parent::getReplacements(), [
-            'fillable' => $this->getFillable(),
-        ]);
+        return array_merge(
+            parent::getReplacements(),
+            [
+                'fillable' => $this->getFillable(),
+            ]
+        );
     }
 
     /**

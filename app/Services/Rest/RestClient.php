@@ -7,6 +7,19 @@ use Illuminate\Http\Response;
 use Psr\Http\Message\ResponseInterface;
 use RuntimeException;
 
+/**
+ * Class RestClient
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Services\Rest
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class RestClient
 {
     /**

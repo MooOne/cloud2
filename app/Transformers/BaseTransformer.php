@@ -5,6 +5,19 @@ namespace Yeelight\Transformers;
 use Yeelight\Base\Models\BaseModel;
 use Yeelight\Base\Transformers\Transformer;
 
+/**
+ * Class BaseTransformer
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Transformers
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class BaseTransformer extends Transformer
 {
     /**

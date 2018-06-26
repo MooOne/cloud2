@@ -6,6 +6,19 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
+/**
+ * Class AdminOperationLog
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Models
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class AdminOperationLog extends BaseModel implements Transformable
 {
     use TransformableTrait;
@@ -53,7 +66,7 @@ class AdminOperationLog extends BaseModel implements Transformable
     /**
      * Create a new Eloquent model instance.
      *
-     * @param array $attributes
+     * @param array $attributes attributes
      */
     public function __construct(array $attributes = [])
     {

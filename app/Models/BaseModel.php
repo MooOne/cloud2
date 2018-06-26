@@ -6,7 +6,17 @@ use Yeelight\Base\Models\BaseModel as Model;
 use Yeelight\Models\Foundation\User;
 
 /**
- * Yeelight\Models\BaseModel.
+ * Class BaseModel
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Models
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
  *
  * @property-read mixed $id
  * @mixin \Eloquent

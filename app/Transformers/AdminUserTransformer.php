@@ -5,7 +5,17 @@ namespace Yeelight\Transformers;
 use Yeelight\Models\AdminUser;
 
 /**
- * Class AdminUserTransformer.
+ * Class AdminUserTransformer
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Transformers
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
  */
 class AdminUserTransformer extends BaseTransformer
 {

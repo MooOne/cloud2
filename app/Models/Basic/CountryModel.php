@@ -4,6 +4,19 @@ namespace Yeelight\Models\Basic;
 
 use Countries;
 
+/**
+ * Class CountryModel
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Models\Basic
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class CountryModel
 {
     const COUNTRY_CHINA = 'CN';

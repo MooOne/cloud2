@@ -10,6 +10,16 @@ use Yeelight\Services\Image\Models\Traits\YeelightHasImageablesTrait;
 /**
  * Yeelight\Models\Foundation\User.
  *
+ * @category Yeelight
+ *
+ * @package Yeelight\Models\Foundation
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ *
  * @property int $user_id
  * @property string $name
  * @property string|null $gender
@@ -94,7 +104,9 @@ class User extends BaseUser
      */
     protected $fillable = [
         'name', 'email', 'password',
-        'gender', 'birthday', 'country', 'timezone', 'locale', 'username', 'phone_number', 'status',
+        'gender', 'birthday', 'country',
+        'timezone', 'locale', 'username',
+        'phone_number', 'status',
     ];
 
     /**
@@ -106,16 +118,33 @@ class User extends BaseUser
         'remember_token',
     ];
 
+    /**
+     * SocialiteUsers
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function socialiteUsers()
     {
         return $this->hasMany(SocialiteUser::class, 'user_id', 'user_id');
     }
 
+    /**
+     * AccessTokens
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function accessTokens()
     {
         return $this->hasMany(Token::class, 'user_id', 'user_id');
     }
 
+    /**
+     * FindForPassport
+     *
+     * @param string $username username
+     *
+     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Query\Builder|null|object|User
+     */
     public function findForPassport($username)
     {
         return $this->where('username', $username)->orWhere('email', $username)->first();

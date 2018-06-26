@@ -11,9 +11,24 @@ namespace Yeelight\Models\Tools\Scheduling;
 use Illuminate\Console\Scheduling\CallbackEvent;
 use Illuminate\Support\Str;
 
+/**
+ * Class Scheduling
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Models\Tools\Scheduling
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class Scheduling
 {
     /**
+     * $sendOutputTo
+     *
      * @var string out put file for command.
      */
     protected $sendOutputTo;

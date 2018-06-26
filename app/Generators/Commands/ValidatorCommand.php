@@ -2,12 +2,24 @@
 
 namespace Yeelight\Generators\Commands;
 
-use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Yeelight\Generators\FileAlreadyExistsException;
 use Yeelight\Generators\ValidatorGenerator;
 
+/**
+ * Class ValidatorCommand
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Generators\Commands
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class ValidatorCommand extends CommandBase
 {
     /**
@@ -34,16 +46,18 @@ class ValidatorCommand extends CommandBase
     /**
      * Execute the command.
      *
-     * @return void
+     * @return bool | void
      */
     public function fire()
     {
         try {
-            (new ValidatorGenerator([
-                'name'  => $this->argument('name'),
-                'rules' => $this->option('rules'),
-                'force' => $this->option('force'),
-            ]))->run();
+            (new ValidatorGenerator(
+                [
+                    'name' => $this->argument('name'),
+                    'rules' => $this->option('rules'),
+                    'force' => $this->option('force'),
+                ]
+            ))->run();
             $this->info('Validator created successfully.');
         } catch (FileAlreadyExistsException $e) {
             $this->error($this->type.' already exists!');

@@ -6,6 +6,19 @@ use Illuminate\Console\DetectsApplicationNamespace;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 
+/**
+ * Class Generator
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Generators
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 abstract class Generator
 {
     use DetectsApplicationNamespace;
@@ -34,7 +47,7 @@ abstract class Generator
     /**
      * Create new instance of this class.
      *
-     * @param array $options
+     * @param array $options $options
      */
     public function __construct(array $options = [])
     {
@@ -55,7 +68,7 @@ abstract class Generator
     /**
      * Set the filesystem instance.
      *
-     * @param \Illuminate\Filesystem\Filesystem $filesystem
+     * @param \Illuminate\Filesystem\Filesystem $filesystem Filesystem
      *
      * @return $this
      */
@@ -79,7 +92,10 @@ abstract class Generator
             $path = __DIR__;
         }
 
-        return (new Stub($path.'/Stubs/'.$this->stub.'.stub', $this->getReplacements()))->render();
+        return (new Stub(
+            $path . '/Stubs/' . $this->stub . '.stub',
+            $this->getReplacements()
+        ))->render();
     }
 
     /**
@@ -131,7 +147,9 @@ abstract class Generator
             $name = str_replace('/', '/', $this->name);
         }
 
-        return Str::studly(str_replace(' ', '/', ucwords(str_replace('/', ' ', $name))));
+        return Str::studly(
+            str_replace(' ', '/', ucwords(str_replace('/', ' ', $name)))
+        );
     }
 
     /**
@@ -149,7 +167,11 @@ abstract class Generator
             $name = str_replace('/', '/', $this->name);
         }
 
-        return Str::plural(Str::snake(str_replace(' ', '/', ucwords(str_replace('/', ' ', $name)))));
+        return Str::plural(
+            Str::snake(
+                str_replace(' ', '/', ucwords(str_replace('/', ' ', $name)))
+            )
+        );
     }
 
     /**
@@ -189,15 +211,19 @@ abstract class Generator
      */
     public function getRootNamespace()
     {
-        return config('repository.generator.rootNamespace', $this->getAppNamespace());
+        return config(
+            'repository.generator.rootNamespace',
+            $this->getAppNamespace()
+        );
     }
 
     /**
      * Get class-specific output paths.
      *
-     * @param $class
+     * @param string $class className
+     * @param bool $directoryPath directoryPath
      *
-     * @return string
+     * @return \Illuminate\Config\Repository|mixed
      */
     public function getConfigGeneratorClassPath($class, $directoryPath = false)
     {
@@ -206,7 +232,10 @@ abstract class Generator
                 $path = config('repository.generator.paths.models', 'Entities');
                 break;
             case 'repositories' === $class:
-                $path = config('repository.generator.paths.repositories', 'Repositories');
+                $path = config(
+                    'repository.generator.paths.repositories',
+                    'Repositories'
+                );
                 break;
             case 'interfaces' === $class:
                 $path = config('repository.generator.paths.interfaces', 'Repositories');
@@ -254,6 +283,11 @@ abstract class Generator
         return $path;
     }
 
+    /**
+     * GetPathConfigNode
+     *
+     * @return mixed
+     */
     abstract public function getPathConfigNode();
 
     /**
@@ -270,7 +304,9 @@ abstract class Generator
             return;
         }
 
-        return 'namespace '.rtrim($rootNamespace.'\\'.implode($segments, '\\'), '\\').';';
+        return 'namespace ' .
+            rtrim($rootNamespace . '\\' . implode($segments, '\\'), '\\') .
+            ';';
     }
 
     /**
@@ -306,7 +342,7 @@ abstract class Generator
     /**
      * Get options.
      *
-     * @return string
+     * @return array | string
      */
     public function getOptions()
     {
@@ -316,7 +352,7 @@ abstract class Generator
     /**
      * Determinte whether the given key exist in options array.
      *
-     * @param string $key
+     * @param string $key Key
      *
      * @return bool
      */
@@ -328,8 +364,8 @@ abstract class Generator
     /**
      * Get value from options by given key.
      *
-     * @param string      $key
-     * @param string|null $default
+     * @param string $key key
+     * @param string|null $default default
      *
      * @return string
      */
@@ -345,8 +381,8 @@ abstract class Generator
     /**
      * Helper method for "getOption".
      *
-     * @param string      $key
-     * @param string|null $default
+     * @param string $key key
+     * @param string|null $default default
      *
      * @return string
      */
@@ -358,7 +394,7 @@ abstract class Generator
     /**
      * Handle call to __get method.
      *
-     * @param string $key
+     * @param string $key key
      *
      * @return string|mixed
      */

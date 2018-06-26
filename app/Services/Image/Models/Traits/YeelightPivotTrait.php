@@ -2,6 +2,19 @@
 
 namespace Yeelight\Services\Image\Models\Traits;
 
+/**
+ * Trait YeelightPivotTrait
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Services\Image\Models\Traits
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 trait YeelightPivotTrait
 {
     /**

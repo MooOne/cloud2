@@ -9,6 +9,19 @@ use Yeelight\Models\AdminPermission;
 use Yeelight\Repositories\Interfaces\AdminRoleRepository;
 use Yeelight\Validators\AdminRoleValidator;
 
+/**
+ * Class AdminRolesController
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Http\Controllers\Backend
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class AdminRolesController extends BaseController
 {
     /**

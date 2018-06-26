@@ -8,6 +8,19 @@ use Yeelight\Http\Requests\ProductModelUpdateRequest;
 use Yeelight\Repositories\Interfaces\ProductModelRepository;
 use Yeelight\Validators\ProductModelValidator;
 
+/**
+ * Class ProductModelsController
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Http\Controllers\Backend
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class ProductModelsController extends BaseController
 {
     /**

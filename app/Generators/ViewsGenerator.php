@@ -6,7 +6,17 @@ use Illuminate\Support\Str;
 use League\Flysystem\FileNotFoundException;
 
 /**
- * Class ViewsGenerator.
+ * Class ViewsGenerator
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Generators
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
  */
 class ViewsGenerator extends Generator
 {
@@ -55,7 +65,12 @@ class ViewsGenerator extends Generator
      */
     public function getPath()
     {
-        return $this->getBasePath().'/'.parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true).'/'.$this->getName().'/';
+        return $this->getBasePath() .
+            '/' .
+            parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true) .
+            '/' .
+            $this->getName() .
+            '/';
     }
 
     /**
@@ -73,7 +88,11 @@ class ViewsGenerator extends Generator
             $name = str_replace('/', '/', $this->name);
         }
 
-        return Str::plural(Str::snake(str_replace(' ', '/', ucwords(str_replace('/', ' ', $name)))));
+        return Str::plural(
+            Str::snake(
+                str_replace(' ', '/', ucwords(str_replace('/', ' ', $name)))
+            )
+        );
     }
 
     /**
@@ -86,6 +105,11 @@ class ViewsGenerator extends Generator
         return resource_path('views');
     }
 
+    /**
+     * BuildCreateFormFields
+     *
+     * @return string
+     */
     private function buildCreateFormFields()
     {
         $fields = $this->fields;
@@ -122,6 +146,11 @@ EOF;
         return $result;
     }
 
+    /**
+     * BuildEditFormFields
+     *
+     * @return string
+     */
     private function buildEditFormFields()
     {
         $fields = $this->fields;
@@ -158,6 +187,11 @@ EOF;
         return $result;
     }
 
+    /**
+     * BuildIndexFilterFields
+     *
+     * @return string
+     */
     private function buildIndexFilterFields()
     {
         $fields = $this->fields;
@@ -184,6 +218,11 @@ EOF;
         return $result;
     }
 
+    /**
+     * BuildIndexTableThFields
+     *
+     * @return string
+     */
     private function buildIndexTableThFields()
     {
         $fields = $this->fields;
@@ -205,6 +244,11 @@ EOF;
         return $result;
     }
 
+    /**
+     * BuildIndexTableTdFields
+     *
+     * @return string
+     */
     private function buildIndexTableTdFields()
     {
         $fields = $this->fields;
@@ -236,20 +280,24 @@ EOF;
      */
     public function getReplacements()
     {
-        return array_merge(parent::getReplacements(), [
-            'model'                 => $this->getName(),
-            'create_form_fields'    => $this->buildCreateFormFields(),
-            'edit_form_fields'      => $this->buildEditFormFields(),
-            'index_filter_fields'   => $this->buildIndexFilterFields(),
-            'index_table_th_fields' => $this->buildIndexTableThFields(),
-            'index_table_td_fields' => $this->buildIndexTableTdFields(),
-            '_id_name'              => $this->getIdName(),
-        ]);
+        return array_merge(
+            parent::getReplacements(),
+            [
+                'model' => $this->getName(),
+                'create_form_fields' => $this->buildCreateFormFields(),
+                'edit_form_fields' => $this->buildEditFormFields(),
+                'index_filter_fields' => $this->buildIndexFilterFields(),
+                'index_table_th_fields' => $this->buildIndexTableThFields(),
+                'index_table_td_fields' => $this->buildIndexTableTdFields(),
+                '_id_name' => $this->getIdName(),
+            ]
+        );
     }
 
     /**
      * Run the generator.
      *
+     * @return int|void
      * @throws FileAlreadyExistsException
      * @throws FileNotFoundException
      */

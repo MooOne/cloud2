@@ -6,6 +6,19 @@ use Prettus\Repository\Contracts\CriteriaInterface;
 use Prettus\Repository\Contracts\RepositoryInterface;
 use Yeelight\Http\Requests\Api\SocialiteAuthRequest;
 
+/**
+ * Class GetUserByUsernameOrEmailCriteria
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Repositories\Criteria
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class GetUserByUsernameOrEmailCriteria implements CriteriaInterface
 {
     public function __construct(SocialiteAuthRequest $request)

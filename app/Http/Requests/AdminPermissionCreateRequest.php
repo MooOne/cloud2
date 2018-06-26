@@ -4,6 +4,19 @@ namespace Yeelight\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Class AdminPermissionCreateRequest
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Http\Requests
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class AdminPermissionCreateRequest extends FormRequest
 {
     /**

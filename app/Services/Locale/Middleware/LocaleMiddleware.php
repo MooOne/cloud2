@@ -6,6 +6,19 @@ use Carbon\Carbon;
 use Closure;
 use LaravelLocalization;
 
+/**
+ * Class LocaleMiddleware
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Services\Locale\Middleware
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class LocaleMiddleware
 {
     /**

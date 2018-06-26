@@ -2,13 +2,25 @@
 
 namespace Yeelight\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\DB;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 use Yeelight\Traits\ModelTree;
 
+/**
+ * Class AdminMenu
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Models
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class AdminMenu extends BaseModel implements Transformable
 {
     use TransformableTrait, ModelTree {
@@ -51,7 +63,7 @@ class AdminMenu extends BaseModel implements Transformable
     /**
      * Create a new Eloquent model instance.
      *
-     * @param array $attributes
+     * @param array $attributes attributes
      */
     public function __construct(array $attributes = [])
     {
@@ -75,6 +87,8 @@ class AdminMenu extends BaseModel implements Transformable
     }
 
     /**
+     * Get allNodes
+     *
      * @return array
      */
     public function allNodes() : array

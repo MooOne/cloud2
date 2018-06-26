@@ -7,15 +7,30 @@ use Illuminate\Support\Facades\Route;
 use Yeelight\Base\Api\Controllers\Controller;
 use Yeelight\Models\Foundation\User;
 
+/**
+ * Class BaseController
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Http\Controllers\Api\Controllers
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 abstract class BaseController extends Controller
 {
     /**
+     * GetAuthUser
+     *
      * @return User
      */
     public function getAuthUser()
     {
-        $auth_user = auth_user();
-        if ($auth_user->status == 0) {
+        $authUser = auth_user();
+        if ($authUser->status == 0) {
             return $this->response->errorForbidden('User Are Forbidden');
         }
 
@@ -25,9 +40,9 @@ abstract class BaseController extends Controller
     /**
      * 代理请求 oauth token.
      *
-     * @param Request $request
-     * @param $grantType
-     * @param string $scope
+     * @param Request $request Request
+     * @param string $grantType grantType
+     * @param string $scope scope
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */

@@ -7,6 +7,19 @@ use Validator;
 use Yeelight\Http\Controllers\BaseController;
 use Yeelight\Models\Foundation\User;
 
+/**
+ * Class RegisterController
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Http\Controllers\BackendAuth
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class RegisterController extends BaseController
 {
     /*
@@ -42,23 +55,26 @@ class RegisterController extends BaseController
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param array $data
+     * @param array $data data
      *
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name'     => 'required|max:255',
-            'email'    => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
+        return Validator::make(
+            $data,
+            [
+                'name' => 'required|max:255',
+                'email' => 'required|email|max:255|unique:users',
+                'password' => 'required|min:6|confirmed',
+            ]
+        );
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param array $data
+     * @param array $data data
      *
      * @return User
      */

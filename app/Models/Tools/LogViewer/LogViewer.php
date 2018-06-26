@@ -9,7 +9,17 @@
 namespace Yeelight\Models\Tools\LogViewer;
 
 /**
- * Class LogViewer.
+ * Class LogViewer
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Models\Tools\LogViewer
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
  */
 class LogViewer
 {
@@ -35,6 +45,8 @@ class LogViewer
     protected $pageOffset = [];
 
     /**
+     * $levelColors
+     *
      * @var array
      */
     public static $levelColors = [
@@ -99,7 +111,7 @@ class LogViewer
     /**
      * Get log file list in storage.
      *
-     * @param int $count
+     * @param int $count count
      *
      * @return array
      */

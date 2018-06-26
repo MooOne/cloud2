@@ -14,6 +14,19 @@ use Yeelight\Http\Requests\AdminUserSettingRequest;
 use Yeelight\Repositories\Interfaces\AdminUserRepository;
 use Yeelight\Validators\AdminUserValidator;
 
+/**
+ * Class AuthController
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Http\Controllers\Backend
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class AuthController extends BaseController
 {
     /**

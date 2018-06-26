@@ -6,7 +6,17 @@ use Illuminate\Support\Str;
 use League\Flysystem\FileNotFoundException;
 
 /**
- * Class LangGenerator.
+ * Class LangGenerator
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Generators
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
  */
 class LangGenerator extends Generator
 {
@@ -52,7 +62,11 @@ class LangGenerator extends Generator
             $name = str_replace('/', '/', $this->name);
         }
 
-        return Str::plural(Str::snake(str_replace(' ', '/', ucwords(str_replace('/', ' ', $name)))));
+        return Str::plural(
+            Str::snake(
+                str_replace(' ', '/', ucwords(str_replace('/', ' ', $name)))
+            )
+        );
     }
 
     /**
@@ -84,7 +98,8 @@ class LangGenerator extends Generator
         $result = "[\r\n";
         $result .= "\t\t'".$this->getIdName()."' => '".str_singular($this->getIdName())."',\r\n";
         if (!empty($fields)) {
-            foreach ($fields as $index => $field) {
+            foreach ($fields as /*$index =>*/
+                     $field) {
                 $result .= "\t\t'{$field['name']}' => '{$field['comment']}',\r\n";
             }
             $result .= "\t\t'created_by' => 'CREATED_BY',\r\n";
@@ -116,10 +131,13 @@ class LangGenerator extends Generator
      */
     public function getReplacements()
     {
-        return array_merge(parent::getReplacements(), [
-            'model'        => $this->getHeader(),
-            'model_fields' => $this->getColumns(),
-        ]);
+        return array_merge(
+            parent::getReplacements(),
+            [
+                'model' => $this->getHeader(),
+                'model_fields' => $this->getColumns(),
+            ]
+        );
     }
 
     /**
@@ -127,6 +145,8 @@ class LangGenerator extends Generator
      *
      * @throws FileAlreadyExistsException
      * @throws FileNotFoundException
+     *
+     * @return void
      */
     public function run()
     {

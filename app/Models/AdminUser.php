@@ -9,9 +9,26 @@ use Yeelight\Services\Image\Models\Traits\YeelightHasOneImageTrait;
 use Yeelight\Services\Image\Models\Traits\YeelightUploadOneImageTrait;
 use Yeelight\Traits\HasPermissions;
 
+/**
+ * Class AdminUser
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Models
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class AdminUser extends BaseModel implements AuthenticatableContract
 {
-    use TransformableTrait, Authenticatable, HasPermissions, YeelightHasOneImageTrait, YeelightUploadOneImageTrait;
+    use TransformableTrait,
+        Authenticatable,
+        HasPermissions,
+        YeelightHasOneImageTrait,
+        YeelightUploadOneImageTrait;
 
     /**
      * Indicates if the model should be auto set user_id.
@@ -53,7 +70,7 @@ class AdminUser extends BaseModel implements AuthenticatableContract
     /**
      * Create a new Eloquent model instance.
      *
-     * @param array $attributes
+     * @param array $attributes attributes
      */
     public function __construct(array $attributes = [])
     {
@@ -102,7 +119,9 @@ class AdminUser extends BaseModel implements AuthenticatableContract
         parent::onUpdating();
 
         //密码
-        if (request()->get('password') && $this->password != request()->get('password')) {
+        if (request()->get('password')
+            && $this->password != request()->get('password')
+        ) {
             $this->password = bcrypt(request()->get('password'));
         }
 

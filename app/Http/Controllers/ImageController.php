@@ -4,12 +4,31 @@ namespace Yeelight\Http\Controllers;
 
 use Exception;
 use Illuminate\Http\Request;
-use Yeelight\Models\Image\YeelightImage;
 use Yeelight\Services\Image\Controllers\YeelightImageController;
 use Yeelight\Services\Image\YeelightImageService;
 
+/**
+ * Class ImageController
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Http\Controllers
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class ImageController extends BaseController
 {
+    /**
+     * PostImage
+     *
+     * @param Request $request Request
+     *
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function postImage(Request $request)
     {
         $yeelightImageService = new YeelightImageService();
@@ -18,7 +37,7 @@ class ImageController extends BaseController
         $yeelightImage = null;
 
         try {
-            /** @var YeelightImage $yeelightImage */
+            // @var YeelightImage $yeelightImage
             $yeelightImage = $yeelightImageService->handleUploadedFile($file);
         } catch (Exception $e) {
             return response('Failed to save: '.$e->getMessage(), 422);
@@ -28,7 +47,7 @@ class ImageController extends BaseController
             return response('Failed to save uploaded image.', 422);
         }
 
-        $yeelightImageId = $yeelightImage->getYeelightImageId();
+        //$yeelightImageId = $yeelightImage->getYeelightImageId();
 
         return response([
             'data' => [
@@ -39,13 +58,28 @@ class ImageController extends BaseController
         ]);
     }
 
-    public function showOriginalImage($image_name)
+    /**
+     * ShowOriginalImage
+     *
+     * @param string $imageName imageName
+     *
+     * @return mixed|\Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function showOriginalImage($imageName)
     {
-        return YeelightImageController::showImage('original', $image_name);
+        return YeelightImageController::showImage('original', $imageName);
     }
 
-    public function showTypeImage($type, $image_name)
+    /**
+     * ShowTypeImage
+     *
+     * @param string $type type
+     * @param string $imageName imageName
+     *
+     * @return mixed|\Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function showTypeImage($type, $imageName)
     {
-        return YeelightImageController::showImage($type, $image_name);
+        return YeelightImageController::showImage($type, $imageName);
     }
 }

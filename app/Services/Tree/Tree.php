@@ -13,6 +13,19 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Model;
 use Yeelight\Services\Assets\Assets;
 
+/**
+ * Class Tree
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Services\Tree
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class Tree implements Renderable
 {
     /**

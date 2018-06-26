@@ -3,7 +3,17 @@
 namespace Yeelight\Generators\Migrations;
 
 /**
- * Class NameParser.
+ * Class NameParser
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Generators\Migrations
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
  */
 class NameParser
 {
@@ -48,7 +58,7 @@ class NameParser
     /**
      * The constructor.
      *
-     * @param string $name
+     * @param string $name Name
      */
     public function __construct($name)
     {
@@ -157,9 +167,10 @@ class NameParser
     }
 
     /**
-     * Determine whether the given type is same with the current schema action or type.
+     * Determine whether the given type is
+     * same with the current schema action or type.
      *
-     * @param $type
+     * @param string $type type
      *
      * @return bool
      */

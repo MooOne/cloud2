@@ -6,6 +6,19 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 use Yeelight\Models\Foundation\User;
 
+/**
+ * Class SocialiteUser
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Models
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class SocialiteUser extends BaseModel implements Transformable
 {
     use TransformableTrait;

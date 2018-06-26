@@ -3,25 +3,46 @@
 namespace Yeelight\Http\Controllers\Api\Controllers;
 
 use Dingo\Api\Exception\DeleteResourceFailedException;
-use Dingo\Api\Exception\StoreResourceFailedException;
-use Dingo\Api\Exception\UpdateResourceFailedException;
 use Yeelight\Http\Requests\Api\ProductModelCreateRequest;
 use Yeelight\Http\Requests\Api\ProductModelUpdateRequest;
 use Yeelight\Repositories\Interfaces\ProductModelRepository;
 use Yeelight\Validators\ProductModelValidator;
 
+/**
+ * Class ProductModelsController
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Http\Controllers\Api\Controllers
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class ProductModelsController extends BaseController
 {
     /**
+     * ProductModelRepository
+     *
      * @var ProductModelRepository
      */
     protected $repository;
 
     /**
+     * ProductModelValidator
+     *
      * @var ProductModelValidator
      */
     protected $validator;
 
+    /**
+     * ProductModelsController constructor.
+     *
+     * @param ProductModelRepository $repository ProductModelRepository
+     * @param ProductModelValidator $validator ProductModelValidator
+     */
     public function __construct(
         ProductModelRepository $repository,
         ProductModelValidator $validator
@@ -43,7 +64,7 @@ class ProductModelsController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param ProductModelCreateRequest $request
+     * @param ProductModelCreateRequest $request ProductModelCreateRequest
      *
      * @return \Illuminate\Http\Response
      */
@@ -66,7 +87,7 @@ class ProductModelsController extends BaseController
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param int $id id
      *
      * @return \Illuminate\Http\Response
      */
@@ -78,8 +99,8 @@ class ProductModelsController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param ProductModelUpdateRequest $request
-     * @param string                    $id
+     * @param ProductModelUpdateRequest $request ProductModelUpdateRequest
+     * @param string $id id
      *
      * @return \Illuminate\Http\Response
      */
@@ -99,7 +120,7 @@ class ProductModelsController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param int $id id
      *
      * @return \Illuminate\Http\Response
      */

@@ -2,12 +2,24 @@
 
 namespace Yeelight\Generators\Commands;
 
-use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Yeelight\Generators\FileAlreadyExistsException;
 use Yeelight\Generators\RequestGenerator;
 
+/**
+ * Class RequestCommand
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Generators\Commands
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class RequestCommand extends CommandBase
 {
     /**
@@ -39,12 +51,14 @@ class RequestCommand extends CommandBase
     public function fire()
     {
         try {
-            (new RequestGenerator([
-                'name'   => $this->argument('name'),
-                'type'   => $this->option('type'),
-                'fields' => $this->option('fields'),
-                'force'  => $this->option('force'),
-            ]))->run();
+            (new RequestGenerator(
+                [
+                    'name' => $this->argument('name'),
+                    'type' => $this->option('type'),
+                    'fields' => $this->option('fields'),
+                    'force' => $this->option('force'),
+                ]
+            ))->run();
             $this->info('Request created successfully.');
         } catch (FileAlreadyExistsException $e) {
             $this->error($this->type.' already exists!');

@@ -12,6 +12,19 @@ use Illuminate\Support\Facades\Input;
 use Symfony\Component\HttpKernel\Exception\NotAcceptableHttpException;
 use Yeelight\Services\Exporters\Exporter;
 
+/**
+ * Trait BackendExporter
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Traits
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 trait BackendExporter
 {
     /**

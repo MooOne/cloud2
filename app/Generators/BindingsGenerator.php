@@ -3,7 +3,17 @@
 namespace Yeelight\Generators;
 
 /**
- * Class BindingsGenerator.
+ * Class BindingsGenerator
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Generators
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
  */
 class BindingsGenerator extends Generator
 {
@@ -20,6 +30,12 @@ class BindingsGenerator extends Generator
      */
     protected $stub = 'bindings/bindings';
 
+    /**
+     * Run
+     *
+     * @return int|void
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
     public function run()
     {
 
@@ -37,7 +53,13 @@ class BindingsGenerator extends Generator
      */
     public function getPath()
     {
-        return $this->getBasePath().'/Providers/'.parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true).'.php';
+        return $this->getBasePath() .
+            '/Providers/' .
+            parent::getConfigGeneratorClassPath(
+                $this->getPathConfigNode(),
+                true
+            ) .
+            '.php';
     }
 
     /**
@@ -67,9 +89,11 @@ class BindingsGenerator extends Generator
      */
     public function getRepository()
     {
-        $repositoryGenerator = new RepositoryInterfaceGenerator([
-            'name' => $this->name,
-        ]);
+        $repositoryGenerator = new RepositoryInterfaceGenerator(
+            [
+                'name' => $this->name,
+            ]
+        );
 
         $repository = $repositoryGenerator->getRootNamespace().'\\'.$repositoryGenerator->getName();
 
@@ -86,9 +110,11 @@ class BindingsGenerator extends Generator
      */
     public function getEloquentRepository()
     {
-        $repositoryGenerator = new RepositoryEloquentGenerator([
-            'name' => $this->name,
-        ]);
+        $repositoryGenerator = new RepositoryEloquentGenerator(
+            [
+                'name' => $this->name,
+            ]
+        );
 
         $repository = $repositoryGenerator->getRootNamespace().'\\'.$repositoryGenerator->getName();
 
@@ -115,10 +141,13 @@ class BindingsGenerator extends Generator
      */
     public function getReplacements()
     {
-        return array_merge(parent::getReplacements(), [
-            'repository'  => $this->getRepository(),
-            'eloquent'    => $this->getEloquentRepository(),
-            'placeholder' => $this->bindPlaceholder,
-        ]);
+        return array_merge(
+            parent::getReplacements(),
+            [
+                'repository' => $this->getRepository(),
+                'eloquent' => $this->getEloquentRepository(),
+                'placeholder' => $this->bindPlaceholder,
+            ]
+        );
     }
 }

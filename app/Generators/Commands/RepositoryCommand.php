@@ -2,7 +2,6 @@
 
 namespace Yeelight\Generators\Commands;
 
-use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
@@ -12,6 +11,19 @@ use Yeelight\Generators\ModelGenerator;
 use Yeelight\Generators\RepositoryEloquentGenerator;
 use Yeelight\Generators\RepositoryInterfaceGenerator;
 
+/**
+ * Class RepositoryCommand
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Generators\Commands
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class RepositoryCommand extends CommandBase
 {
     /**
@@ -36,6 +48,8 @@ class RepositoryCommand extends CommandBase
     protected $type = 'Repository';
 
     /**
+     * $generators
+     *
      * @var Collection
      */
     protected $generators = null;
@@ -49,45 +63,61 @@ class RepositoryCommand extends CommandBase
     {
         $this->generators = new Collection();
 
-        $this->generators->push(new MigrationGenerator([
-            'name'   => 'create_'.snake_case(str_plural($this->argument('name'))).'_table',
-            'fields' => $this->option('fillable'),
-            'force'  => $this->option('force'),
-        ]));
+        $this->generators->push(
+            new MigrationGenerator(
+                [
+                    'name' => 'create_' . snake_case(str_plural($this->argument('name'))) . '_table',
+                    'fields' => $this->option('fillable'),
+                    'force' => $this->option('force'),
+                ]
+            )
+        );
 
-        $modelGenerator = new ModelGenerator([
-            'name'     => $this->argument('name'),
-            'fillable' => $this->option('fillable'),
-            'force'    => $this->option('force'),
-        ]);
+        $modelGenerator = new ModelGenerator(
+            [
+                'name' => $this->argument('name'),
+                'fillable' => $this->option('fillable'),
+                'force' => $this->option('force'),
+            ]
+        );
 
         $this->generators->push($modelGenerator);
 
-        $this->generators->push(new RepositoryInterfaceGenerator([
-            'name'  => $this->argument('name'),
-            'force' => $this->option('force'),
-        ]));
+        $this->generators->push(
+            new RepositoryInterfaceGenerator(
+                [
+                    'name' => $this->argument('name'),
+                    'force' => $this->option('force'),
+                ]
+            )
+        );
 
         foreach ($this->generators as $generator) {
             $generator->run();
         }
 
         $model = $modelGenerator->getRootNamespace().'\\'.$modelGenerator->getName();
-        $model = str_replace([
+        $model = str_replace(
+            [
+                '\\',
+                '/',
+            ],
             '\\',
-            '/',
-        ], '\\', $model);
+            $model
+        );
 
         try {
-            (new RepositoryEloquentGenerator([
-                'name'      => $this->argument('name'),
-                'rules'     => $this->option('rules'),
-                'fields'    => $this->option('fields'),
-                'validator' => $this->option('validator'),
-                'presenter' => $this->option('presenter'),
-                'force'     => $this->option('force'),
-                'model'     => $model,
-            ]))->run();
+            (new RepositoryEloquentGenerator(
+                [
+                    'name' => $this->argument('name'),
+                    'rules' => $this->option('rules'),
+                    'fields' => $this->option('fields'),
+                    'validator' => $this->option('validator'),
+                    'presenter' => $this->option('presenter'),
+                    'force' => $this->option('force'),
+                    'model' => $model,
+                ]
+            ))->run();
             $this->info('Repository created successfully.');
         } catch (FileAlreadyExistsException $e) {
             $this->error($this->type.' already exists!');

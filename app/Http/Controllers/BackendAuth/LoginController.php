@@ -9,6 +9,19 @@ use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Redirect;
 use Yeelight\Http\Controllers\BaseController;
 
+/**
+ * Class LoginController
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Http\Controllers\BackendAuth
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class LoginController extends BaseController
 {
     /*
@@ -53,6 +66,11 @@ class LoginController extends BaseController
         $this->middleware('guest')->except('logout');
     }
 
+    /**
+     * RedirectTo
+     *
+     * @return \Illuminate\Config\Repository|mixed|string
+     */
     public function redirectTo()
     {
         $this->redirectTo = config('yeelight.backend.route.prefix');
@@ -73,9 +91,10 @@ class LoginController extends BaseController
     /**
      * Handle a login request to the application.
      *
-     * @param \Illuminate\Http\Request|Request $request
+     * @param Request $request Request
      *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response|void
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function login(Request $request)
     {
@@ -105,25 +124,29 @@ class LoginController extends BaseController
     /**
      * Validate the user login request.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request Request
      *
      * @return void
      */
     protected function validateLogin(Request $request)
     {
-        $this->validate($request, [
-            $this->username()   => 'required|string',
-            'password'          => 'required|string',
-            'geetest_challenge' => 'geetest',
-        ], [
-            'geetest' => config('geetest.server_fail_alert'),
-        ]);
+        $this->validate(
+            $request,
+            [
+                $this->username() => 'required|string',
+                'password' => 'required|string',
+                'geetest_challenge' => 'geetest',
+            ],
+            [
+                'geetest' => config('geetest.server_fail_alert'),
+            ]
+        );
     }
 
     /**
      * Attempt to log the user into the application.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request Request
      *
      * @return bool
      */
@@ -137,7 +160,7 @@ class LoginController extends BaseController
     /**
      * Get the needed authorization credentials from the request.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request Request
      *
      * @return array
      */
@@ -149,7 +172,7 @@ class LoginController extends BaseController
     /**
      * Send the response after the user was authenticated.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request Request
      *
      * @return \Illuminate\Http\Response
      */
@@ -168,7 +191,7 @@ class LoginController extends BaseController
     /**
      * Get the failed login response instance.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request Request
      *
      * @throws ValidationException
      *
@@ -182,8 +205,8 @@ class LoginController extends BaseController
     /**
      * The user has been authenticated.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param mixed                    $user
+     * @param \Illuminate\Http\Request $request Request
+     * @param mixed $user user
      *
      * @return mixed
      */
@@ -205,7 +228,7 @@ class LoginController extends BaseController
     /**
      * Log the user out of the application.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request Request
      *
      * @return \Illuminate\Http\Response
      */
@@ -229,6 +252,8 @@ class LoginController extends BaseController
     }
 
     /**
+     * GetFailedLoginMessage
+     *
      * @return string|\Symfony\Component\Translation\TranslatorInterface
      */
     protected function getFailedLoginMessage()

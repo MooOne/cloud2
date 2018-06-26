@@ -5,7 +5,17 @@ namespace Yeelight\Generators\Migrations;
 use Illuminate\Contracts\Support\Arrayable;
 
 /**
- * Class SchemaParser.
+ * Class SchemaParser
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Generators\Migrations
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
  */
 class SchemaParser implements Arrayable
 {
@@ -28,7 +38,7 @@ class SchemaParser implements Arrayable
     /**
      * Create new instance.
      *
-     * @param string|null $schema
+     * @param string|null $schema Schema
      */
     public function __construct($schema = null)
     {
@@ -73,7 +83,7 @@ class SchemaParser implements Arrayable
     /**
      * Parse a string to array of formatted schema.
      *
-     * @param string $schema
+     * @param string $schema Schema
      *
      * @return array
      */
@@ -107,22 +117,25 @@ class SchemaParser implements Arrayable
     /**
      * Get column name from schema.
      *
-     * @param string $schema
+     * @param string $schema Schema
      *
      * @return string
      */
     public function getColumn($schema)
     {
-        return array_first(explode(':', $schema), function ($key, $value) {
-            return $key;
-        });
+        return array_first(
+            explode(':', $schema),
+            function ($key/*, $value*/) {
+                return $key;
+            }
+        );
     }
 
     /**
      * Get column attributes.
      *
-     * @param string $column
-     * @param string $schema
+     * @param string $column column
+     * @param string $schema schema
      *
      * @return array
      */
@@ -130,13 +143,15 @@ class SchemaParser implements Arrayable
     {
         $fields = str_replace($column.':', '', $schema);
 
-        return $this->hasCustomAttribute($column) ? $this->getCustomAttribute($column) : explode(':', $fields);
+        return $this->hasCustomAttribute($column) ?
+            $this->getCustomAttribute($column) :
+            explode(':', $fields);
     }
 
     /**
      * Determinte whether the given column is exist in customAttributes array.
      *
-     * @param string $column
+     * @param string $column Column
      *
      * @return bool
      */
@@ -148,7 +163,7 @@ class SchemaParser implements Arrayable
     /**
      * Get custom attributes value.
      *
-     * @param string $column
+     * @param string $column Column
      *
      * @return array
      */
@@ -160,8 +175,9 @@ class SchemaParser implements Arrayable
     /**
      * Create field.
      *
-     * @param string $column
-     * @param array  $attributes
+     * @param string $column $column
+     * @param array $attributes $attributes
+     * @param string $type $type
      *
      * @return string
      */

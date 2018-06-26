@@ -10,18 +10,41 @@ use Yeelight\Http\Requests\Api\AuthRegisterRequest;
 use Yeelight\Repositories\Interfaces\UserRepository;
 use Yeelight\Validators\UserValidator;
 
+/**
+ * Class AuthController
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Http\Controllers\Api\Controllers
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class AuthController extends BaseController
 {
     /**
+     * UserRepository
+     *
      * @var UserRepository
      */
     protected $repository;
 
     /**
+     * UserValidator
+     *
      * @var UserValidator
      */
     protected $validator;
 
+    /**
+     * AuthController constructor.
+     *
+     * @param UserRepository $repository UserRepository
+     * @param UserValidator $validator UserValidator
+     */
     public function __construct(UserRepository $repository, UserValidator $validator)
     {
         $this->repository = $repository;
@@ -31,7 +54,7 @@ class AuthController extends BaseController
     /**
      * 登录.
      *
-     * @param AuthLoginRequest $request
+     * @param AuthLoginRequest $request AuthLoginRequest
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
@@ -43,7 +66,7 @@ class AuthController extends BaseController
     /**
      * 刷新 token.
      *
-     * @param AuthRefreshRequest $request
+     * @param AuthRefreshRequest $request AuthRefreshRequest
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
@@ -55,7 +78,7 @@ class AuthController extends BaseController
     /**
      * 登出.
      *
-     * @param Request $request
+     * @param Request $request Request
      *
      * @return \Dingo\Api\Http\Response
      */
@@ -75,7 +98,7 @@ class AuthController extends BaseController
     /**
      * 注册.
      *
-     * @param AuthRegisterRequest $request
+     * @param AuthRegisterRequest $request AuthRegisterRequest
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */

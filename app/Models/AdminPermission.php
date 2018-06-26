@@ -8,6 +8,19 @@ use Illuminate\Support\Str;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
+/**
+ * Class AdminPermission
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Models
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class AdminPermission extends BaseModel implements Transformable
 {
     use TransformableTrait;
@@ -39,11 +52,15 @@ class AdminPermission extends BaseModel implements Transformable
     protected $dates = [];
 
     /**
+     * $fillable
+     *
      * @var array
      */
     protected $fillable = ['name', 'slug', 'http_method', 'http_path'];
 
     /**
+     * $httpMethods
+     *
      * @var array
      */
     public static $httpMethods = [
@@ -60,7 +77,7 @@ class AdminPermission extends BaseModel implements Transformable
     /**
      * Create a new Eloquent model instance.
      *
-     * @param array $attributes
+     * @param array $attributes attributes
      */
     public function __construct(array $attributes = [])
     {
@@ -86,7 +103,7 @@ class AdminPermission extends BaseModel implements Transformable
     /**
      * If request should pass through the current permission.
      *
-     * @param Request $request
+     * @param Request $request Request
      *
      * @return bool
      */
@@ -121,8 +138,8 @@ class AdminPermission extends BaseModel implements Transformable
     /**
      * If a request match the specific HTTP method and path.
      *
-     * @param array   $match
-     * @param Request $request
+     * @param array $match match
+     * @param Request $request Request
      *
      * @return bool
      */

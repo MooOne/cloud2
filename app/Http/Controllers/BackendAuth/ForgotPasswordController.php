@@ -5,6 +5,19 @@ namespace Yeelight\Http\Controllers\BackendAuth;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Yeelight\Http\Controllers\Controller;
 
+/**
+ * Class ForgotPasswordController
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Http\Controllers\BackendAuth
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class ForgotPasswordController extends Controller
 {
     /*

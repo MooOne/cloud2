@@ -16,7 +16,17 @@ use Yeelight\Base\Models\BaseModel;
 use Yeelight\Models\Interfaces\BaseModelEventsInterface;
 
 /**
- * Yeelight\Models\Foundation\BaseUser.
+ * Class BaseUser
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Models\Foundation
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
  *
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
  * @property-read mixed $id

@@ -2,12 +2,24 @@
 
 namespace Yeelight\Generators\Commands;
 
-use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Yeelight\Generators\ApiControllerGenerator;
 use Yeelight\Generators\FileAlreadyExistsException;
 
+/**
+ * Class ApiControllerCommand
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Generators\Commands
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class ApiControllerCommand extends CommandBase
 {
     /**
@@ -34,30 +46,38 @@ class ApiControllerCommand extends CommandBase
     /**
      * Execute the command.
      *
-     * @return void
+     * @return bool|void
      */
     public function fire()
     {
         try {
             // Generate create request for controller
-            $this->call('yl:request', [
-                'name'     => 'Api/'.$this->argument('name').'Create',
-                '--type'   => 'api',
-                '--fields' => $this->option('fields'),
-                '--force'  => $this->option('force'),
-            ]);
+            $this->call(
+                'yl:request',
+                [
+                    'name' => 'Api/' . $this->argument('name') . 'Create',
+                    '--type' => 'api',
+                    '--fields' => $this->option('fields'),
+                    '--force' => $this->option('force'),
+                ]
+            );
             // Generate update request for controller
-            $this->call('yl:request', [
-                'name'     => 'Api/'.$this->argument('name').'Update',
-                '--type'   => 'api',
-                '--fields' => $this->option('fields'),
-                '--force'  => $this->option('force'),
-            ]);
+            $this->call(
+                'yl:request',
+                [
+                    'name' => 'Api/' . $this->argument('name') . 'Update',
+                    '--type' => 'api',
+                    '--fields' => $this->option('fields'),
+                    '--force' => $this->option('force'),
+                ]
+            );
 
-            (new ApiControllerGenerator([
-                'name'  => $this->argument('name'),
-                'force' => $this->option('force'),
-            ]))->run();
+            (new ApiControllerGenerator(
+                [
+                    'name' => $this->argument('name'),
+                    'force' => $this->option('force'),
+                ]
+            ))->run();
             $this->info($this->type.' created successfully.');
         } catch (FileAlreadyExistsException $e) {
             $this->error($this->type.' already exists!');

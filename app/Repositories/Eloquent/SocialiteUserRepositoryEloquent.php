@@ -9,11 +9,25 @@ use Yeelight\Repositories\Interfaces\SocialiteUserRepository;
 use Yeelight\Validators\SocialiteUserValidator;
 
 /**
- * Class SocialiteUserRepositoryEloquent.
+ * Class SocialiteUserRepositoryEloquent
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Repositories\Eloquent
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
  */
-class SocialiteUserRepositoryEloquent extends BaseRepository implements SocialiteUserRepository
+class SocialiteUserRepositoryEloquent
+    extends BaseRepository
+    implements SocialiteUserRepository
 {
     /**
+     * $fieldSearchable
+     *
      * @var array
      */
     protected $fieldSearchable = [
@@ -23,6 +37,8 @@ class SocialiteUserRepositoryEloquent extends BaseRepository implements Socialit
     ];
 
     /**
+     * $isSearchableForceAndWhere
+     *
      * @var bool
      */
     protected $isSearchableForceAndWhere = true;

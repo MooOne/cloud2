@@ -3,12 +3,24 @@
 namespace Yeelight\Generators\Commands;
 
 use File;
-use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Yeelight\Generators\BindingsGenerator;
 use Yeelight\Generators\FileAlreadyExistsException;
 
+/**
+ * Class BindingsCommand
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Generators\Commands
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class BindingsCommand extends CommandBase
 {
     /**
@@ -35,26 +47,42 @@ class BindingsCommand extends CommandBase
     /**
      * Execute the command.
      *
-     * @return void
+     * @return bool
+     *
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function fire()
     {
         try {
-            $bindingGenerator = new BindingsGenerator([
-                'name'  => $this->argument('name'),
-                'force' => $this->option('force'),
-            ]);
+            $bindingGenerator = new BindingsGenerator(
+                [
+                    'name' => $this->argument('name'),
+                    'force' => $this->option('force'),
+                ]
+            );
             // generate repository service provider
             if (!file_exists($bindingGenerator->getPath())) {
-                $this->call('make:provider', [
-                    'name' => $bindingGenerator->getConfigGeneratorClassPath($bindingGenerator->getPathConfigNode()),
-                ]);
-                // placeholder to mark the place in file where to prepend repository bindings
+                $this->call(
+                    'make:provider',
+                    [
+                        'name' => $bindingGenerator->getConfigGeneratorClassPath(
+                            $bindingGenerator->getPathConfigNode()
+                        ),
+                    ]
+                );
+                // placeholder to mark the place
+                // in file where to prepend repository bindings
                 $provider = File::get($bindingGenerator->getPath());
-                File::put($bindingGenerator->getPath(), vsprintf(str_replace('//', '%s', $provider), [
-                    '//',
-                    $bindingGenerator->bindPlaceholder,
-                ]));
+                File::put(
+                    $bindingGenerator->getPath(),
+                    vsprintf(
+                        str_replace('//', '%s', $provider),
+                        [
+                            '//',
+                            $bindingGenerator->bindPlaceholder,
+                        ]
+                    )
+                );
             }
             $bindingGenerator->run();
             $this->info($this->type.' created successfully.');

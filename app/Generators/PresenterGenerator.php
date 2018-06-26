@@ -3,7 +3,17 @@
 namespace Yeelight\Generators;
 
 /**
- * Class PresenterGenerator.
+ * Class PresenterGenerator
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Generators
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
  */
 class PresenterGenerator extends Generator
 {
@@ -21,7 +31,8 @@ class PresenterGenerator extends Generator
      */
     public function getRootNamespace()
     {
-        return parent::getRootNamespace().parent::getConfigGeneratorClassPath($this->getPathConfigNode());
+        return parent::getRootNamespace() .
+            parent::getConfigGeneratorClassPath($this->getPathConfigNode());
     }
 
     /**
@@ -41,19 +52,28 @@ class PresenterGenerator extends Generator
      */
     public function getReplacements()
     {
-        $transformerGenerator = new TransformerGenerator([
-            'name' => $this->name,
-        ]);
+        $transformerGenerator = new TransformerGenerator(
+            [
+                'name' => $this->name,
+            ]
+        );
         $transformer = $transformerGenerator->getRootNamespace().'\\'.$transformerGenerator->getName().'Transformer';
-        $transformer = str_replace([
+        $transformer = str_replace(
+            [
+                '\\',
+                '/',
+            ],
             '\\',
-            '/',
-        ], '\\', $transformer);
+            $transformer
+        );
         echo $transformer;
 
-        return array_merge(parent::getReplacements(), [
-            'transformer' => $transformer,
-        ]);
+        return array_merge(
+            parent::getReplacements(),
+            [
+                'transformer' => $transformer,
+            ]
+        );
     }
 
     /**
@@ -63,7 +83,12 @@ class PresenterGenerator extends Generator
      */
     public function getPath()
     {
-        return $this->getBasePath().'/'.parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true).'/'.$this->getName().'Presenter.php';
+        return $this->getBasePath() .
+            '/' .
+            parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true) .
+            '/' .
+            $this->getName() .
+            'Presenter.php';
     }
 
     /**

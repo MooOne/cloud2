@@ -3,7 +3,17 @@
 namespace Yeelight\Generators;
 
 /**
- * Class ApiControllerGenerator.
+ * Class ApiControllerGenerator
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Generators
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
  */
 class ApiControllerGenerator extends Generator
 {
@@ -21,7 +31,11 @@ class ApiControllerGenerator extends Generator
      */
     public function getRootNamespace()
     {
-        return str_replace('/', '\\', parent::getRootNamespace().parent::getConfigGeneratorClassPath($this->getPathConfigNode()));
+        return str_replace(
+            '/',
+            '\\',
+            parent::getRootNamespace() . parent::getConfigGeneratorClassPath($this->getPathConfigNode())
+        );
     }
 
     /**
@@ -41,7 +55,13 @@ class ApiControllerGenerator extends Generator
      */
     public function getPath()
     {
-        return $this->getBasePath().'/'.parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true).'/'.$this->getControllerName().'Controller.php';
+        return $this->getBasePath() . '/' .
+            parent::getConfigGeneratorClassPath(
+                $this->getPathConfigNode(),
+                true
+            ) .
+            '/' .
+            $this->getControllerName() . 'Controller.php';
     }
 
     /**
@@ -81,14 +101,17 @@ class ApiControllerGenerator extends Generator
      */
     public function getReplacements()
     {
-        return array_merge(parent::getReplacements(), [
-            'controller' => $this->getControllerName(),
-            'plural'     => $this->getPluralName(),
-            'singular'   => $this->getSingularName(),
-            'validator'  => $this->getValidator(),
-            'repository' => $this->getRepository(),
-            'appname'    => $this->getAppNamespace(),
-        ]);
+        return array_merge(
+            parent::getReplacements(),
+            [
+                'controller' => $this->getControllerName(),
+                'plural' => $this->getPluralName(),
+                'singular' => $this->getSingularName(),
+                'validator' => $this->getValidator(),
+                'repository' => $this->getRepository(),
+                'appname' => $this->getAppNamespace(),
+            ]
+        );
     }
 
     /**
@@ -108,16 +131,20 @@ class ApiControllerGenerator extends Generator
      */
     public function getValidator()
     {
-        $validatorGenerator = new ValidatorGenerator([
-            'name' => $this->name,
-        ]);
+        $validatorGenerator = new ValidatorGenerator(
+            [
+                'name' => $this->name,
+            ]
+        );
 
         $validator = $validatorGenerator->getRootNamespace().'\\'.$validatorGenerator->getName();
 
-        return 'use '.str_replace([
-            '\\',
-            '/',
-        ], '\\', $validator).'Validator;';
+        return 'use ' . str_replace(
+                [
+                    '\\',
+                    '/',
+                ]
+                , '\\', $validator) . 'Validator;';
     }
 
     /**
@@ -127,15 +154,19 @@ class ApiControllerGenerator extends Generator
      */
     public function getRepository()
     {
-        $repositoryGenerator = new RepositoryInterfaceGenerator([
-            'name' => $this->name,
-        ]);
+        $repositoryGenerator = new RepositoryInterfaceGenerator(
+            [
+                'name' => $this->name,
+            ]
+        );
 
         $repository = $repositoryGenerator->getRootNamespace().'\\'.$repositoryGenerator->getName();
 
-        return 'use '.str_replace([
-            '\\',
-            '/',
-        ], '\\', $repository).'Repository;';
+        return 'use ' . str_replace(
+                [
+                    '\\',
+                    '/',
+                ]
+                , '\\', $repository) . 'Repository;';
     }
 }

@@ -2,13 +2,25 @@
 
 namespace Yeelight\Generators\Commands;
 
-use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Yeelight\Generators\FileAlreadyExistsException;
 use Yeelight\Generators\PresenterGenerator;
 use Yeelight\Generators\TransformerGenerator;
 
+/**
+ * Class PresenterCommand
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Generators\Commands
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class PresenterCommand extends CommandBase
 {
     /**
@@ -40,18 +52,22 @@ class PresenterCommand extends CommandBase
     public function fire()
     {
         try {
-            (new PresenterGenerator([
-                'name'  => $this->argument('name'),
-                'force' => $this->option('force'),
-            ]))->run();
+            (new PresenterGenerator(
+                [
+                    'name' => $this->argument('name'),
+                    'force' => $this->option('force'),
+                ]
+            ))->run();
             $this->info('Presenter created successfully.');
 
             if (!\File::exists(app_path().'/Transformers/'.$this->argument('name').'Transformer.php')) {
                 if ($this->confirm('Would you like to create a Transformer? [y|N]')) {
-                    (new TransformerGenerator([
-                        'name'  => $this->argument('name'),
-                        'force' => $this->option('force'),
-                    ]))->run();
+                    (new TransformerGenerator(
+                        [
+                            'name' => $this->argument('name'),
+                            'force' => $this->option('force'),
+                        ]
+                    ))->run();
                     $this->info('Transformer created successfully.');
                 }
             }

@@ -3,23 +3,46 @@
 namespace Yeelight\Http\Controllers\Api\Controllers;
 
 use Dingo\Api\Exception\DeleteResourceFailedException;
-use Dingo\Api\Exception\UpdateResourceFailedException;
+use Dingo\Api\Http\Response;
 use Yeelight\Http\Requests\Api\UserUpdateRequest;
 use Yeelight\Repositories\Interfaces\UserRepository;
 use Yeelight\Validators\UserValidator;
 
+/**
+ * Class UsersController
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Http\Controllers\Api\Controllers
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class UsersController extends BaseController
 {
     /**
+     * UserRepository
+     *
      * @var UserRepository
      */
     protected $repository;
 
     /**
+     * UserValidator
+     *
      * @var UserValidator
      */
     protected $validator;
 
+    /**
+     * UsersController constructor.
+     *
+     * @param UserRepository $repository UserRepository
+     * @param UserValidator $validator UserValidator
+     */
     public function __construct(UserRepository $repository, UserValidator $validator)
     {
         $this->repository = $repository;
@@ -39,7 +62,7 @@ class UsersController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param UserUpdateRequest $request
+     * @param UserUpdateRequest $request UserUpdateRequest
      *
      * @return Response
      */
@@ -50,7 +73,7 @@ class UsersController extends BaseController
         $this->repository->update($data, $this->getAuthUserId());
 
         // throw exception if update failed
-//        throw new UpdateResourceFailedException('Failed to update.');
+        // throw new UpdateResourceFailedException('Failed to update.');
 
         // Updated, return 204 No Content
         return $this->response->noContent();

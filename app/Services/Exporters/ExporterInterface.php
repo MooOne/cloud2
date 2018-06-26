@@ -8,6 +8,19 @@
 
 namespace Yeelight\Services\Exporters;
 
+/**
+ * Interface ExporterInterface
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Services\Exporters
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 interface ExporterInterface
 {
     /**

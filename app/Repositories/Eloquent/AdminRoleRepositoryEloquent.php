@@ -9,11 +9,25 @@ use Yeelight\Repositories\Interfaces\AdminRoleRepository;
 use Yeelight\Validators\AdminRoleValidator;
 
 /**
- * Class AdminRoleRepositoryEloquent.
+ * Class AdminRoleRepositoryEloquent
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Repositories\Eloquent
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
  */
-class AdminRoleRepositoryEloquent extends BaseRepository implements AdminRoleRepository
+class AdminRoleRepositoryEloquent
+    extends BaseRepository
+    implements AdminRoleRepository
 {
     /**
+     * $fieldSearchable
+     *
      * @var array
      */
     protected $fieldSearchable = [
@@ -23,6 +37,8 @@ class AdminRoleRepositoryEloquent extends BaseRepository implements AdminRoleRep
     ];
 
     /**
+     * $isSearchableForceAndWhere
+     *
      * @var bool
      */
     protected $isSearchableForceAndWhere = true;

@@ -5,14 +5,24 @@ namespace Yeelight\Transformers;
 use Yeelight\Models\Foundation\User;
 
 /**
- * Class UserTransformer.
+ * Class UserTransformer
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Transformers
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
  */
 class UserTransformer extends BaseTransformer
 {
     /**
      * Transform the User entity.
      *
-     * @param User $model
+     * @param User $model User
      *
      * @return array
      */

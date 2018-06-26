@@ -13,8 +13,26 @@ use Yeelight\Http\Controllers\BaseController;
 use Yeelight\Models\Tools\ApiTester\ApiTester;
 use Yeelight\Services\Assets\Assets;
 
+/**
+ * Class ApiTesterController
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Http\Controllers\Backend\Tools\ApiTester
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class ApiTesterController extends BaseController
 {
+    /**
+     * Index
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $tester = new ApiTester();
@@ -22,14 +40,24 @@ class ApiTesterController extends BaseController
         Assets::js('js/prism.js');
         Assets::css('css/prism.css');
 
-        return view('backend.tools.api_tester.index', [
-            'routes' => $tester->getRoutes(),
-            //'logs'   => ApiLogger::load(),
-            'methodColors'       => ApiTester::$methodColors,
-            'header_description' => 'Api tester',
-        ]);
+        return view(
+            'backend.tools.api_tester.index',
+            [
+                'routes' => $tester->getRoutes(),
+                //'logs'   => ApiLogger::load(),
+                'methodColors' => ApiTester::$methodColors,
+                'header_description' => 'Api tester',
+            ]
+        );
     }
 
+    /**
+     * Handler
+     *
+     * @param Request $request Request
+     *
+     * @return array
+     */
     public function handle(Request $request)
     {
         $method = $request->get('method');
@@ -44,9 +72,13 @@ class ApiTesterController extends BaseController
         foreach ($keys as $index => $key) {
             $parameters[$key] = array_get($vals, $index);
         }
-        $parameters = array_filter($parameters, function ($key) {
-            return $key !== '';
-        }, ARRAY_FILTER_USE_KEY);
+        $parameters = array_filter(
+            $parameters,
+            function ($key) {
+                return $key !== '';
+            },
+            ARRAY_FILTER_USE_KEY
+        );
         $tester = new ApiTester();
         $response = $tester->call($method, $uri, $parameters, $user);
 

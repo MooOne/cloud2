@@ -13,6 +13,19 @@ use Illuminate\Routing\Route;
 use Illuminate\Support\Str;
 use Yeelight\Http\Controllers\BaseController;
 
+/**
+ * Class RouteController
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Http\Controllers\Backend\Tools\Routes
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class RouteController extends BaseController
 {
     public function index()

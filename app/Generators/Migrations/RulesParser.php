@@ -5,7 +5,17 @@ namespace Yeelight\Generators\Migrations;
 use Illuminate\Contracts\Support\Arrayable;
 
 /**
- * Class RulesParser.
+ * Class RulesParser
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Generators\Migrations
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
  */
 class RulesParser implements Arrayable
 {
@@ -19,7 +29,7 @@ class RulesParser implements Arrayable
     /**
      * Create new instance.
      *
-     * @param string|null $rules
+     * @param string|null $rules Rules
      */
     public function __construct($rules = null)
     {
@@ -39,7 +49,7 @@ class RulesParser implements Arrayable
     /**
      * Parse a string to array of formatted rules.
      *
-     * @param string $rules
+     * @param string $rules Rules
      *
      * @return array
      */
@@ -73,22 +83,25 @@ class RulesParser implements Arrayable
     /**
      * Get column name from rules.
      *
-     * @param string $rules
+     * @param string $rules Rules
      *
      * @return string
      */
     public function getColumn($rules)
     {
-        return array_first(explode('=>', $rules), function ($key, $value) {
-            return $key;
-        });
+        return array_first(
+            explode('=>', $rules),
+            function ($key/*, $value*/) {
+                return $key;
+            }
+        );
     }
 
     /**
      * Get column attributes.
      *
-     * @param string $column
-     * @param string $rules
+     * @param string $column column
+     * @param string $rules rules
      *
      * @return array
      */

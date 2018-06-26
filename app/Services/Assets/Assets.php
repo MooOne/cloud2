@@ -8,19 +8,38 @@
 
 namespace Yeelight\Services\Assets;
 
+/**
+ * Class Assets
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Services\Assets
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class Assets
 {
     /**
+     * $script
+     *
      * @var array
      */
     public static $script = [];
 
     /**
+     * $css
+     *
      * @var array
      */
     public static $css = [];
 
     /**
+     * $js
+     *
      * @var array
      */
     public static $js = [];
@@ -28,7 +47,7 @@ class Assets
     /**
      * Add css or get all css.
      *
-     * @param null $css
+     * @param null $css css
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void
      */

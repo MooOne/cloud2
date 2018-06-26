@@ -10,14 +10,25 @@ namespace Yeelight\Http\Controllers\Backend\Tools\Scaffold;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
-use Yeelight\Generators\Generator;
 use Yeelight\Http\Controllers\BaseController;
 
+/**
+ * Class ScaffoldController
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Http\Controllers\Backend\Tools\Scaffold
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class ScaffoldController extends BaseController
 {
     /**
@@ -77,7 +88,9 @@ class ScaffoldController extends BaseController
         $message = '';
 
         try {
-            $model_name = Str::camel(ucfirst(str_singular(lcfirst(ucwords($request->get('model_name'))))));
+            $model_name = Str::camel(
+                ucfirst(str_singular(lcfirst(ucwords($request->get('model_name')))))
+            );
 
             $force = false;
             if (in_array('force', $request->get('create'))) {

@@ -5,6 +5,19 @@ namespace Yeelight\Repositories\Eloquent;
 use Yeelight\Base\Repositories\Eloquent\Repository;
 use Yeelight\Repositories\Interfaces\BaseRepositoryInterface;
 
+/**
+ * Class BaseRepository
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Repositories\Eloquent
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 abstract class BaseRepository extends Repository implements BaseRepositoryInterface
 {
     /**

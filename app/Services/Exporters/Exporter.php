@@ -11,6 +11,19 @@ namespace Yeelight\Services\Exporters;
 use Illuminate\Support\Facades\Input;
 use Yeelight\Repositories\Eloquent\BaseRepository as Repository;
 
+/**
+ * Class Exporter
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Services\Exporters
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class Exporter
 {
     /**

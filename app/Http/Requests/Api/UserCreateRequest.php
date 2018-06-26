@@ -4,6 +4,19 @@ namespace Yeelight\Http\Requests\Api;
 
 use Dingo\Api\Http\FormRequest;
 
+/**
+ * Class UserCreateRequest
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Http\Requests\Api
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class UserCreateRequest extends FormRequest
 {
     /**

@@ -5,7 +5,17 @@ namespace Yeelight\Generators;
 use Yeelight\Generators\Migrations\SchemaParser;
 
 /**
- * Class RepositoryEloquentGenerator.
+ * Class RepositoryEloquentGenerator
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Generators
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
  */
 class RepositoryEloquentGenerator extends Generator
 {
@@ -23,7 +33,8 @@ class RepositoryEloquentGenerator extends Generator
      */
     public function getRootNamespace()
     {
-        return parent::getRootNamespace().parent::getConfigGeneratorClassPath($this->getPathConfigNode());
+        return parent::getRootNamespace() .
+            parent::getConfigGeneratorClassPath($this->getPathConfigNode());
     }
 
     /**
@@ -43,7 +54,12 @@ class RepositoryEloquentGenerator extends Generator
      */
     public function getPath()
     {
-        return $this->getBasePath().'/'.parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true).'/'.$this->getName().'RepositoryEloquent.php';
+        return $this->getBasePath() .
+            '/' .
+            parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true) .
+            '/' .
+            $this->getName() .
+            'RepositoryEloquent.php';
     }
 
     /**
@@ -64,22 +80,29 @@ class RepositoryEloquentGenerator extends Generator
     public function getReplacements()
     {
         $repository = parent::getRootNamespace().parent::getConfigGeneratorClassPath('interfaces').'\\'.$this->name.'Repository;';
-        $repository = str_replace([
+        $repository = str_replace(
+            [
+                '\\',
+                '/',
+            ],
             '\\',
-            '/',
-        ], '\\', $repository);
+            $repository
+        );
 
-        return array_merge(parent::getReplacements(), [
-            'fillable'        => $this->getFillable(),
-            'searchable'      => $this->getSearchable(),
-            'use_validator'   => $this->getValidatorUse(),
-            'validator'       => $this->getValidatorMethod(),
-            'use_presenter'   => $this->getPresenterUse(),
-            'root_namespace'  => parent::getRootNamespace(),
-            'presenter'       => $this->getPresenterMethod(),
-            'repository'      => $repository,
-            'model'           => isset($this->options['model']) ? $this->options['model'] : '',
-        ]);
+        return array_merge(
+            parent::getReplacements(),
+            [
+                'fillable' => $this->getFillable(),
+                'searchable' => $this->getSearchable(),
+                'use_validator' => $this->getValidatorUse(),
+                'validator' => $this->getValidatorMethod(),
+                'use_presenter' => $this->getPresenterUse(),
+                'root_namespace' => parent::getRootNamespace(),
+                'presenter' => $this->getPresenterMethod(),
+                'repository' => $repository,
+                'model' => isset($this->options['model']) ? $this->options['model'] : '',
+            ]
+        );
     }
 
     /**
@@ -134,7 +157,7 @@ class RepositoryEloquentGenerator extends Generator
             case 'binary':
             case 'ipAddress':
             case 'macAddress':
-                return "\t\t'{$field['name']}' => 'like',".PHP_EOL;
+                return "\t\t'{$field['name']}' => 'like'," . PHP_EOL;
             case 'integer':
             case 'tinyInteger':
             case 'smallInteger':
@@ -157,7 +180,7 @@ class RepositoryEloquentGenerator extends Generator
             case 'decimal':
             case 'double':
             case 'boolean':
-                return "\t\t'{$field['name']}',".PHP_EOL;
+                return "\t\t'{$field['name']}'," . PHP_EOL;
         }
     }
 
@@ -171,6 +194,11 @@ class RepositoryEloquentGenerator extends Generator
         return new SchemaParser($this->fillable);
     }
 
+    /**
+     * GetValidatorUse
+     *
+     * @return string
+     */
     public function getValidatorUse()
     {
         $validator = $this->getValidator();
@@ -178,13 +206,20 @@ class RepositoryEloquentGenerator extends Generator
         return "use {$validator};";
     }
 
+    /**
+     * GetValidator
+     *
+     * @return string
+     */
     public function getValidator()
     {
-        $validatorGenerator = new ValidatorGenerator([
-            'name'  => $this->name,
-            'rules' => $this->rules,
-            'force' => $this->force,
-        ]);
+        $validatorGenerator = new ValidatorGenerator(
+            [
+                'name' => $this->name,
+                'rules' => $this->rules,
+                'force' => $this->force,
+            ]
+        );
 
         $validator = $validatorGenerator->getRootNamespace().'\\'.$validatorGenerator->getName();
 
@@ -194,6 +229,11 @@ class RepositoryEloquentGenerator extends Generator
         ], '\\', $validator).'Validator';
     }
 
+    /**
+     * GetValidatorMethod
+     *
+     * @return string
+     */
     public function getValidatorMethod()
     {
         if ($this->validator != 'yes') {
@@ -205,6 +245,11 @@ class RepositoryEloquentGenerator extends Generator
         return '/**'.PHP_EOL.'    * Specify Validator class name'.PHP_EOL.'    *'.PHP_EOL.'    * @return mixed'.PHP_EOL.'    */'.PHP_EOL.'    public function validator()'.PHP_EOL.'    {'.PHP_EOL.PHP_EOL.'        return '.$class.'Validator::class;'.PHP_EOL.'    }'.PHP_EOL;
     }
 
+    /**
+     * GetPresenterUse
+     *
+     * @return string
+     */
     public function getPresenterUse()
     {
         $presenter = $this->getPresenter();
@@ -212,13 +257,20 @@ class RepositoryEloquentGenerator extends Generator
         return "use {$presenter};";
     }
 
+    /**
+     * GetPresenter
+     *
+     * @return string
+     */
     public function getPresenter()
     {
-        $presenterGenerator = new PresenterGenerator([
-            'name'  => $this->name,
-            'rules' => $this->rules,
-            'force' => $this->force,
-        ]);
+        $presenterGenerator = new PresenterGenerator(
+            [
+                'name' => $this->name,
+                'rules' => $this->rules,
+                'force' => $this->force,
+            ]
+        );
 
         $presenter = $presenterGenerator->getRootNamespace().'\\'.$presenterGenerator->getName();
 
@@ -228,6 +280,11 @@ class RepositoryEloquentGenerator extends Generator
         ], '\\', $presenter).'Presenter';
     }
 
+    /**
+     * GetPresenterMethod
+     *
+     * @return string
+     */
     public function getPresenterMethod()
     {
         if ($this->presenter != 'yes') {

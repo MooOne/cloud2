@@ -2,12 +2,24 @@
 
 namespace Yeelight\Generators\Commands;
 
-use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Yeelight\Generators\FileAlreadyExistsException;
 use Yeelight\Generators\LangGenerator;
 
+/**
+ * Class LangCommand
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Generators\Commands
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class LangCommand extends CommandBase
 {
     /**
@@ -34,16 +46,19 @@ class LangCommand extends CommandBase
     /**
      * Execute the command.
      *
-     * @return void
+     * @return bool | void
+     * @throws \League\Flysystem\FileNotFoundException
      */
     public function fire()
     {
         try {
-            (new LangGenerator([
-                'name'   => $this->argument('name'),
-                'fields' => $this->option('fields'),
-                'force'  => $this->option('force'),
-            ]))->run();
+            (new LangGenerator(
+                [
+                    'name' => $this->argument('name'),
+                    'fields' => $this->option('fields'),
+                    'force' => $this->option('force'),
+                ]
+            ))->run();
             $this->info('Language package created successfully.');
         } catch (FileAlreadyExistsException $e) {
             $this->error($this->type.' already exists!');

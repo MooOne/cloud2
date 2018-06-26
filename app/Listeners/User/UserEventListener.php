@@ -5,6 +5,19 @@ namespace Yeelight\Listeners\User;
 use Yeelight\Events\User\UserLoggedInEvent;
 use Yeelight\Events\User\UserRegisteredEvent;
 
+/**
+ * Class UserEventListener
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Listeners\User
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class UserEventListener
 {
     public function __construct()
@@ -14,7 +27,7 @@ class UserEventListener
     /**
      * Handle user login events.
      *
-     * @param UserLoggedInEvent $event
+     * @param UserLoggedInEvent $event UserLoggedInEvent
      */
     public function onUserLogin(UserLoggedInEvent $event)
     {
@@ -23,7 +36,7 @@ class UserEventListener
     /**
      * Handle user registered events.
      *
-     * @param UserRegisteredEvent $event
+     * @param UserRegisteredEvent $event UserRegisteredEvent
      */
     public function onUserRegistered(UserRegisteredEvent $event)
     {
@@ -39,7 +52,7 @@ class UserEventListener
     /**
      * Register the listeners for the subscriber.
      *
-     * @param \Illuminate\Events\Dispatcher $events
+     * @param \Illuminate\Events\Dispatcher $events Dispatcher
      */
     public function subscribe($events)
     {
@@ -53,9 +66,9 @@ class UserEventListener
             'Yeelight\Listeners\User\UserEventListener@onUserRegistered'
         );
 
-//        $events->listen(
-//            'Yeelight\Events\UserLoggedOut',
-//            'Yeelight\Listeners\UserEventListener@onUserLogout'
-//        );
+        /*$events->listen(
+            'Yeelight\Events\UserLoggedOut',
+            'Yeelight\Listeners\UserEventListener@onUserLogout'
+        );*/
     }
 }

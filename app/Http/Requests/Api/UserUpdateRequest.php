@@ -6,6 +6,19 @@ use Dingo\Api\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Yeelight\Models\Basic\CountryModel;
 
+/**
+ * Class UserUpdateRequest
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Http\Requests\Api
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class UserUpdateRequest extends FormRequest
 {
     /**
@@ -36,7 +49,7 @@ class UserUpdateRequest extends FormRequest
                 'email',
                 Rule::unique('users')->ignore($this->email, 'email'),
             ],
-            'gender'	=> [
+            'gender' => [
                 'nullable',
                 Rule::in(['F', 'M']),
             ],

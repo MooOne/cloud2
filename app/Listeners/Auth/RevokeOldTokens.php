@@ -13,6 +13,19 @@ use Illuminate\Queue\SerializesModels;
 use Laravel\Passport\Events\AccessTokenCreated;
 use Laravel\Passport\Token;
 
+/**
+ * Class RevokeOldTokens
+ *
+ * @category Yeelight
+ *
+ * @package Yeelight\Listeners\Auth
+ *
+ * @author Sheldon Lee <xdlee110@gmail.com>
+ *
+ * @license https://opensource.org/licenses/MIT MIT
+ *
+ * @link https://www.yeelight.com
+ */
 class RevokeOldTokens
 {
     use SerializesModels;
@@ -20,7 +33,7 @@ class RevokeOldTokens
     /**
      * Handle the event.
      *
-     * @param AccessTokenCreated $event
+     * @param AccessTokenCreated $event AccessTokenCreated
      *
      * @return void
      */
