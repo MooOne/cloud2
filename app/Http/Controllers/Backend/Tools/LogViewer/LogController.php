@@ -34,8 +34,9 @@ class LogController extends BaseController
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index($file, Request $request)
+    public function index($file = '', Request $request)
     {
+        $file = $file ? $file : null;
         $offset = $request->get('offset');
 
         $viewer = new LogViewer($file);
