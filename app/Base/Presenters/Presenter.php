@@ -35,7 +35,7 @@ abstract class Presenter extends FractalPresenter
     public function present($data)
     {
         if (!class_exists('League\Fractal\Manager')) {
-            throw new Exception(trans('repository::packages.league_fractal_required'));
+            throw new \Exception(trans('repository::packages.league_fractal_required'));
         }
 
         if ($data instanceof Collection) {
