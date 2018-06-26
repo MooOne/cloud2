@@ -13,14 +13,11 @@ use Yeelight\Http\Controllers\BaseController;
 use Yeelight\Models\Tools\Scheduling\Scheduling;
 
 /**
- * Class SchedulingController
+ * Class SchedulingController.
  *
  * @category Yeelight
  *
- * @package Yeelight\Http\Controllers\Backend\Tools\Scheduling
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -30,8 +27,9 @@ class SchedulingController extends BaseController
     /**
      * 主页.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Exception
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -44,7 +42,7 @@ class SchedulingController extends BaseController
     }
 
     /**
-     * RunEvent
+     * RunEvent.
      *
      * @param Request $request Request
      *

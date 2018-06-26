@@ -6,14 +6,11 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 /**
- * Class AdminUserUpdateRequest
+ * Class AdminUserUpdateRequest.
  *
  * @category Yeelight
  *
- * @package Yeelight\Http\Requests
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

@@ -13,14 +13,11 @@ use Illuminate\Support\MessageBag;
 use Yeelight\Http\Middleware\Pjax;
 
 /**
- * Class Permission
+ * Class Permission.
  *
  * @category Yeelight
  *
- * @package Yeelight\Models
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

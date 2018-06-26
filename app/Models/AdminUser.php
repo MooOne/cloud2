@@ -10,14 +10,11 @@ use Yeelight\Services\Image\Models\Traits\YeelightUploadOneImageTrait;
 use Yeelight\Traits\HasPermissions;
 
 /**
- * Class AdminUser
+ * Class AdminUser.
  *
  * @category Yeelight
  *
- * @package Yeelight\Models
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

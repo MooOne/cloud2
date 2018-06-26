@@ -10,14 +10,11 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\UrlGenerator;
 
 /**
- * Trait ValidatesRequests
+ * Trait ValidatesRequests.
  *
  * @category Yeelight
  *
- * @package Yeelight\Http\Controllers\Api\Foundation\Validation
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -35,7 +32,7 @@ trait ValidatesRequests
      * Run the validation routine against the given validator.
      *
      * @param \Illuminate\Contracts\Validation\Validator|array $validator Validator
-     * @param \Illuminate\Http\Request|null $request Request
+     * @param \Illuminate\Http\Request|null                    $request   Request
      *
      * @return void
      */
@@ -55,10 +52,10 @@ trait ValidatesRequests
     /**
      * Validate the given request with the given rules.
      *
-     * @param \Illuminate\Http\Request $request Request
-     * @param array $rules rules
-     * @param array $messages messages
-     * @param array $customAttributes customAttributes
+     * @param \Illuminate\Http\Request $request          Request
+     * @param array                    $rules            rules
+     * @param array                    $messages         messages
+     * @param array                    $customAttributes customAttributes
      *
      * @return void
      */
@@ -74,11 +71,11 @@ trait ValidatesRequests
     /**
      * Validate the given request with the given rules.
      *
-     * @param \Illuminate\Http\Request $request Request
-     * @param array $data data
-     * @param array $rules rules
-     * @param array $messages messages
-     * @param array $customAttributes customAttributes
+     * @param \Illuminate\Http\Request $request          Request
+     * @param array                    $data             data
+     * @param array                    $rules            rules
+     * @param array                    $messages         messages
+     * @param array                    $customAttributes customAttributes
      */
     public function validateData(Request $request, array $data, array $rules, array $messages = [], array $customAttributes = [])
     {
@@ -92,11 +89,11 @@ trait ValidatesRequests
     /**
      * Validate the given request with the given rules.
      *
-     * @param string $errorBag errorBag
-     * @param \Illuminate\Http\Request $request Request
-     * @param array $rules rules
-     * @param array $messages messages
-     * @param array $customAttributes customAttributes
+     * @param string                   $errorBag         errorBag
+     * @param \Illuminate\Http\Request $request          Request
+     * @param array                    $rules            rules
+     * @param array                    $messages         messages
+     * @param array                    $customAttributes customAttributes
      *
      * @throws \Illuminate\Foundation\Validation\ValidationException
      *
@@ -112,7 +109,7 @@ trait ValidatesRequests
     /**
      * Throw the failed validation exception.
      *
-     * @param \Illuminate\Http\Request $request Request
+     * @param \Illuminate\Http\Request                   $request   Request
      * @param \Illuminate\Contracts\Validation\Validator $validator Validator
      *
      * @throws \Illuminate\Foundation\Validation\ValidationException
@@ -131,7 +128,7 @@ trait ValidatesRequests
      * Create the response for when a request fails validation.
      *
      * @param \Illuminate\Http\Request $request Request
-     * @param array $errors errors
+     * @param array                    $errors  errors
      *
      * @return \Illuminate\Http\Response
      */
@@ -181,7 +178,7 @@ trait ValidatesRequests
     /**
      * Execute a Closure within with a given error bag set as the default bag.
      *
-     * @param string $errorBag errorBag
+     * @param string   $errorBag errorBag
      * @param callable $callback callback
      *
      * @return void

@@ -3,14 +3,11 @@
 namespace Yeelight\Traits;
 
 /**
- * Trait AuthUserHelpers
+ * Trait AuthUserHelpers.
  *
  * @category Yeelight
  *
- * @package Yeelight\Traits
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -18,7 +15,7 @@ namespace Yeelight\Traits;
 trait AuthUserHelpers
 {
     /**
-     * GetAuthUser
+     * GetAuthUser.
      *
      * @return \Yeelight\Models\Foundation\User
      */
@@ -28,7 +25,7 @@ trait AuthUserHelpers
     }
 
     /**
-     * GetAuthUserId
+     * GetAuthUserId.
      *
      * @return mixed|null
      */

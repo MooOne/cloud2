@@ -8,14 +8,11 @@ use Yeelight\Services\Image\Controllers\YeelightImageController;
 use Yeelight\Services\Image\YeelightImageService;
 
 /**
- * Class ImageController
+ * Class ImageController.
  *
  * @category Yeelight
  *
- * @package Yeelight\Http\Controllers
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -23,7 +20,7 @@ use Yeelight\Services\Image\YeelightImageService;
 class ImageController extends BaseController
 {
     /**
-     * PostImage
+     * PostImage.
      *
      * @param Request $request Request
      *
@@ -59,7 +56,7 @@ class ImageController extends BaseController
     }
 
     /**
-     * ShowOriginalImage
+     * ShowOriginalImage.
      *
      * @param string $imageName imageName
      *
@@ -71,9 +68,9 @@ class ImageController extends BaseController
     }
 
     /**
-     * ShowTypeImage
+     * ShowTypeImage.
      *
-     * @param string $type type
+     * @param string $type      type
      * @param string $imageName imageName
      *
      * @return mixed|\Symfony\Component\HttpFoundation\BinaryFileResponse

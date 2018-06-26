@@ -23,14 +23,11 @@ use Yeelight\Http\Controllers\BaseController;
 use Yeelight\Models\Tools\Terminal\StringOutput;
 
 /**
- * Class TerminalController
+ * Class TerminalController.
  *
  * @category Yeelight
  *
- * @package Yeelight\Http\Controllers\Backend\Tools\Terminal
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -38,7 +35,7 @@ use Yeelight\Models\Tools\Terminal\StringOutput;
 class TerminalController extends BaseController
 {
     /**
-     * Artisan
+     * Artisan.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -53,7 +50,7 @@ class TerminalController extends BaseController
     }
 
     /**
-     * RunArtisan
+     * RunArtisan.
      *
      * @return string
      */
@@ -72,7 +69,7 @@ class TerminalController extends BaseController
     }
 
     /**
-     * 数据库终端
+     * 数据库终端.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

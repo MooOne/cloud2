@@ -5,14 +5,11 @@ namespace Yeelight\Generators\Migrations;
 use Illuminate\Contracts\Support\Arrayable;
 
 /**
- * Class RulesParser
+ * Class RulesParser.
  *
  * @category Yeelight
  *
- * @package Yeelight\Generators\Migrations
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -101,7 +98,7 @@ class RulesParser implements Arrayable
      * Get column attributes.
      *
      * @param string $column column
-     * @param string $rules rules
+     * @param string $rules  rules
      *
      * @return array
      */

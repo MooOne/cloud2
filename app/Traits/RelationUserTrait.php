@@ -5,14 +5,11 @@ namespace Yeelight\Traits;
 use Yeelight\Models\Foundation\User;
 
 /**
- * Trait RelationUserTrait
+ * Trait RelationUserTrait.
  *
  * @category Yeelight
  *
- * @package Yeelight\Traits
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

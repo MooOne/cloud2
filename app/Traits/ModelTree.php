@@ -11,14 +11,11 @@ namespace Yeelight\Traits;
 use Illuminate\Support\Facades\DB;
 
 /**
- * Trait ModelTree
+ * Trait ModelTree.
  *
  * @category Yeelight
  *
- * @package Yeelight\Traits
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

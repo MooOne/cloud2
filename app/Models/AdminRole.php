@@ -7,14 +7,11 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 /**
- * Class AdminRole
+ * Class AdminRole.
  *
  * @category Yeelight
  *
- * @package Yeelight\Models
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

@@ -11,14 +11,11 @@ use Yeelight\Repositories\Interfaces\AdminUserRepository;
 use Yeelight\Validators\AdminUserValidator;
 
 /**
- * Class AdminUsersController
+ * Class AdminUsersController.
  *
  * @category Yeelight
  *
- * @package Yeelight\Http\Controllers\Backend
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

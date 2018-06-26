@@ -5,14 +5,11 @@ namespace Yeelight\Transformers;
 use Yeelight\Models\AdminRole;
 
 /**
- * Class AdminRoleTransformer
+ * Class AdminRoleTransformer.
  *
  * @category Yeelight
  *
- * @package Yeelight\Transformers
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
