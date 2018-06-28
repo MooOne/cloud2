@@ -1,7 +1,4 @@
 <p align="center">
-<a href="https://github.styleci.io/repos/138128691" rel="nofollow">
-        <img src="https://camo.githubusercontent.com/b046e2cf67482841d6e7852628a0b39e8b9f367d/68747470733a2f2f7374796c6563692e696f2f7265706f732f34383739363137392f736869656c64" alt="StyleCI" data-canonical-src="https://styleci.io/repos/138128691/shield" style="max-width:100%;">
-    </a>
 <a href="https://scrutinizer-ci.com/g/Yeelight/cloud2/"><img src="https://scrutinizer-ci.com/g/Yeelight/cloud2/badges/quality-score.png?b=master" alt="Build Status"></a>
 <a href="https://scrutinizer-ci.com/g/Yeelight/cloud2/"><img src="https://scrutinizer-ci.com/g/Yeelight/cloud2/badges/build.png?b=master" alt="Build Status"></a>
 <a href="https://scrutinizer-ci.com/g/Yeelight/cloud2/"><img src="https://scrutinizer-ci.com/g/Yeelight/cloud2/badges/code-intelligence.svg?b=master" alt="Build Status"></a>
