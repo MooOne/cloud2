@@ -37,7 +37,7 @@ class LogController extends BaseController
      *
      * @throws \Exception
      */
-    public function index($file, Request $request)
+    public function index(Request $request, $file = null)
     {
         $offset = $request->get('offset');
 
