@@ -17,11 +17,14 @@ use Illuminate\Support\Str;
 use Yeelight\Http\Controllers\BaseController;
 
 /**
- * Class ScaffoldController.
+ * Class ScaffoldController
  *
  * @category Yeelight
  *
+ * @package Yeelight\Http\Controllers\Backend\Tools\Scaffold
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

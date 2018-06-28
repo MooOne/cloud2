@@ -9,11 +9,14 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 /**
- * Class AdminPermission.
+ * Class AdminPermission
  *
  * @category Yeelight
  *
+ * @package Yeelight\Models
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -49,14 +52,14 @@ class AdminPermission extends BaseModel implements Transformable
     protected $dates = [];
 
     /**
-     * $fillable.
+     * $fillable
      *
      * @var array
      */
     protected $fillable = ['name', 'slug', 'http_method', 'http_path'];
 
     /**
-     * $httpMethods.
+     * $httpMethods
      *
      * @var array
      */
@@ -135,7 +138,7 @@ class AdminPermission extends BaseModel implements Transformable
     /**
      * If a request match the specific HTTP method and path.
      *
-     * @param array   $match   match
+     * @param array $match match
      * @param Request $request Request
      *
      * @return bool

@@ -7,11 +7,14 @@ use Yeelight\Generators\Migrations\NameParser;
 use Yeelight\Generators\Migrations\SchemaParser;
 
 /**
- * Class MigrationGenerator.
+ * Class MigrationGenerator
  *
  * @category Yeelight
  *
+ * @package Yeelight\Generators
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -122,9 +125,9 @@ class MigrationGenerator extends Generator
             case 'insert':
                 $file = 'change';
                 $replacements = [
-                    'class'       => $this->getClass(),
-                    'table'       => $parser->getTable(),
-                    'fields_up'   => $this->getSchemaParser()->up(),
+                    'class' => $this->getClass(),
+                    'table' => $parser->getTable(),
+                    'fields_up' => $this->getSchemaParser()->up(),
                     'fields_down' => $this->getSchemaParser()->down(),
                 ];
                 break;
@@ -134,19 +137,19 @@ class MigrationGenerator extends Generator
             case 'alter':
                 $file = 'change';
                 $replacements = [
-                    'class'       => $this->getClass(),
-                    'table'       => $parser->getTable(),
+                    'class' => $this->getClass(),
+                    'table' => $parser->getTable(),
                     'fields_down' => $this->getSchemaParser()->up(),
-                    'fields_up'   => $this->getSchemaParser()->down(),
+                    'fields_up' => $this->getSchemaParser()->down(),
                 ];
                 break;
             default:
                 $file = 'create';
                 $replacements = [
-                    'class'          => $this->getClass(),
+                    'class' => $this->getClass(),
                     'table_singular' => str_singular($parser->getTable()),
-                    'table'          => $parser->getTable(),
-                    'fields'         => $this->getSchemaParser()->up(),
+                    'table' => $parser->getTable(),
+                    'fields' => $this->getSchemaParser()->up(),
                 ];
                 break;
         }

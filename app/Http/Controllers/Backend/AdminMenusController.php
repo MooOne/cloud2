@@ -12,11 +12,14 @@ use Yeelight\Services\Tree\Tree;
 use Yeelight\Validators\AdminMenuValidator;
 
 /**
- * Class AdminMenusController.
+ * Class AdminMenusController
  *
  * @category Yeelight
  *
+ * @package Yeelight\Http\Controllers\Backend
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

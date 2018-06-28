@@ -8,11 +8,14 @@ use Yeelight\Generators\FileAlreadyExistsException;
 use Yeelight\Generators\RequestGenerator;
 
 /**
- * Class RequestCommand.
+ * Class RequestCommand
  *
  * @category Yeelight
  *
+ * @package Yeelight\Generators\Commands
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -50,10 +53,10 @@ class RequestCommand extends CommandBase
         try {
             (new RequestGenerator(
                 [
-                    'name'   => $this->argument('name'),
-                    'type'   => $this->option('type'),
+                    'name' => $this->argument('name'),
+                    'type' => $this->option('type'),
                     'fields' => $this->option('fields'),
-                    'force'  => $this->option('force'),
+                    'force' => $this->option('force'),
                 ]
             ))->run();
             $this->info('Request created successfully.');

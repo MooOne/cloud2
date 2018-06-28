@@ -12,11 +12,14 @@ use Yeelight\Base\Repositories\Interfaces\RepositoryInterface;
 use Yeelight\Repositories\Criteria\AuthUserCriteria;
 
 /**
- * Class Repository.
+ * Class Repository
  *
  * @category Yeelight
  *
+ * @package Yeelight\Base\Repositories\Eloquent
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -24,32 +27,31 @@ use Yeelight\Repositories\Criteria\AuthUserCriteria;
 abstract class Repository extends BaseRepository implements RepositoryInterface
 {
     /**
-     * Is Searchable Force And Where.
+     * Is Searchable Force And Where
      *
      * @var bool
      */
     protected $isSearchableForceAndWhere = false;
 
     /**
-     * Relate Model.
+     * Relate Model
      *
      * @var Model
      */
     protected $relateModel;
 
     /**
-     * Relation.
+     * Relation
      *
      * @var Relation
      */
     protected $relation;
 
     /**
-     * ByAuthUser.
-     *
-     * @throws RepositoryException
+     * ByAuthUser
      *
      * @return $this|RepositoryInterface
+     * @throws RepositoryException
      */
     public function byAuthUser()
     {
@@ -59,7 +61,7 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
     }
 
     /**
-     * Get auth UserId.
+     * Get auth UserId
      *
      * @return mixed
      */
@@ -69,7 +71,7 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
     }
 
     /**
-     * Validate Creater.
+     * Validate Creater
      *
      * @param array $attributes attributes
      *
@@ -86,7 +88,7 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
     }
 
     /**
-     * Validate Updater.
+     * Validate Updater
      *
      * @param array $attributes attributes
      *
@@ -103,7 +105,7 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
     }
 
     /**
-     * SetValidator.
+     * SetValidator
      *
      * @param ValidatorInterface $validator validator
      *
@@ -117,9 +119,9 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
     }
 
     /**
-     * Present.
+     * Present
      *
-     * @param object $results results
+     * @param Object $results results
      *
      * @return mixed
      */
@@ -129,13 +131,12 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
     }
 
     /**
-     * SetRelateModel.
+     * SetRelateModel
      *
      * @param Model $relateModel relateModel
      *
-     * @throws RepositoryException
-     *
      * @return $this
+     * @throws RepositoryException
      */
     public function setRelateModel(Model $relateModel)
     {
@@ -148,7 +149,7 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
     }
 
     /**
-     * Relation.
+     * Relation
      *
      * @return \Prettus\Repository\Contracts\PresenterInterface
      */
@@ -157,11 +158,10 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
     }
 
     /**
-     * MakeModel.
-     *
-     * @throws RepositoryException
+     * MakeModel
      *
      * @return Model|Relation|mixed|void
+     * @throws RepositoryException
      */
     public function makeModel()
     {
@@ -177,12 +177,11 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
     /**
      * Retrieve data array for populate field select.
      *
-     * @param string      $column $column
-     * @param string|null $key    $key
-     *
-     * @throws RepositoryException
+     * @param string $column $column
+     * @param string|null $key $key
      *
      * @return \Illuminate\Support\Collection|array
+     * @throws RepositoryException
      */
     public function lists($column, $key = null)
     {
@@ -201,9 +200,8 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
      *
      * @param array $columns columns
      *
-     * @throws RepositoryException
-     *
      * @return mixed
+     * @throws RepositoryException
      */
     public function all($columns = ['*'])
     {
@@ -227,7 +225,7 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
      * Add a basic where clause to the model.
      *
      * @param string|array|\Closure $column $column
-     * @param mixed                 $value  $value
+     * @param mixed $value $value
      *
      * @return $this
      */
@@ -239,7 +237,7 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
     }
 
     /**
-     * GetPresenter.
+     * GetPresenter
      *
      * @return \Prettus\Repository\Contracts\PresenterInterface
      */
@@ -249,7 +247,7 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
     }
 
     /**
-     * SetPresenterMeta.
+     * SetPresenterMeta
      *
      * @param array $meta $meta
      *
@@ -263,7 +261,7 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
     }
 
     /**
-     * GetIsSearchableForceAndWhere.
+     * GetIsSearchableForceAndWhere
      *
      * @return bool
      */
@@ -294,9 +292,8 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
      *
      * @param array $columns columns
      *
-     * @throws RepositoryException
-     *
      * @return mixed
+     * @throws RepositoryException
      */
     public function firstOrFail($columns = ['*'])
     {
@@ -313,12 +310,11 @@ abstract class Repository extends BaseRepository implements RepositoryInterface
     /**
      * Where first.
      *
-     * @param array $where   where
+     * @param array $where where
      * @param array $columns columns
      *
-     * @throws RepositoryException
-     *
      * @return mixed
+     * @throws RepositoryException
      */
     public function whereFirst(array $where, $columns = ['*'])
     {

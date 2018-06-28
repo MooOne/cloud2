@@ -5,11 +5,14 @@ namespace Yeelight\Transformers;
 use Yeelight\Models\ProductModel;
 
 /**
- * Class ProductModelTransformer.
+ * Class ProductModelTransformer
  *
  * @category Yeelight
  *
+ * @package Yeelight\Transformers
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

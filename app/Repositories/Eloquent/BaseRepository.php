@@ -6,11 +6,14 @@ use Yeelight\Base\Repositories\Eloquent\Repository;
 use Yeelight\Repositories\Interfaces\BaseRepositoryInterface;
 
 /**
- * Class BaseRepository.
+ * Class BaseRepository
  *
  * @category Yeelight
  *
+ * @package Yeelight\Repositories\Eloquent
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

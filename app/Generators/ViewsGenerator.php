@@ -6,11 +6,14 @@ use Illuminate\Support\Str;
 use League\Flysystem\FileNotFoundException;
 
 /**
- * Class ViewsGenerator.
+ * Class ViewsGenerator
  *
  * @category Yeelight
  *
+ * @package Yeelight\Generators
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -62,11 +65,11 @@ class ViewsGenerator extends Generator
      */
     public function getPath()
     {
-        return $this->getBasePath().
-            '/'.
-            parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true).
-            '/'.
-            $this->getName().
+        return $this->getBasePath() .
+            '/' .
+            parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true) .
+            '/' .
+            $this->getName() .
             '/';
     }
 
@@ -103,7 +106,7 @@ class ViewsGenerator extends Generator
     }
 
     /**
-     * BuildCreateFormFields.
+     * BuildCreateFormFields
      *
      * @return string
      */
@@ -144,7 +147,7 @@ EOF;
     }
 
     /**
-     * BuildEditFormFields.
+     * BuildEditFormFields
      *
      * @return string
      */
@@ -185,7 +188,7 @@ EOF;
     }
 
     /**
-     * BuildIndexFilterFields.
+     * BuildIndexFilterFields
      *
      * @return string
      */
@@ -216,7 +219,7 @@ EOF;
     }
 
     /**
-     * BuildIndexTableThFields.
+     * BuildIndexTableThFields
      *
      * @return string
      */
@@ -242,7 +245,7 @@ EOF;
     }
 
     /**
-     * BuildIndexTableTdFields.
+     * BuildIndexTableTdFields
      *
      * @return string
      */
@@ -280,13 +283,13 @@ EOF;
         return array_merge(
             parent::getReplacements(),
             [
-                'model'                 => $this->getName(),
-                'create_form_fields'    => $this->buildCreateFormFields(),
-                'edit_form_fields'      => $this->buildEditFormFields(),
-                'index_filter_fields'   => $this->buildIndexFilterFields(),
+                'model' => $this->getName(),
+                'create_form_fields' => $this->buildCreateFormFields(),
+                'edit_form_fields' => $this->buildEditFormFields(),
+                'index_filter_fields' => $this->buildIndexFilterFields(),
                 'index_table_th_fields' => $this->buildIndexTableThFields(),
                 'index_table_td_fields' => $this->buildIndexTableTdFields(),
-                '_id_name'              => $this->getIdName(),
+                '_id_name' => $this->getIdName(),
             ]
         );
     }
@@ -294,10 +297,9 @@ EOF;
     /**
      * Run the generator.
      *
+     * @return int|void
      * @throws FileAlreadyExistsException
      * @throws FileNotFoundException
-     *
-     * @return int|void
      */
     public function run()
     {

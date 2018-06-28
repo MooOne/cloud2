@@ -6,11 +6,14 @@ use Illuminate\Support\Str;
 use Yeelight\Models\AdminPermission;
 
 /**
- * Class AdminPermissionTransformer.
+ * Class AdminPermissionTransformer
  *
  * @category Yeelight
  *
+ * @package Yeelight\Transformers
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

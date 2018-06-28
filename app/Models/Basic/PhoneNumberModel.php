@@ -13,11 +13,14 @@ use libphonenumber\PhoneNumberType;
 use libphonenumber\PhoneNumberUtil;
 
 /**
- * Class PhoneNumberModel.
+ * Class PhoneNumberModel
  *
  * @category Yeelight
  *
+ * @package Yeelight\Models\Basic
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

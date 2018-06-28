@@ -9,11 +9,14 @@
 namespace Yeelight\Models\Tools\LogViewer;
 
 /**
- * Class LogViewer.
+ * Class LogViewer
  *
  * @category Yeelight
  *
+ * @package Yeelight\Models\Tools\LogViewer
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -42,7 +45,7 @@ class LogViewer
     protected $pageOffset = [];
 
     /**
-     * $levelColors.
+     * $levelColors
      *
      * @var array
      */

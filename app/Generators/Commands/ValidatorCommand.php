@@ -8,11 +8,14 @@ use Yeelight\Generators\FileAlreadyExistsException;
 use Yeelight\Generators\ValidatorGenerator;
 
 /**
- * Class ValidatorCommand.
+ * Class ValidatorCommand
  *
  * @category Yeelight
  *
+ * @package Yeelight\Generators\Commands
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -50,7 +53,7 @@ class ValidatorCommand extends CommandBase
         try {
             (new ValidatorGenerator(
                 [
-                    'name'  => $this->argument('name'),
+                    'name' => $this->argument('name'),
                     'rules' => $this->option('rules'),
                     'force' => $this->option('force'),
                 ]

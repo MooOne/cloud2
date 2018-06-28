@@ -7,11 +7,14 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * Class EntityCommand.
+ * Class EntityCommand
  *
  * @category Yeelight
  *
+ * @package Yeelight\Generators\Commands
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -33,7 +36,7 @@ class EntityCommand extends CommandBase
     protected $description = 'Create a new entity.';
 
     /**
-     * $generators.
+     * $generators
      *
      * @var Collection
      */
@@ -57,7 +60,7 @@ class EntityCommand extends CommandBase
             $this->call(
                 'yl:presenter',
                 [
-                    'name'    => $this->argument('name'),
+                    'name' => $this->argument('name'),
                     '--force' => $this->option('force'),
                 ]
             );
@@ -74,7 +77,7 @@ class EntityCommand extends CommandBase
             $this->call(
                 'yl:validator',
                 [
-                    'name'    => $this->argument('name'),
+                    'name' => $this->argument('name'),
                     '--rules' => $this->option('rules'),
                     '--force' => $this->option('force'),
                 ]
@@ -87,9 +90,9 @@ class EntityCommand extends CommandBase
             $this->call(
                 'yl:controller',
                 [
-                    'name'     => $this->argument('name'),
+                    'name' => $this->argument('name'),
                     '--fields' => $this->option('fields'),
-                    '--force'  => $this->option('force'),
+                    '--force' => $this->option('force'),
                 ]
             );
         }
@@ -100,9 +103,9 @@ class EntityCommand extends CommandBase
             $this->call(
                 'yl:api_controller',
                 [
-                    'name'     => $this->argument('name'),
+                    'name' => $this->argument('name'),
                     '--fields' => $this->option('fields'),
-                    '--force'  => $this->option('force'),
+                    '--force' => $this->option('force'),
                 ]
             );
         }
@@ -113,9 +116,9 @@ class EntityCommand extends CommandBase
             $this->call(
                 'yl:views',
                 [
-                    'name'     => $this->argument('name'),
+                    'name' => $this->argument('name'),
                     '--fields' => $this->option('fields'),
-                    '--force'  => $this->option('force'),
+                    '--force' => $this->option('force'),
                 ]
             );
         }
@@ -126,9 +129,9 @@ class EntityCommand extends CommandBase
             $this->call(
                 'yl:lang',
                 [
-                    'name'     => $this->argument('name'),
+                    'name' => $this->argument('name'),
                     '--fields' => $this->option('fields'),
-                    '--force'  => $this->option('force'),
+                    '--force' => $this->option('force'),
                 ]
             );
         }
@@ -136,20 +139,20 @@ class EntityCommand extends CommandBase
         $this->call(
             'yl:repository',
             [
-                'name'        => $this->argument('name'),
-                '--fillable'  => $this->option('fillable'),
-                '--rules'     => $this->option('rules'),
-                '--fields'    => $this->option('fields'),
+                'name' => $this->argument('name'),
+                '--fillable' => $this->option('fillable'),
+                '--rules' => $this->option('rules'),
+                '--fields' => $this->option('fields'),
                 '--validator' => $validator,
                 '--presenter' => $presenter,
-                '--force'     => $this->option('force'),
+                '--force' => $this->option('force'),
             ]
         );
 
         $this->call(
             'yl:bindings',
             [
-                'name'    => $this->argument('name'),
+                'name' => $this->argument('name'),
                 '--force' => $this->option('force'),
             ]
         );

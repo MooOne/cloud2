@@ -6,11 +6,14 @@ use Yeelight\Generators\Migrations\RulesParser;
 use Yeelight\Generators\Migrations\SchemaParser;
 
 /**
- * Class ValidatorGenerator.
+ * Class ValidatorGenerator
  *
  * @category Yeelight
  *
+ * @package Yeelight\Generators
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -31,7 +34,7 @@ class ValidatorGenerator extends Generator
      */
     public function getRootNamespace()
     {
-        return parent::getRootNamespace().
+        return parent::getRootNamespace() .
             parent::getConfigGeneratorClassPath($this->getPathConfigNode());
     }
 
@@ -52,11 +55,11 @@ class ValidatorGenerator extends Generator
      */
     public function getPath()
     {
-        return $this->getBasePath().
-            '/'.
-            parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true).
-            '/'.
-            $this->getName().
+        return $this->getBasePath() .
+            '/' .
+            parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true) .
+            '/' .
+            $this->getName() .
             'Validator.php';
     }
 

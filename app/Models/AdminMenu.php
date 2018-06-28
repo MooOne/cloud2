@@ -9,11 +9,14 @@ use Prettus\Repository\Traits\TransformableTrait;
 use Yeelight\Traits\ModelTree;
 
 /**
- * Class AdminMenu.
+ * Class AdminMenu
  *
  * @category Yeelight
  *
+ * @package Yeelight\Models
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -84,7 +87,7 @@ class AdminMenu extends BaseModel implements Transformable
     }
 
     /**
-     * Get allNodes.
+     * Get allNodes
      *
      * @return array
      */

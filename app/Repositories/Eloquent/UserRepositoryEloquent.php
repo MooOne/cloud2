@@ -10,11 +10,14 @@ use Yeelight\Repositories\Interfaces\UserRepository;
 use Yeelight\Validators\UserValidator;
 
 /**
- * Class UserRepositoryEloquent.
+ * Class UserRepositoryEloquent
  *
  * @category Yeelight
  *
+ * @package Yeelight\Repositories\Eloquent
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -22,7 +25,7 @@ use Yeelight\Validators\UserValidator;
 class UserRepositoryEloquent extends BaseRepository implements UserRepository
 {
     /**
-     * $fieldSearchable.
+     * $fieldSearchable
      *
      * @var array
      */
@@ -39,7 +42,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     ];
 
     /**
-     * $isSearchableForceAndWhere.
+     * $isSearchableForceAndWhere
      *
      * @var bool
      */
@@ -76,7 +79,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     }
 
     /**
-     * ByUserIds.
+     * ByUserIds
      *
      * @param array|Collection $userIds Collection
      *

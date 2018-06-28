@@ -8,11 +8,14 @@ use Yeelight\Generators\FileAlreadyExistsException;
 use Yeelight\Generators\TransformerGenerator;
 
 /**
- * Class TransformerCommand.
+ * Class TransformerCommand
  *
  * @category Yeelight
  *
+ * @package Yeelight\Generators\Commands
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -50,9 +53,9 @@ class TransformerCommand extends CommandBase
         try {
             (new TransformerGenerator(
                 [
-                    'name'   => $this->argument('name'),
+                    'name' => $this->argument('name'),
                     'fields' => $this->option('fields'),
-                    'force'  => $this->option('force'),
+                    'force' => $this->option('force'),
                 ]
             ))->run();
             $this->info('Transformer created successfully.');

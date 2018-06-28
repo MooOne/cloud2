@@ -8,11 +8,14 @@ use Yeelight\Http\Controllers\BaseController;
 use Yeelight\Models\Foundation\User;
 
 /**
- * Class RegisterController.
+ * Class RegisterController
  *
  * @category Yeelight
  *
+ * @package Yeelight\Http\Controllers\BackendAuth
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -61,8 +64,8 @@ class RegisterController extends BaseController
         return Validator::make(
             $data,
             [
-                'name'     => 'required|max:255',
-                'email'    => 'required|email|max:255|unique:users',
+                'name' => 'required|max:255',
+                'email' => 'required|email|max:255|unique:users',
                 'password' => 'required|min:6|confirmed',
             ]
         );

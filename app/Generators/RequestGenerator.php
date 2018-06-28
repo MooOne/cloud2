@@ -3,11 +3,14 @@
 namespace Yeelight\Generators;
 
 /**
- * Class RequestGenerator.
+ * Class RequestGenerator
  *
  * @category Yeelight
  *
+ * @package Yeelight\Generators
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -28,7 +31,7 @@ class RequestGenerator extends Generator
      */
     public function getRootNamespace()
     {
-        return parent::getRootNamespace().
+        return parent::getRootNamespace() .
             parent::getConfigGeneratorClassPath($this->getPathConfigNode());
     }
 
@@ -49,11 +52,11 @@ class RequestGenerator extends Generator
      */
     public function getPath()
     {
-        return $this->getBasePath().
-            '/'.
-            parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true).
-            '/'.
-            $this->getName().
+        return $this->getBasePath() .
+            '/' .
+            parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true) .
+            '/' .
+            $this->getName() .
             'Request.php';
     }
 
@@ -101,7 +104,7 @@ class RequestGenerator extends Generator
         return array_merge(
             parent::getReplacements(),
             [
-                'form_request'  => $formRequest,
+                'form_request' => $formRequest,
                 'request_rules' => $this->getRules(),
             ]
         );

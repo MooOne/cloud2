@@ -9,16 +9,21 @@ use Yeelight\Repositories\Interfaces\AdminPermissionRepository;
 use Yeelight\Validators\AdminPermissionValidator;
 
 /**
- * Class AdminPermissionRepositoryEloquent.
+ * Class AdminPermissionRepositoryEloquent
  *
  * @category Yeelight
  *
+ * @package Yeelight\Repositories\Eloquent
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
  */
-class AdminPermissionRepositoryEloquent extends BaseRepository implements AdminPermissionRepository
+class AdminPermissionRepositoryEloquent
+    extends BaseRepository
+    implements AdminPermissionRepository
 {
     /**
      * @var array
@@ -32,7 +37,7 @@ class AdminPermissionRepositoryEloquent extends BaseRepository implements AdminP
     ];
 
     /**
-     * $isSearchableForceAndWhere.
+     * $isSearchableForceAndWhere
      *
      * @var bool
      */

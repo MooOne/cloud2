@@ -9,11 +9,14 @@ use Yeelight\Generators\PresenterGenerator;
 use Yeelight\Generators\TransformerGenerator;
 
 /**
- * Class PresenterCommand.
+ * Class PresenterCommand
  *
  * @category Yeelight
  *
+ * @package Yeelight\Generators\Commands
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -51,7 +54,7 @@ class PresenterCommand extends CommandBase
         try {
             (new PresenterGenerator(
                 [
-                    'name'  => $this->argument('name'),
+                    'name' => $this->argument('name'),
                     'force' => $this->option('force'),
                 ]
             ))->run();
@@ -61,7 +64,7 @@ class PresenterCommand extends CommandBase
                 if ($this->confirm('Would you like to create a Transformer? [y|N]')) {
                     (new TransformerGenerator(
                         [
-                            'name'  => $this->argument('name'),
+                            'name' => $this->argument('name'),
                             'force' => $this->option('force'),
                         ]
                     ))->run();

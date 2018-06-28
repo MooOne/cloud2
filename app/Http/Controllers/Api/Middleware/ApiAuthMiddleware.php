@@ -11,11 +11,14 @@ use Yeelight\Http\Controllers\Api\Auth\Provider\OAuth2;
 use Yeelight\Models\Foundation\User;
 
 /**
- * Class ApiAuthMiddleware.
+ * Class ApiAuthMiddleware
  *
  * @category Yeelight
  *
+ * @package Yeelight\Http\Controllers\Api\Middleware
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -40,7 +43,7 @@ class ApiAuthMiddleware
      * Create a new auth middleware instance.
      *
      * @param \Dingo\Api\Routing\Router $router Router
-     * @param \Dingo\Api\Auth\Auth      $auth   Auth
+     * @param \Dingo\Api\Auth\Auth $auth Auth
      */
     public function __construct(Router $router, Authentication $auth)
     {
@@ -52,8 +55,8 @@ class ApiAuthMiddleware
      * Perform authentication before a request is executed.
      *
      * @param \Illuminate\Http\Request $request Request
-     * @param \Closure                 $next    Closure
-     * @param string                   $grant   grant
+     * @param \Closure $next Closure
+     * @param string $grant grant
      *
      * @throws OAuthServerException
      *

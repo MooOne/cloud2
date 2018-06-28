@@ -10,11 +10,14 @@ use Illuminate\Support\Facades\Redirect;
 use Yeelight\Http\Controllers\BaseController;
 
 /**
- * Class LoginController.
+ * Class LoginController
  *
  * @category Yeelight
  *
+ * @package Yeelight\Http\Controllers\BackendAuth
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -64,7 +67,7 @@ class LoginController extends BaseController
     }
 
     /**
-     * RedirectTo.
+     * RedirectTo
      *
      * @return \Illuminate\Config\Repository|mixed|string
      */
@@ -90,9 +93,8 @@ class LoginController extends BaseController
      *
      * @param Request $request Request
      *
-     * @throws \Illuminate\Validation\ValidationException
-     *
      * @return \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response|void
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function login(Request $request)
     {
@@ -131,8 +133,8 @@ class LoginController extends BaseController
         $this->validate(
             $request,
             [
-                $this->username()   => 'required|string',
-                'password'          => 'required|string',
+                $this->username() => 'required|string',
+                'password' => 'required|string',
                 'geetest_challenge' => 'geetest',
             ],
             [
@@ -204,7 +206,7 @@ class LoginController extends BaseController
      * The user has been authenticated.
      *
      * @param \Illuminate\Http\Request $request Request
-     * @param mixed                    $user    user
+     * @param mixed $user user
      *
      * @return mixed
      */
@@ -250,7 +252,7 @@ class LoginController extends BaseController
     }
 
     /**
-     * GetFailedLoginMessage.
+     * GetFailedLoginMessage
      *
      * @return string|\Symfony\Component\Translation\TranslatorInterface
      */

@@ -6,11 +6,14 @@ use Yeelight\Base\Models\BaseModel;
 use Yeelight\Base\Transformers\Transformer;
 
 /**
- * Class BaseTransformer.
+ * Class BaseTransformer
  *
  * @category Yeelight
  *
+ * @package Yeelight\Transformers
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

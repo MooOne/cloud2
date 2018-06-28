@@ -6,11 +6,14 @@ use Illuminate\Routing\Controller as BaseController;
 use Yeelight\Services\Image\YeelightImageService;
 
 /**
- * Class YeelightImageController.
+ * Class YeelightImageController
  *
  * @category Yeelight
  *
+ * @package Yeelight\Services\Image\Controllers
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

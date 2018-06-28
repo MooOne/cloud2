@@ -9,19 +9,24 @@ use Yeelight\Repositories\Interfaces\productModelRepository;
 use Yeelight\Validators\ProductModelValidator;
 
 /**
- * Class ProductModelRepositoryEloquent.
+ * Class ProductModelRepositoryEloquent
  *
  * @category Yeelight
  *
+ * @package Yeelight\Repositories\Eloquent
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
  */
-class ProductModelRepositoryEloquent extends BaseRepository implements ProductModelRepository
+class ProductModelRepositoryEloquent
+    extends BaseRepository
+    implements ProductModelRepository
 {
     /**
-     * $fieldSearchable.
+     * $fieldSearchable
      *
      * @var array
      */
@@ -33,7 +38,7 @@ class ProductModelRepositoryEloquent extends BaseRepository implements ProductMo
     ];
 
     /**
-     * $isSearchableForceAndWhere.
+     * $isSearchableForceAndWhere
      *
      * @var bool
      */

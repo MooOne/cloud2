@@ -11,11 +11,14 @@ namespace Yeelight\Models\Tools\Terminal;
 use Symfony\Component\Console\Output\Output;
 
 /**
- * Class StringOutput.
+ * Class StringOutput
  *
  * @category Yeelight
  *
+ * @package Yeelight\Models\Tools\Terminal
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

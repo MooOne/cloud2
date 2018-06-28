@@ -7,11 +7,14 @@ use Illuminate\Support\Collection;
 use Prettus\Repository\Presenter\FractalPresenter;
 
 /**
- * Class Presenter.
+ * Class Presenter
  *
  * @category Yeelight
  *
+ * @package Yeelight\Base\Presenters
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -50,7 +53,7 @@ abstract class Presenter extends FractalPresenter
     }
 
     /**
-     * Set Meta.
+     * Set Meta
      *
      * @param array $meta meta
      *

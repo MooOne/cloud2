@@ -14,11 +14,14 @@ use Laravel\Passport\Events\AccessTokenCreated;
 use Laravel\Passport\Token;
 
 /**
- * Class RevokeOldTokens.
+ * Class RevokeOldTokens
  *
  * @category Yeelight
  *
+ * @package Yeelight\Listeners\Auth
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

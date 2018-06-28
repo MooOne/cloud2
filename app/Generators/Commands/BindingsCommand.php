@@ -9,11 +9,14 @@ use Yeelight\Generators\BindingsGenerator;
 use Yeelight\Generators\FileAlreadyExistsException;
 
 /**
- * Class BindingsCommand.
+ * Class BindingsCommand
  *
  * @category Yeelight
  *
+ * @package Yeelight\Generators\Commands
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -44,16 +47,16 @@ class BindingsCommand extends CommandBase
     /**
      * Execute the command.
      *
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     *
      * @return bool
+     *
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function fire()
     {
         try {
             $bindingGenerator = new BindingsGenerator(
                 [
-                    'name'  => $this->argument('name'),
+                    'name' => $this->argument('name'),
                     'force' => $this->option('force'),
                 ]
             );

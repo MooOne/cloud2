@@ -14,11 +14,14 @@ use Yeelight\Repositories\Interfaces\UserRepository;
 use Yeelight\Validators\SocialiteUserValidator;
 
 /**
- * Class SocialiteUsersController.
+ * Class SocialiteUsersController
  *
  * @category Yeelight
  *
+ * @package Yeelight\Http\Controllers\Api\Controllers
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -26,21 +29,21 @@ use Yeelight\Validators\SocialiteUserValidator;
 class SocialiteUsersController extends BaseController
 {
     /**
-     * SocialiteUserRepository.
+     * SocialiteUserRepository
      *
      * @var SocialiteUserRepository
      */
     protected $repository;
 
     /**
-     * SocialiteUserValidator.
+     * SocialiteUserValidator
      *
      * @var SocialiteUserValidator
      */
     protected $validator;
 
     /**
-     * UserRepository.
+     * UserRepository
      *
      * @var UserRepository
      */
@@ -49,9 +52,9 @@ class SocialiteUsersController extends BaseController
     /**
      * SocialiteUsersController constructor.
      *
-     * @param SocialiteUserRepository $repository     SocialiteUserRepository
-     * @param SocialiteUserValidator  $validator      SocialiteUserValidator
-     * @param UserRepository          $userRepository UserRepository
+     * @param SocialiteUserRepository $repository SocialiteUserRepository
+     * @param SocialiteUserValidator $validator SocialiteUserValidator
+     * @param UserRepository $userRepository UserRepository
      */
     public function __construct(
         SocialiteUserRepository $repository,
@@ -111,7 +114,7 @@ class SocialiteUsersController extends BaseController
      * 添加第三方账号和user的关联.
      *
      * @param SocialiteAuthRequest $request SocialiteAuthRequest
-     * @param User                 $user    User
+     * @param User $user User
      *
      * @return void
      */
@@ -140,8 +143,8 @@ class SocialiteUsersController extends BaseController
     /**
      * 更新第三方账号信息.
      *
-     * @param SocialiteAuthRequest $request       SocialiteAuthRequest
-     * @param SocialiteUser        $socialiteUser SocialiteUser
+     * @param SocialiteAuthRequest $request SocialiteAuthRequest
+     * @param SocialiteUser $socialiteUser SocialiteUser
      *
      * @return void
      */

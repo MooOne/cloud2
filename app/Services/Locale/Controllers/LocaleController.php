@@ -7,11 +7,14 @@ use Illuminate\Http\Request;
 use Yeelight\Base\Http\Controllers\Controller;
 
 /**
- * Class LocaleController.
+ * Class LocaleController
  *
  * @category Yeelight
  *
+ * @package Yeelight\Services\Locale\Controllers
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

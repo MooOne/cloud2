@@ -8,11 +8,14 @@ use Yeelight\Generators\ApiControllerGenerator;
 use Yeelight\Generators\FileAlreadyExistsException;
 
 /**
- * Class ApiControllerCommand.
+ * Class ApiControllerCommand
  *
  * @category Yeelight
  *
+ * @package Yeelight\Generators\Commands
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -52,26 +55,26 @@ class ApiControllerCommand extends CommandBase
             $this->call(
                 'yl:request',
                 [
-                    'name'     => 'Api/'.$this->argument('name').'Create',
-                    '--type'   => 'api',
+                    'name' => 'Api/' . $this->argument('name') . 'Create',
+                    '--type' => 'api',
                     '--fields' => $this->option('fields'),
-                    '--force'  => $this->option('force'),
+                    '--force' => $this->option('force'),
                 ]
             );
             // Generate update request for controller
             $this->call(
                 'yl:request',
                 [
-                    'name'     => 'Api/'.$this->argument('name').'Update',
-                    '--type'   => 'api',
+                    'name' => 'Api/' . $this->argument('name') . 'Update',
+                    '--type' => 'api',
                     '--fields' => $this->option('fields'),
-                    '--force'  => $this->option('force'),
+                    '--force' => $this->option('force'),
                 ]
             );
 
             (new ApiControllerGenerator(
                 [
-                    'name'  => $this->argument('name'),
+                    'name' => $this->argument('name'),
                     'force' => $this->option('force'),
                 ]
             ))->run();

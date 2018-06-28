@@ -8,11 +8,14 @@ use Yeelight\Generators\ControllerGenerator;
 use Yeelight\Generators\FileAlreadyExistsException;
 
 /**
- * Class ControllerCommand.
+ * Class ControllerCommand
  *
  * @category Yeelight
  *
+ * @package Yeelight\Generators\Commands
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -52,26 +55,26 @@ class ControllerCommand extends CommandBase
             $this->call(
                 'yl:request',
                 [
-                    'name'     => $this->argument('name').'Create',
-                    '--type'   => 'web',
+                    'name' => $this->argument('name') . 'Create',
+                    '--type' => 'web',
                     '--fields' => $this->option('fields'),
-                    '--force'  => $this->option('force'),
+                    '--force' => $this->option('force'),
                 ]
             );
             // Generate update request for controller
             $this->call(
                 'yl:request',
                 [
-                    'name'     => $this->argument('name').'Update',
-                    '--type'   => 'web',
+                    'name' => $this->argument('name') . 'Update',
+                    '--type' => 'web',
                     '--fields' => $this->option('fields'),
-                    '--force'  => $this->option('force'),
+                    '--force' => $this->option('force'),
                 ]
             );
 
             (new ControllerGenerator(
                 [
-                    'name'  => $this->argument('name'),
+                    'name' => $this->argument('name'),
                     'force' => $this->option('force'),
                 ]
             ))->run();

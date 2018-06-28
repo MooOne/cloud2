@@ -8,11 +8,14 @@ use Yeelight\Generators\CriteriaGenerator;
 use Yeelight\Generators\FileAlreadyExistsException;
 
 /**
- * Class CriteriaCommand.
+ * Class CriteriaCommand
  *
  * @category Yeelight
  *
+ * @package Yeelight\Generators\Commands
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -50,7 +53,7 @@ class CriteriaCommand extends CommandBase
         try {
             (new CriteriaGenerator(
                 [
-                    'name'  => $this->argument('name'),
+                    'name' => $this->argument('name'),
                     'force' => $this->option('force'),
                 ]
             ))->run();

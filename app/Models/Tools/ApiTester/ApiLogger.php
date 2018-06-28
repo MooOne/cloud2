@@ -11,11 +11,14 @@ namespace Yeelight\Models\Tools\ApiTester;
 use Illuminate\Support\Facades\File;
 
 /**
- * Class ApiLogger.
+ * Class ApiLogger
  *
  * @category Yeelight
  *
+ * @package Yeelight\Models\Tools\ApiTester
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

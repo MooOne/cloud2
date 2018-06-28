@@ -13,11 +13,14 @@ use Yeelight\Http\Controllers\BaseController;
 use Yeelight\Models\Tools\LogViewer\LogViewer;
 
 /**
- * Class LogController.
+ * Class LogController
  *
  * @category Yeelight
  *
+ * @package Yeelight\Http\Controllers\Backend\Tools\LogViewer
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -27,14 +30,14 @@ class LogController extends BaseController
     /**
      * 主页.
      *
-     * @param null | string $file    file
-     * @param Request       $request Request
-     *
-     * @throws \Exception
+     * @param $file
+     * @param Request $request Request
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * @throws \Exception
      */
-    public function index(Request $request, $file = null)
+    public function index($file, Request $request)
     {
         $offset = $request->get('offset');
 
@@ -43,22 +46,22 @@ class LogController extends BaseController
         return view(
             'backend.tools.log_viewer.logs',
             [
-                'logs'        => $viewer->fetch($offset),
-                'logFiles'    => $viewer->getLogFiles(),
-                'fileName'    => $viewer->file,
-                'end'         => $viewer->getFilesize(),
-                'tailPath'    => route('tools.log-viewer-tail', ['file' => $viewer->file]),
-                'prevUrl'     => $viewer->getPrevPageUrl(),
-                'nextUrl'     => $viewer->getNextPageUrl(),
-                'filePath'    => $viewer->getFilePath(),
-                'size'        => static::bytesToHuman($viewer->getFilesize()),
+                'logs' => $viewer->fetch($offset),
+                'logFiles' => $viewer->getLogFiles(),
+                'fileName' => $viewer->file,
+                'end' => $viewer->getFilesize(),
+                'tailPath' => route('tools.log-viewer-tail', ['file' => $viewer->file]),
+                'prevUrl' => $viewer->getPrevPageUrl(),
+                'nextUrl' => $viewer->getNextPageUrl(),
+                'filePath' => $viewer->getFilePath(),
+                'size' => static::bytesToHuman($viewer->getFilesize()),
                 'levelColors' => LogViewer::$levelColors,
             ]
         );
     }
 
     /**
-     * Tail.
+     * Tail
      *
      * @param $file
      * @param Request $request Request
@@ -77,7 +80,7 @@ class LogController extends BaseController
     }
 
     /**
-     * BytesToHuman.
+     * BytesToHuman
      *
      * @param $bytes
      *

@@ -5,11 +5,14 @@ namespace Yeelight\Generators;
 use Illuminate\Support\Str;
 
 /**
- * Class ControllerGenerator.
+ * Class ControllerGenerator
  *
  * @category Yeelight
  *
+ * @package Yeelight\Generators
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -33,7 +36,7 @@ class ControllerGenerator extends Generator
         return str_replace(
             '/',
             '\\',
-            parent::getRootNamespace().parent::getConfigGeneratorClassPath($this->getPathConfigNode())
+            parent::getRootNamespace() . parent::getConfigGeneratorClassPath($this->getPathConfigNode())
         );
     }
 
@@ -54,11 +57,11 @@ class ControllerGenerator extends Generator
      */
     public function getPath()
     {
-        return $this->getBasePath().
-            '/'.
-            parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true).
-            '/'.
-            $this->getControllerName().
+        return $this->getBasePath() .
+            '/' .
+            parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true) .
+            '/' .
+            $this->getControllerName() .
             'Controller.php';
     }
 
@@ -125,12 +128,12 @@ class ControllerGenerator extends Generator
             parent::getReplacements(),
             [
                 'controller' => $this->getControllerName(),
-                'plural'     => $this->getPluralName(),
-                'singular'   => $this->getSingularName(),
-                'snake'      => $this->getSnakeName(),
-                'validator'  => $this->getValidator(),
+                'plural' => $this->getPluralName(),
+                'singular' => $this->getSingularName(),
+                'snake' => $this->getSnakeName(),
+                'validator' => $this->getValidator(),
                 'repository' => $this->getRepository(),
-                'appname'    => $this->getAppNamespace(),
+                'appname' => $this->getAppNamespace(),
             ]
         );
     }

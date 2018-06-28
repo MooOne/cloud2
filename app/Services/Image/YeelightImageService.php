@@ -14,11 +14,14 @@ use Yeelight\Services\Image\Exception\YeelightImageException;
 use Yeelight\Services\Image\Models\YeelightImageHash;
 
 /**
- * Class YeelightImageService.
+ * Class YeelightImageService
  *
  * @category Yeelight
  *
+ * @package Yeelight\Services\Image
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

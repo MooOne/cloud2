@@ -6,11 +6,14 @@ use Illuminate\Queue\SerializesModels;
 use Yeelight\Models\Foundation\User;
 
 /**
- * Class UserLoggedInEvent.
+ * Class UserLoggedInEvent
  *
  * @category Yeelight
  *
+ * @package Yeelight\Events\User
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

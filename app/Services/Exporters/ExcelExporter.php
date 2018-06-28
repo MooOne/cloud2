@@ -15,11 +15,14 @@ use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 
 /**
- * Class ExcelExporter.
+ * Class ExcelExporter
  *
  * @category Yeelight
  *
+ * @package Yeelight\Services\Exporters
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

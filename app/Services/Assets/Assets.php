@@ -9,11 +9,14 @@
 namespace Yeelight\Services\Assets;
 
 /**
- * Class Assets.
+ * Class Assets
  *
  * @category Yeelight
  *
+ * @package Yeelight\Services\Assets
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -21,21 +24,21 @@ namespace Yeelight\Services\Assets;
 class Assets
 {
     /**
-     * $script.
+     * $script
      *
      * @var array
      */
     public static $script = [];
 
     /**
-     * $css.
+     * $css
      *
      * @var array
      */
     public static $css = [];
 
     /**
-     * $js.
+     * $js
      *
      * @var array
      */

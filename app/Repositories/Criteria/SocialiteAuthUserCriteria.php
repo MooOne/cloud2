@@ -7,11 +7,14 @@ use Prettus\Repository\Contracts\RepositoryInterface;
 use Yeelight\Http\Requests\Api\SocialiteAuthRequest;
 
 /**
- * Class SocialiteAuthUserCriteria.
+ * Class SocialiteAuthUserCriteria
  *
  * @category Yeelight
  *
+ * @package Yeelight\Repositories\Criteria
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

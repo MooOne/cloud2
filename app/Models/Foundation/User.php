@@ -12,7 +12,10 @@ use Yeelight\Services\Image\Models\Traits\YeelightHasImageablesTrait;
  *
  * @category Yeelight
  *
+ * @package Yeelight\Models\Foundation
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -116,7 +119,7 @@ class User extends BaseUser
     ];
 
     /**
-     * SocialiteUsers.
+     * SocialiteUsers
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -126,7 +129,7 @@ class User extends BaseUser
     }
 
     /**
-     * AccessTokens.
+     * AccessTokens
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -136,7 +139,7 @@ class User extends BaseUser
     }
 
     /**
-     * FindForPassport.
+     * FindForPassport
      *
      * @param string $username username
      *

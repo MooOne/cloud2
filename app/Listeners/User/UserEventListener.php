@@ -6,11 +6,14 @@ use Yeelight\Events\User\UserLoggedInEvent;
 use Yeelight\Events\User\UserRegisteredEvent;
 
 /**
- * Class UserEventListener.
+ * Class UserEventListener
  *
  * @category Yeelight
  *
+ * @package Yeelight\Listeners\User
+ *
  * @author Sheldon Lee <xdlee110@gmail.com>
+ *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
