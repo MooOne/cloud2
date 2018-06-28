@@ -12,14 +12,11 @@ use Illuminate\Console\Scheduling\CallbackEvent;
 use Illuminate\Support\Str;
 
 /**
- * Class Scheduling
+ * Class Scheduling.
  *
  * @category Yeelight
  *
- * @package Yeelight\Models\Tools\Scheduling
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -27,7 +24,7 @@ use Illuminate\Support\Str;
 class Scheduling
 {
     /**
-     * $sendOutputTo
+     * $sendOutputTo.
      *
      * @var string out put file for command.
      */

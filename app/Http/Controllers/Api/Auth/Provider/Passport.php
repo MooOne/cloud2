@@ -9,14 +9,11 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 /**
- * Class Passport
+ * Class Passport.
  *
  * @category Yeelight
  *
- * @package Yeelight\Http\Controllers\Api\Auth\Provider
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -51,7 +48,7 @@ class Passport extends Authorization
      * Authenticate request with a Illuminate Guard.
      *
      * @param \Illuminate\Http\Request $request Request
-     * @param \Dingo\Api\Routing\Route $route Route
+     * @param \Dingo\Api\Routing\Route $route   Route
      *
      * @return mixed
      */

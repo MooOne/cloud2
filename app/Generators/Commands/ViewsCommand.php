@@ -8,14 +8,11 @@ use Yeelight\Generators\FileAlreadyExistsException;
 use Yeelight\Generators\ViewsGenerator;
 
 /**
- * Class ViewsCommand
+ * Class ViewsCommand.
  *
  * @category Yeelight
  *
- * @package Yeelight\Generators\Commands
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -46,17 +43,18 @@ class ViewsCommand extends CommandBase
     /**
      * Execute the command.
      *
-     * @return bool | void
      * @throws \League\Flysystem\FileNotFoundException
+     *
+     * @return bool | void
      */
     public function fire()
     {
         try {
             (new ViewsGenerator(
                 [
-                    'name' => $this->argument('name'),
+                    'name'   => $this->argument('name'),
                     'fields' => $this->option('fields'),
-                    'force' => $this->option('force'),
+                    'force'  => $this->option('force'),
                 ]
             ))->run();
             $this->info('Views created successfully.');

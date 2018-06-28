@@ -6,14 +6,11 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Route;
 
 /**
- * Class RouteServiceProvider
+ * Class RouteServiceProvider.
  *
  * @category Yeelight
  *
- * @package Yeelight\Providers
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

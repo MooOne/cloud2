@@ -5,14 +5,11 @@ namespace Yeelight\Generators;
 use Yeelight\Generators\Migrations\SchemaParser;
 
 /**
- * Class ModelGenerator
+ * Class ModelGenerator.
  *
  * @category Yeelight
  *
- * @package Yeelight\Generators
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -33,7 +30,7 @@ class ModelGenerator extends Generator
      */
     public function getRootNamespace()
     {
-        return parent::getRootNamespace() .
+        return parent::getRootNamespace().
             parent::getConfigGeneratorClassPath($this->getPathConfigNode());
     }
 
@@ -54,11 +51,11 @@ class ModelGenerator extends Generator
      */
     public function getPath()
     {
-        return $this->getBasePath() .
-            '/' .
-            parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true) .
-            '/' .
-            $this->getName() .
+        return $this->getBasePath().
+            '/'.
+            parent::getConfigGeneratorClassPath($this->getPathConfigNode(), true).
+            '/'.
+            $this->getName().
             '.php';
     }
 
@@ -82,9 +79,9 @@ class ModelGenerator extends Generator
         return array_merge(
             parent::getReplacements(),
             [
-                'fillable' => $this->getFillable(),
-                'use_base_model' => 'use ' . $this->getRootNamespace() . '\BaseModel;',
-                '_id_name' => $this->getIdName(),
+                'fillable'       => $this->getFillable(),
+                'use_base_model' => 'use '.$this->getRootNamespace().'\BaseModel;',
+                '_id_name'       => $this->getIdName(),
             ]
         );
     }

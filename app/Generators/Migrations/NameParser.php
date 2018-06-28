@@ -3,14 +3,11 @@
 namespace Yeelight\Generators\Migrations;
 
 /**
- * Class NameParser
+ * Class NameParser.
  *
  * @category Yeelight
  *
- * @package Yeelight\Generators\Migrations
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

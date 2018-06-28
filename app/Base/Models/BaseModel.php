@@ -10,14 +10,11 @@ use Yeelight\Models\Interfaces\BaseModelEventsInterface;
 use Yeelight\Traits\BaseModelEvents;
 
 /**
- * Class BaseModel
+ * Class BaseModel.
  *
  * @category Yeelight
  *
- * @package Yeelight\Base\Models
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -172,7 +169,7 @@ class BaseModel extends Model implements BaseModelEventsInterface
     }
 
     /**
-     * 判断当前登陆者
+     * 判断当前登陆者.
      *
      * @return bool
      */
@@ -182,7 +179,7 @@ class BaseModel extends Model implements BaseModelEventsInterface
     }
 
     /**
-     * 获取当前UTC时间
+     * 获取当前UTC时间.
      *
      * @return Carbon
      */
@@ -192,7 +189,7 @@ class BaseModel extends Model implements BaseModelEventsInterface
     }
 
     /**
-     * 获取当前Auth用户UTC时间
+     * 获取当前Auth用户UTC时间.
      *
      * @return Carbon
      */
@@ -202,7 +199,7 @@ class BaseModel extends Model implements BaseModelEventsInterface
     }
 
     /**
-     * 获取当前用户
+     * 获取当前用户.
      *
      * @return BaseUser|null
      */
@@ -212,7 +209,7 @@ class BaseModel extends Model implements BaseModelEventsInterface
     }
 
     /**
-     * 获取关联用户
+     * 获取关联用户.
      *
      * @return BaseUser|null
      */
@@ -224,8 +221,9 @@ class BaseModel extends Model implements BaseModelEventsInterface
     /**
      * Set Model Presenter.
      *
-     * @return $this
      * @throws \Exception
+     *
+     * @return $this
      */
     public function setModelPresenter()
     {
@@ -252,8 +250,8 @@ class BaseModel extends Model implements BaseModelEventsInterface
     /**
      * Set a given attribute on the model.
      *
-     * @param string $key The Attribute Name
-     * @param mixed $value The Attribute Value
+     * @param string $key   The Attribute Name
+     * @param mixed  $value The Attribute Value
      *
      * @return $this
      */

@@ -7,14 +7,11 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 
 /**
- * Class Generator
+ * Class Generator.
  *
  * @category Yeelight
  *
- * @package Yeelight\Generators
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -93,7 +90,7 @@ abstract class Generator
         }
 
         return (new Stub(
-            $path . '/Stubs/' . $this->stub . '.stub',
+            $path.'/Stubs/'.$this->stub.'.stub',
             $this->getReplacements()
         ))->render();
     }
@@ -220,8 +217,8 @@ abstract class Generator
     /**
      * Get class-specific output paths.
      *
-     * @param string $class className
-     * @param bool $directoryPath directoryPath
+     * @param string $class         className
+     * @param bool   $directoryPath directoryPath
      *
      * @return \Illuminate\Config\Repository|mixed
      */
@@ -284,7 +281,7 @@ abstract class Generator
     }
 
     /**
-     * GetPathConfigNode
+     * GetPathConfigNode.
      *
      * @return mixed
      */
@@ -304,8 +301,8 @@ abstract class Generator
             return;
         }
 
-        return 'namespace ' .
-            rtrim($rootNamespace . '\\' . implode($segments, '\\'), '\\') .
+        return 'namespace '.
+            rtrim($rootNamespace.'\\'.implode($segments, '\\'), '\\').
             ';';
     }
 
@@ -364,7 +361,7 @@ abstract class Generator
     /**
      * Get value from options by given key.
      *
-     * @param string $key key
+     * @param string      $key     key
      * @param string|null $default default
      *
      * @return string
@@ -381,7 +378,7 @@ abstract class Generator
     /**
      * Helper method for "getOption".
      *
-     * @param string $key key
+     * @param string      $key     key
      * @param string|null $default default
      *
      * @return string

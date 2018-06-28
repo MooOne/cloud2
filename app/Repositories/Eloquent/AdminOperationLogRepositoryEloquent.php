@@ -9,21 +9,16 @@ use Yeelight\Repositories\Interfaces\AdminOperationLogRepository;
 use Yeelight\Validators\AdminOperationLogValidator;
 
 /**
- * Class AdminOperationLogRepositoryEloquent
+ * Class AdminOperationLogRepositoryEloquent.
  *
  * @category Yeelight
  *
- * @package Yeelight\Repositories\Eloquent
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
  */
-class AdminOperationLogRepositoryEloquent
-    extends BaseRepository
-    implements AdminOperationLogRepository
+class AdminOperationLogRepositoryEloquent extends BaseRepository implements AdminOperationLogRepository
 {
     /**
      * @var array
@@ -38,7 +33,7 @@ class AdminOperationLogRepositoryEloquent
     ];
 
     /**
-     * $isSearchableForceAndWhere
+     * $isSearchableForceAndWhere.
      *
      * @var bool
      */

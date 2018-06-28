@@ -9,14 +9,11 @@ use Illuminate\Routing\Controller as BaseController;
 use Yeelight\Traits\AuthUserHelpers;
 
 /**
- * Class Controller
+ * Class Controller.
  *
  * @category Yeelight
  *
- * @package Yeelight\Base\Http\Controllers
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

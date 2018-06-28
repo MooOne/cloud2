@@ -9,14 +9,11 @@ use Yeelight\Repositories\Interfaces\ProductModelRepository;
 use Yeelight\Validators\ProductModelValidator;
 
 /**
- * Class ProductModelsController
+ * Class ProductModelsController.
  *
  * @category Yeelight
  *
- * @package Yeelight\Http\Controllers\Api\Controllers
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -24,14 +21,14 @@ use Yeelight\Validators\ProductModelValidator;
 class ProductModelsController extends BaseController
 {
     /**
-     * ProductModelRepository
+     * ProductModelRepository.
      *
      * @var ProductModelRepository
      */
     protected $repository;
 
     /**
-     * ProductModelValidator
+     * ProductModelValidator.
      *
      * @var ProductModelValidator
      */
@@ -41,7 +38,7 @@ class ProductModelsController extends BaseController
      * ProductModelsController constructor.
      *
      * @param ProductModelRepository $repository ProductModelRepository
-     * @param ProductModelValidator $validator ProductModelValidator
+     * @param ProductModelValidator  $validator  ProductModelValidator
      */
     public function __construct(
         ProductModelRepository $repository,
@@ -100,7 +97,7 @@ class ProductModelsController extends BaseController
      * Update the specified resource in storage.
      *
      * @param ProductModelUpdateRequest $request ProductModelUpdateRequest
-     * @param string $id id
+     * @param string                    $id      id
      *
      * @return \Illuminate\Http\Response
      */

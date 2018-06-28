@@ -3,14 +3,11 @@
 namespace Yeelight\Services\Image;
 
 /**
- * Class ImageTemplate
+ * Class ImageTemplate.
  *
  * @category Yeelight
  *
- * @package Yeelight\Services\Image
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

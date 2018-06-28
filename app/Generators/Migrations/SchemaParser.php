@@ -5,14 +5,11 @@ namespace Yeelight\Generators\Migrations;
 use Illuminate\Contracts\Support\Arrayable;
 
 /**
- * Class SchemaParser
+ * Class SchemaParser.
  *
  * @category Yeelight
  *
- * @package Yeelight\Generators\Migrations
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -175,9 +172,9 @@ class SchemaParser implements Arrayable
     /**
      * Create field.
      *
-     * @param string $column $column
-     * @param array $attributes $attributes
-     * @param string $type $type
+     * @param string $column     $column
+     * @param array  $attributes $attributes
+     * @param string $type       $type
      *
      * @return string
      */

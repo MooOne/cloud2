@@ -8,14 +8,11 @@ use Yeelight\Generators\FileAlreadyExistsException;
 use Yeelight\Generators\LangGenerator;
 
 /**
- * Class LangCommand
+ * Class LangCommand.
  *
  * @category Yeelight
  *
- * @package Yeelight\Generators\Commands
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -46,17 +43,18 @@ class LangCommand extends CommandBase
     /**
      * Execute the command.
      *
-     * @return bool | void
      * @throws \League\Flysystem\FileNotFoundException
+     *
+     * @return bool | void
      */
     public function fire()
     {
         try {
             (new LangGenerator(
                 [
-                    'name' => $this->argument('name'),
+                    'name'   => $this->argument('name'),
                     'fields' => $this->option('fields'),
-                    'force' => $this->option('force'),
+                    'force'  => $this->option('force'),
                 ]
             ))->run();
             $this->info('Language package created successfully.');

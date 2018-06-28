@@ -3,14 +3,11 @@
 namespace Yeelight\Http\Controllers\Backend;
 
 /**
- * Class HomeController
+ * Class HomeController.
  *
  * @category Yeelight
  *
- * @package Yeelight\Http\Controllers\Backend
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com

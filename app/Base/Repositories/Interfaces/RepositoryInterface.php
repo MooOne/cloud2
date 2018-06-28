@@ -7,14 +7,11 @@ use Prettus\Repository\Contracts\RepositoryInterface as BaseRepositoryInterface;
 use Prettus\Validator\Contracts\ValidatorInterface;
 
 /**
- * Interface RepositoryInterface
+ * Interface RepositoryInterface.
  *
  * @category Yeelight
  *
- * @package Yeelight\Base\Repositories\Interfaces
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -22,21 +19,21 @@ use Prettus\Validator\Contracts\ValidatorInterface;
 interface RepositoryInterface extends BaseRepositoryInterface
 {
     /**
-     * ByAuthUser
+     * ByAuthUser.
      *
      * @return $this
      */
     public function byAuthUser();
 
     /**
-     * AuthUserId
+     * AuthUserId.
      *
      * @return mixed
      */
     public function authUserId();
 
     /**
-     * ValidateCreate
+     * ValidateCreate.
      *
      * @param array $attributes attributes
      *
@@ -45,7 +42,7 @@ interface RepositoryInterface extends BaseRepositoryInterface
     public function validateCreate(array $attributes);
 
     /**
-     * ValidateUpdate
+     * ValidateUpdate.
      *
      * @param array $attributes attributes
      *
@@ -54,7 +51,7 @@ interface RepositoryInterface extends BaseRepositoryInterface
     public function validateUpdate(array $attributes);
 
     /**
-     * SetValidator
+     * SetValidator.
      *
      * @param ValidatorInterface $validator validator
      *
@@ -63,33 +60,34 @@ interface RepositoryInterface extends BaseRepositoryInterface
     public function setValidator($validator);
 
     /**
-     * Present
+     * Present.
      *
-     * @param Object $results results
+     * @param object $results results
      *
      * @return mixed
      */
     public function present($results);
 
     /**
-     * SetRelateModel
+     * SetRelateModel.
      *
      * @param Model $targetModel targetModel
      *
-     * @return $this
      * @throws RepositoryException
+     *
+     * @return $this
      */
     public function setRelateModel(Model $targetModel);
 
     /**
-     * Relation
+     * Relation.
      *
      * @return \Prettus\Repository\Contracts\PresenterInterface
      */
     public function getPresenter();
 
     /**
-     * SetPresenterMeta
+     * SetPresenterMeta.
      *
      * @param array $meta $meta
      *
@@ -98,7 +96,7 @@ interface RepositoryInterface extends BaseRepositoryInterface
     public function setPresenterMeta(array $meta);
 
     /**
-     * GetIsSearchableForceAndWhere
+     * GetIsSearchableForceAndWhere.
      *
      * @return bool
      */
@@ -125,7 +123,7 @@ interface RepositoryInterface extends BaseRepositoryInterface
     /**
      * Where first.
      *
-     * @param array $where where
+     * @param array $where   where
      * @param array $columns columns
      *
      * @return mixed

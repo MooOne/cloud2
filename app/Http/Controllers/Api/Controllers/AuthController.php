@@ -11,14 +11,11 @@ use Yeelight\Repositories\Interfaces\UserRepository;
 use Yeelight\Validators\UserValidator;
 
 /**
- * Class AuthController
+ * Class AuthController.
  *
  * @category Yeelight
  *
- * @package Yeelight\Http\Controllers\Api\Controllers
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -26,14 +23,14 @@ use Yeelight\Validators\UserValidator;
 class AuthController extends BaseController
 {
     /**
-     * UserRepository
+     * UserRepository.
      *
      * @var UserRepository
      */
     protected $repository;
 
     /**
-     * UserValidator
+     * UserValidator.
      *
      * @var UserValidator
      */
@@ -43,7 +40,7 @@ class AuthController extends BaseController
      * AuthController constructor.
      *
      * @param UserRepository $repository UserRepository
-     * @param UserValidator $validator UserValidator
+     * @param UserValidator  $validator  UserValidator
      */
     public function __construct(UserRepository $repository, UserValidator $validator)
     {

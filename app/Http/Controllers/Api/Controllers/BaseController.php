@@ -8,14 +8,11 @@ use Yeelight\Base\Api\Controllers\Controller;
 use Yeelight\Models\Foundation\User;
 
 /**
- * Class BaseController
+ * Class BaseController.
  *
  * @category Yeelight
  *
- * @package Yeelight\Http\Controllers\Api\Controllers
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -23,7 +20,7 @@ use Yeelight\Models\Foundation\User;
 abstract class BaseController extends Controller
 {
     /**
-     * GetAuthUser
+     * GetAuthUser.
      *
      * @return User
      */
@@ -40,9 +37,9 @@ abstract class BaseController extends Controller
     /**
      * 代理请求 oauth token.
      *
-     * @param Request $request Request
-     * @param string $grantType grantType
-     * @param string $scope scope
+     * @param Request $request   Request
+     * @param string  $grantType grantType
+     * @param string  $scope     scope
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */

@@ -6,14 +6,11 @@ use Illuminate\Support\Str;
 use League\Flysystem\FileNotFoundException;
 
 /**
- * Class LangGenerator
+ * Class LangGenerator.
  *
  * @category Yeelight
  *
- * @package Yeelight\Generators
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -134,7 +131,7 @@ class LangGenerator extends Generator
         return array_merge(
             parent::getReplacements(),
             [
-                'model' => $this->getHeader(),
+                'model'        => $this->getHeader(),
                 'model_fields' => $this->getColumns(),
             ]
         );

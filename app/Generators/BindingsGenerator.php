@@ -3,14 +3,11 @@
 namespace Yeelight\Generators;
 
 /**
- * Class BindingsGenerator
+ * Class BindingsGenerator.
  *
  * @category Yeelight
  *
- * @package Yeelight\Generators
- *
  * @author Sheldon Lee <xdlee110@gmail.com>
- *
  * @license https://opensource.org/licenses/MIT MIT
  *
  * @link https://www.yeelight.com
@@ -31,10 +28,11 @@ class BindingsGenerator extends Generator
     protected $stub = 'bindings/bindings';
 
     /**
-     * Run
+     * Run.
+     *
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      *
      * @return int|void
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function run()
     {
@@ -53,12 +51,12 @@ class BindingsGenerator extends Generator
      */
     public function getPath()
     {
-        return $this->getBasePath() .
-            '/Providers/' .
+        return $this->getBasePath().
+            '/Providers/'.
             parent::getConfigGeneratorClassPath(
                 $this->getPathConfigNode(),
                 true
-            ) .
+            ).
             '.php';
     }
 
@@ -144,8 +142,8 @@ class BindingsGenerator extends Generator
         return array_merge(
             parent::getReplacements(),
             [
-                'repository' => $this->getRepository(),
-                'eloquent' => $this->getEloquentRepository(),
+                'repository'  => $this->getRepository(),
+                'eloquent'    => $this->getEloquentRepository(),
                 'placeholder' => $this->bindPlaceholder,
             ]
         );
