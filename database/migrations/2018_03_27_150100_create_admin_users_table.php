@@ -18,6 +18,7 @@ class CreateAdminUsersTable extends Migration
             $table->string('username', 190)->unique();
             $table->string('password', 60);
             $table->string('name');
+            $table->integer('yeelight_image_id')->nullable();
             $table->string('avatar')->nullable();
             $table->string('remember_token', 100)->nullable();
             $table->timestamps();

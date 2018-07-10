@@ -26,6 +26,7 @@
     "wangEditor": "^3.1.0",
     "bootstrap-editable": "*",
     "bootstrap-fileinput": "=4.3.7",
+    "bootstrap-switch": "=3.3.4",
     "jquery": "=3.2.1",
     "iCheck": "^1.0.2",
     "bootstrap-duallistbox": "#^3.0.6",

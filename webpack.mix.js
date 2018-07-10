@@ -84,7 +84,7 @@ const paths = {
     'wangEditor': vendors + 'wangEditor/release/',
 
     //google-fonts
-    'googlefonts': vendors + 'google-fonts/',
+    'googlefonts': resourcesAssets + 'google-fonts/',
 
     //bootstrap-editable
     'editable': vendors + 'bootstrap-editable/src/',

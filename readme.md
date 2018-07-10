@@ -45,40 +45,6 @@
 ![Alt text](https://raw.githubusercontent.com/Yeelight/cloud2/master/public/screenshot/4.png)
 
 ![Alt text](https://raw.githubusercontent.com/Yeelight/cloud2/master/public/screenshot/5.png)
-## 目录权限
-~~~
-chmod -R 755 storage
-
-chmod -R 755 bootstrap/cache
-
-sudo chown www-data:www-data storage/oauth-*.key
-
-sudo chmod 600 storage/oauth-*.key
-~~~
-## laravel依赖
-~~~
-composer install
-
-composer update
-~~~
-## 前端打包环境
-~~~
-npm install -g npm bower yarn gulp
-
-
-yarn install
-
-
-sudo bower install
-
-// 运行所有 Mix 任务... ( 开发环境 )
-yarn run dev
-// 运行所有 Mix 任务并缩小输出.. ( 生产环境 )
-yarn run production
-
-~~~
-
-
 
 How to use （ Win10 + VMware Ubuntu 16.04 ） 2018-4-3
 ------
@@ -96,12 +62,21 @@ composer update /* 把控不住不要执行，若 update 之后，请务必测�
 
 ### 3. 生成配置文件
 ```
-cp .env.example .env
+cp .env.example .env # 复制完毕后注意修改.env里的配置信息
+
+chmod -R 755 storage
+
+chmod -R 777 bootstrap/cache
+
+php artisan key:generate
+
+php artisan jwt:secret
+
 ```
 
 ### 4. 全局安装这些工具 ( 已安装请跳过 )
 ```
-npm install -g npm bower yarn gulp
+sudo npm --registry https://registry.npm.taobao.org install -g bower yarn gulp
 ```
 
 ### 5. bower install
@@ -110,15 +85,20 @@ root 用户根据提示添加 --allow-root 参数
 bower --allow-root install
 ```
 参考资料：
+
 https://segmentfault.com/a/1190000002971135
+
 https://bower.io/
 
 ### 6. Yarn 设置淘宝源
 
 ```
 yarn config set registry http://registry.npm.taobao.org/
+
 yarn install
+
 /* 如果你正在 Windows 系统上进行开发，或者在 Windows 主机系统上运行虚拟机，请执行这条命令。 */
+
 yarn install --no-bin-links
 ```
 
@@ -133,13 +113,6 @@ yarn install --global cross-env
 chmod -R 777 node_modules/
 ```
 
-如果报错目录不存在请按照报错信息创建，以下目录是我安装过程中碰到的：
-```
-创建 img 目录
-resources/assets/img
-创建 google-fonts 目录
-resources/assets/vendors/google-fonts
-```
 
 ### 7. 运行 Mix 任务
 
@@ -159,6 +132,13 @@ php artisan db:seed
 ### Install Laravel Passport with encryption keys to generate secure access tokens.
 ~~~
 php artisan passport:install
+
+//www-data 为你的web用户
+sudo chown www-data:www-data storage/oauth-*.key 
+
+sudo chmod 600 storage/oauth-*.key
+
+
 ~~~
 ## 后台模板
 
