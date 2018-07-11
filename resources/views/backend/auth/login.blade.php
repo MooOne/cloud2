@@ -30,7 +30,7 @@
 
         @if($errors->has('username'))
           @foreach($errors->get('username') as $message)
-            <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i>{{$message}}</label></br>
+            <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i>{{$message}}</label><br/>
           @endforeach
         @endif
 
@@ -41,16 +41,18 @@
 
         @if($errors->has('password'))
           @foreach($errors->get('password') as $message)
-            <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i>{{$message}}</label></br>
+            <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i>{{$message}}</label><br/>
           @endforeach
         @endif
 
         <input type="password" class="form-control" placeholder="{{ trans('backend.password') }}" name="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
-      <div class="form-group">
-        {!! Geetest::render() !!}
-      </div>
+      @if(config('yeelight.backend.geetest'))
+        <div class="form-group">
+          {!! Geetest::render() !!}
+        </div>
+      @endif
       <div class="row">
 
         <!-- /.col -->

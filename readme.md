@@ -62,7 +62,10 @@ composer update /* 把控不住不要执行，若 update 之后，请务必测�
 
 ### 3. 生成配置文件
 ```
-cp .env.example .env # 复制完毕后注意修改.env里的配置信息
+cp .env.example .env
+
+#### 复制完毕后注意修改.env里的配置信息
+#### 如果要开启极验证请从 http://www.geetest.com 申请 GEETEST_ID 和 GEETEST_KEY ,并设置 GEETEST= true
 
 chmod -R 755 storage
 
@@ -140,6 +143,13 @@ sudo chmod 600 storage/oauth-*.key
 
 
 ~~~
+
+## 后台模板
+
+后台地址 http://yourhost/backend
+
+账号 admin 密码 admin
+
 ## 后台模板
 
 https://github.com/almasaeed2010/AdminLTE/

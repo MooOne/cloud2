@@ -130,17 +130,27 @@ class LoginController extends BaseController
      */
     protected function validateLogin(Request $request)
     {
-        $this->validate(
-            $request,
-            [
-                $this->username() => 'required|string',
-                'password' => 'required|string',
-                'geetest_challenge' => 'geetest',
-            ],
-            [
-                'geetest' => config('geetest.server_fail_alert'),
-            ]
-        );
+        if (config('yeelight.backend.geetest')) {
+            $this->validate(
+                $request,
+                [
+                    $this->username() => 'required|string',
+                    'password' => 'required|string',
+                    'geetest_challenge' => 'geetest',
+                ],
+                [
+                    'geetest' => config('geetest.server_fail_alert'),
+                ]
+            );
+        } else {
+            $this->validate(
+                $request,
+                [
+                    $this->username() => 'required|string',
+                    'password' => 'required|string',
+                ]
+            );
+        }
     }
 
     /**

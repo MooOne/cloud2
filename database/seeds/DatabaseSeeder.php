@@ -15,12 +15,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
         // create a user.
         AdminUser::truncate();
         AdminUser::create([
             'username' => 'admin',
-            'password' => bcrypt('admin'),
+            'password' => 'admin',
             'name'     => '超级管理员',
         ]);
 
@@ -66,6 +65,48 @@ class DatabaseSeeder extends Seeder
                 'slug'        => 'auth.management',
                 'http_method' => '',
                 'http_path'   => "/auth/roles\r\n/auth/permissions\r\n/auth/menu\r\n/auth/logs",
+            ],
+            [
+                'name' => '日志查看器',
+                'slug' => 'tools.log-viewer',
+                'http_method' => '',
+                'http_path' => "/tools/logs*",
+            ],
+            [
+                'name' => '计划任务',
+                'slug' => 'tools.scheduling',
+                'http_method' => '',
+                'http_path' => "/tools/scheduling*",
+            ],
+            [
+                'name' => '数据库终端',
+                'slug' => 'tools.terminal.database',
+                'http_method' => '',
+                'http_path' => "/tools/terminal/database*",
+            ],
+            [
+                'name' => 'Aritsan终端',
+                'slug' => 'tools.terminal.artisan',
+                'http_method' => '',
+                'http_path' => "/tools/terminal/artisan*",
+            ],
+            [
+                'name' => '脚手架',
+                'slug' => 'tools.scaffold',
+                'http_method' => '',
+                'http_path' => "/tools/scaffold*",
+            ],
+            [
+                'name' => '路由查看器',
+                'slug' => 'tools.routes',
+                'http_method' => '',
+                'http_path' => "/tools/routes*",
+            ],
+            [
+                'name' => 'Api tester',
+                'slug' => 'tools.api-tester',
+                'http_method' => '',
+                'http_path' => "/tools/api-tester*",
             ],
         ]);
 
@@ -123,7 +164,84 @@ class DatabaseSeeder extends Seeder
                 'icon'      => 'fa-history',
                 'uri'       => 'auth/logs',
             ],
-        ]);
+            [
+                'parent_id' => 0,
+                'order' => 8,
+                'title' => '工具',
+                'icon' => 'fa-gears',
+                'uri' => '#',
+            ],
+            [
+                'parent_id' => 8,
+                'order' => 9,
+                'title' => '日志查看器',
+                'icon' => 'fa-bug',
+                'uri' => 'tools/logs',
+            ],
+            [
+                'parent_id' => 8,
+                'order' => 14,
+                'title' => '计划任务',
+                'icon' => 'fa-clock-o',
+                'uri' => 'tools/scheduling',
+            ],
+            [
+                'parent_id' => 8,
+                'order' => 13,
+                'title' => '脚手架',
+                'icon' => 'fa-keyboard-o',
+                'uri' => 'tools/scaffold',
+            ],
+            [
+                'parent_id' => 8,
+                'order' => 12,
+                'title' => '数据库终端',
+                'icon' => 'fa-database',
+                'uri' => 'tools/terminal/database',
+            ],
+            [
+                'parent_id' => 8,
+                'order' => 11,
+                'title' => 'Artisan终端',
+                'icon' => 'fa-terminal',
+                'uri' => 'tools/terminal/artisan',
+            ],
+            [
+                'parent_id' => 8,
+                'order' => 10,
+                'title' => '路由查看器',
+                'icon' => 'fa-list-alt',
+                'uri' => 'tools/routes',
+            ],
+            [
+                'parent_id' => 0,
+                'order' => 15,
+                'title' => '用户管理',
+                'icon' => 'fa-user-circle',
+                'uri' => '',
+            ],
+            [
+                'parent_id' => 15,
+                'order' => 16,
+                'title' => '用户管理',
+                'icon' => 'fa-user-o',
+                'uri' => 'consumer/users',
+            ],
+            [
+                'parent_id' => 0,
+                'order' => 17,
+                'title' => '产品管理',
+                'icon' => 'fa-product-hunt',
+                'uri' => '',
+            ],
+            [
+                'parent_id' => 17,
+                'order' => 18,
+                'title' => '产品模型',
+                'icon' => 'fa-lightbulb-o',
+                'uri' => 'product/product_models',
+            ],
+        ]); 
 
         // add role to menu.
         AdminMenu::find(2)->roles()->save(AdminRole::first());

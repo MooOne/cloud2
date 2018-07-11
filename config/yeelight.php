@@ -74,6 +74,11 @@ return [
         ],
 
         /*
+        * GEETEST switch
+        */
+        'geetest' => env('GEETEST', false),
+
+        /*
         * database setting.
         */
         'database' => [
