@@ -144,11 +144,15 @@ sudo chmod 600 storage/oauth-*.key
 
 ~~~
 
-## 后台模板
+## 后台登录
 
 后台地址 http://yourhost/backend
 
 账号 admin 密码 admin
+
+## 接口文档
+
+http://doclever.cn/controller/public/public.html#5b459caf362f91495c0901c1
 
 ## 后台模板
 
