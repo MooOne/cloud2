@@ -155,7 +155,7 @@ class DatabaseSeeder extends Seeder
                 'order'     => 6,
                 'title'     => '后台菜单',
                 'icon'      => 'fa-bars',
-                'uri'       => 'auth/menu',
+                'uri'       => 'auth/menus',
             ],
             [
                 'parent_id' => 2,
